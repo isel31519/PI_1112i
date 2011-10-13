@@ -10,7 +10,6 @@ namespace CourseAplication
     {
         static void Main(string[] args)
         {
-
             var repo =  FucRepositoryLocator.Get();
             repo.Add(new Fuc("Programaçao Orientada a Objectos", "POO", true, 2, "Pg", 6.0, "Tipo cenas"));
             //repo.Add(new Fuc;
