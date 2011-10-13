@@ -10,6 +10,15 @@ using PI.WebGarten.MethodBasedCommands;
 
 namespace CourseAplication.Controllers
 {
+     class RootController
+     {
+
+         [HttpCmd(HttpMethod.Get, "/")]
+         public HttpResponse GetRoot()
+         {
+             return new HttpResponse(200, new RootView());
+         }
+     }
     class FucController
     {
          private readonly FucRepository _repo;
@@ -18,12 +27,20 @@ namespace CourseAplication.Controllers
             _repo = FucRepositoryLocator.Get();
         }
 
-        [HttpCmd(HttpMethod.Get, "/fuc/{id}")]
-        public HttpResponse Get(string id)
-        {
-            var td = _repo.GetByAcr(id);
-            return td == null ? new HttpResponse(HttpStatusCode.NotFound) : new HttpResponse(200, new FucView(td));
-        }
+         [HttpCmd(HttpMethod.Get, "/fuc")]
+         public HttpResponse GetFucList()
+         {
+             return new HttpResponse(200, new FucListView(_repo.GetAll()));
+         }
+
+         [HttpCmd(HttpMethod.Get, "/fuc/{id}")]
+         public HttpResponse Get(string id)
+         {
+             var td = _repo.GetByAcr(id);
+             return td == null ? new HttpResponse(HttpStatusCode.NotFound) : new HttpResponse(200, new FucView(td));
+         }
+
+        
     }
 
 }
