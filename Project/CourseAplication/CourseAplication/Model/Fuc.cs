@@ -7,13 +7,13 @@ namespace CourseAplication.Model
         private string _name;
         private string _acr;
         private readonly bool _required;
-        private List<ushort> _semester;
-        private List<Fuc> _prerequisites;
+        private ushort _semester;
+        private string _prerequisites;
         private double _ects;
-        private List<string> _description;
+        private string _description;
 
 
-        public Fuc(string name, string acr, bool req, List<ushort> sems, List<Fuc> reqmts, double ects, List<string> desc)
+        public Fuc(string name, string acr, bool req, ushort sems, string reqmts, double ects, string desc)
         {
             _name = name;
             _acr = acr;
