@@ -11,14 +11,14 @@ namespace CourseAplication.Views
     class FucView : HtmlDoc
     {
         public FucView(Fuc f):base("FUC",
+                A(ResolveUri.ForRoot(),"Home"),
+                P(),
                 H1(Text(f.Name)),
                 Ul(
                     Li(Text(f.Acr)),
                     Li(Text(Convert.ToString(f.Ects)))
                   ),
-                A(ResolveUri.ForFuc(),"fuclist"),
-                P(),
-                A(ResolveUri.ForRoot(),"root")
+                A(ResolveUri.ForFuc(),"fuclist")
                 ){}
     }
 }
