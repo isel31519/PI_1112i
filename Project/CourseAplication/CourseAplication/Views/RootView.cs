@@ -9,13 +9,10 @@ namespace CourseAplication.Views
 {
     class RootView : HtmlDoc
     {
-        public RootView(string t, params IWritable[] content) : base("FUC index",
+        public RootView() : base("FUC index",
                 H1(Text("Homepage")),
-                Ul(
-                    t.Select(td => Li(A(ResolveUri.For(td), td.Description))).ToArray()
-                   ),
                     H2(Text("Create a new FUC")),
-                    Form("post", "/fuclist",
+                    Form("post", "/fucproposal",
                     Label("desc", "Description: "), InputText("desc")
                    )
                 ){ }
