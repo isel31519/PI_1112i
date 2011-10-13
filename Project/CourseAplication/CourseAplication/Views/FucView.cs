@@ -16,7 +16,9 @@ namespace CourseAplication.Views
                     Li(Text(f.Acr)),
                     Li(Text(Convert.ToString(f.Ects)))
                   ),
-                A(ResolveUri.ForFuc(),"fuc")
+                A(ResolveUri.ForFuc(),"fuclist"),
+                P(),
+                A(ResolveUri.ForRoot(),"root")
                 ){}
     }
 }

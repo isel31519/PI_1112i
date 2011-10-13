@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CourseAplication.Model;
 using PI.WebGarten;
 using PI.WebGarten.HttpContent.Html;
 
@@ -14,7 +15,8 @@ namespace CourseAplication.Views
                     H2(Text("Create a new FUC")),
                     Form("post", "/fucproposal",
                     Label("desc", "Description: "), InputText("desc")
-                   )
+                   ),
+                A(ResolveUri.ForFuc(), "fuclist")
                 ){ }
     }
 }

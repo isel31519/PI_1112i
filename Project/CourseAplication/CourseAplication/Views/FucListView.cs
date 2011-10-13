@@ -15,7 +15,8 @@ namespace CourseAplication.Views
                 H1(Text("Lista de FUC")),
                 Ul(
                     fuclist.Select(fuc => Li(A(ResolveUri.For(fuc), fuc.Name))).ToArray()
-                   )
+                   ),
+                A(ResolveUri.ForRoot(), "root")
                    ) { }
     }
 }

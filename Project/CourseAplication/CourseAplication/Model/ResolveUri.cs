@@ -16,5 +16,10 @@ namespace CourseAplication.Model
         {
             return "/fuc";
         }
+
+        public static string ForRoot()
+        {
+            return "/";
+        }
     }
 }
