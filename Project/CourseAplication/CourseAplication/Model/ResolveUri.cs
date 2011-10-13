@@ -9,7 +9,7 @@ namespace CourseAplication.Model
     {
         public static string For(Fuc f)
         {
-            return string.Format("/{0}/{1}", f.Name, f.Acr);
+            return string.Format("{0}/{1}", ForFuc(), f.Acr);
         }
 
         public static string ForFuc()

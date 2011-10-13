@@ -16,7 +16,7 @@ namespace CourseAplication.Views
                     Li(Text(f.Acr)),
                     Li(Text(Convert.ToString(f.Ects)))
                   ),
-                A("/fuc","fuc")
+                A(ResolveUri.ForFuc(),"fuc")
                 ){}
     }
 }
