@@ -9,7 +9,7 @@ namespace CourseAplication.Views
 {
     class FucListView : HtmlDoc
     {
-        public FucListView(string t, params IWritable[] content)
+        public FucListView()
             : base("FUC index",
                 H1(Text("Lista de FUC")),
                 Ul(
