@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PI.CourseAplication")]
+[assembly: AssemblyTitle("CourseAplication")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("PI.CourseAplication")]
+[assembly: AssemblyProduct("CourseAplication")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2a081598-98bf-4e57-88b4-78fde0396a7c")]
+[assembly: Guid("355af289-7059-41b9-96d8-59dd205428d3")]
 
 // Version information for an assembly consists of the following four values:
 //
