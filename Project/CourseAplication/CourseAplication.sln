@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseAplication", "CourseAplication\CourseAplication.csproj", "{A55FFFC2-8D7E-4564-9ED7-0EE28B23FBF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PI.WebGarten", "..\WebGarten\PI.WebGarten\PI.WebGarten.csproj", "{6FF2A3D3-D0BD-47A7-97C5-67C4DBB2A6F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PI.WebGarten", "..\..\WebGarten\PI.WebGarten\PI.WebGarten.csproj", "{6FF2A3D3-D0BD-47A7-97C5-67C4DBB2A6F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
