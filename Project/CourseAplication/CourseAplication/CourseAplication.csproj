@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\FucController.cs" />
     <Compile Include="Model\Fuc.cs" />
     <Compile Include="Model\FucProposal.cs" />
     <Compile Include="Model\FucRepository.cs" />
@@ -51,9 +50,12 @@
     <Compile Include="Model\ProposalRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\FucView.cs" />
     <Compile Include="Views\RootView.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\WebGarten\PI.WebGarten\PI.WebGarten.csproj">
       <Project>{6FF2A3D3-D0BD-47A7-97C5-67C4DBB2A6F5}</Project>
