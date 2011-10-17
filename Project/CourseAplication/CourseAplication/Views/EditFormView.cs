@@ -14,16 +14,19 @@ namespace CourseAplication.Views
             A(ResolveUri.ForRoot(), "Home"),
                 H1(Text("Edid Form")),
                     Form("post", "/"+f.Acr+"/prop/",//falta acrescentar o id
-                    Label("name", "Name: "), InputText("name"), P(),
-                    Label("acr", "Acr: "), InputText("acr"), P(),
-                    Label("req", "Required: "), InputText("req"), P(),
+                    //Label("name", "Name: "), InputText("name"), P(),
+
+                    P(Label("name", "Name: "), InputText("name"))
+
+                    /*Label("acr", "Acr: "), InputText("acr"), P(),
+                    Label("req", "Required: "), InputCheckBox("req"), P(),
                     Label("sem", "Semester: "), InputText("sem"), P(),
                     Label("prereq", "Prerequisites: "), InputText("prereq"), P(),
                     Label("objectives", "Objectives: "), InputText("objectives"), P(),
                     Label("results", "Results: "), InputText("results"), P(),
                     Label("evaluation", "Evaluation: "), InputText("evaluation"), P(),
                     Label("program", "Program: "), InputText("program"), P(),
-                    InputSubmit("Submit")
+                    InputSubmit("Submit")*/
                    )
             ) { }
     }

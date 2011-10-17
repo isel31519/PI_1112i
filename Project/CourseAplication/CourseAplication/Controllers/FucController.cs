@@ -16,7 +16,7 @@ namespace CourseAplication.Controllers
          private readonly FucRepository _repo;
          public FucController()
         {
-            _repo = FucRepositoryLocator.Get();
+            _repo = RepositoryLocator.GetFucRep();
         }
 
          [HttpCmd(HttpMethod.Get, "/fuc")]

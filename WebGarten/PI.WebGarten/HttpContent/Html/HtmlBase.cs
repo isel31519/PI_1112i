@@ -21,9 +21,18 @@ namespace PI.WebGarten.HttpContent.Html
             return new HtmlElem("label", new HtmlText(text))
                 .WithAttr("for", to);
         }
+
         public static IWritable InputText(String name)
         {
             return new HtmlElem("input")
+                .WithAttr("type", "text")
+                .WithAttr("name", name);
+        }
+
+        //metodo adicionado
+        public static IWritable InputCheckBox(String name)
+        {
+            return new HtmlElem("checkbox")
                 .WithAttr("type", "text")
                 .WithAttr("name", name);
         }
