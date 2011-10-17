@@ -49,7 +49,7 @@
     <Compile Include="Model\Fuc.cs" />
     <Compile Include="Model\FucProposal.cs" />
     <Compile Include="Model\FucRepository.cs" />
-    <Compile Include="Model\FucRepositoryLocator.cs" />
+    <Compile Include="Model\RepositoryLocator.cs" />
     <Compile Include="Model\ProposalRepository.cs" />
     <Compile Include="Model\ResolveUri.cs" />
     <Compile Include="Program.cs" />
