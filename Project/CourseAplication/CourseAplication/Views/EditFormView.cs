@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using CourseAplication.Model;
-using PI.WebGarten;
 using PI.WebGarten.HttpContent.Html;
 
 namespace CourseAplication.Views
 {
-    class RootView : HtmlDoc
+    class EditFormView : HtmlDoc
     {
-        public RootView() : base("FUC index",
-                H1(Text("Homepage")),
-                    H2(Text("Create a new FUC")),
-                    Form("post", "/fucproposal",
+        public EditFormView(Fuc f) : base("Edit Form",
+            A(ResolveUri.ForRoot(), "Home"),
+                H1(Text("Edid Form")),
+                    Form("post", "/"+f.Acr+"/prop/",//falta acrescentar o id
                     Label("name", "Name: "), InputText("name"), P(),
                     Label("acr", "Acr: "), InputText("acr"), P(),
                     Label("req", "Required: "), InputText("req"), P(),
@@ -24,8 +24,7 @@ namespace CourseAplication.Views
                     Label("evaluation", "Evaluation: "), InputText("evaluation"), P(),
                     Label("program", "Program: "), InputText("program"), P(),
                     InputSubmit("Submit")
-                   ),
-                A(ResolveUri.ForFuc(), "fuclist")
-                ){ }
+                   )
+            ) { }
     }
 }

@@ -54,6 +54,7 @@
     <Compile Include="Model\ResolveUri.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\EditFormView.cs" />
     <Compile Include="Views\FucListView.cs" />
     <Compile Include="Views\FucView.cs" />
     <Compile Include="Views\RootView.cs" />
