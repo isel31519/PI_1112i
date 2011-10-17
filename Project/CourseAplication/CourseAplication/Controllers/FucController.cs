@@ -10,15 +10,7 @@ using PI.WebGarten.MethodBasedCommands;
 
 namespace CourseAplication.Controllers
 {
-     class RootController
-     {
-
-         [HttpCmd(HttpMethod.Get, "/")]
-         public HttpResponse GetRoot()
-         {
-             return new HttpResponse(200, new RootView());
-         }
-     }
+    
     class FucController
     {
          private readonly FucRepository _repo;

@@ -7,21 +7,42 @@ namespace CourseAplication.Model
         private string _name;
         private string _acr;
         private readonly bool _required;
-        private ushort _semester;
-        private string _prerequisites;
+        private List<ushort> _semester;
+        private List<string> _prerequisites;
         private double _ects;
-        private string _description;
+        private Dictionary<string,string> _description;
 
 
-        public Fuc(string name, string acr, bool req, ushort sems, string reqmts, double ects, string desc)
+        public Fuc(string name, string acr, bool req, double ects)
         {
             _name = name;
             _acr = acr;
             _required = req;
-            _semester = sems;
-            _prerequisites = reqmts;
+            _semester = new List<ushort>();
+            _prerequisites = new List<string>();
             _ects = ects;
-            _description = desc;
+            _description = new Dictionary<string,string>();
+        }
+
+        public ushort Semester
+        {
+             set{ _semester.Add(value); }
+        }
+
+        public string Prerequisites
+        {
+            set { _prerequisites.Add(value); }
+        }
+
+        public void AddDescription(string title,string desc)
+        {
+            _description.Add(title,desc); 
+        }
+        public string GetDescription(string title)
+        {
+            string desc;
+             _description.TryGetValue(title,out desc);
+            return desc;
         }
 
         public string Name

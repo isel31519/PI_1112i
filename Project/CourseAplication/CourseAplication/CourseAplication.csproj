@@ -45,11 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CreateFucProposalController.cs" />
     <Compile Include="Controllers\FucController.cs" />
+    <Compile Include="Controllers\RootController.cs" />
     <Compile Include="Model\Fuc.cs" />
     <Compile Include="Model\FucProposal.cs" />
     <Compile Include="Model\FucRepository.cs" />
-    <Compile Include="Model\FucRepositoryLocator.cs" />
+    <Compile Include="Model\RepositoryLocator.cs" />
     <Compile Include="Model\ProposalRepository.cs" />
     <Compile Include="Model\ResolveUri.cs" />
     <Compile Include="Program.cs" />
