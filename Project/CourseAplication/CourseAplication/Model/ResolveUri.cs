@@ -12,6 +12,26 @@ namespace CourseAplication.Model
             return string.Format("{0}/{1}", ForFuc(), f.Acr);
         }
 
+        public static string For(FucProposal f)
+        {
+            return string.Format("{0}/{1}{2}/{3}", ForFuc(), f.Acr, ForProp(), f.Id);
+        }
+
+        private static string ForProp()
+        {
+           return "/prop";
+        }
+
+        public static string ForNew(FucProposal f)
+        {
+            return string.Format("{0}{1}",ForNewFuc(), f.Id);
+        }
+
+        private static string ForNewFuc()
+        {
+            return "/newfuc";
+        }
+
         public static string ForFuc()
         {
             return "/fuc";
