@@ -14,15 +14,15 @@ namespace CourseAplication.Views
             A(ResolveUri.ForRoot(), "Home"),
                 H1(Text("Edid Form")),
                     Form("post", "/"+f.Acr+"/prop/",//falta acrescentar o id
-                    P(P(Label("name", "Name: "), InputText("name"))),
-                    P(Label("acr", "Acronym: "), InputText("acr")),
+                    P(Label("name", "Name: "), P(InputText("name"))),
+                    P(Label("acr", "Acronym: "), P(InputText("acr"))),
                     P(Label("req", "Required: "), InputCheckBox("req")),
-                    P(Label("sem", "Semester: "), InputText("sem")),
-                    P(Label("prereq", "Prerequisites: "), InputText("prereq")),
-                    P(Label("objectives", "Objectives: "), InputText("objectives")),
-                    P(Label("results", "Results: "), InputText("results")),
-                    P(Label("evaluation", "Evaluation: "), InputText("evaluation")),
-                    P(Label("program", "Program: "), InputText("program")),
+                    P(Label("sem", "Semester: "), P(InputText("sem"))),
+                    P(Label("prereq", "Prerequisites: "), P(InputText("prereq"))),
+                    P(Label("objectives", "Objectives: "), P(InputTextArea("objectives", "5", "30"))),
+                    P(Label("results", "Results: "), P(InputTextArea("results", "5", "30"))),
+                    P(Label("evaluation", "Evaluation: "), P(InputTextArea("evaluation", "5", "30"))),
+                    P(Label("program", "Program: "), P(InputTextArea("program", "5", "30"))),
                     InputSubmit("Submit")
                    )
             ) { }
