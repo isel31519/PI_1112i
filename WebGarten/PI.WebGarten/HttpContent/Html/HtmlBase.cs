@@ -32,8 +32,17 @@ namespace PI.WebGarten.HttpContent.Html
         //metodo adicionado
         public static IWritable InputCheckBox(String name)
         {
-            return new HtmlElem("checkbox")
-                .WithAttr("type", "text")
+            return new HtmlElem("input")
+                .WithAttr("type", "checkbox")
+                .WithAttr("name", name);
+        }
+
+        //metodo adicionado
+        public static IWritable InputTextArea(String name, String rows, String cols)
+        {
+            return new HtmlElem("textarea")
+                .WithAttr("rows", rows)
+                .WithAttr("cols", cols)
                 .WithAttr("name", name);
         }
 

@@ -14,7 +14,16 @@ namespace CourseAplication.Views
                 H1(Text("Homepage")),
                     H2(Text("Create a new FUC")),
                     Form("post", "/fucproposal",
-                    P(Label("name", "Name: "), InputText("name"))
+                    P(Label("name", "Name: "), P(InputText("name"))),
+                    P(Label("acr", "Acronym: "), P(InputText("acr"))),
+                    P(Label("req", "Required: "), InputCheckBox("req")),
+                    P(Label("sem", "Semester: "), P(InputText("sem"))),
+                    P(Label("prereq", "Prerequisites: "), P(InputText("prereq"))),
+                    P(Label("objectives", "Objectives: "), P(InputTextArea("objectives","5","30"))),
+                    P(Label("results", "Results: "), P(InputTextArea("results","5","30"))),
+                    P(Label("evaluation", "Evaluation: "), P(InputTextArea("evaluation", "5", "30"))),
+                    P(Label("program", "Program: "), P(InputTextArea("program", "5", "30"))),
+                    InputSubmit("Submit")
                    ),
                 A(ResolveUri.ForFuc(), "fuclist")
                 ){ }
