@@ -25,7 +25,7 @@ namespace CourseAplication.Views
                    ),
                 H1(Text("New Fuc Proposal List")),
                 Ul(
-                    RepositoryLocator.GetNewPropRep().GetAll().Select(fuc => Li(A(ResolveUri.For(fuc), fuc.Name))).ToArray()
+                    RepositoryLocator.GetNewPropRep().GetAll().Select(fuc => Li(A(ResolveUri.For(fuc), fuc.Name))).ToArray()//mudar
                    ),
                 A(ResolveUri.ForFuc(), "Fuc List"), P(),
                 A(ResolveUri.ForCreate(), "Create a new FUC")

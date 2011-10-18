@@ -9,7 +9,7 @@ namespace CourseAplication.Views
             : base(f.Name + " Proposal " + f.Id,
               A(ResolveUri.ForRoot(), "Home"),
                   H1(Text("" + f.User)),
-                      Form("GET", "edit",
+                      Form("GET", ResolveUri.For(f) + "/edit",//mudar
                       InputSubmit("Edit")),
                       Form("POST", "accept",
                       InputSubmit("Accept")),
