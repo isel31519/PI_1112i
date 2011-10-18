@@ -9,7 +9,7 @@ namespace CourseAplication.Views
             : base("Edit Proposal Form",
              A(ResolveUri.ForRoot(), "Home"),
                  H1(Text("Edit Proposal Form")),
-                     Form("post", ResolveUri.For(f) + "/edit",//fica no mesmo sitio
+                     Form("post", "/edit",//fica no mesmo sitio
                      P(Label("name", "Name: "), P(InputTextWithContent("name", f.Name))),
                      P(Label("acr", "Acronym: "), P(InputTextWithContent("acr", f.Acr))),
                      P(Label("req", "Required: "), f.IsRequired ? InputCheckBox("req", "yes") : InputCheckBox("req", "no")),

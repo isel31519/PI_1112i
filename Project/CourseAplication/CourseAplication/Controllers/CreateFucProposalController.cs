@@ -44,15 +44,16 @@ namespace CourseAplication.Controllers
         {
             var acr = content.Where(p => p.Key == "acr").Select(p => p.Value).FirstOrDefault();
             var name = content.Where(p => p.Key == "name").Select(p => p.Value).FirstOrDefault();
-            var required = content.Where(p => p.Key == "required").Select(p => p.Value).FirstOrDefault();
-            var semester = content.Where(p => p.Key == "semester").Select(p => p.Value).FirstOrDefault();
-            var prerequisites = content.Where(p => p.Key == "prerequisites").Select(p => p.Value).FirstOrDefault();
+            var required = content.Where(p => p.Key == "req").Select(p => p.Value).FirstOrDefault();
+            var semester = content.Where(p => p.Key == "sem").Select(p => p.Value).FirstOrDefault();
+            var prerequisites = content.Where(p => p.Key == "prereq").Select(p => p.Value).FirstOrDefault();
             var ects = content.Where(p => p.Key == "ects").Select(p => p.Value).FirstOrDefault();
             var userid = content.Where(p => p.Key == "userid").Select(p => p.Value).FirstOrDefault(); //será mesmo user a key?
             var objectives = content.Where(p => p.Key == "objectives").Select(p => p.Value).FirstOrDefault();
             var results = content.Where(p => p.Key == "results").Select(p => p.Value).FirstOrDefault();
             var evaluation = content.Where(p => p.Key == "evaluation").Select(p => p.Value).FirstOrDefault();
             var program = content.Where(p => p.Key == "program").Select(p => p.Value).FirstOrDefault();
+
 
 
             if (acr == null|| name == null || required == null || semester == null || prerequisites == null || ects == null || 
@@ -115,7 +116,7 @@ namespace CourseAplication.Controllers
             }
 
 
-            var fuc = new FucProposal(name, acr, required.Equals("true") ? true : false, Convert.ToDouble(ects), Convert.ToInt32(userid));
+            var fuc = new FucProposal(name, acr, required.Equals("on") ? true : false, Convert.ToDouble(ects), Convert.ToInt32(userid));
 
 
             foreach (var sem in semester.Split(' '))

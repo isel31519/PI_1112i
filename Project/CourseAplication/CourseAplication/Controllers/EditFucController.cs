@@ -56,14 +56,14 @@ namespace CourseAplication.Controllers
             var program = content.Where(p => p.Key == "program").Select(p => p.Value).FirstOrDefault();
 
 
-            if (acr == null || name == null || required == null || semester == null || ects == null //||
-                /*objectives == null || results == null || evaluation == null || program == null || userid == null*/)
+            if (acr == null || name == null || required == null || semester == null || ects == null ||
+                objectives == null || results == null || evaluation == null || program == null /*|| userid == null*/)
             {
                 return new HttpResponse(HttpStatusCode.BadRequest);
             }
 
 
-            var fuc = new FucProposal(name, acr, required.Equals("true") ? true : false, Convert.ToDouble(ects), Convert.ToInt32(userid));
+            var fuc = new FucProposal(name, acr, required.Equals("on") ? true : false, Convert.ToDouble(ects), Convert.ToInt32(userid));
 
 
             foreach (var sem in semester.Split(' '))
@@ -94,13 +94,13 @@ namespace CourseAplication.Controllers
 
 
         [HttpCmd(HttpMethod.Post, "/fuc/{acr}/prop/{id}/edit")]
-        public HttpResponse PostFucAlterationForm(IEnumerable<KeyValuePair<string, string>> content)
+        public HttpResponse PostFucAlterationForm(string acr,string id, IEnumerable<KeyValuePair<string, string>> content)
         {
-            var acr = content.Where(p => p.Key == "acr").Select(p => p.Value).FirstOrDefault();
+            var acro = content.Where(p => p.Key == "acr").Select(p => p.Value).FirstOrDefault();
             var name = content.Where(p => p.Key == "name").Select(p => p.Value).FirstOrDefault();
-            var required = content.Where(p => p.Key == "required").Select(p => p.Value).FirstOrDefault();
-            var semester = content.Where(p => p.Key == "semester").Select(p => p.Value).FirstOrDefault();
-            var prerequisites = content.Where(p => p.Key == "prerequisites").Select(p => p.Value).FirstOrDefault();
+            var required = content.Where(p => p.Key == "req").Select(p => p.Value).FirstOrDefault();
+            var semester = content.Where(p => p.Key == "sem").Select(p => p.Value).FirstOrDefault();
+            var prerequisites = content.Where(p => p.Key == "prereq").Select(p => p.Value).FirstOrDefault();
             var ects = content.Where(p => p.Key == "ects").Select(p => p.Value).FirstOrDefault();
             var userid = content.Where(p => p.Key == "userid").Select(p => p.Value).FirstOrDefault(); //será mesmo user a key?
             var objectives = content.Where(p => p.Key == "objectives").Select(p => p.Value).FirstOrDefault();
@@ -109,14 +109,14 @@ namespace CourseAplication.Controllers
             var program = content.Where(p => p.Key == "program").Select(p => p.Value).FirstOrDefault();
 
 
-            if (acr == null || name == null || required == null || semester == null || prerequisites == null || ects == null ||
-                objectives == null || results == null || evaluation == null || program == null || userid == null)
+            if (acro == null || name == null || required == null || semester == null || ects == null ||
+                objectives == null || results == null || evaluation == null || program == null/* || userid == null*/)
             {
                 return new HttpResponse(HttpStatusCode.BadRequest);
             }
 
 
-            var fuc = new FucProposal(name, acr, required.Equals("true") ? true : false, Convert.ToDouble(ects), Convert.ToInt32(userid));
+            var fuc = new FucProposal(name, acro, required.Equals("on") ? true : false, Convert.ToDouble(ects), Convert.ToInt32(userid));
 
 
             foreach (var sem in semester.Split(' '))
@@ -140,7 +140,7 @@ namespace CourseAplication.Controllers
             fuc.AddDescription("Program", program);
 
 
-            _proprepo.Add(fuc);
+            _proprepo.Edit(Convert.ToInt32(id), fuc); ;
             return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.For(fuc));
         }
     }
