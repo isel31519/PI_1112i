@@ -40,7 +40,7 @@ namespace CourseAplication.Controllers
         }
 
 
-        [HttpCmd(HttpMethod.Get, "/fuc/{acr}/edit")]
+        [HttpCmd(HttpMethod.Post, "/fuc/{acr}/edit")]
         public HttpResponse PostFucProposedAlteration(IEnumerable<KeyValuePair<string, string>> content)
         {
             var acr = content.Where(p => p.Key == "acr").Select(p => p.Value).FirstOrDefault();
@@ -91,7 +91,7 @@ namespace CourseAplication.Controllers
 
 
 
-        [HttpCmd(HttpMethod.Get, "/fuc/{acr}/prop/{id}/edit")]
+        [HttpCmd(HttpMethod.Post, "/fuc/{acr}/prop/{id}/edit")]
         public HttpResponse PostFucAlterationForm(IEnumerable<KeyValuePair<string, string>> content)
         {
             var acr = content.Where(p => p.Key == "acr").Select(p => p.Value).FirstOrDefault();
