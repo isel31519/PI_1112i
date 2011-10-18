@@ -21,7 +21,7 @@ namespace CourseAplication.Controllers
         [HttpCmd(HttpMethod.Get, "/create")]
         public HttpResponse GetNewFucProposalForm()
         {
-            return new HttpResponse(200, new ProposalListView(_repo.GetAll())); //mudar nome proposal
+            return new HttpResponse(200, new CreateNewFucProposalView()); //mudar nome proposal
         }
 
         [HttpCmd(HttpMethod.Get, "/newfuc/{id}")]
