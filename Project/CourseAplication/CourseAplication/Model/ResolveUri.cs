@@ -24,7 +24,7 @@ namespace CourseAplication.Model
 
         public static string ForNew(FucProposal f)
         {
-            return string.Format("{0}{1}",ForNewFuc(), f.Id);
+            return string.Format("{0}/{1}",ForNewFuc(), f.Id);
         }
 
         private static string ForNewFuc()
