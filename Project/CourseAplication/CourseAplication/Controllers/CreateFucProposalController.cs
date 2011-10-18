@@ -80,10 +80,10 @@ namespace CourseAplication.Controllers
 
 
 
-            fuc.AddDescription("Objectivos", objectives);
-            fuc.AddDescription("Resultados", results);
-            fuc.AddDescription("Avaliação", evaluation);
-            fuc.AddDescription("Programa", program);
+            fuc.AddDescription("Objectives", objectives);
+            fuc.AddDescription("Results", results);
+            fuc.AddDescription("Evaluation", evaluation);
+            fuc.AddDescription("Program", program);
 
 
             _repo.Add(fuc);
@@ -133,10 +133,10 @@ namespace CourseAplication.Controllers
 
 
 
-            fuc.AddDescription("Objectivos", objectives);
-            fuc.AddDescription("Resultados", results);
-            fuc.AddDescription("Avaliação", evaluation);
-            fuc.AddDescription("Programa", program);
+            fuc.AddDescription("Objectives", objectives);
+            fuc.AddDescription("Results", results);
+            fuc.AddDescription("Evaluation", evaluation);
+            fuc.AddDescription("Program", program);
 
             _repo.Edit(Convert.ToInt32(id), fuc);
             return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.ForNew(fuc));

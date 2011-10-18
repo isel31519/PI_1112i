@@ -81,16 +81,13 @@ namespace CourseAplication.Controllers
 
 
 
-            fuc.AddDescription("Objectivos", objectives);
-            fuc.AddDescription("Resultados", results);
-            fuc.AddDescription("Avaliação", evaluation);
-            fuc.AddDescription("Programa", program);
+            fuc.AddDescription("Objectives", objectives);
+            fuc.AddDescription("Results", results);
+            fuc.AddDescription("Evaluation", evaluation);
+            fuc.AddDescription("Program", program);
 
 
             _proprepo.Add(fuc);
-
-            string s = ResolveUri.For(fuc);
-            Console.WriteLine(s);
             return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.For(fuc));  
         }
 
@@ -137,10 +134,10 @@ namespace CourseAplication.Controllers
 
 
 
-            fuc.AddDescription("Objectivos", objectives);
-            fuc.AddDescription("Resultados", results);
-            fuc.AddDescription("Avaliação", evaluation);
-            fuc.AddDescription("Programa", program);
+            fuc.AddDescription("Objectives", objectives);
+            fuc.AddDescription("Results", results);
+            fuc.AddDescription("Evaluation", evaluation);
+            fuc.AddDescription("Program", program);
 
 
             _proprepo.Add(fuc);
