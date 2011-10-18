@@ -11,7 +11,7 @@ namespace CourseAplication.Views
     {
         public FucProposalView(FucProposal f) : base(f.Name+" Proposal "+f.Id,
             A(ResolveUri.ForRoot(), "Home"),
-                H1(Text(f.User)),
+                H1(Text(""+f.User)),
                     Form("GET", "edit",
                     InputSubmit("Edit")),
                     Form("POST", "accept",
