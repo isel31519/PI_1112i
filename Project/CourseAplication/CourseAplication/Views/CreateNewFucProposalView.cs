@@ -15,6 +15,7 @@ namespace CourseAplication.Views
                     P(Label("req", "Required: "), InputCheckBox("req", "no")),
                     P(Label("sem", "Semester: "), P(InputText("sem"))),
                     P(Label("prereq", "Prerequisites: "), P(InputText("prereq"))),
+                    P(Label("ects", "ECTS: "), P(InputText("ects"))),
                     P(Label("objectives", "Objectives: "), P(InputTextArea("objectives", "5", "30"))),
                     P(Label("results", "Results: "), P(InputTextArea("results", "5", "30"))),
                     P(Label("evaluation", "Evaluation: "), P(InputTextArea("evaluation", "5", "30"))),

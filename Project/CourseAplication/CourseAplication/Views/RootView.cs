@@ -16,7 +16,7 @@ namespace CourseAplication.Views
                     Form("post", "/",//vai para um sitio
                     InputFieldset(InputLegend("Login"), 
                         Label("name", "Name: "), InputText("name"), P(),
-                        Label("pwd", "Password: "), InputText("pwd")),
+                        Label("pwd", "Password: "), InputPassword("pwd")),
                     InputSubmit("Submit")
                    ),
                 H1(Text("Fuc Proposal List")),

@@ -22,6 +22,7 @@ namespace CourseAplication.Views
                 Li(Label("req", "Required: "), Text(f.IsRequired ? "Mandatory" : "Opcional")),
                 Li(Label("sem", "Semester: "), Text(f.GetSemesters())),
                 GenerateLinks(f.GetPrerequisites()),
+                Li(Label("ects", "ECTS: "), Text("" + f.Ects)),
                 Li(Label("objectives", "Objectives: "), Text(f.GetDescription("Objetives"))),
                 Li(Label("results", "Results: "), Text(f.GetDescription("Results"))),
                 Li(Label("evaluation", "Evaluation: "), Text(f.GetDescription("Evaluation"))),

@@ -30,6 +30,14 @@ namespace PI.WebGarten.HttpContent.Html
         }
 
         //metodo adicionado
+        public static IWritable InputPassword(String name)
+        {
+            return new HtmlElem("input")
+                .WithAttr("type", "password")
+                .WithAttr("name", name);
+        }
+
+        //metodo adicionado
         public static IWritable InputTextWithContent(String name, String content)
         {
             return new HtmlElem("input")
