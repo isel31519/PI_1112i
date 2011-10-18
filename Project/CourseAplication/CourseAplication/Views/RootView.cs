@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,18 +13,19 @@ namespace CourseAplication.Views
     {
         public RootView() : base("FUC index",
                 H1(Text("Homepage")),
-                    Form("post", "",//vai para um sitio
-
-                    /*P(Label("name", "Name: "), P(InputText("name", "asd"))),
-                    P(Label("acr", "Acronym: "), P(InputText("acr"))),
-                    P(Label("req", "Required: "), InputCheckBox("req")),
-                    P(Label("sem", "Semester: "), P(InputText("sem"))),
-                    P(Label("prereq", "Prerequisites: "), P(InputText("prereq"))),
-                    P(Label("objectives", "Objectives: "), P(InputTextArea("objectives", "5", "30"))),
-                    P(Label("results", "Results: "), P(InputTextArea("results", "5", "30"))),
-                    P(Label("evaluation", "Evaluation: "), P(InputTextArea("evaluation", "5", "30"))),
-                    P(Label("program", "Program: "), P(InputTextArea("program", "5", "30"))),*/
+                    Form("post", "/",//vai para um sitio
+                    InputFieldset(InputLegend("Login"), 
+                        Label("name", "Name: "), InputText("name"), P(),
+                        Label("pwd", "Password: "), InputText("pwd")),
                     InputSubmit("Submit")
+                   ),
+                H1(Text("Fuc Proposal List")),
+                Ul(
+                    RepositoryLocator.GetPropRep().GetAll().Select(fuc => Li(A(ResolveUri.For(fuc), fuc.Name))).ToArray()
+                   ),
+                H1(Text("New Fuc Proposal List")),
+                Ul(
+                    RepositoryLocator.GetNewPropRep().GetAll().Select(fuc => Li(A(ResolveUri.For(fuc), fuc.Name))).ToArray()
                    ),
                 A(ResolveUri.ForFuc(), "fuclist")
                 ){ }
