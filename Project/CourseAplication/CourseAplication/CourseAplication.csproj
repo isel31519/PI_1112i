@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CreateFucProposalController.cs" />
+    <Compile Include="Controllers\EditFucController.cs" />
     <Compile Include="Views\CreateNewFucProposalView.cs" />
     <Compile Include="Controllers\FucController.cs" />
     <Compile Include="Views\NewFucProposalEditView.cs" />
