@@ -29,7 +29,7 @@ namespace CourseAplication.Model
             string s = "";
 
             foreach (T val in a)
-                s += val + ";";
+                s += val + " ";
 
             return s;
         }

@@ -13,7 +13,7 @@ namespace CourseAplication.Views
         public FucListView(IEnumerable<Fuc> fuclist)
             : base("FUC index",
                 A(ResolveUri.ForRoot(), "Home"),
-                H1(Text("Lista de FUC")),
+                H1(Text("Fuc List")),
                 Ul(
                     fuclist.Select(fuc => Li(A(ResolveUri.For(fuc), fuc.Name))).ToArray()
                    )

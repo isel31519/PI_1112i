@@ -56,11 +56,16 @@ namespace PI.WebGarten.HttpContent.Html
         }
 
         //metodo adicionado
-        public static IWritable InputFieldset()
+        public static IWritable InputFieldset(params IWritable[] cs)
         {
-            /*return new HtmlElem("fieldset")
-                .WithAttr();*/
-            return null;
+            return new HtmlElem("fieldset", cs);
+        }
+
+        //metodo adicionado
+        public static IWritable InputLegend(string name)
+        {
+            return new HtmlElem("legend")
+                .WithContent(Text(name));
         }
 
         public static IWritable InputSubmit(String value)
