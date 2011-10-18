@@ -15,6 +15,7 @@ namespace CourseAplication.Views
                      P(Label("req", "Required: "), f.IsRequired ? InputCheckBox("req", "yes") : InputCheckBox("req", "no")),
                      P(Label("sem", "Semester: "), P(InputTextWithContent("sem", f.GetSemesters()))),
                      P(Label("prereq", "Prerequisites: "), P(InputTextWithContent("prereq", f.GetPrerequisites()))),
+                     P(Label("ects", "ECTS: "), P(InputTextWithContent("ects", "" + f.Ects))),
                      P(Label("objectives", "Objectives: "), P(InputTextArea("objectives", "5", "30"))),
                      P(Label("results", "Results: "), P(InputTextArea("results", "5", "30"))),
                      P(Label("evaluation", "Evaluation: "), P(InputTextArea("evaluation", "5", "30"))),
