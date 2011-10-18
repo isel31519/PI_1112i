@@ -67,13 +67,15 @@ namespace CourseAplication.Controllers
 
             foreach (var sem in semester.Split(' '))
             {
-                fuc.Semester = Convert.ToUInt16(sem);
+                if (sem != "")
+                    fuc.Semester = Convert.ToUInt16(sem);
             }
 
 
             foreach (var pre in prerequisites.Split(' '))
             {
-                fuc.Prerequisites = pre;
+                if (pre != "")
+                    fuc.Prerequisites = pre;
             }
 
 
@@ -118,13 +120,15 @@ namespace CourseAplication.Controllers
 
             foreach (var sem in semester.Split(' '))
             {
-                fuc.Semester = Convert.ToUInt16(sem);
+                if (sem != "")
+                    fuc.Semester = Convert.ToUInt16(sem);
             }
 
 
             foreach (var pre in prerequisites.Split(' '))
             {
-                fuc.Prerequisites = pre;
+                if (pre != "")
+                    fuc.Prerequisites = pre;
             }
 
 
