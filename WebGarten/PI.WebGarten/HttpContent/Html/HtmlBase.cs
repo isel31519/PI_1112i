@@ -62,6 +62,7 @@ namespace PI.WebGarten.HttpContent.Html
             .WithAttr("value", content)
                 .WithAttr("rows", rows)
                 .WithAttr("cols", cols)
+                 .WithAttr("name", name)
                 .WithContent(Text(content));
                 
         }
