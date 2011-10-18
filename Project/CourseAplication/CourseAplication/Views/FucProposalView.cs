@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CourseAplication.Model;
+﻿using CourseAplication.Model;
 using PI.WebGarten.HttpContent.Html;
 
 namespace CourseAplication.Views
@@ -16,6 +12,8 @@ namespace CourseAplication.Views
                     InputSubmit("Edit")),
                     Form("POST", "accept",
                     InputSubmit("Accept")),
+                    Form("POST", "delete",
+                    InputSubmit("Refuse")),
                 Ul(
                     Li(Label("name", "Name: "), Text(f.Name)),
                     Li(Label("acr", "Acronym: "), Text(f.Acr)),

@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mime;
 using System.Text;
 using CourseAplication.Model;
 using PI.WebGarten.HttpContent.Html;
 
 namespace CourseAplication.Views
 {
-    class EditFormView : HtmlDoc
+    class FucProposalEditView: HtmlDoc
     {
-        public EditFormView(Fuc f) : base("Edit Form",
+        public FucProposalEditView(FucProposal f)
+            : base("Edit Proposal "+f.Id,
             A(ResolveUri.ForRoot(), "Home"),
-                H1(Text("Edit Form")),
-                    Form("post", ResolveUri.For(f)+"/edit",//fica no mesmo sitio
+                H1(Text("Edid Form")),
+                    Form("post", "edit",//fica no mesmo sitio
                     P(Label("name", "Name: "), P(InputText("name", f.Name))),
                     P(Label("acr", "Acronym: "), P(InputText("acr", f.Acr))),
                     P(Label("req", "Required: "), InputCheckBox("req")),
