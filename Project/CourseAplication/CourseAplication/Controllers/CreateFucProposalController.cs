@@ -29,7 +29,6 @@ namespace CourseAplication.Controllers
         {
             var prop = _repo.GetById(id);
             return prop == null ? new HttpResponse(HttpStatusCode.NotFound) : new HttpResponse(200, new NewFucProposalView(prop)); 
-            //mudar nome de New Fuc proposal
         }
 
         [HttpCmd(HttpMethod.Get, "/newfuc/{id}/edit")]
@@ -37,7 +36,6 @@ namespace CourseAplication.Controllers
         {
             var prop = _repo.GetById(id);
             return prop == null ? new HttpResponse(HttpStatusCode.NotFound) : new HttpResponse(200, new NewFucProposalEditView(prop));
-            //mudar nome de New Fuc proposal edit
         }
 
 
