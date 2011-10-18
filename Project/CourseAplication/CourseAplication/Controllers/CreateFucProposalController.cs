@@ -56,8 +56,8 @@ namespace CourseAplication.Controllers
 
 
 
-            if (acr == null|| name == null || required == null || semester == null || prerequisites == null || ects == null || 
-                objectives == null || results == null || evaluation == null || program == null || userid == null)
+            if (acr == null|| name == null || required == null || semester == null || ects == null || 
+                objectives == null || results == null || evaluation == null || program == null /*|| userid == null*/)
             {
                 return new HttpResponse(HttpStatusCode.BadRequest);
             }
@@ -109,8 +109,8 @@ namespace CourseAplication.Controllers
             var program = content.Where(p => p.Key == "program").Select(p => p.Value).FirstOrDefault();
 
 
-            if (acr == null || name == null || required == null || semester == null || prerequisites == null || ects == null ||
-                objectives == null || results == null || evaluation == null || program == null || userid == null)
+            if (acr == null || name == null || required == null || semester == null || ects == null ||
+                objectives == null || results == null || evaluation == null || program == null /*|| userid == null*/)
             {
                 return new HttpResponse(HttpStatusCode.BadRequest);
             }
