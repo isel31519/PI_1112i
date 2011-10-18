@@ -17,7 +17,7 @@ namespace CourseAplication
                                 Prerequisites = "PG",
                                 Semester = 2
                             };
-                f.AddDescription("Objetives", "Esta unidade curricular introduz os conceitos e vocabulário fundamental da programação orientada por objectos, e da" +
+                f.AddDescription("Objectives", "Esta unidade curricular introduz os conceitos e vocabulário fundamental da programação orientada por objectos, e da" +
                 "programação event-driven, concretizados na linguagem Java.Desenvolve boas práticas de desenho e codificação de forma a produzir " +
                 "programas usando classes e objectos.");
 
@@ -42,7 +42,7 @@ namespace CourseAplication
                 {
                     Semester = 1
                 };
-                f.AddDescription("Objetives", "Esta unidade curricular representa para a maioria dos alunos um primeiro contacto com a"+ 
+                f.AddDescription("Objectives", "Esta unidade curricular representa para a maioria dos alunos um primeiro contacto com a"+ 
                 "programação, que se pretende motivador sem descurar o formalismo e o rigor. São introduzidos conceitos e vocabulário "+
                 "fundamental da programação e, em particular, da programação baseada em objectos, concretizados na linguagem Java.");
 

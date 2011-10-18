@@ -12,7 +12,7 @@ namespace CourseAplication.Views
                      Form("post", ResolveUri.For(f) + "/edit",//fica no mesmo sitio
                      P(Label("name", "Name: "), P(InputTextWithContent("name", f.Name))),
                      P(Label("acr", "Acronym: "), P(InputTextWithContent("acr", f.Acr))),
-                     P(Label("req", "Required: "), InputText("req", "checkbox")),
+                     P(Label("req", "Required: "), f.IsRequired ? InputCheckBox("req", "yes") : InputCheckBox("req", "no")),
                      P(Label("sem", "Semester: "), P(InputTextWithContent("sem", f.GetSemesters()))),
                      P(Label("prereq", "Prerequisites: "), P(InputTextWithContent("prereq", f.GetPrerequisites()))),
                      P(Label("objectives", "Objectives: "), P(InputTextArea("objectives", "5", "30"))),
