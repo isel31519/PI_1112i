@@ -46,11 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CreateFucProposalController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\EditFucController.cs" />
-=======
     <Compile Include="Views\CreateNewFucProposalView.cs" />
->>>>>>> 07f6b4a0ba91ae75ceea4fa353ff324d85568fb7
     <Compile Include="Controllers\FucController.cs" />
     <Compile Include="Views\NewFucProposalEditView.cs" />
     <Compile Include="Views\NewFucProposalView.cs" />
