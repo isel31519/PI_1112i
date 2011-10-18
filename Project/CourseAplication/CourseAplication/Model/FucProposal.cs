@@ -17,5 +17,12 @@ namespace CourseAplication.Model
             get { return _id; }
             set { _id = value; }
         }
+
+        public int User
+        {
+            get { return _userId; }
+            set { _userId = value; }
+        }
+
     }
 }
