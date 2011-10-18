@@ -22,10 +22,10 @@ namespace PI.WebGarten.HttpContent.Html
                 .WithAttr("for", to);
         }
 
-        public static IWritable InputText(String name, String type)
+        public static IWritable InputText(String name)
         {
             return new HtmlElem("input")
-                .WithAttr("type", type)
+                .WithAttr("type", "text")
                 .WithAttr("name", name);
         }
 
@@ -39,12 +39,13 @@ namespace PI.WebGarten.HttpContent.Html
         }
 
         //metodo adicionado
-        /*public static IWritable InputCheckBox(String name)
+        public static IWritable InputCheckBox(String name,String check)
         {
             return new HtmlElem("input")
                 .WithAttr("type", "checkbox")
-                .WithAttr("name", name);
-        }*/
+                .WithAttr("name", name)
+                .WithAttr("checked",check);
+        }
 
         //metodo adicionado
         public static IWritable InputTextArea(String name, String rows, String cols)
@@ -53,6 +54,16 @@ namespace PI.WebGarten.HttpContent.Html
                 .WithAttr("rows", rows)
                 .WithAttr("cols", cols)
                 .WithAttr("name", name);
+        }
+
+        public static IWritable InputTextArea(String name, String rows, String cols,string content)
+        {
+            return new HtmlElem("textarea")
+            .WithAttr("value", content)
+                .WithAttr("rows", rows)
+                .WithAttr("cols", cols)
+                .WithContent(Text(content));
+                
         }
 
         //metodo adicionado

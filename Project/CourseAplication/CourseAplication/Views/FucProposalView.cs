@@ -17,13 +17,13 @@ namespace CourseAplication.Views
                 Ul(
                     Li(Label("name", "Name: "), Text(f.Name)),
                     Li(Label("acr", "Acronym: "), Text(f.Acr)),
-                    Li(Label("req", "Required: "), Text(f.IsRequired?"Obrigatória":"Opcional")),
+                    Li(Label("req", "Required: "), Text(f.IsRequired?"Mandatory":"Opcional")),
                     Li(Label("sem", "Semester: "), Text(f.GetSemesters())),
                     Li(Label("prereq", "Prerequisites: "), Text(f.GetPrerequisites())),
-                    Li(Label("objectives", "Objectives: "), Text(f.GetDescription("Objectivos"))),
-                    Li(Label("results", "Results: "), Text(f.GetDescription("Resultados de aprendizagem"))),
-                    Li(Label("evaluation", "Evaluation: "), Text(f.GetDescription("Avaliação dos resultados de aprendizagem"))),
-                    Li(Label("program", "Program: "), Text(f.GetDescription("Programa resumido")))
+                    Li(Label("objectives", "Objectives: "), Text(f.GetDescription("Objectives"))),
+                    Li(Label("results", "Results: "), Text(f.GetDescription("Results"))),
+                    Li(Label("evaluation", "Evaluation: "), Text(f.GetDescription("Evaluation"))),
+                    Li(Label("program", "Program: "), Text(f.GetDescription("Program")))
                   )
             ) { }
     }

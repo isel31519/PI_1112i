@@ -16,13 +16,13 @@ namespace CourseAplication.Views
                     Form("post", ResolveUri.For(f)+"/edit",//fica no mesmo sitio
                     P(Label("name", "Name: "), P(InputTextWithContent("name", f.Name))),
                     P(Label("acr", "Acronym: "), P(InputTextWithContent("acr", f.Acr))),
-                    P(Label("req", "Required: "), InputText("req", "checkbox")),
+                    P(Label("req", "Required: "), f.IsRequired ? InputCheckBox("req", "yes") : InputCheckBox("req", "no")),
                     P(Label("sem", "Semester: "), P(InputTextWithContent("sem", f.GetSemesters()))),
                     P(Label("prereq", "Prerequisites: "), P(InputTextWithContent("prereq", f.GetPrerequisites()))),
-                    P(Label("objectives", "Objectives: "), P(InputTextArea("objectives", "5", "30"))),
-                    P(Label("results", "Results: "), P(InputTextArea("results", "5", "30"))),
-                    P(Label("evaluation", "Evaluation: "), P(InputTextArea("evaluation", "5", "30"))),
-                    P(Label("program", "Program: "), P(InputTextArea("program", "5", "30"))),
+                    P(Label("objectives", "Objectives: "), P(InputTextArea("objectives", "5", "30",f.GetDescription("Objectives")))),
+                    P(Label("results", "Results: "), P(InputTextArea("results", "5", "30",f.GetDescription("Results")))),
+                    P(Label("evaluation", "Evaluation: "), P(InputTextArea("evaluation", "5", "30", f.GetDescription("Evaluation")))),
+                    P(Label("program", "Program: "), P(InputTextArea("program", "5", "30", f.GetDescription("Program")))),
                     InputSubmit("Submit")
                    )
             ) { }
