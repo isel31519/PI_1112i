@@ -6,12 +6,21 @@ namespace CourseAplication.Views
     class CreateNewFucProposalView : HtmlDoc
     {
         public CreateNewFucProposalView()
-            : base("FUC index",
-                A(ResolveUri.ForRoot(), "Home"),
-                H1(Text("Lista de FUC")),
-                Ul(
-                    fuclist.Select(fuc => Li(A(ResolveUri.For(fuc), fuc.Name))).ToArray()
+            : base("Create Fuc Form",
+            A(ResolveUri.ForRoot(), "Home"),
+                H1(Text("Create Fuc Proposal Form")),
+                    Form("post", "/create",//fica no mesmo sitio
+                    P(Label("name", "Name: "), P(InputText("name"))),
+                    P(Label("acr", "Acronym: "), P(InputText("acr"))),
+                    P(Label("req", "Required: "), InputCheckBox("req")),
+                    P(Label("sem", "Semester: "), P(InputText("sem"))),
+                    P(Label("prereq", "Prerequisites: "), P(InputText("prereq"))),
+                    P(Label("objectives", "Objectives: "), P(InputTextArea("objectives", "5", "30"))),
+                    P(Label("results", "Results: "), P(InputTextArea("results", "5", "30"))),
+                    P(Label("evaluation", "Evaluation: "), P(InputTextArea("evaluation", "5", "30"))),
+                    P(Label("program", "Program: "), P(InputTextArea("program", "5", "30"))),
+                    InputSubmit("Submit")
                    )
-                   ) { }
+            ) { }
     }
 }

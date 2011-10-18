@@ -12,7 +12,7 @@ namespace CourseAplication.Views
     {
         public EditFormView(Fuc f) : base("Edit Form",
             A(ResolveUri.ForRoot(), "Home"),
-                H1(Text("Edid Form")),
+                H1(Text("Edit Form")),
                     Form("post", ResolveUri.For(f)+"/edit",//fica no mesmo sitio
                     P(Label("name", "Name: "), P(InputText("name", f.Name))),
                     P(Label("acr", "Acronym: "), P(InputText("acr", f.Acr))),
