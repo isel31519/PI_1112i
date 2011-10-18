@@ -10,15 +10,35 @@ namespace CourseAplication.Views
 {
     class FucView : HtmlDoc
     {
-        public FucView(Fuc f):base("FUC",
-                A(ResolveUri.ForRoot(),"Home"),
-                P(),
+        public FucView(Fuc f)
+            : base(f.Name,
+                A(ResolveUri.ForRoot(), "Home"),
                 H1(Text(f.Name)),
+                Form("GET", "edit",
+                InputSubmit("Edit")),
                 Ul(
-                    Li(Text(f.Acr)),
-                    Li(Text(Convert.ToString(f.Ects)))
-                  ),
-                A(ResolveUri.ForFuc(),"fuclist")
-                ){}
+                Li(Label("name", "Name: "), Text(f.Name)),
+                Li(Label("acr", "Acronym: "), Text(f.Acr)),
+                Li(Label("req", "Required: "), Text(f.IsRequired ? "Obrigatória" : "Opcional")),
+                Li(Label("sem", "Semester: "), Text(f.GetSemesters())),
+                GenerateLinks(f.GetPrerequisites()),
+                Li(Label("objectives", "Objectives: "), Text(f.GetDescription("Objetivos"))),
+                Li(Label("results", "Results: "), Text(f.GetDescription("Resultados de aprendizagem"))),
+                Li(Label("evaluation", "Evaluation: "), Text(f.GetDescription("Avaliação dos resultados de aprendizagem"))),
+                Li(Label("program", "Program: "), Text(f.GetDescription("Programa resumido")))
+                )
+                ) { }
+
+        private static IWritable GenerateLinks(string getPrerequisites)
+        {
+            HtmlElem e = new HtmlElem("li");
+            e.WithContent(Label("prereq", "Prerequisites: "));
+            foreach (string s in getPrerequisites.Split())
+            {
+                e.WithContent(A(ResolveUri.ForFuc() + "/" + s.Trim(), s.Trim()));
+
+            }
+            return e;
+        }
     }
 }

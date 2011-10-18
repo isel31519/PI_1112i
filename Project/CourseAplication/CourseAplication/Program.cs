@@ -66,7 +66,7 @@ namespace CourseAplication
             var host = new HttpListenerBasedHost("http://localhost:8080/");
             host.Add(DefaultMethodBasedCommandFactory.GetCommandsFor(
                 typeof(FucController),
-                typeof(RootController)
+                typeof(RootController), typeof(EditFucController), typeof(CreateFucProposalController)
                ));
             host.OpenAndWaitForever();
         }
