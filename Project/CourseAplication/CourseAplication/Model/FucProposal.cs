@@ -17,5 +17,6 @@ namespace CourseAplication.Model
             get { return _id; }
             set { _id = value; }
         }
+
     }
 }

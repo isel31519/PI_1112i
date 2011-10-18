@@ -27,5 +27,13 @@ namespace CourseAplication.Model
             td.Id = _cid;
             _repo.Add(_cid++, td);
         }
+
+
+        public void Edit(int id, FucProposal f)
+        {
+            f.Id = id;
+            _repo.Remove(id);
+            _repo.Add(id,f);
+        }
     }
 }
