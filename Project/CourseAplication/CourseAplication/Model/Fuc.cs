@@ -24,16 +24,36 @@ namespace CourseAplication.Model
             _description = new Dictionary<string,string>();
         }
 
+        private string Get<T>(List<T> a)
+        {
+            string s = "";
+
+            foreach (T val in a)
+                s += val + ";";
+
+            return s;
+        }
+
+        public string GetSemesters()
+        {
+            return Get<ushort>(_semester);
+        }
+
         public ushort Semester
         {
              set{ _semester.Add(value); }
+        }
+
+        public string GetPrerequisites()
+        {
+            return Get<string>(_prerequisites);
         }
 
         public string Prerequisites
         {
             set { _prerequisites.Add(value); }
         }
-
+        
         public void AddDescription(string title,string desc)
         {
             _description.Add(title,desc); 
@@ -55,7 +75,7 @@ namespace CourseAplication.Model
             get { return _acr; }
             set { _acr = value; }
         }
-        public bool IsValid
+        public bool IsRequired
         {
             get { return _required; }
 

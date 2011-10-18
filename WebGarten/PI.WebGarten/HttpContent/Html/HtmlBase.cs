@@ -30,6 +30,15 @@ namespace PI.WebGarten.HttpContent.Html
         }
 
         //metodo adicionado
+        public static IWritable InputText(String name, String content)
+        {
+            return new HtmlElem("input")
+                .WithAttr("type", "text")
+                .WithAttr("name", name)
+                .WithAttr("value", content);
+        }
+
+        //metodo adicionado
         public static IWritable InputCheckBox(String name)
         {
             return new HtmlElem("input")
@@ -44,6 +53,14 @@ namespace PI.WebGarten.HttpContent.Html
                 .WithAttr("rows", rows)
                 .WithAttr("cols", cols)
                 .WithAttr("name", name);
+        }
+
+        //metodo adicionado
+        public static IWritable InputFieldset()
+        {
+            /*return new HtmlElem("fieldset")
+                .WithAttr();*/
+            return null;
         }
 
         public static IWritable InputSubmit(String value)
