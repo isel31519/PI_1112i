@@ -23,5 +23,7 @@ namespace CourseAplication.Controllers
         {
             return new HttpResponse(200, new EditFormView(fuc));
         }
+
+
     }
 }
