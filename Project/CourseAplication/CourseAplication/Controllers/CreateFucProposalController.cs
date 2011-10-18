@@ -136,7 +136,7 @@ namespace CourseAplication.Controllers
             fuc.AddDescription("Avaliação", evaluation);
             fuc.AddDescription("Programa", program);
 
-            _repo.Edit(id, fuc);
+            _repo.Edit(Convert.ToInt32(id), fuc);
             return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.For(fuc));
         }
 
