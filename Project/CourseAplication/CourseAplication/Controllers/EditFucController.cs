@@ -11,17 +11,17 @@ namespace CourseAplication.Controllers
 {
     class EditFucController
     {
-        private readonly ProposalRepository _repo;
+        private readonly FucRepository _repo;
 
         public EditFucController()
         {
-            _repo = RepositoryLocator.GetPropRep();
+            _repo = RepositoryLocator.GetFucRep();
         }
         
-        [HttpCmd(HttpMethod.Get, "/fuc/{acr}/id")]
-        public HttpResponse GetFucAlterationForm(Fuc fuc)
+        [HttpCmd(HttpMethod.Get, "/fuc/{acr}/edit")]
+        public HttpResponse GetFucAlterationForm(string acr)
         {
-            return new HttpResponse(200, new EditFormView(fuc));
+            return new HttpResponse(200, new EditFormView(_repo.GetByAcr(acr)));
         }
 
 
