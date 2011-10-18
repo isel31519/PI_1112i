@@ -27,7 +27,8 @@ namespace CourseAplication.Views
                 Ul(
                     RepositoryLocator.GetNewPropRep().GetAll().Select(fuc => Li(A(ResolveUri.For(fuc), fuc.Name))).ToArray()
                    ),
-                A(ResolveUri.ForFuc(), "fuclist")
+                A(ResolveUri.ForFuc(), "Fuc List"), P(),
+                A(ResolveUri.ForCreate(), "Create a new FUC")
                 ){ }
     }
 }
