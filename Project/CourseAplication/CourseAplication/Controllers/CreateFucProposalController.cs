@@ -85,7 +85,7 @@ namespace CourseAplication.Controllers
 
 
             _repo.Add(fuc);
-            return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.For(fuc));
+            return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.ForNew(fuc));
         }
 
 
@@ -135,7 +135,7 @@ namespace CourseAplication.Controllers
             fuc.AddDescription("Programa", program);
 
             _repo.Edit(Convert.ToInt32(id), fuc);
-            return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.For(fuc));
+            return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.ForNew(fuc));
         }
 
     }
