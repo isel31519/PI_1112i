@@ -32,6 +32,11 @@ namespace CourseAplication.Model
             return "/newfuc";
         }
 
+        public static string ForCreate()
+        {
+            return "/create";
+        }
+
         public static string ForFuc()
         {
             return "/fuc";
