@@ -13,11 +13,8 @@ namespace CourseAplication.Views
     {
         public RootView() : base("FUC index",
                 H1(Text("Homepage")),
-                    Form("post", "/",//vai para um sitio
-                    InputFieldset(InputLegend("Login"), 
-                        Label("name", "Name: "), InputText("name"), P(),
-                        Label("pwd", "Password: "), InputPassword("pwd")),
-                    InputSubmit("Submit")
+                    Form("get", "/login",
+                    InputSubmit("Login")
                    ),
                 H1(Text("Fuc Proposal List")),
                 Ul(

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Principal;
 using System.Text;
+using CourseAplication.Model;
 using PI.WebGarten;
 using PI.WebGarten.HttpContent.Html;
 using PI.WebGarten.Pipeline;
@@ -36,7 +37,8 @@ namespace CourseAplication
         public HttpResponse Process(RequestInfo requestInfo)
         {
             var ctx = requestInfo.Context;
-            if (ctx.Request.Url.AbsolutePath.Contains("private"))
+            if (ctx.Request.Url.AbsolutePath.Contains("newfuc") || ctx.Request.Url.AbsolutePath.Contains("prop") ||
+                ctx.Request.Url.AbsolutePath.Contains("create") || ctx.Request.Url.AbsolutePath.Contains("edit"))
             {
                 string auth = ctx.Request.Headers["Authorization"];
                 if (auth == null)
@@ -53,6 +55,10 @@ namespace CourseAplication
                 string[] userPasswd = userPassDecoded.Split(':');
                 string user = userPasswd[0];
                 string passwd = userPasswd[1];
+
+                 User u= RepositoryLocator.GetUserRep().GetById(user);
+                 if (u == null || !u.Match(passwd)) return new HttpResponse(401, new TextContent("Not Authorized")).WithHeader("WWW-Authenticate", "Basic realm=\"Private Area\""); 
+                
                 requestInfo.User = new GenericPrincipal(new GenericIdentity(user), null);
 
                 Console.WriteLine("Authentication: {0} - {1}", auth, userPassDecoded);
