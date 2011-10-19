@@ -23,14 +23,14 @@ namespace CourseAplication.Controllers
             var program = content.Where(p => p.Key == "program").Select(p => p.Value).FirstOrDefault();
 
 
-            if (acro == null || name == null || required == null || semester == null || ects == null ||
-                objectives == null || results == null || evaluation == null || program == null/* || userid == null*/)
+            if (acro == null || name == null || semester == null || ects == null/* ||
+                objectives == null || results == null || evaluation == null || program == null || userid == null*/)
             {
                 return null;
             }
 
 
-            var fuc = new FucProposal(name, acro, required.Equals("on") ? true : false, Convert.ToDouble(ects), Convert.ToInt32(userid));
+            var fuc = new FucProposal(name, acro, required!=null ? true : false, Convert.ToDouble(ects), Convert.ToInt32(userid));
 
 
             foreach (var sem in semester.Split(' '))

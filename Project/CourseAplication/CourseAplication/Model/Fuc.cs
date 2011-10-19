@@ -56,6 +56,7 @@ namespace CourseAplication.Model
         
         public void AddDescription(string title,string desc)
         {
+            if(desc!=null)
             _description.Add(title,desc); 
         }
         public string GetDescription(string title)
