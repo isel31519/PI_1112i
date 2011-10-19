@@ -11,9 +11,9 @@ namespace CourseAplication.Views
                   H1(Text("" + f.User)),
                       Form("GET", ResolveUri.ForNew(f) + "/edit",
                       InputSubmit("Edit")),
-                      Form("POST", "accept",
+                      Form("POST", ResolveUri.ForNew(f)+"/accept",
                       InputSubmit("Accept")),
-                      Form("POST", "delete",
+                      Form("POST", ResolveUri.ForNew(f) + "/refuse",
                       InputSubmit("Refuse")),
                   Ul(
                       Li(Label("name", "Name: "), Text(f.Name)),

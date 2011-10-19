@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ControllerUtils.cs" />
     <Compile Include="Controllers\CreateFucProposalController.cs" />
     <Compile Include="Controllers\EditFucController.cs" />
     <Compile Include="Views\CreateNewFucProposalView.cs" />
