@@ -64,6 +64,7 @@ namespace CourseAplication
         {
             Loader.FucRepoFill();
             var host = new HttpListenerBasedHost("http://localhost:8080/");
+            host.Pipeline.AddFilterFirst("Authentication", typeof(AuthenticationFilter));
             host.Add(DefaultMethodBasedCommandFactory.GetCommandsFor(
                 typeof(FucController),
                 typeof(RootController), typeof(EditFucController), typeof(CreateFucProposalController)
