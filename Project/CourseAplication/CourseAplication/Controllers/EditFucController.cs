@@ -39,62 +39,36 @@ namespace CourseAplication.Controllers
             return new HttpResponse(200, new FucProposalView(_proprepo.GetById(Convert.ToInt32(id))));
         }
 
+        [HttpCmd(HttpMethod.Post, "/fuc/{acr}/prop/{id}/accept")]
+        public HttpResponse PostFucProposedAccept(string acr,int id,IEnumerable<KeyValuePair<string, string>> content)
+        {
+            Fuc fuc = _proprepo.GetById(id);
+
+            _repo.Remove(acr);
+            _repo.Add(fuc);
+            _proprepo.Remove(id);
+            return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.For(fuc));
+        }
+
+        [HttpCmd(HttpMethod.Post, "/fuc/{acr}/prop/{id}/refuse")]
+        public HttpResponse FucProposedRefuse(string acr, int id, IEnumerable<KeyValuePair<string, string>> content)
+        {
+            _proprepo.Remove(id);
+            return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.ForRoot());
+        }
 
         [HttpCmd(HttpMethod.Post, "/fuc/{acr}/edit")]
         public HttpResponse PostFucProposedAlteration(IEnumerable<KeyValuePair<string, string>> content)
         {
-            var acr = content.Where(p => p.Key == "acr").Select(p => p.Value).FirstOrDefault();
-            var name = content.Where(p => p.Key == "name").Select(p => p.Value).FirstOrDefault();
-            var required = content.Where(p => p.Key == "req").Select(p => p.Value).FirstOrDefault();
-            var semester = content.Where(p => p.Key == "sem").Select(p => p.Value).FirstOrDefault();
-            var prerequisites = content.Where(p => p.Key == "prereq").Select(p => p.Value).FirstOrDefault();
-            var ects = content.Where(p => p.Key == "ects").Select(p => p.Value).FirstOrDefault();
-            var userid = content.Where(p => p.Key == "userid").Select(p => p.Value).FirstOrDefault(); //será mesmo user a key?
-            var objectives = content.Where(p => p.Key == "objectives").Select(p => p.Value).FirstOrDefault();
-            var results = content.Where(p => p.Key == "results").Select(p => p.Value).FirstOrDefault();
-            var evaluation = content.Where(p => p.Key == "evaluation").Select(p => p.Value).FirstOrDefault();
-            var program = content.Where(p => p.Key == "program").Select(p => p.Value).FirstOrDefault();
-
-
-            if (acr == null || name == null || required == null || semester == null || ects == null ||
-                objectives == null || results == null || evaluation == null || program == null /*|| userid == null*/)
-            {
-                return new HttpResponse(HttpStatusCode.BadRequest);
-            }
-
-
-            var fuc = new FucProposal(name, acr, required.Equals("on") ? true : false, Convert.ToDouble(ects), Convert.ToInt32(userid));
-
-
-            foreach (var sem in semester.Split(' '))
-            {
-                if(sem!="")
-                    fuc.Semester = Convert.ToUInt16(sem);
-            }
-
-
-            foreach (var pre in prerequisites.Split(' '))
-            {
-                if(pre!="")
-                    fuc.Prerequisites = pre;
-            }
-
-
-
-            fuc.AddDescription("Objectives", objectives);
-            fuc.AddDescription("Results", results);
-            fuc.AddDescription("Evaluation", evaluation);
-            fuc.AddDescription("Program", program);
+            FucProposal fuc = CreateFuc(content);
+            if (fuc == null) return new HttpResponse(HttpStatusCode.BadRequest);
 
 
             _proprepo.Add(fuc);
             return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.For(fuc));  
         }
 
-
-
-        [HttpCmd(HttpMethod.Post, "/fuc/{acr}/prop/{id}/edit")]
-        public HttpResponse PostFucAlterationForm(string acr,string id, IEnumerable<KeyValuePair<string, string>> content)
+        public static FucProposal CreateFuc(IEnumerable<KeyValuePair<string, string>> content)
         {
             var acro = content.Where(p => p.Key == "acr").Select(p => p.Value).FirstOrDefault();
             var name = content.Where(p => p.Key == "name").Select(p => p.Value).FirstOrDefault();
@@ -112,7 +86,7 @@ namespace CourseAplication.Controllers
             if (acro == null || name == null || required == null || semester == null || ects == null ||
                 objectives == null || results == null || evaluation == null || program == null/* || userid == null*/)
             {
-                return new HttpResponse(HttpStatusCode.BadRequest);
+                return null;
             }
 
 
@@ -139,7 +113,15 @@ namespace CourseAplication.Controllers
             fuc.AddDescription("Evaluation", evaluation);
             fuc.AddDescription("Program", program);
 
+            return fuc;
+        }
 
+        [HttpCmd(HttpMethod.Post, "/fuc/{acr}/prop/{id}/edit")]
+        public HttpResponse PostFucAlterationForm(string acr,string id, IEnumerable<KeyValuePair<string, string>> content)
+        {
+
+           FucProposal fuc =CreateFuc(content);
+           if (fuc == null) return new HttpResponse(HttpStatusCode.BadRequest);
             _proprepo.Edit(Convert.ToInt32(id), fuc); ;
             return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.For(fuc));
         }

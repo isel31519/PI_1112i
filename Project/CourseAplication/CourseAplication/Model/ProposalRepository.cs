@@ -28,6 +28,10 @@ namespace CourseAplication.Model
             _repo.Add(_cid++, td);
         }
 
+        public void Remove(int id)
+        {
+            _repo.Remove(id);
+        }
 
         public void Edit(int id, FucProposal f)
         {

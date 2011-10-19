@@ -11,7 +11,7 @@ namespace PI.WebGarten.Demos.First
     class Controller
     {
 
-        [HttpCmd(HttpMethod.Get, "/xpto/{s}")]
+        [HttpCmd(HttpMethod.Get, "/xpto/{s}/private")]
         public HttpResponse Get(string s)
         {
             return new HttpResponse(200, new TextContent(s));

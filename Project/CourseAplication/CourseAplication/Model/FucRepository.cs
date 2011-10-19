@@ -19,10 +19,14 @@ namespace CourseAplication.Model
             _repo.TryGetValue(id, out td);
             return td;
         }
+        public void Remove(string acr)
+        {
+            _repo.Remove(acr);
+        }
 
         public void Add(Fuc td)
         {
-            _repo.Add(td.Acr, td);
+             _repo.Add(td.Acr, td);
         }
     }
 }

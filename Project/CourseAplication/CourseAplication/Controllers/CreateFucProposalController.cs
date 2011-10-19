@@ -98,9 +98,9 @@ namespace CourseAplication.Controllers
 
             var acr = content.Where(p => p.Key == "acr").Select(p => p.Value).FirstOrDefault();
             var name = content.Where(p => p.Key == "name").Select(p => p.Value).FirstOrDefault();
-            var required = content.Where(p => p.Key == "required").Select(p => p.Value).FirstOrDefault();
-            var semester = content.Where(p => p.Key == "semester").Select(p => p.Value).FirstOrDefault();
-            var prerequisites = content.Where(p => p.Key == "prerequisites").Select(p => p.Value).FirstOrDefault();
+            var required = content.Where(p => p.Key == "req").Select(p => p.Value).FirstOrDefault();
+            var semester = content.Where(p => p.Key == "sem").Select(p => p.Value).FirstOrDefault();
+            var prerequisites = content.Where(p => p.Key == "prereq").Select(p => p.Value).FirstOrDefault();
             var ects = content.Where(p => p.Key == "ects").Select(p => p.Value).FirstOrDefault();
             var userid = content.Where(p => p.Key == "userid").Select(p => p.Value).FirstOrDefault(); //será mesmo user a key?
             var objectives = content.Where(p => p.Key == "objectives").Select(p => p.Value).FirstOrDefault();
