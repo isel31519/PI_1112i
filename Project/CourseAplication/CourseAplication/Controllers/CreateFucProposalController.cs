@@ -63,7 +63,7 @@ namespace CourseAplication.Controllers
             }
 
 
-            var fuc = new FucProposal(name, acr, required.Equals("true")?true:false, Convert.ToDouble(ects), Convert.ToInt32(userid));
+            var fuc = new FucProposal(name, acr, required.Equals("on")?true:false, Convert.ToDouble(ects), Convert.ToInt32(userid));
 
 
             foreach (var sem in semester.Split(' '))
