@@ -15,30 +15,11 @@ namespace CourseAplication.Controllers
         public HttpResponse GetLogin()
         {
 
-            return new HttpResponse(200, new HtmlDoc("Login",
-                                        HtmlBase.Form("post", "/login",
-                                                HtmlBase.InputFieldset(HtmlBase.InputLegend("Login"),
-                                                HtmlBase.Label("name", "Name: "), HtmlBase.InputText("name"), HtmlBase.P(),
-                                                HtmlBase.Label("pwd", "Password: "), HtmlBase.InputPassword("pwd")),
-                                                HtmlBase.InputSubmit("Submit")
-                                                )
-                                        )
+            var resp = new HttpResponse(401, new TextContent("This server could not verify that you are authorized to access the document requested. Either you supplied the wrong credentials (e.g., bad password), or your browser doesn't understand how to supply the credentials required."));
 
-                   );
+            resp.WithHeader("WWW-Authenticate", "Basic realm=\"Private Area\"");
+            return resp;
         }
       
-        [HttpCmd(HttpMethod.Post, "/login")]
-        public HttpResponse PostLogin(IEnumerable<KeyValuePair<string, string>> content)
-        { 
-
-            string user = content.Where(p => p.Key == "name").Select(p => p.Value).FirstOrDefault();
-            string passwd = content.Where(p => p.Key == "pwd").Select(p => p.Value).FirstOrDefault();
-
-
-            User u = RepositoryLocator.GetUserRep().GetById(user);
-            if (u == null || !u.Match(passwd)) return new HttpResponse(401, new TextContent("Not Authorized")).WithHeader("WWW-Authenticate", "Basic realm=\"Private Area\"");
-            //falta colocar headers!
-            return new HttpResponse(200, new RootView()).WithHeader("WWW-Authenticate", "Basic realm=\"Private Area\"");;
-        }
     }
 }
