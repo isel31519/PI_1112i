@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Security.Principal;
 using System.Text;
 using CourseAplication.Model;
@@ -45,7 +46,6 @@ namespace CourseAplication
                 {
                     requestInfo.User = null;
                     var resp = new HttpResponse(401, new TextContent("Logged out"));
-                    resp.WithHeader("WWW-Authenticate", "Invalid");
                     return resp;
                 }
                

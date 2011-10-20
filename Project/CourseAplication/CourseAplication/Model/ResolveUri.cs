@@ -14,7 +14,7 @@ namespace CourseAplication.Model
 
         public static string For(FucProposal f)
         {
-            return string.Format("{0}/{1}{2}/{3}/private", ForFuc(), f.Acr, ForProp(), f.Id);
+            return string.Format("{0}/{1}{2}/{3}", ForFuc(), f.Acr, ForProp(), f.Id);
         }
 
         private static string ForProp()
