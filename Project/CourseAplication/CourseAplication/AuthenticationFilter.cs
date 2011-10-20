@@ -38,7 +38,8 @@ namespace CourseAplication
         {
             var ctx = requestInfo.Context;
             if (ctx.Request.Url.AbsolutePath.Contains("newfuc") || ctx.Request.Url.AbsolutePath.Contains("prop") ||
-                ctx.Request.Url.AbsolutePath.Contains("create") || ctx.Request.Url.AbsolutePath.Contains("edit"))
+                ctx.Request.Url.AbsolutePath.Contains("create") || ctx.Request.Url.AbsolutePath.Contains("edit") ||
+                ctx.Request.Url.AbsolutePath.Contains("login"))
             {
                 string auth = ctx.Request.Headers["Authorization"];
                 if (auth == null)
