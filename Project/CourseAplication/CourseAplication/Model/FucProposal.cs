@@ -5,8 +5,8 @@ namespace CourseAplication.Model
     class FucProposal:Fuc
     {
         private int _id;
-        private int _userId;
-        public FucProposal(string name, string acr, bool req, double ects, int user) 
+        private string _userId;
+        public FucProposal(string name, string acr, bool req, double ects, string user) 
             : base(name, acr, req,ects)
         {
             _userId = user;
@@ -18,7 +18,7 @@ namespace CourseAplication.Model
             set { _id = value; }
         }
 
-        public int User
+        public string User
         {
             get { return _userId; }
             set { _userId = value; }
