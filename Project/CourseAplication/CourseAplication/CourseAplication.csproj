@@ -71,6 +71,8 @@
     <Compile Include="Views\FucProposalView.cs" />
     <Compile Include="Views\FucView.cs" />
     <Compile Include="Views\RootView.cs" />
+    <Compile Include="Views\RootViewMaster.cs" />
+    <Compile Include="Views\RootViewPrivate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -1,31 +1,26 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CourseAplication.Model;
-using PI.WebGarten;
 using PI.WebGarten.HttpContent.Html;
 
 namespace CourseAplication.Views
 {
-    class RootView : HtmlDoc
+    class RootViewMaster : HtmlDoc
     {
-        public RootView() : base("FUC index",
+        public RootViewMaster() : base("FUC index",
                 H1(Text("Homepage")),
-                    Form("get", "/login",
-                    InputSubmit("Login")
-                   ),
-                /*H1(Text("Fuc Proposal List")),
+                H1(Text("Fuc Proposal List")),
                 Ul(
                     RepositoryLocator.GetPropRep().GetAll().Select(fuc => Li(A(ResolveUri.For(fuc), fuc.Name))).ToArray()
                    ),
                 H1(Text("New Fuc Proposal List")),
                 Ul(
                     RepositoryLocator.GetNewPropRep().GetAll().Select(fuc => Li(A(ResolveUri.ForNew(fuc), fuc.Name))).ToArray()
-                   ),*/
-                A(ResolveUri.ForFuc(), "Fuc List"), P()
-                //A(ResolveUri.ForCreate(), "Create a new FUC")
+                   ),
+                A(ResolveUri.ForFuc(), "Fuc List"), P(),
+                A(ResolveUri.ForCreate(), "Create a new FUC")
                 ){ }
     }
 }
