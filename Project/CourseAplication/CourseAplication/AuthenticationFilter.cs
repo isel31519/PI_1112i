@@ -2,6 +2,7 @@
 using System.Security.Principal;
 using System.Text;
 using CourseAplication.Model;
+using CourseAplication.Views;
 using PI.WebGarten;
 using PI.WebGarten.HttpContent.Html;
 using PI.WebGarten.Pipeline;
@@ -37,20 +38,32 @@ namespace CourseAplication
         public HttpResponse Process(RequestInfo requestInfo)
         {
             var ctx = requestInfo.Context;
+            if (ctx.Request.Url.AbsolutePath.Contains("/logout"))
+            {
+                string auth = ctx.Request.Headers["Authorization"];
+                if (auth != null)
+                {
+                    requestInfo.User = null;
+                    var resp = new HttpResponse(401, new TextContent("Logged out"));
+                    resp.WithHeader("WWW-Authenticate", "Invalid");
+                    return resp;
+                }
+               
+            }
             if (ctx.Request.Url.AbsolutePath.Contains("newfuc") || ctx.Request.Url.AbsolutePath.Contains("prop") ||
                 ctx.Request.Url.AbsolutePath.Contains("create") || ctx.Request.Url.AbsolutePath.Contains("edit") ||
-                ctx.Request.Url.AbsolutePath.Contains("login"))
+                ctx.Request.Url.AbsolutePath.Contains("login") )
             {
                 string auth = ctx.Request.Headers["Authorization"];
                 if (auth == null)
                 {
+                    
                     var resp = new HttpResponse(401, new TextContent("Not Authorized"));
 
                     resp.WithHeader("WWW-Authenticate", "Basic realm=\"Private Area\"");
                     return resp;
 
                 }
-
                 auth = auth.Replace("Basic ", "");
                 string userPassDecoded = Encoding.UTF8.GetString(Convert.FromBase64String(auth));
                 string[] userPasswd = userPassDecoded.Split(':');
@@ -58,7 +71,7 @@ namespace CourseAplication
                 string passwd = userPasswd[1];
 
                  User u= RepositoryLocator.GetUserRep().GetById(user);
-                 if (u == null || !u.Match(passwd)) return new HttpResponse(401, new TextContent("Not Authorized")).WithHeader("WWW-Authenticate", "Basic realm=\"Private Area\""); 
+                 if (u == null || !u.Match(passwd)) return new HttpResponse(401, new TextContent("Not Authenticaded")).WithHeader("WWW-Authenticate", "Basic realm=\"Private Area\"");
                 
                 requestInfo.User = new GenericPrincipal(new GenericIdentity(user), null);
 
