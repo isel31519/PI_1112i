@@ -48,5 +48,11 @@ namespace CourseAplication.Model
             }
             return false;
         }
+
+        public IEnumerable<FucProposal> GetByUser(string username)
+        {
+            foreach (var f in GetAll())
+                if (f.User.Equals(username)) yield return f;
+        }
     }
 }

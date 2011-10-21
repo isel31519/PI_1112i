@@ -39,7 +39,7 @@ namespace CourseAplication
         public HttpResponse Process(RequestInfo requestInfo)
         {
             var ctx = requestInfo.Context;
-            if (ctx.Request.Url.AbsolutePath.Contains("/logout"))
+           if (ctx.Request.Url.AbsolutePath.Contains("/logout"))
             {
                 string auth = ctx.Request.Headers["Authorization"];
                 if (auth != null)
