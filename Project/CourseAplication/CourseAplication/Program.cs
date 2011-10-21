@@ -74,7 +74,7 @@ namespace CourseAplication
             
             host.Add(DefaultMethodBasedCommandFactory.GetCommandsFor(
                 typeof(FucController),
-                typeof(RootController), typeof(EditFucController), typeof(CreateFucProposalController), typeof(LoginController)
+                typeof(RootController), typeof(EditFucController), typeof(CreateFucProposalController), typeof(AuthController)
                ));
             host.OpenAndWaitForever();
         }
