@@ -45,8 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthenticationFilter.cs" />
-    <Compile Include="AuthorizationFilter.cs" />
+    <Compile Include="Controllers\Filters\AuthenticationFilter.cs" />
+    <Compile Include="Controllers\Filters\AuthorizationFilter.cs" />
     <Compile Include="Controllers\ControllerUtils.cs" />
     <Compile Include="Controllers\CreateFucProposalController.cs" />
     <Compile Include="Controllers\EditFucController.cs" />
