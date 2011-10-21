@@ -9,8 +9,11 @@ namespace CourseAplication.Views
 {
     class RootViewMaster : HtmlDoc
     {
-        public RootViewMaster() : base("Homepage",
-                H1(Text("Homepage")),
+        public RootViewMaster(string username) : base("Homepage",
+                H1(Text(username)),
+                Form("get", "/logout",
+                    InputSubmit("Logout")
+                ),
                 H1(Text("Fuc Proposal List")),
                 Ul(
                     RepositoryLocator.GetPropRep().GetAll().Select(fuc => Li(A(ResolveUri.For(fuc), fuc.Name))).ToArray()
