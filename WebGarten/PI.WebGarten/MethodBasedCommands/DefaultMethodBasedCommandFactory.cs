@@ -10,7 +10,8 @@ namespace PI.WebGarten.MethodBasedCommands
         private static IParameterBinder _binder = new CompositeParameterBinder(
                 new UriTemplateParameterBinder(),
                 new RequestParameterBinder(),
-                new FormUrlEncodingParameterBinder()
+                new FormUrlEncodingParameterBinder(),
+                new PrincipalParameterBinder()
         );
 
         public static ICommand[] GetCommandsFor(params Type[] types)
