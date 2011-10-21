@@ -50,7 +50,7 @@
     <Compile Include="Controllers\ControllerUtils.cs" />
     <Compile Include="Controllers\CreateFucProposalController.cs" />
     <Compile Include="Controllers\EditFucController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserRepository.cs" />
     <Compile Include="Views\CreateNewFucProposalView.cs" />

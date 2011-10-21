@@ -9,7 +9,7 @@ using PI.WebGarten.MethodBasedCommands;
 
 namespace CourseAplication.Controllers
 {
-    class LoginController
+    class AuthController
     {
         
         [HttpCmd(HttpMethod.Get, "/login")]
@@ -21,7 +21,7 @@ namespace CourseAplication.Controllers
         [HttpCmd(HttpMethod.Get, "/logout")]
         public HttpResponse GetLogout()
         {
-            return new HttpResponse(HttpStatusCode.OK, new HtmlDoc("LOGOUT", HtmlDoc.A(ResolveUri.ForRoot(), "Home"), HtmlDoc.H1(HtmlDoc.Text("Logged Out"))));
+            return new HttpResponse(HttpStatusCode.Found).WithHeader("Location", ResolveUri.ForRoot());
             // var resp = new HttpResponse(401, new TextContent("Logged out")).WithHeader("Authorization", null);
             //return resp;
         }
