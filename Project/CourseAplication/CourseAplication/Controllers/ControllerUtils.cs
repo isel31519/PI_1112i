@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using CourseAplication.Model;
 
@@ -8,7 +9,7 @@ namespace CourseAplication.Controllers
 {
     class ControllerUtils
     {
-        public static FucProposal CreateFuc(System.Net.HttpListenerRequest req,IEnumerable<KeyValuePair<string, string>> content)
+        public static FucProposal CreateFuc(IPrincipal user,IEnumerable<KeyValuePair<string, string>> content)
         {
             var acro = content.Where(p => p.Key == "acr").Select(p => p.Value).FirstOrDefault();
             var name = content.Where(p => p.Key == "name").Select(p => p.Value).FirstOrDefault();
@@ -20,12 +21,11 @@ namespace CourseAplication.Controllers
             var results = content.Where(p => p.Key == "results").Select(p => p.Value).FirstOrDefault();
             var evaluation = content.Where(p => p.Key == "evaluation").Select(p => p.Value).FirstOrDefault();
             var program = content.Where(p => p.Key == "program").Select(p => p.Value).FirstOrDefault();
-            //metodo!
-            string auth = req.Headers["Authorization"];
-            auth = auth.Replace("Basic ", "");
-            string userPassDecoded = Encoding.UTF8.GetString(Convert.FromBase64String(auth));
-            string[] userPasswd = userPassDecoded.Split(':');
-            var userid= userPasswd[0];
+
+            if (!user.Identity.IsAuthenticated) return null;
+
+            var userid= user.Identity.Name;
+            
 
             if (acro == null || name == null || semester == null || ects == null/* ||
                 objectives == null || results == null || evaluation == null || program == null*/ || userid == null)
