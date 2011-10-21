@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Principal;
 using System.Text;
 using CourseAplication.Model;
 using CourseAplication.Views;
@@ -23,33 +24,30 @@ namespace CourseAplication.Controllers
         }
         
         [HttpCmd(HttpMethod.Get, "/fuc/{acr}/edit")]
-        public HttpResponse GetFucAlterationForm(HttpListenerRequest req,string acr)
+        public HttpResponse GetFucAlterationForm(string acr)
         {
-            string auth = req.Headers["Authorization"];
-            auth = auth.Replace("Basic ", "");
-            string userPassDecoded = Encoding.UTF8.GetString(Convert.FromBase64String(auth));
-            string[] userPasswd = userPassDecoded.Split(':');
-            var userid = userPasswd[0];
-            //funca mal por causa dos acr
-            if (_proprepo.HaveProp(userid,acr)) return new HttpResponse(HttpStatusCode.BadRequest, new TextContent("You already have a proposal for this course"));
             return new HttpResponse(200, new EditFormView(_repo.GetByAcr(acr)));
         }
 
         [HttpCmd(HttpMethod.Get, "/fuc/{acr}/prop/{id}/edit")]
-        public HttpResponse GetFucProposedAlterationForm(string acr, string id)
-        {
-            return new HttpResponse(200, new FucProposalEditView(_proprepo.GetById(Convert.ToInt32(id))));
+        public HttpResponse GetFucProposedAlterationForm(IPrincipal user,string acr, int id)
+        {//proprio
+            if (user.Identity.Name.Equals(_proprepo.GetById(id).User))
+                 return new HttpResponse(200, new FucProposalEditView(_proprepo.GetById(Convert.ToInt32(id))));
+            return new HttpResponse(403, new TextContent("Not Authorized"));
         }
 
         [HttpCmd(HttpMethod.Get, "/fuc/{acr}/prop/{id}")]
-        public HttpResponse GetFucProposedAlteration(string acr, string id)
-        {
-            return new HttpResponse(200, new FucProposalView(_proprepo.GetById(Convert.ToInt32(id))));
+        public HttpResponse GetFucProposedAlteration(IPrincipal user,string acr, int id)
+        {//proprio ou coord
+            if (user.Identity.Name.Equals(_proprepo.GetById(id).User) || user.IsInRole("coord"))
+                return new HttpResponse(200, new FucProposalView(_proprepo.GetById(id)));
+            return new HttpResponse(403, new TextContent("Not Authorized"));
         }
 
         [HttpCmd(HttpMethod.Post, "/fuc/{acr}/prop/{id}/accept")]
         public HttpResponse PostFucProposedAccept(string acr,int id,IEnumerable<KeyValuePair<string, string>> content)
-        {
+        {//coord
             Fuc fuc = _proprepo.GetById(id);
 
             _repo.Remove(acr);
@@ -66,9 +64,9 @@ namespace CourseAplication.Controllers
         }
 
         [HttpCmd(HttpMethod.Post, "/fuc/{acr}/edit")]
-        public HttpResponse PostFucProposedAlteration(HttpListenerRequest req,IEnumerable<KeyValuePair<string, string>> content)
+        public HttpResponse PostFucProposedAlteration(IPrincipal user, IEnumerable<KeyValuePair<string, string>> content)
         {
-            FucProposal fuc = ControllerUtils.CreateFuc(req,content);
+            FucProposal fuc = ControllerUtils.CreateFuc(user,content);
             if (fuc == null) return new HttpResponse(HttpStatusCode.BadRequest);
 
 
@@ -79,10 +77,10 @@ namespace CourseAplication.Controllers
        
 
         [HttpCmd(HttpMethod.Post, "/fuc/{acr}/prop/{id}/edit")]
-        public HttpResponse PostFucAlterationForm(HttpListenerRequest req,string acr,string id, IEnumerable<KeyValuePair<string, string>> content)
+        public HttpResponse PostFucAlterationForm(IPrincipal user, string acr, string id, IEnumerable<KeyValuePair<string, string>> content)
         {
 
-           FucProposal fuc =ControllerUtils.CreateFuc(req,content);
+           FucProposal fuc =ControllerUtils.CreateFuc(user,content);
            if (fuc == null) return new HttpResponse(HttpStatusCode.BadRequest);
             _proprepo.Edit(Convert.ToInt32(id), fuc); ;
             return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.For(fuc));

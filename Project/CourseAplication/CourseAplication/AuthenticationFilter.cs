@@ -45,7 +45,7 @@ namespace CourseAplication
                 if (auth != null)
                 {
                     requestInfo.User = null;
-                    var resp = new HttpResponse(401, new TextContent("Logged out"));
+                    var resp = new HttpResponse(401, new TextContent("Logged out")).WithHeader("Authorization",null);
                     return resp;
                 }
                
@@ -70,11 +70,9 @@ namespace CourseAplication
                 string user = userPasswd[0];
                 string passwd = userPasswd[1];
 
-                 User u= RepositoryLocator.GetUserRep().GetById(user);
-                 if (u == null || !u.Match(passwd)) return new HttpResponse(401, new TextContent("Not Authenticaded")).WithHeader("WWW-Authenticate", "Basic realm=\"Private Area\"");
-                
-                requestInfo.User = new GenericPrincipal(new GenericIdentity(user), null);
-
+                User u= RepositoryLocator.GetUserRep().GetById(user);
+                if (u == null || !u.Match(passwd)) return new HttpResponse(401, new TextContent("Not Authenticaded")).WithHeader("WWW-Authenticate", "Basic realm=\"Private Area\"");
+                requestInfo.User = new GenericPrincipal(new GenericIdentity(user), new string[] {u.Role});
                 Console.WriteLine("Authentication: {0} - {1}", auth, userPassDecoded);
             }
 

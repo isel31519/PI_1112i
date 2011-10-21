@@ -39,8 +39,7 @@ namespace CourseAplication
             var ctx = requestInfo.Context;
             if (ctx.Request.Url.AbsolutePath.Contains("accept"))
             {
-                //verificar role e nao nome
-                if (requestInfo.User.Identity.Name.CompareTo("admin") != 0) return new HttpResponse(401, new TextContent("Not Authorized")).WithHeader("WWW-Authenticate", "Basic realm=\"Admin Area\"");     
+                if (!requestInfo.User.IsInRole("coord")) return new HttpResponse(403, new TextContent("Not Authorized"));     
             }
 
             return _nextFilter.Process(requestInfo);

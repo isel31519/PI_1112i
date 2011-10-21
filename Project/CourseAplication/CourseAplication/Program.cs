@@ -59,7 +59,9 @@ namespace CourseAplication
                 f.AddDescription("Program", "Conceitos básicos: valores, tipos e variáveis; expressões; instruções de controlo de fluxo. Entrada/Saída de dados. Introdução à programação baseada em objectos. Tipos referência. Construção de novos tipos. Classes: métodos; passagem de parâmetros; membros de instância e de tipo; construtores; encapsulamento. Arrays. Algoritmos de pesquisa e ordenação.");
                 repo.Add(f);
 
-                userrepo.Add(new User("slb","maior"));
+                userrepo.Add(new User("Aimar","maior"));
+                userrepo.Add(new User("Saviola", "maior"));
+                userrepo.Add(new User("Rui_Costa", "maior","coord"));
             }
         }
 
