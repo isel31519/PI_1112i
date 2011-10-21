@@ -39,5 +39,14 @@ namespace CourseAplication.Model
             _repo.Remove(id);
             _repo.Add(id,f);
         }
+
+        internal bool HaveProp(string userid,string acr)
+        {
+            foreach(var f in GetAll())
+            {
+                if (f.Acr.Equals(acr) && f.User.Equals(userid)) return true;
+            }
+            return false;
+        }
     }
 }

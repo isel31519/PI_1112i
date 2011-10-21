@@ -6,6 +6,7 @@ using System.Text;
 using CourseAplication.Model;
 using CourseAplication.Views;
 using PI.WebGarten;
+using PI.WebGarten.HttpContent.Html;
 using PI.WebGarten.MethodBasedCommands;
 
 namespace CourseAplication.Controllers
@@ -22,8 +23,15 @@ namespace CourseAplication.Controllers
         }
         
         [HttpCmd(HttpMethod.Get, "/fuc/{acr}/edit")]
-        public HttpResponse GetFucAlterationForm(string acr)
+        public HttpResponse GetFucAlterationForm(HttpListenerRequest req,string acr)
         {
+            string auth = req.Headers["Authorization"];
+            auth = auth.Replace("Basic ", "");
+            string userPassDecoded = Encoding.UTF8.GetString(Convert.FromBase64String(auth));
+            string[] userPasswd = userPassDecoded.Split(':');
+            var userid = userPasswd[0];
+            //funca mal por causa dos acr
+            if (_proprepo.HaveProp(userid,acr)) return new HttpResponse(HttpStatusCode.BadRequest, new TextContent("You already have a proposal for this course"));
             return new HttpResponse(200, new EditFormView(_repo.GetByAcr(acr)));
         }
 
@@ -58,9 +66,9 @@ namespace CourseAplication.Controllers
         }
 
         [HttpCmd(HttpMethod.Post, "/fuc/{acr}/edit")]
-        public HttpResponse PostFucProposedAlteration(IEnumerable<KeyValuePair<string, string>> content)
+        public HttpResponse PostFucProposedAlteration(HttpListenerRequest req,IEnumerable<KeyValuePair<string, string>> content)
         {
-            FucProposal fuc = ControllerUtils.CreateFuc(content);
+            FucProposal fuc = ControllerUtils.CreateFuc(req,content);
             if (fuc == null) return new HttpResponse(HttpStatusCode.BadRequest);
 
 
@@ -71,10 +79,10 @@ namespace CourseAplication.Controllers
        
 
         [HttpCmd(HttpMethod.Post, "/fuc/{acr}/prop/{id}/edit")]
-        public HttpResponse PostFucAlterationForm(string acr,string id, IEnumerable<KeyValuePair<string, string>> content)
+        public HttpResponse PostFucAlterationForm(HttpListenerRequest req,string acr,string id, IEnumerable<KeyValuePair<string, string>> content)
         {
 
-           FucProposal fuc =ControllerUtils.CreateFuc(content);
+           FucProposal fuc =ControllerUtils.CreateFuc(req,content);
            if (fuc == null) return new HttpResponse(HttpStatusCode.BadRequest);
             _proprepo.Edit(Convert.ToInt32(id), fuc); ;
             return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.For(fuc));

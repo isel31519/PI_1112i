@@ -42,11 +42,10 @@ namespace CourseAplication.Controllers
 
 
         [HttpCmd(HttpMethod.Post, "/create")]
-        public HttpResponse PostNewFuc(IEnumerable<KeyValuePair<string, string>> content)
+        public HttpResponse PostNewFuc(HttpListenerRequest req,IEnumerable<KeyValuePair<string, string>> content)
         {
-            FucProposal fuc = ControllerUtils.CreateFuc(content);
+            FucProposal fuc = ControllerUtils.CreateFuc(req,content);
             if (fuc == null) return new HttpResponse(HttpStatusCode.BadRequest);
-
 
             _proprepo.Add(fuc);
             return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.ForNew(fuc));
@@ -54,10 +53,10 @@ namespace CourseAplication.Controllers
 
 
         [HttpCmd(HttpMethod.Post, "/newfuc/{id}/edit")]
-        public HttpResponse PostNewFucEdit(int id, IEnumerable<KeyValuePair<string, string>> content)
+        public HttpResponse PostNewFucEdit(HttpListenerRequest req,int id, IEnumerable<KeyValuePair<string, string>> content)
         {
 
-            FucProposal fuc = ControllerUtils.CreateFuc(content);
+            FucProposal fuc = ControllerUtils.CreateFuc(req,content);
             if (fuc == null) return new HttpResponse(HttpStatusCode.BadRequest);
 
             _proprepo.Edit(id, fuc);
