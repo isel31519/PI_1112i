@@ -11,14 +11,14 @@ namespace CourseAplication.Views
 {
     class RootView : HtmlDoc
     {
-        public RootView() : base("FUC index",
+        public RootView() : base("Homepage",
                 H1(Text("Homepage")),
                     Form("get", "/login",
                     InputSubmit("Login")
                    ),
                 /*H1(Text("Fuc Proposal List")),
                 Ul(
-                    RepositoryLocator.GetPropRep().GetAll().Select(fuc => Li(A(ResolveUri.For(fuc), fuc.Name))).ToArray()
+                    RepositoryLocator.GetPropRep().GetByUser(username).Select(fuc => Li(A(ResolveUri.For(fuc), fuc.Name))).ToArray()
                    ),
                 H1(Text("New Fuc Proposal List")),
                 Ul(

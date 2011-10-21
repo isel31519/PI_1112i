@@ -9,7 +9,7 @@ namespace CourseAplication.Views
 {
     class RootViewMaster : HtmlDoc
     {
-        public RootViewMaster() : base("FUC index",
+        public RootViewMaster() : base("Homepage",
                 H1(Text("Homepage")),
                 H1(Text("Fuc Proposal List")),
                 Ul(

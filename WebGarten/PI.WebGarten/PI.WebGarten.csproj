@@ -63,6 +63,7 @@
     <Compile Include="MethodBasedCommands\HttpCmdAttribute.cs" />
     <Compile Include="MethodBasedCommands\IParameterBinder.cs" />
     <Compile Include="MethodBasedCommands\MethodBasedCommand.cs" />
+    <Compile Include="MethodBasedCommands\PrincipalParameterBinder.cs" />
     <Compile Include="MethodBasedCommands\RequestParameterBinder.cs" />
     <Compile Include="MethodBasedCommands\MethodBasedCommandFactory.cs" />
     <Compile Include="MethodBasedCommands\UriTemplateParameterBinder.cs" />
