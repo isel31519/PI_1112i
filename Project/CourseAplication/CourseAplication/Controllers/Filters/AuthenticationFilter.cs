@@ -45,7 +45,7 @@ namespace CourseAplication
                 if (auth != null)
                 {
                     requestInfo.User = null;
-                    var resp = new HttpResponse(401, new HtmlDoc("LOGOUT", HtmlDoc.A(ResolveUri.ForRoot(), "Home"), HtmlDoc.H1(HtmlDoc.Text("Logged Out"))));
+                    var resp = new HttpResponse(401, new HtmlDoc("LOGOUT", HtmlDoc.A(ResolveUri.ForRoot(), "Home"), HtmlDoc.H1(HtmlDoc.Text("Logged Out")))).WithHeader("Authorization", null);
                     return resp;
                 }
                
