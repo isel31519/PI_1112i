@@ -15,21 +15,15 @@ namespace CourseAplication.Controllers
         [HttpCmd(HttpMethod.Get, "/login")]
         public HttpResponse GetLogin()
         {
-
-            //var resp = new HttpResponse(401, new TextContent("This server could not verify that you are authorized to access the document requested. Either you supplied the wrong credentials (e.g., bad password), or your browser doesn't understand how to supply the credentials required."));
-
-            //resp.WithHeader("WWW-Authenticate", "Basic realm=\"Private Area\"");
-            return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.ForRoot());
+            return new HttpResponse(HttpStatusCode.Found).WithHeader("Location", ResolveUri.ForRoot());
         }
 
         [HttpCmd(HttpMethod.Get, "/logout")]
         public HttpResponse GetLogout()
         {
-
-            //var resp = new HttpResponse(401, new TextContent("This server could not verify that you are authorized to access the document requested. Either you supplied the wrong credentials (e.g., bad password), or your browser doesn't understand how to supply the credentials required."));
-
-            //resp.WithHeader("WWW-Authenticate", "Basic realm=\"Private Area\"");
-            return new HttpResponse(HttpStatusCode.SeeOther).WithHeader("Location", ResolveUri.ForRoot()).WithHeader("Authorization",null);
+            return new HttpResponse(HttpStatusCode.OK, new HtmlDoc("LOGOUT", HtmlDoc.A(ResolveUri.ForRoot(), "Home"), HtmlDoc.H1(HtmlDoc.Text("Logged Out"))));
+            // var resp = new HttpResponse(401, new TextContent("Logged out")).WithHeader("Authorization", null);
+            //return resp;
         }
     }
 }
