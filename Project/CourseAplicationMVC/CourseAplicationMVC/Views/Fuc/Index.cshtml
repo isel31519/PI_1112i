@@ -1,0 +1,16 @@
+﻿@using CourseAplicationLib
+@model IEnumerable<Fuc>
+
+@{
+    ViewBag.Title = "Fuc List";
+}      
+<a href=@Url.Action("Index", "Home")>Home</a>
+<h1>Fuc List</h1>
+
+                    <ul>
+                    @foreach (var f in Model){
+                         <li> <a href=@Url.Action("Detail", "Fuc",new { @acr = f.Acr }) >@f.Name</a></li>
+                    }
+                    </ul>
+
+

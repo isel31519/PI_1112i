@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Homepage";
+}
+@using CourseAplicationLib
+@model User
+
+<h1>Homepage</h1>
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Get))
+    {
+        @Html.Label("Username")
+        @Html.Editor("username")
+        @Html.Label("Password")
+        @Html.PasswordFor(m => m.Pass)
+         <input type="submit" value="submit" />
+
+    }
+@{Html.EndForm();}
+<a href=@Url.Action("Index", "Fuc")>Fuc List</a>

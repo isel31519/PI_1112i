@@ -5,22 +5,22 @@ using System.Web;
 using System.Web.Mvc;
 using CourseAplicationLib;
 
-
 namespace CourseAplicationMVC.Controllers
 {
-    public class HomeController : Controller
+    public class FucController : Controller
     {
-        // GET: /Home/
+        private readonly FucRepository _repo = RepositoryLocator.GetFucRep();
+        // GET: /Fuc/
+
         public ActionResult Index()
         {
-          
-            return View();
+            return View(_repo.GetAll());
         }
 
-        public ActionResult Login()
+        public ActionResult Detail(string Acr)
         {
-
-            return View();
+            return View(_repo.GetByAcr(Acr));
         }
+
     }
 }
