@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CourseAplication.Model
+﻿namespace CourseAplicationLib
 {
-    class ResolveUri
+    public class ResolveUri
     {
         public static string For(Fuc f)
         {

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CourseAplication.Model
+﻿namespace CourseAplicationLib
 {
-    sealed class User
+    public sealed class User
     {
         //private int _id;
         private string _username;

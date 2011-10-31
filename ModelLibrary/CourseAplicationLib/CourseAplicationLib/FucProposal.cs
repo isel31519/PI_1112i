@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace CourseAplication.Model
+﻿namespace CourseAplicationLib
 {
-    class FucProposal:Fuc
+    public class FucProposal:Fuc
     {
         private int _id;
         private string _userId;

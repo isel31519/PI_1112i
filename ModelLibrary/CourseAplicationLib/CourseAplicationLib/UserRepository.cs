@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace CourseAplication.Model
+namespace CourseAplicationLib
 {
-    class UserRepository
+    public class UserRepository
     {
         private readonly IDictionary<string, User> _repo = new Dictionary<string, User>();
 

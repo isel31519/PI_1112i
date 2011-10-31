@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace CourseAplication.Model
+namespace CourseAplicationLib
 {
-    class ProposalRepository
+    public class ProposalRepository
     {
         private readonly IDictionary<int, FucProposal> _repo = new Dictionary<int, FucProposal>();
         private int _cid = 0;

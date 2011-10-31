@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CourseAplication.Model
+namespace CourseAplicationLib
 {
     public class Fuc
     {
