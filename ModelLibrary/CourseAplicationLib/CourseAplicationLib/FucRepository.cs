@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace CourseAplication.Model
+namespace CourseAplicationLib
 {
-    class FucRepository
+    public class FucRepository
     {
 
         private readonly IDictionary<string, Fuc> _repo = new Dictionary<string, Fuc>();

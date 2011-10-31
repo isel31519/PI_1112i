@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CourseAplication.Model
+﻿namespace CourseAplicationLib
 {
-    class RepositoryLocator
+    public class RepositoryLocator
     {
         private readonly static FucRepository FucRepo = new FucRepository();
         private readonly static ProposalRepository PropRepo = new ProposalRepository();
