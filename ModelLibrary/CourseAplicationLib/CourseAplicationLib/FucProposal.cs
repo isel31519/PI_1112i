@@ -2,6 +2,8 @@
 {
     public class FucProposal:Fuc
     {
+        public FucProposal() {}
+
         public FucProposal(string user)
         {
             User = user;
