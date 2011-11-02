@@ -2,7 +2,56 @@
 @model Fuc
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Fuc - "+@Model.Name;
 }
 
-<h2>title</h2>
+<a href=@Url.Action("Index", "Home")>Home</a>
+
+<h2>@Model.Name</h2>
+
+@using (Html.BeginForm("Edit", "Fuc", new { @acr = @Model.Acr }, FormMethod.Get))
+{
+         <input type="submit" value="edit"/>
+}
+@{Html.EndForm();}
+
+<p>
+@Html.Label("Name: ")
+@Html.DisplayTextFor(n => Model.Name)
+</p>
+<p>
+@Html.Label("Acronym: ")
+@Html.DisplayTextFor(n => Model.Acr)
+</p>
+<p>
+@Html.Label("Required: ")
+@Html.DisplayTextFor(n => Model.IsRequired)
+</p>
+<p>
+@Html.Label("Semester: ")
+@Html.DisplayTextFor(n => Model.GetSemesters())
+</p>
+<p>
+@Html.Label("Prerequisites: ")
+@Html.DisplayTextFor(n => Model.GetPrerequisites())
+</p>
+<p>
+@Html.Label("ECTS: ")
+@Html.DisplayTextFor(n => Model.Ects)
+</p>
+<p>
+@Html.Label("Objectives: ")
+@Html.DisplayTextFor(n => Model.GetDescription("Objectives"))
+</p>
+<p>
+@Html.Label("Results: ")
+@Html.DisplayTextFor(n => Model.GetDescription("Results"))
+</p>
+<p>
+@Html.Label("Evaluation: ")
+@Html.DisplayTextFor(n => Model.GetDescription("Evalutation"))
+</p>
+<p>
+@Html.Label("Program: ")
+@Html.DisplayTextFor(n => Model.GetDescription("Program"))
+</p>
