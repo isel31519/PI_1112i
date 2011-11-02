@@ -10,7 +10,7 @@ namespace CourseAplicationMVC.Controllers
     public class CreateController : Controller
     {
        
-        private readonly ProposalRepository _repo = RepositoryLocator.GetFucRep();
+        private readonly ProposalRepository _repo = RepositoryLocator.GetPropRep();
         
         //
         // GET: /Create/
@@ -20,14 +20,14 @@ namespace CourseAplicationMVC.Controllers
             return View(_repo.GetAll());
         }
 
-        public ActionResult Detail(string Acr)
+        public ActionResult Detail(int id)
         {
-            return View(_repo.GetByAcr(Acr));
+            return View(_repo.GetById(id));
         }
 
-        public ActionResult Edit(string Acr)
+        public ActionResult Edit(int id)
         {
-            return View(_repo.GetByAcr(Acr));
+            return View(_repo.GetById(id));
         }
 
         [HttpPost]

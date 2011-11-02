@@ -9,7 +9,8 @@ namespace CourseAplicationMVC.Controllers
 {
     public class FucController : Controller
     {
-        private readonly ProposalRepository _repo = RepositoryLocator.GetNewPropRep();
+        private readonly FucRepository _repo = RepositoryLocator.GetFucRep();
+        private readonly ProposalRepository _proprepo = RepositoryLocator.GetPropRep();
         // GET: /Fuc/
 
         public ActionResult Index()
@@ -28,9 +29,13 @@ namespace CourseAplicationMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Fuc f)
+        public ActionResult Edit(string Acr,FucProposal f)
         {
-            return View();
+            if(!ModelState.IsValid)
+                return View(_repo.GetByAcr(Acr));
+
+            _proprepo.Add(f);
+            return Redirect("/fuc/proposal"+f.Id);
         }
     }
 }

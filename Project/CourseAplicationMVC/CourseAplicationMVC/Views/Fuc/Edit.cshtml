@@ -7,7 +7,7 @@
 <a href=@Url.Action("Index", "Home")>Home</a>
 <h1>@Model.Name Edit</h1>
 
-    @using (Html.BeginForm("Edit", "Fuc", FormMethod.Post))
+    @using (Html.BeginForm("Edit", "Fuc",new {@acr=Model.Acr}, FormMethod.Post))
     {
         <p>
         @Html.Label("Name")
@@ -23,9 +23,11 @@
         </p>
         <p>
         @Html.Label("Semesters")
+        @Html.EditorFor(n => Model.Semesters)
         </p>
         <p>
         @Html.Label("Prerequisites")
+        @Html.EditorFor(n => Model.Prerequisites)
         </p>
         <p>
         @Html.Label("ECTS")
@@ -33,15 +35,19 @@
         </p>
         <p>
         @Html.Label("Objectives: ")
+         @Html.EditorFor(n => Model.Objectives)
         </p>
         <p>
         @Html.Label("Results: ") 
+        @Html.EditorFor(n => Model.Results)
         </p>
         <p>
         @Html.Label("Evaluation: ")
+        @Html.EditorFor(n => Model.Evaluation)
         </p>
         <p>
         @Html.Label("Program: ")
+        @Html.EditorFor(n => Model.Program)
         </p>
         
          <input type="submit" value="submit" />

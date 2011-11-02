@@ -5,7 +5,7 @@
     ViewBag.Title = @Model.Name + "Edit";   
 }
 
-<a href=@Url.Action("Index", "newfuc")>NewFuc</a>
+<a href=@Url.Action("Index", "Home")>Home</a>
 <h1>@Model.Name Edit</h1>
 
 @using(Html.BeginForm("Edit", "Fuc", FormMethod.Post))
@@ -24,7 +24,7 @@
     </p>
     <p>
     @Html.Label("Semester")
-    @Html.EditorFor(s=>Model.Semester)
+    @Html.EditorFor(s=>Model.Semesters)
     </p>
     <p>
     @Html.Label("Prerequisites")
