@@ -22,5 +22,15 @@ namespace CourseAplicationMVC.Controllers
             return View(_repo.GetByAcr(Acr));
         }
 
+        public ActionResult Edit(string Acr)
+        {
+            return View(_repo.GetByAcr(Acr));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Fuc f)
+        {
+            return View();
+        }
     }
 }
