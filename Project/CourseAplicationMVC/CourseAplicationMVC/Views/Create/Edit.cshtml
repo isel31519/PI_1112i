@@ -1,0 +1,54 @@
+﻿@using CourseAplicationLib
+@model Fuc
+
+@{
+    ViewBag.Title = @Model.Name + "Edit";   
+}
+
+<a href=@Url.Action("Index", "newfuc")>NewFuc</a>
+<h1>@Model.Name Edit</h1>
+
+@using(Html.BeginForm("Edit", "Fuc", FormMethod.Post))
+{
+    <p>
+    @Html.Label("Name")
+    @Html.EditorFor(n=>Model.Name)
+    </p>
+    <p>
+    @Html.Label("Acr")
+    @Html.EditorFor(a=>Model.Acr)
+    </p>
+    <p>
+    @Html.Label("Required")
+    @Html.EditorFor(r=>Model.IsRequired)
+    </p>
+    <p>
+    @Html.Label("Semester")
+    @Html.EditorFor(s=>Model.Semester)
+    </p>
+    <p>
+    @Html.Label("Prerequisites")
+    @Html.EditorFor(p=>Model.Prerequisites)
+    </p>
+    <p>
+    @Html.Label("ECTS")
+    @Html.EditorFor(e=>Model.Ects)
+    </p>
+    <p>
+    @Html.Label("Objectives:")
+    @Html.EditorFor(o=>Model.Objectives)
+    </p>
+    <p>
+    @Html.Label("Results:")
+    @Html.EditorFor(r=>Model.Results)
+    </p>
+    <p>
+    @Html.Label("Evaluation:")
+    @Html.EditorFor(e=>Model.Evaluation)
+    </p>
+    <p>
+    @Html.Label("Program:")
+    @Html.EditorFor(p=>Model.Program)
+    </p>
+}
+@{Html.EndForm();}

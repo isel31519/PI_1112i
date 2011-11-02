@@ -7,10 +7,13 @@ using CourseAplicationLib;
 
 namespace CourseAplicationMVC.Controllers
 {
-    public class FucController : Controller
+    public class CreateController : Controller
     {
-        private readonly ProposalRepository _repo = RepositoryLocator.GetNewPropRep();
-        // GET: /Fuc/
+       
+        private readonly ProposalRepository _repo = RepositoryLocator.GetFucRep();
+        
+        //
+        // GET: /Create/
 
         public ActionResult Index()
         {
@@ -32,5 +35,6 @@ namespace CourseAplicationMVC.Controllers
         {
             return View();
         }
+
     }
 }
