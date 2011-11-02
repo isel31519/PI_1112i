@@ -10,7 +10,7 @@ namespace CourseAplicationMVC.Controllers
     public class CreateController : Controller
     {
        
-        private readonly ProposalRepository _repo = RepositoryLocator.GetPropRep();
+        private readonly ProposalRepository _repo = RepositoryLocator.GetNewPropRep();
         
         //
         // GET: /Create/

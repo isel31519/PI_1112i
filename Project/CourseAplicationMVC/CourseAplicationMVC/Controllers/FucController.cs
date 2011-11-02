@@ -31,11 +31,12 @@ namespace CourseAplicationMVC.Controllers
         [HttpPost]
         public ActionResult Edit(string Acr,FucProposal f)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return View(_repo.GetByAcr(Acr));
 
             _proprepo.Add(f);
-            return Redirect("/fuc/proposal"+f.Id);
+            //bruta!!
+            return Redirect(string.Format("/{0}?id={1}&acr={2}", "proposal", f.Id, f.Acr));
         }
     }
 }
