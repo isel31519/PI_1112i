@@ -17,7 +17,7 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult Index()
         {
-            return View(_repo.GetAll());
+            return View();
         }
 
         public ActionResult Detail(int id)

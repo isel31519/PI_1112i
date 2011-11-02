@@ -16,42 +16,42 @@
 @{Html.EndForm();}
 
 <p>
-@Html.Label("Name: ")
+@Html.LabelFor(n => Model.Name):
 @Html.DisplayTextFor(n => Model.Name)
 </p>
 <p>
-@Html.Label("Acronym: ")
+@Html.LabelFor(n => Model.Acr):
 @Html.DisplayTextFor(n => Model.Acr)
 </p>
 <p>
-@Html.Label("Required: ")
+@Html.LabelFor(n => Model.IsRequired):
 @Html.DisplayTextFor(n => Model.IsRequired)
 </p>
 <p>
-@Html.Label("Semester: ")
+@Html.LabelFor(n => Model.Semesters):
 @Html.DisplayTextFor(n => Model.Semesters)
 </p>
 <p>
-@Html.Label("Prerequisites: ")
+@Html.LabelFor(n => Model.Prerequisites):
 @Html.DisplayTextFor(n => Model.Prerequisites)
 </p>
 <p>
-@Html.Label("ECTS: ")
+@Html.LabelFor(n => Model.Ects):
 @Html.DisplayTextFor(n => Model.Ects)
 </p>
 <p>
-@Html.Label("Objectives: ")
+@Html.LabelFor(n => Model.Objectives):
 @Html.DisplayTextFor(n => Model.Objectives)
 </p>
 <p>
-@Html.Label("Results: ")
+@Html.LabelFor(n => Model.Results):
 @Html.DisplayTextFor(n => Model.Results)
 </p>
 <p>
-@Html.Label("Evaluation: ")
+@Html.LabelFor(n => Model.Evaluation):
 @Html.DisplayTextFor(n => Model.Evaluation)
 </p>
 <p>
-@Html.Label("Program: ")
+@Html.LabelFor(n => Model.Program):
 @Html.DisplayTextFor(n => Model.Program)
 </p>

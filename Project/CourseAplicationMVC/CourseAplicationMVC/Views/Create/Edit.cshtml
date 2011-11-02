@@ -11,44 +11,46 @@
 @using(Html.BeginForm("Edit", "Fuc", FormMethod.Post))
 {
     <p>
-    @Html.Label("Name")
+    @Html.LabelFor(n => Model.Name):
     @Html.EditorFor(n=>Model.Name)
     </p>
     <p>
-    @Html.Label("Acr")
+    @Html.LabelFor(a => Model.Acr):
     @Html.EditorFor(a=>Model.Acr)
     </p>
     <p>
-    @Html.Label("Required")
+    @Html.LabelFor(r => Model.IsRequired):
     @Html.EditorFor(r=>Model.IsRequired)
     </p>
     <p>
-    @Html.Label("Semester")
+    @Html.LabelFor(s => Model.Semesters):
     @Html.EditorFor(s=>Model.Semesters)
     </p>
     <p>
-    @Html.Label("Prerequisites")
+    @Html.LabelFor(p => Model.Prerequisites):
     @Html.EditorFor(p=>Model.Prerequisites)
     </p>
     <p>
-    @Html.Label("ECTS")
+    @Html.LabelFor(e => Model.Ects):
     @Html.EditorFor(e=>Model.Ects)
     </p>
     <p>
-    @Html.Label("Objectives:")
+    @Html.LabelFor(o => Model.Objectives):
     @Html.EditorFor(o=>Model.Objectives)
     </p>
     <p>
-    @Html.Label("Results:")
+    @Html.LabelFor(r => Model.Results):
     @Html.EditorFor(r=>Model.Results)
     </p>
     <p>
-    @Html.Label("Evaluation:")
+    @Html.LabelFor(e => Model.Evaluation):
     @Html.EditorFor(e=>Model.Evaluation)
     </p>
     <p>
-    @Html.Label("Program:")
+    @Html.LabelFor(p => Model.Program):
     @Html.EditorFor(p=>Model.Program)
     </p>
+    
+    <input type="submit" value="submit" />
 }
 @{Html.EndForm();}
