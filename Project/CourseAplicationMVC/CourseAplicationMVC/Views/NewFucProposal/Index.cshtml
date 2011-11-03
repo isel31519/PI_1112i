@@ -1,58 +1,14 @@
 ﻿@using CourseAplicationLib
-@model Fuc
+@model IEnumerable<FucProposal>
 
 @{
-    ViewBag.Title = "New Fuc Proposal";
-}
-
+    ViewBag.Title = "New Fuc Proposal List";
+}      
 <a href=@Url.Action("Index", "Home")>Home</a>
+<h1>Fuc Proposal List</h1>
 
-<h1>Create New Fuc Proposal</h1>
-
-@using (Html.BeginForm("Index", "NewFucProposal", FormMethod.Post))
-{
-        <p>
-        @Html.LabelFor(n => Model.Name):
-        @Html.EditorFor(n => Model.Name)
-        </p>
-        <p>
-        @Html.LabelFor(n => Model.Acr):
-        @Html.EditorFor(n => Model.Acr)
-        </p>
-        <p>
-        @Html.LabelFor(n => Model.IsRequired):
-        @Html.EditorFor(n => Model.IsRequired)
-        </p>
-        <p>
-        @Html.LabelFor(n => Model.Semesters):
-        @Html.EditorFor(n => Model.Semesters)
-        </p>
-        <p>
-        @Html.LabelFor(n => Model.Prerequisites):
-        @Html.EditorFor(n => Model.Prerequisites)
-        </p>
-        <p>
-        @Html.LabelFor(n => Model.Ects):
-        @Html.EditorFor(n => Model.Ects)
-        </p>
-        <p>
-        @Html.LabelFor(n => Model.Objectives):
-        @Html.EditorFor(n => Model.Objectives)
-        </p>
-        <p>
-        @Html.LabelFor(n => Model.Results):
-        @Html.EditorFor(n => Model.Results)
-        </p>
-        <p>
-        @Html.LabelFor(n => Model.Evaluation):
-        @Html.EditorFor(n => Model.Evaluation)
-        </p>
-        <p>
-        @Html.LabelFor(n => Model.Program):
-        @Html.EditorFor(n => Model.Program)
-        </p>
-
-    <input type="submit" value="submit" />
-
+<ul>
+@foreach (var f in Model){
+        <li> <a href=@Url.Action("Detail", "Proposal",new { @id = f.Id }) >@f.Id</a></li>
 }
-@{Html.EndForm();}
+</ul>
