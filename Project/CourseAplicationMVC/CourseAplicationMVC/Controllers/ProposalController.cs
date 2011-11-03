@@ -36,9 +36,9 @@ namespace CourseAplicationMVC.Controllers
         public ActionResult Edit(string acr,FucProposal f)
         {
             /*if (!ModelState.IsValid)
-                return View(_repo.GetById(f.Id));
+                return View(_repo.GetById(f.Id));*/
 
-            _repo.Edit(f.Id, f);*/
+            _repo.Edit(f.Id, f);
             //bruta!!
             return Redirect(string.Format("/{0}/{1}/{2}", "Proposal","Detail", f.Id));
         }
