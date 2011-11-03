@@ -18,25 +18,28 @@ namespace CourseAplicationMVC.Controllers
             return View(_repo.GetAll());
         }
 
-        public ActionResult Detail(string Acr)
+        public ActionResult Detail(string id)
         {
-            return View(_repo.GetByAcr(Acr));
+            return View(_repo.GetByAcr(id));
         }
 
-        public ActionResult Edit(string Acr)
+        public ActionResult Edit(string id)
         {
-            return View(_repo.GetByAcr(Acr));
+            return View(_repo.GetByAcr(id));
         }
 
         [HttpPost]
-        public ActionResult Edit(string Acr,FucProposal f)
+        public ActionResult Edit(string id,FucProposal f)
         {
-            if (!ModelState.IsValid)
-                return View(_repo.GetByAcr(Acr));
+           /* if (!ModelState.IsValid)
+            {
+                Response.StatusCode = 404;
+                return View(_repo.GetByAcr(id));
+            }*/
 
             _proprepo.Add(f);
             //bruta!!
-            return Redirect(string.Format("/{0}?id={1}&acr={2}", "proposal", f.Id, f.Acr));
+            return Redirect(string.Format("/{0}/?id={1}&acr={2}", "Proposal", f.Id,id));
         }
     }
 }

@@ -1,57 +1,14 @@
 ﻿@using CourseAplicationLib
-@model FucProposal
+@model IEnumerable<FucProposal>
 
 @{
-    ViewBag.Title = @Model.Name+" Proposal";
-}
-
+    ViewBag.Title = "Fuc Proposal List";
+}      
 <a href=@Url.Action("Index", "Home")>Home</a>
+<h1>Fuc List</h1>
 
-<h1>@Model.Id</h1>
-
-@using (Html.BeginForm("Edit", "Proposal", new { @id=Model.Id, @acr = @Model.Acr }, FormMethod.Get))
-{
-         <input type="submit" value="edit"/>
+<ul>
+@foreach (var f in Model){
+        <li> <a href=@Url.Action("Detail", "Fuc",new { @id = f.Acr }) >@f.Name</a></li>
 }
-@{Html.EndForm();}
-
-<p>
-@Html.Label("Name: ")
-@Html.DisplayTextFor(n => Model.Name)
-</p>
-<p>
-@Html.Label("Acronym: ")
-@Html.DisplayTextFor(n => Model.Acr)
-</p>
-<p>
-@Html.Label("Required: ")
-@Html.DisplayTextFor(n => Model.IsRequired)
-</p>
-<p>
-@Html.Label("Semester: ")
-@Html.DisplayTextFor(n => Model.Semesters)
-</p>
-<p>
-@Html.Label("Prerequisites: ")
-@Html.DisplayTextFor(n => Model.Prerequisites)
-</p>
-<p>
-@Html.Label("ECTS: ")
-@Html.DisplayTextFor(n => Model.Ects)
-</p>
-<p>
-@Html.Label("Objectives: ")
-@Html.DisplayTextFor(n => Model.Objectives)
-</p>
-<p>
-@Html.Label("Results: ")
-@Html.DisplayTextFor(n => Model.Results)
-</p>
-<p>
-@Html.Label("Evaluation: ")
-@Html.DisplayTextFor(n => Model.Evaluation)
-</p>
-<p>
-@Html.Label("Program: ")
-@Html.DisplayTextFor(n => Model.Program)
-</p>
+</ul>

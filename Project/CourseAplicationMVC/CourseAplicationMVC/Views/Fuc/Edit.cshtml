@@ -7,7 +7,7 @@
 <a href=@Url.Action("Index", "Home")>Home</a>
 <h1>@Model.Name Edit</h1>
 
-    @using (Html.BeginForm("Edit", "Fuc",new {@acr=Model.Acr}, FormMethod.Post))
+    @using (Html.BeginForm("Edit", "Fuc",new {@id=Model.Acr}, FormMethod.Post))
     {
         <p>
         @Html.Label("Name")

@@ -1,56 +1,57 @@
 ﻿@using CourseAplicationLib
-@model Fuc
+@model FucProposal
 
 @{
-    ViewBag.Title = "Fuc - "+@Model.Name;
+    ViewBag.Title = @Model.Name+" Proposal";
 }
 
 <a href=@Url.Action("Index", "Home")>Home</a>
 
-<h2>@Model.Name</h2>
+<h1>@Model.Id</h1>
 
-@using (Html.BeginForm("Edit", "Fuc", new { @id = @Model.Acr }, FormMethod.Get))
+@using (Html.BeginForm("Edit", "Proposal", new { @id=Model.Id, @acr = @Model.Acr }, FormMethod.Get))
 {
          <input type="submit" value="edit"/>
 }
+@{Html.EndForm();}
 
 <p>
-@Html.LabelFor(n => Model.Name):
+@Html.Label("Name: ")
 @Html.DisplayTextFor(n => Model.Name)
 </p>
 <p>
-@Html.LabelFor(n => Model.Acr):
+@Html.Label("Acronym: ")
 @Html.DisplayTextFor(n => Model.Acr)
 </p>
 <p>
-@Html.LabelFor(n => Model.IsRequired):
+@Html.Label("Required: ")
 @Html.DisplayTextFor(n => Model.IsRequired)
 </p>
 <p>
-@Html.LabelFor(n => Model.Semesters):
+@Html.Label("Semester: ")
 @Html.DisplayTextFor(n => Model.Semesters)
 </p>
 <p>
-@Html.LabelFor(n => Model.Prerequisites):
+@Html.Label("Prerequisites: ")
 @Html.DisplayTextFor(n => Model.Prerequisites)
 </p>
 <p>
-@Html.LabelFor(n => Model.Ects):
+@Html.Label("ECTS: ")
 @Html.DisplayTextFor(n => Model.Ects)
 </p>
 <p>
-@Html.LabelFor(n => Model.Objectives):
+@Html.Label("Objectives: ")
 @Html.DisplayTextFor(n => Model.Objectives)
 </p>
 <p>
-@Html.LabelFor(n => Model.Results):
+@Html.Label("Results: ")
 @Html.DisplayTextFor(n => Model.Results)
 </p>
 <p>
-@Html.LabelFor(n => Model.Evaluation):
+@Html.Label("Evaluation: ")
 @Html.DisplayTextFor(n => Model.Evaluation)
 </p>
 <p>
-@Html.LabelFor(n => Model.Program):
+@Html.Label("Program: ")
 @Html.DisplayTextFor(n => Model.Program)
 </p>

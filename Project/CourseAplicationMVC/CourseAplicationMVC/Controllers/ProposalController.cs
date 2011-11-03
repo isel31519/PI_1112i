@@ -14,7 +14,13 @@ namespace CourseAplicationMVC.Controllers
         //
         // GET: /Proposal/
 
-    public ActionResult Index(int id,string acr)
+        public ActionResult Index()
+        {
+            //notfound
+            return View(_repo.GetAll());
+        }
+
+        public ActionResult Detail(int id)
         {
             //notfound
             return View(_repo.GetById(id));
