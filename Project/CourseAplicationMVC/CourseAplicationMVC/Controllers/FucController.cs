@@ -39,7 +39,7 @@ namespace CourseAplicationMVC.Controllers
 
             _proprepo.Add(f);
             //bruta!!
-            return Redirect(string.Format("/{0}/?id={1}&acr={2}", "Proposal", f.Id,id));
+            return Redirect(string.Format("/{0}/{1}/{2}", "Proposal", "Detail", f.Id));
         }
     }
 }

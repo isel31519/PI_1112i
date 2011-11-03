@@ -5,10 +5,10 @@
     ViewBag.Title = "Fuc Proposal List";
 }      
 <a href=@Url.Action("Index", "Home")>Home</a>
-<h1>Fuc List</h1>
+<h1>Fuc Proposal List</h1>
 
 <ul>
 @foreach (var f in Model){
-        <li> <a href=@Url.Action("Detail", "Fuc",new { @id = f.Acr }) >@f.Name</a></li>
+        <li> <a href=@Url.Action("Detail", "Proposal",new { @id = f.Id }) >@f.Id</a></li>
 }
 </ul>
