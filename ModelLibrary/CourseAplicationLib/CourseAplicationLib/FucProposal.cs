@@ -9,7 +9,7 @@
             User = user;
         }
 
-        public int Id { get; set; }
+        public int Idx { get; set; }
         public string User { get; set; }
     }
 }

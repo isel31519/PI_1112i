@@ -7,13 +7,13 @@
 
 <a href=@Url.Action("Index", "Home")>Home</a>
 
-<h1>@Model.Id</h1>
+<h1>@Model.Idx</h1>
 
-@using (Html.BeginForm("Edit", "Proposal", new { @id=Model.Id, @acr = @Model.Acr }, FormMethod.Get))
+@using (Html.BeginForm("Edit", "Proposal", new { @id=Model.Idx, @acr = @Model.Acr }, FormMethod.Get))
 {
          <input type="submit" value="edit"/>
 }
-@{Html.EndForm();}
+
 
 <p>
 @Html.Label("Name: ")
@@ -55,3 +55,13 @@
 @Html.Label("Program: ")
 @Html.DisplayTextFor(n => Model.Program)
 </p>
+
+@using (Html.BeginForm("Accept", "Fuc",new {@id=Model.Idx}, FormMethod.Post))
+{
+    <input type="submit" value="Accept"/>
+}
+
+@using (Html.BeginForm("Refuse", "Fuc", new { @id = Model.Idx }, FormMethod.Post))
+{
+   <input type="submit" value="Refuse"/> 
+}

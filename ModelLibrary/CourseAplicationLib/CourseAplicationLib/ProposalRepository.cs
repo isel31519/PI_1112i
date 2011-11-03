@@ -21,7 +21,7 @@ namespace CourseAplicationLib
 
         public void Add(FucProposal td)
         {
-            td.Id = _cid;
+            td.Idx = _cid;
             _repo.Add(_cid++, td);
         }
 
@@ -32,7 +32,7 @@ namespace CourseAplicationLib
 
         public void Edit(int id, FucProposal f)
         {
-            f.Id = id;
+            f.Idx = id;
             _repo.Remove(id);
             _repo.Add(id,f);
         }

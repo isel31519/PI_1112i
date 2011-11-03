@@ -9,7 +9,7 @@
 
         public static string For(FucProposal f)
         {
-            return string.Format("{0}/{1}{2}/{3}", ForFuc(), f.Acr, ForProp(), f.Id);
+            return string.Format("{0}/{1}{2}/{3}", ForFuc(), f.Acr, ForProp(), f.Idx);
         }
 
         private static string ForProp()
@@ -19,7 +19,7 @@
 
         public static string ForNew(FucProposal f)
         {
-            return string.Format("{0}/{1}",ForNewFuc(), f.Id);
+            return string.Format("{0}/{1}",ForNewFuc(), f.Idx);
         }
 
         private static string ForNewFuc()

@@ -38,9 +38,9 @@ namespace CourseAplicationMVC.Controllers
             /*if (!ModelState.IsValid)
                 return View(_repo.GetById(f.Id));*/
 
-            _repo.Edit(f.Id, f);
+            _repo.Edit(f.Idx, f);
             //bruta!!
-            return Redirect(string.Format("/{0}/{1}/{2}", "Proposal","Detail", f.Id));
+            return Redirect(string.Format("/{0}/{1}/{2}", "Proposal","Detail", f.Idx));
         }
 }
 }

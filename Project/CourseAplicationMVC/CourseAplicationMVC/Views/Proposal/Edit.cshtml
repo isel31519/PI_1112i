@@ -2,13 +2,13 @@
 @model FucProposal
 
 @{
-    ViewBag.Title = "Proposal "+ @Model.Id + " Edit";
+    ViewBag.Title = "Proposal "+ @Model.Idx + " Edit";
 }
 
 <a href=@Url.Action("Index", "Home")>Home</a>
-<h1>Proposal + @Model.Id +  Edit + @Model.User</h1>
+<h1>Proposal + @Model.Idx +  Edit + @Model.User</h1>
 
-    @using (Html.BeginForm("Edit", "Proposal",new {@id=Model.Id,@acr=Model.Acr}, FormMethod.Post))
+    @using (Html.BeginForm("Edit", "Proposal",new {@id=Model.Idx,@acr=Model.Acr}, FormMethod.Post))
     {
         <p>
         @Html.Label("Name")

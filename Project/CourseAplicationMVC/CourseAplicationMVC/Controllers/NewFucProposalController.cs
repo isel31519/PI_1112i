@@ -28,7 +28,7 @@ namespace CourseAplicationMVC.Controllers
         {
             FucProposal fp;
             if ((fp = _repo.GetById(id))!=null)
-                return View(_repo.GetById(id));
+                return View(fp);
             return HttpNotFound("That resource does not exist");
         }
 
@@ -40,7 +40,7 @@ namespace CourseAplicationMVC.Controllers
 
             _repo.Add(fp);
             //bruta!!
-            return Redirect(string.Format("/{0}/{1}/{2}", "NewFucProposal", "Detail", fp.Id));
+            return Redirect(string.Format("/{0}/{1}/{2}", "NewFucProposal", "Detail", fp.Idx));
         }
 
         public ActionResult Edit(int id)
@@ -58,7 +58,7 @@ namespace CourseAplicationMVC.Controllers
             _repo.Edit(id, fp);
             
             //bruta
-            return Redirect(string.Format("/{0}/{1}/{2}", "NewFucProposal", "Detail", fp.Id));
+            return Redirect(string.Format("/{0}/{1}/{2}", "NewFucProposal", "Detail", fp.Idx));
         }
     }
 }
