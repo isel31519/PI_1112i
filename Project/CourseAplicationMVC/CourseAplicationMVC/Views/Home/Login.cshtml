@@ -1,7 +1,20 @@
-﻿@model object
+﻿@using CourseAplicationLib
+@model User
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Login";
 }
+<a href=@Url.Action("Index", "Home")>Home</a>
 
-<h2>title</h2>
+<h1>Login</h1>
+
+@using (Html.BeginForm("IndexUser", "Home", FormMethod.Post))
+    {
+        @Html.LabelFor(n => Model.Name)
+        @Html.EditorFor(n => Model.Name)
+        @Html.LabelFor(n => Model.Pass)
+        @Html.PasswordFor(n => Model.Pass)
+
+         <input type="submit" value="submit" />
+    }
+@{Html.EndForm();}

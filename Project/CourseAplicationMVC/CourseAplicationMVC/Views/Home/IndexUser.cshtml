@@ -1,10 +1,10 @@
-﻿@model object
-
+﻿@using CourseAplicationLib
+@model User
 @{
     ViewBag.Title = "Homepage";
 }
 
-<h1>Homepage</h1>
+<h1>Homepage after login</h1>
 
 <a href=@Url.Action("Login", "Home")>Login</a>
 <a href=@Url.Action("Create", "NewFucProposal")>Create New Fuc</a>
