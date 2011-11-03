@@ -22,7 +22,7 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult Detail(int id)
         {
-            //notfound
+            //notfound passar o acronimo da fuc original
             return View(_repo.GetById(id));
         }
 

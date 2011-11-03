@@ -46,7 +46,7 @@ namespace CourseAplicationMVC.Controllers
             }
 
             _proprepo.Add(f);
-            //bruta!!
+            //bruta!! colocar acr (id) da fuc base
             return Redirect(string.Format("/{0}/{1}/{2}", "Proposal", "Detail", f.Idx));
         }
 
