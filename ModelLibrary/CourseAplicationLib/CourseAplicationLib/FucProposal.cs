@@ -2,14 +2,9 @@
 {
     public class FucProposal:Fuc
     {
-        public FucProposal() {}
-
-        public FucProposal(string user)
-        {
-            User = user;
-        }
 
         public int Idx { get; set; }
         public string User { get; set; }
+        public string OriginalAcr { get; set; }
     }
 }

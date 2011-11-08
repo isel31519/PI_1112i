@@ -9,7 +9,7 @@
 
 <h1>@Model.Idx</h1>
 
-@using (Html.BeginForm("Edit", "Proposal", new { @id=Model.Idx, @acr = @Model.Acr }, FormMethod.Get))
+@using (Html.BeginForm("Edit", "Proposal", new { @id = Model.Idx, @oracr=Model.OriginalAcr}, FormMethod.Get))
 {
          <input type="submit" value="edit"/>
 }
@@ -56,12 +56,12 @@
 @Html.DisplayTextFor(n => Model.Program)
 </p>
 
-@using (Html.BeginForm("Accept", "Fuc",new {@id=Model.Idx}, FormMethod.Post))
+@using (Html.BeginForm("Accept", "Proposal", new { @id = Model.Idx, @oracr = Model.OriginalAcr }, FormMethod.Post))
 {
     <input type="submit" value="Accept"/>
 }
 
-@using (Html.BeginForm("Refuse", "Fuc", new { @id = Model.Idx }, FormMethod.Post))
+@using (Html.BeginForm("Refuse", "Proposal", new { @id = Model.Idx }, FormMethod.Post))
 {
    <input type="submit" value="Refuse"/> 
 }

@@ -45,27 +45,11 @@ namespace CourseAplicationMVC.Controllers
                 return View(_repo.GetByAcr(id));
             }
 
+            f.OriginalAcr = id;
             _proprepo.Add(f);
-            //bruta!! colocar acr (id) da fuc base
+            //bruta!!
             return Redirect(string.Format("/{0}/{1}/{2}", "Proposal", "Detail", f.Idx));
         }
 
-        [HttpPost]
-        public ActionResult Refuse(int id)
-        {
-            _proprepo.Remove(id);
-            return Redirect(string.Format("/{0}", "Proposal"));
-        }
-
-        [HttpPost]
-        public ActionResult Accept(int id)
-        {
-            Fuc f = _proprepo.GetById(id);
-            //remover a antiga Fuc _repo.Remove(acr);
-            _repo.Add(f);
-            _proprepo.Remove(id);
-
-            return Redirect(string.Format("/{0}/{1}/{2}", "Fuc", "Detail", f.Acr));
-        }
     }
 }
