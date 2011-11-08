@@ -12,11 +12,12 @@ namespace CourseAplicationMVC.Controllers
         //
         // GET: /NewFucProposal/
 
-        private readonly ProposalRepository _repo = RepositoryLocator.GetNewPropRep();
+        private readonly FucRepository _repo = RepositoryLocator.GetFucRep();
+        private readonly ProposalRepository _newPropRepo = RepositoryLocator.GetNewPropRep();
 
         public ActionResult Index()
         {
-            return View(_repo.GetAll());
+            return View(_newPropRepo.GetAll());
         }
 
         public ActionResult Create()
@@ -27,7 +28,7 @@ namespace CourseAplicationMVC.Controllers
         public ActionResult Detail(int id)
         {
             FucProposal fp;
-            if ((fp = _repo.GetById(id))!=null)
+            if ((fp = _newPropRepo.GetById(id)) != null)
                 return View(fp);
             return HttpNotFound("That resource does not exist");
         }
@@ -38,7 +39,7 @@ namespace CourseAplicationMVC.Controllers
             /*if (!ModelState.IsValid)
               return View(_repo.GetById(f.Id));*/
 
-            _repo.Add(fp);
+            _newPropRepo.Add(fp);
             //bruta!!
             return Redirect(string.Format("/{0}/{1}/{2}", "NewFucProposal", "Detail", fp.Idx));
         }
@@ -46,7 +47,7 @@ namespace CourseAplicationMVC.Controllers
         public ActionResult Edit(int id)
         {
             //notfound
-            return View(_repo.GetById(id));
+            return View(_newPropRepo.GetById(id));
         }
 
 
@@ -55,10 +56,28 @@ namespace CourseAplicationMVC.Controllers
         {
             /*if (!ModelState.IsValid)
               return View(_repo.GetById(f.Id));*/
-            _repo.Edit(id, fp);
+            _newPropRepo.Edit(id, fp);
             
             //bruta
             return Redirect(string.Format("/{0}/{1}/{2}", "NewFucProposal", "Detail", fp.Idx));
+        }
+
+        [HttpPost]
+        public ActionResult Refuse(int id)
+        {
+            _newPropRepo.Remove(id);
+            return Redirect(string.Format("/{0}", "NewFucProposal"));
+        }
+
+        [HttpPost]
+        public ActionResult Accept(int id)
+        {
+            Fuc f = _newPropRepo.GetById(id);
+            //remover a antiga Fuc _repo.Remove(acr);
+            _repo.Add(f);
+            _newPropRepo.Remove(id);
+
+            return Redirect(string.Format("/{0}/{1}/{2}", "Fuc", "Detail", f.Acr));
         }
     }
 }
