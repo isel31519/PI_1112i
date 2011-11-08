@@ -95,9 +95,9 @@ namespace CourseAplicationMVC
            
             repo.Add(f);
 
-            userrepo.Add(new User("Aimar", "maior"));
-            userrepo.Add(new User("Saviola", "maior"));
-            userrepo.Add(new User("Rui_Costa", "maior", "coord"));
+            userrepo.Add(new User("Aimar", "maior", "aimar@benfica.pt", null));
+            userrepo.Add(new User("Saviola", "maior", "saviola@benfica.pt", null));
+            userrepo.Add(new User("Rui_Costa", "maior", "ruicosta@benfica.pt", "coord"));
         }
     }
 
