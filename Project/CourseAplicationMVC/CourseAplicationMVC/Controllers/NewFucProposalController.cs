@@ -64,6 +64,7 @@ namespace CourseAplicationMVC.Controllers
         }
 
         [HttpPost]
+
         public ActionResult Refuse(int id)
         {
             _newPropRepo.Remove(id);
@@ -71,6 +72,7 @@ namespace CourseAplicationMVC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "coord")]
         public ActionResult Accept(int id)
         {
             Fuc f = _newPropRepo.GetById(id);

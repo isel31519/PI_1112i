@@ -24,48 +24,32 @@ namespace CourseAplicationMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult LogOn(string returnUrl,User u)
+        public ActionResult LogOn(string returnUrl,User user)
         {
             if (ModelState.IsValid)
             {
-                User user = _repo.GetById(u.Name);
-                if (user == null) return View();//n existe user
-                if (!user.Match(u.Pass)) return View();
-
-                FormsAuthentication.SetAuthCookie(u.Name, false);
-                System.Web.HttpContext.Current.User = new GenericPrincipal(new GenericIdentity(u.Name), new string[] { user.Role });
-                
-                if (returnUrl != null && !returnUrl.Equals(""))
-                    return Redirect(returnUrl);
-
-                return RedirectToAction("Index", "Home");
-
+                if (Membership.ValidateUser(user.Name, user.Pass))
+                {
+                    FormsAuthentication.SetAuthCookie(user.Name,false);
+                    if (returnUrl != null && !returnUrl.Equals(""))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Incorrect name or password.");
+                }
             }
-            else
-            {
-                ModelState.AddModelError("", "Incorrect name or password.");
-            }
 
-            return View();
 
-            /*if (!ModelState.IsValid)
-            {
-                
-            }
-            User user;
-            if (!(user=_repo.GetById(u.Name)).Match(u.Pass)) return View();
-            var principal = new GenericPrincipal( new GenericIdentity(u.Name),new string[]{user.Role} );
-
-            FormsAuthentication.SetAuthCookie(user.Name, false);
-            /* FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, user.Email,
-            DateTime.Now, DateTime.Now.AddMinutes(FormsAuthentication.Timeout.TotalMinutes),
-            createPersistentCookie, userData);
-            string hashedTicket = FormsAuthentication.Encrypt(ticket);
-            HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hashedTicket);
-            HttpContext.Current.Response.Cookies.Add(cookie);*/
+            return View(user);
 
         }
-
 
 
         public ActionResult LogOff()

@@ -7,19 +7,23 @@
 
 <a href=@Url.Action("Index", "Home")>Home</a>
 
+
 @using (Html.BeginForm("Index", "Register", FormMethod.Post))
 {
         <p>
-        @Html.LabelFor(n => Model.Name):
-        @Html.EditorFor(n => Model.Name)
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name)
+        @Html.ValidationMessageFor(m => m.Name)
         </p>
         <p>
-        @Html.LabelFor(n => Model.Pass):
-        @Html.PasswordFor(n => Model.Pass)
+        @Html.LabelFor(m => m.Pass)
+        @Html.PasswordFor(m => m.Pass)
+        @Html.ValidationMessageFor(m => m.Pass)
         </p>
         <p>
-        @Html.LabelFor(n => Model.Email)
-        @Html.EditorFor(n => Model.Email)
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email)
+        @Html.ValidationMessageFor(m => m.Email)
         </p>
         
          <input type="submit" value="Register" />

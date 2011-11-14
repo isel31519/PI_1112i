@@ -37,6 +37,7 @@ namespace CourseAplicationMVC.Controllers
         [HttpPost]
         public ActionResult Edit(int id, string oracr, FucProposal f)
         {
+
             /*if (!ModelState.IsValid)
                 return View(_repo.GetById(f.Id));*/
             f.OriginalAcr = oracr;
@@ -45,6 +46,7 @@ namespace CourseAplicationMVC.Controllers
             return Redirect(string.Format("/{0}/{1}/{2}", "Proposal","Detail", f.Idx));
         }
         [HttpPost]
+
         public ActionResult Refuse(int id)
         {
             _proprepo.Remove(id);
@@ -52,6 +54,7 @@ namespace CourseAplicationMVC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "coord")]
         public ActionResult Accept(int id, string oracr)
         {
             FucProposal f = _proprepo.GetById(id);
