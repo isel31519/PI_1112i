@@ -7,6 +7,7 @@ using CourseAplicationLib;
 
 namespace CourseAplicationMVC.Controllers
 {
+    [Authorize]
     public class ProposalController : Controller
 {
 

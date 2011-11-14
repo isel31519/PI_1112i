@@ -26,6 +26,7 @@ namespace CourseAplicationMVC.Controllers
             return View(f);
         }
 
+        [Authorize]
         public ActionResult Edit(string id)
         {
             //id=acronimo da fuc a ser alterada
@@ -37,6 +38,7 @@ namespace CourseAplicationMVC.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(string id,FucProposal f)
         {
             if (!ModelState.IsValid)
