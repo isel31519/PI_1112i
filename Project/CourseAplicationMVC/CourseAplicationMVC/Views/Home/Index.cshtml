@@ -7,8 +7,8 @@
 <h1>Homepage</h1>
 @if (Request.IsAuthenticated)
 {
- <text>Welcome <strong>@User.Identity.Name</strong> 
-    @(User.IsInRole("coord") ? "(coord)" : String.Empty) 
+ <text>Welcome <strong>@Membership.GetUser(User.Identity.Name).UserName;</strong> 
+    @(Roles.IsUserInRole(@Membership.GetUser(User.Identity.Name).UserName)? "(coord)" : String.Empty))
     [ @Html.ActionLink("Log Out", "LogOff", "Account") ]</text>
     
     <a href=@Url.Action("Create", "NewFucProposal")>Create New Fuc</a>

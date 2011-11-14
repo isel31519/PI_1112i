@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using CourseAplicationLib;
 
 namespace CourseAplicationMVC.Controllers
@@ -23,6 +24,8 @@ namespace CourseAplicationMVC.Controllers
         public ActionResult Index(User u)
         {
             if (!ModelState.IsValid) return View();
+
+            Membership.CreateUser(u.Name, u.Pass, u.Email);
             _repoUsers.Add(u);
             return Redirect(string.Format("/{0}", "Home"));
         }

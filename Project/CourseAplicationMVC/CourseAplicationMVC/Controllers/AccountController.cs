@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -32,8 +33,12 @@ namespace CourseAplicationMVC.Controllers
                 if (!user.Match(u.Pass)) return View();
 
                 FormsAuthentication.SetAuthCookie(u.Name, false);
-                return Redirect(returnUrl);
-                //return RedirectToAction("Index", "Home");
+                System.Web.HttpContext.Current.User = new GenericPrincipal(new GenericIdentity(u.Name), new string[] { user.Role });
+                
+                if (returnUrl != null && !returnUrl.Equals(""))
+                    return Redirect(returnUrl);
+
+                return RedirectToAction("Index", "Home");
 
             }
             else

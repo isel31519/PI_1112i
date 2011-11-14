@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
 using CourseAplicationLib;
 
 namespace CourseAplicationMVC
@@ -98,6 +99,13 @@ namespace CourseAplicationMVC
             userrepo.Add(new User("Aimar", "maior", "aimar@benfica.pt", null));
             userrepo.Add(new User("Saviola", "maior", "saviola@benfica.pt", null));
             userrepo.Add(new User("Rui_Costa", "maior", "ruicosta@benfica.pt", "coord"));
+            
+            Membership.CreateUser("Aimar", "slb.1maior", "aimar@benfica.pt");
+            Membership.CreateUser("Saviola", "maior", "saviola@benfica.pt");
+            Membership.CreateUser("Rui_Costa", "maior", "ruicosta@benfica.pt");
+
+            Roles.CreateRole("coord");
+            Roles.AddUserToRole("Rui_Costa","coord");
         }
     }
 
