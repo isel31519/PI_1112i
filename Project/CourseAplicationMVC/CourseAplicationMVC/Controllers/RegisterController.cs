@@ -24,27 +24,24 @@ namespace CourseAplicationMVC.Controllers
         [HttpPost]
         public ActionResult Index(User user)
         {
+
             if (ModelState.IsValid)
             {
                 MembershipCreateStatus createStatus;
-                Membership.CreateUser(user.Name, user.Pass, user.Email, null, null, false, null, out createStatus);
+               MembershipUser u = Membership.CreateUser(user.Name, user.Pass, user.Email, null, null, false, null, out createStatus);
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    MailMessage mail = new MailMessage("me@mycompany.com", "you@yourcompany.com",
-                                                       "this is a test email.", "Some text goes here");
-             
-                  
-                    mail.Fields.Add("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate", "1");	//basic authentication
-                    mail.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendusername", "my_username_here"); //set your username here
-                    mail.Fields.Add("http://schemas.microsoft.com/cdo/configuration/sendpassword", "super_secret");	//set your password here
+                    string randomId = "asdfgtre";//criar random(ou n)id k identifica
+                    MailMessage mail = new MailMessage("mail", user.Email,
+                                                       "Account verification",
+                                                       "Click the link below to activate your account: " +
+                                                       "http://localhost:51872/Register/Activate/" + randomId);
 
-                    
-                    var s = new SmtpClient("mail.mycompany.com");  //your real server goes here
-                    s.Send(mail);
-
-                    Membership.GetUser(user.Name).
-                    FormsAuthentication.SetAuthCookie(user.Name, false);
+                    SmtpClient s = new SmtpClient();
+                            s.Host = "smtp.sapo.pt";
+                            s.Credentials = new System.Net.NetworkCredential("mail", "pass");//criar admin mail
+                            s.Send(mail);
                     return RedirectToAction("Index", "Home");
 
                 }
@@ -53,10 +50,16 @@ namespace CourseAplicationMVC.Controllers
 
             return View(user);
 
-            /*
-            if (!ModelState.IsValid) return View();
-            _repoUsers.Add(u);
-            return Redirect(string.Format("/{0}", "Home"));*/
+        }
+
+        public ActionResult Activate(string id)
+        {
+            MembershipUser u = Membership.GetUser("Bernardo" /*usar id*/);
+            u.IsApproved = true;
+          
+            Membership.UpdateUser(u);
+            FormsAuthentication.SetAuthCookie(u.UserName, false);
+            return RedirectToAction("Index", "Home");
         }
     }
 }
