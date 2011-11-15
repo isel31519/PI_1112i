@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,28 +19,38 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult Index()
         {
-            //notfound
-            return View(_proprepo.GetAll());
+             IEnumerable<FucProposal> props= _proprepo.GetAll();
+            // if (props == null) return HttpNotFound("Proposal not found");
+             return View(props);
         }
 
         public ActionResult Detail(int id)
         {
-            //notfound passar o acronimo da fuc original
+           
+            FucProposal p = _proprepo.GetById(id);
+            if (p == null) return HttpNotFound("Proposal not found");
+            if (!User.IsInRole("coord") && !User.Identity.Name.Equals(p.User))
+                return RedirectToAction("LogOn", "Account");
+
             return View(_proprepo.GetById(id));
         }
 
         public ActionResult Edit(int id, string oracr)
         {
-            //notfound
+            FucProposal p = _proprepo.GetById(id);
+            if (p == null) return HttpNotFound("Proposal not found");
+            if (!User.IsInRole("coord") && !User.Identity.Name.Equals(p.User))
+                return RedirectToAction("LogOn", "Account");
+
             return View(_proprepo.GetById(id));
         }
 
         [HttpPost]
         public ActionResult Edit(int id, string oracr, FucProposal f)
         {
-
-            /*if (!ModelState.IsValid)
-                return View(_repo.GetById(f.Id));*/
+            
+            if (!ModelState.IsValid)
+                return View(_proprepo.GetById(id));
             f.OriginalAcr = oracr;
             _proprepo.Edit(id, f);
             //bruta!!
@@ -49,6 +60,9 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult Refuse(int id)
         {
+            FucProposal p = _proprepo.GetById(id);
+
+            if (!User.IsInRole("coord") && !User.Identity.Name.Equals(p.User)) return RedirectToAction("LogOn", "Account");
             _proprepo.Remove(id);
             return Redirect(string.Format("/{0}", "Proposal"));
         }

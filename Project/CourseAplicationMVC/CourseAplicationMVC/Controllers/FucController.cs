@@ -46,7 +46,7 @@ namespace CourseAplicationMVC.Controllers
                 Response.StatusCode = 404;
                 return View(_repo.GetByAcr(id));
             }
-
+            f.User = User.Identity.Name;
             f.OriginalAcr = id;
             _proprepo.Add(f);
             //bruta!!

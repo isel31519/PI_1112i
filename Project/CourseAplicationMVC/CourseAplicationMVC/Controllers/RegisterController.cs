@@ -36,14 +36,14 @@ namespace CourseAplicationMVC.Controllers
                 if (createStatus == MembershipCreateStatus.Success)
                 {
                     string randomId = "asdfgtre";//criar random(ou n)id k identifica
-                    MailMessage mail = new MailMessage("mail", user.Email,
+                    MailMessage mail = new MailMessage("pi.admin.li51n.g02@sapo.pt", user.Email,
                                                        "Account verification",
                                                        "Click the link below to activate your account: " +
                                                        "http://localhost:51872/Register/Activate/" + randomId);
 
                     SmtpClient s = new SmtpClient();
                             s.Host = "smtp.sapo.pt";
-                            s.Credentials = new System.Net.NetworkCredential("mail", "pass");//criar admin mail
+                            s.Credentials = new System.Net.NetworkCredential("pi.admin.li51n.g02@sapo.pt", "adminslb");//criar admin mail
                             s.Send(mail);
                     return RedirectToAction("Index", "Home");
 
