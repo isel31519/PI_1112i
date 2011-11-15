@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Net.Mail;
 using System.Web.Mvc;
+using System.Web.Profile;
 using System.Web.Security;
 using CourseAplicationLib;
+using CourseAplicationMVC.Models;
 
 namespace CourseAplicationMVC.Controllers
 {
@@ -22,14 +24,15 @@ namespace CourseAplicationMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(User user)
+        public ActionResult Index(RegisterUserModel user)
         {
 
             if (ModelState.IsValid)
             {
-                MembershipCreateStatus createStatus;
-               MembershipUser u = Membership.CreateUser(user.Name, user.Pass, user.Email, null, null, false, null, out createStatus);
-
+               MembershipCreateStatus createStatus;
+               MembershipUser u = Membership.CreateUser(user.Username, user.Password, user.Email, null, null, false, null, out createStatus);
+               /*ProfileBase.Create(user.Username);*/
+          
                 if (createStatus == MembershipCreateStatus.Success)
                 {
                     string randomId = "asdfgtre";//criar random(ou n)id k identifica

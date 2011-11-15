@@ -1,30 +1,46 @@
-﻿@using CourseAplicationLib
-@model User
+﻿
+@using CourseAplicationMVC.Models
+@model RegisterUserModel
 
 @{
     ViewBag.Title = "Registration";
 }
 
-<a href=@Url.Action("Index", "Home")>Home</a>
+@Html.ActionLink("Home", "Index", "Home")
 
 
 @using (Html.BeginForm("Index", "Register", FormMethod.Post))
-{
-        <p>
-        @Html.LabelFor(m => m.Name)
-        @Html.TextBoxFor(m => m.Name)
-        @Html.ValidationMessageFor(m => m.Name)
-        </p>
-        <p>
-        @Html.LabelFor(m => m.Pass)
-        @Html.PasswordFor(m => m.Pass)
-        @Html.ValidationMessageFor(m => m.Pass)
-        </p>
-        <p>
-        @Html.LabelFor(m => m.Email)
+    {
+    
+     <fieldset>
+            <legend>Account Information</legend>
+
+     
+        @Html.LabelFor(m => m.Username):<br />
+       
+        @Html.TextBoxFor(m => m.Username)
+        @Html.ValidationMessageFor(m => m.Username)<br />
+       
+
+        @Html.LabelFor(m => m.Password):<br />
+       
+        @Html.PasswordFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password)<br />
+       
+
+        @Html.LabelFor(m => m.PassConfirm):<br />
+    
+        @Html.PasswordFor(m => m.PassConfirm)
+        @Html.ValidationMessageFor(m => m.PassConfirm)<br />
+     
+        
+        @Html.LabelFor(m => m.Email):<br />
+       
         @Html.TextBoxFor(m => m.Email)
-        @Html.ValidationMessageFor(m => m.Email)
-        </p>
+        @Html.ValidationMessageFor(m => m.Email)<br />
+        
         
          <input type="submit" value="Register" />
+
+         </fieldset>
 }

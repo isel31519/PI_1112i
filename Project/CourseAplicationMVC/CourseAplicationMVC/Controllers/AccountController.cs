@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using CourseAplicationLib;
+using CourseAplicationMVC.Models;
 
 namespace CourseAplicationMVC.Controllers
 {
@@ -24,13 +25,13 @@ namespace CourseAplicationMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult LogOn(string returnUrl,User user)
+        public ActionResult LogOn(string returnUrl, LogInModel user)
         {
             if (ModelState.IsValid)
             {
-                if (Membership.ValidateUser(user.Name, user.Pass))
+                if (Membership.ValidateUser(user.Username, user.Password))
                 {
-                    FormsAuthentication.SetAuthCookie(user.Name,false);
+                    FormsAuthentication.SetAuthCookie(user.Username,false);
                     if (returnUrl != null && !returnUrl.Equals(""))
                     {
                         return Redirect(returnUrl);
@@ -49,6 +50,13 @@ namespace CourseAplicationMVC.Controllers
 
             return View(user);
 
+        }
+
+        //[Authorize(Roles="admin")]
+        public ActionResult Admin()
+        {
+            SelectList s=new SelectList(Membership.GetAllUsers());
+            return View(s);
         }
 
 

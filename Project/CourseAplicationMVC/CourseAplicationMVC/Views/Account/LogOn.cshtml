@@ -1,24 +1,33 @@
-﻿@using CourseAplicationLib
-@model User
+﻿
+@using CourseAplicationMVC.Models
+@model LogInModel
 
 @{
     ViewBag.Title = "Login";
 }
-<a href=@Url.Action("Index", "Home")>Home</a>
+@Html.ActionLink("Home", "Index", "Home")
+
 
 <h1>Login</h1>
 
 
 @using (Html.BeginForm("LogOn", "Account", new { @ReturnUrl = @ViewData["RetUrl"] }, FormMethod.Post))
     {
-        @Html.LabelFor(m => m.Name)
-        @Html.TextBoxFor(m => m.Name)
-        @Html.ValidationMessageFor(m => m.Name)
+        <fieldset>
+            <legend>Login Information</legend>
 
-         @Html.LabelFor(m => m.Pass)
-        @Html.PasswordFor(m => m.Pass)
-        @Html.ValidationMessageFor(m => m.Pass)
-
+        @Html.LabelFor(m => m.Username): <br />
+        
+        @Html.TextBoxFor(m => m.Username)
+        @Html.ValidationMessageFor(m => m.Username)<br />
+      
+        @Html.LabelFor(m => m.Password): <br />
+       
+        @Html.PasswordFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password)<br />
+     
+    
          <input type="submit" value="submit" />
+
+          </fieldset>
     }
-@{Html.EndForm();}
