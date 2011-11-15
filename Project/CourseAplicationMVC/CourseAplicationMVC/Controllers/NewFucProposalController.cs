@@ -28,17 +28,18 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult Detail(int id)
         {
-            FucProposal fp;
-            if ((fp = _newPropRepo.GetById(id)) != null)
-                return View(fp);
-            return HttpNotFound("That resource does not exist");
+            FucProposal p = _newPropRepo.GetById(id);
+            if (p == null) return HttpNotFound("Proposal not found");
+            if (!User.IsInRole("coord") && !User.Identity.Name.Equals(p.User)) return RedirectToAction("LogOn", "Account");
+            return View(p);
         }
 
         [HttpPost]
         public ActionResult Create(FucProposal fp)
         {
-            /*if (!ModelState.IsValid)
-              return View(_repo.GetById(f.Id));*/
+
+            if (!ModelState.IsValid)
+                return View(_newPropRepo.GetById(fp.Idx));
 
             _newPropRepo.Add(fp);
             //bruta!!
@@ -47,7 +48,10 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult Edit(int id)
         {
-            //notfound
+            FucProposal p = _newPropRepo.GetById(id);
+            if (p == null) return HttpNotFound("Proposal not found");
+            if (!User.Identity.Name.Equals(p.User)) return RedirectToAction("LogOn", "Account");
+
             return View(_newPropRepo.GetById(id));
         }
 
@@ -67,6 +71,9 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult Refuse(int id)
         {
+            FucProposal p = _newPropRepo.GetById(id);
+
+            if (!User.IsInRole("coord") && !User.Identity.Name.Equals(p.User)) return RedirectToAction("LogOn", "Account");
             _newPropRepo.Remove(id);
             return Redirect(string.Format("/{0}", "NewFucProposal"));
         }
@@ -76,7 +83,6 @@ namespace CourseAplicationMVC.Controllers
         public ActionResult Accept(int id)
         {
             Fuc f = _newPropRepo.GetById(id);
-            //remover a antiga Fuc _repo.Remove(acr);
             _repo.Add(f);
             _newPropRepo.Remove(id);
 

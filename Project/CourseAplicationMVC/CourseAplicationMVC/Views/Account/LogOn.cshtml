@@ -13,6 +13,8 @@
 
 @using (Html.BeginForm("LogOn", "Account", new { @ReturnUrl = @ViewData["RetUrl"] }, FormMethod.Post))
     {
+    
+     @Html.ValidationSummary()
         <fieldset>
             <legend>Login Information</legend>
 
