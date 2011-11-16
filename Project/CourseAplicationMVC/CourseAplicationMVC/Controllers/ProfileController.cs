@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Profile;
 using System.Web.Security;
+using CourseAplicationLib;
 
 namespace CourseAplicationMVC.Controllers
 {
@@ -21,11 +22,10 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult Detail(string id)
         {
-            throw new NotImplementedException();
-           /* MembershipUser user = Membership.GetUser(id);
+           MembershipUser user = Membership.GetUser(id);
             if (user == null) return HttpNotFound("User not Found");
-
-            return View();*/
+            
+            return View(user);
         }
     }
 }
