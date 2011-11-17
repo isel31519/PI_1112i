@@ -25,7 +25,7 @@ namespace CourseAplicationMVC.Controllers
         {
            MembershipUser user = Membership.GetUser(id);
            if (user == null) return HttpNotFound("User not Found");
-           return View((UserProfile)ProfileBase.Create(user.UserName));
+           return null;//View((UserProfile)ProfileBase.Create(user.UserName));
         }
     }
 }
