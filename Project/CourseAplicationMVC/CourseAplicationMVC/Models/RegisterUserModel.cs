@@ -13,6 +13,10 @@ namespace CourseAplicationMVC.Models
         [Required(ErrorMessage = "Username is a required field")]
         public string Username { get; set; }
 
+        [Display(Name = "Teacher Number")]
+        [Required(ErrorMessage = "Number is a required field")]
+        public int Number { get; set; }
+
         [Required(ErrorMessage = "Password is a required field")]
         [DataType(DataType.Password)]
         public string Password { get; set; }

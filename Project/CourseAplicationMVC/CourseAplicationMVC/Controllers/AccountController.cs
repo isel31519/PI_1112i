@@ -13,8 +13,6 @@ namespace CourseAplicationMVC.Controllers
 {
     public class AccountController : Controller
     {
-
-        private readonly UserRepository _repo = RepositoryLocator.GetUserRep();
         //
         // GET: /Account/
 

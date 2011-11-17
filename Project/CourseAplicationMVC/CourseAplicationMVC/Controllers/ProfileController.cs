@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Profile;
 using System.Web.Security;
 using CourseAplicationLib;
+using CourseAplicationMVC.Models;
 
 namespace CourseAplicationMVC.Controllers
 {
@@ -23,9 +24,8 @@ namespace CourseAplicationMVC.Controllers
         public ActionResult Detail(string id)
         {
            MembershipUser user = Membership.GetUser(id);
-            if (user == null) return HttpNotFound("User not Found");
-            User u=new User(user.UserName,null,user.Email,null);
-            return View(user);
+           if (user == null) return HttpNotFound("User not Found");
+           return View((UserProfile)ProfileBase.Create(user.UserName));
         }
     }
 }
