@@ -16,8 +16,6 @@ namespace CourseAplicationMVC.Controllers
         //
         // GET: /Register/
 
-        private readonly UserRepository _repoUsers = RepositoryLocator.GetUserRep();
-
         public ActionResult Index()
         {
             return View();
@@ -31,20 +29,26 @@ namespace CourseAplicationMVC.Controllers
             {
                MembershipCreateStatus createStatus;
                MembershipUser u = Membership.CreateUser(user.Username, user.Password, user.Email, null, null, false, null, out createStatus);
-               /*ProfileBase.Create(user.Username);*/
-          
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    string randomId = "asdfgtre";//criar random(ou n)id k identifica
-                    MailMessage mail = new MailMessage("pi.admin.li51n.g02@sapo.pt", user.Email,
+                    var profile = (UserProfile) ProfileBase.Create(user.Username);
+                    profile.Number = user.Number;
+                    profile.Email = user.Email;
+                    profile.Save();
+                    
+                   // string randomId = "asdfgtre";//criar random(ou n)id k identifica
+                    var mail = new MailMessage("pi.admin.li51n.g02@sapo.pt", user.Email,
                                                        "Account verification",
                                                        "Click the link below to activate your account: " +
-                                                       "http://localhost:51872/Register/Activate/" + randomId);
+                                                       "http://"+Request.UserHostName+"/Register/Activate/" + user.Username);
 
-                    SmtpClient s = new SmtpClient();
-                            s.Host = "smtp.sapo.pt";
-                            s.Credentials = new System.Net.NetworkCredential("pi.admin.li51n.g02@sapo.pt", "adminslb");//criar admin mail
-                            s.Send(mail);
+                    var s = new SmtpClient
+                                {
+                                    Host = "smtp.sapo.pt",
+                                    Credentials =new System.Net.NetworkCredential("pi.admin.li51n.g02@sapo.pt", "adminslb")
+                                };
+
+                    s.Send(mail);
                     return RedirectToAction("Index", "Home");
 
                 }
@@ -57,7 +61,8 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult Activate(string id)
         {
-            MembershipUser u = Membership.GetUser("Bernardo" /*usar id*/);
+            MembershipUser u = Membership.GetUser(id);
+            if (u == null) return HttpNotFound("Resource not found");
             u.IsApproved = true;
           
             Membership.UpdateUser(u);
