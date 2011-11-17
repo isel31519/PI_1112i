@@ -40,7 +40,7 @@ namespace CourseAplicationMVC.Controllers
                     var mail = new MailMessage("pi.admin.li51n.g02@sapo.pt", user.Email,
                                                        "Account verification",
                                                        "Click the link below to activate your account: " +
-                                                       "http://"+Request.UserHostName+"/Register/Activate/" + user.Username);
+                                                       "http://localhost:8080/Register/Activate/" + user.Username);
 
                     var s = new SmtpClient
                                 {
