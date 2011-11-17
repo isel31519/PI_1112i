@@ -10,7 +10,6 @@ using CourseAplicationMVC.Models;
 
 namespace CourseAplicationMVC.Controllers
 {
-    [Authorize]
     public class ProfileController : Controller
     {
         //

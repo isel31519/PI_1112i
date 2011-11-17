@@ -7,11 +7,25 @@
 
 <h1>@Model.UserName Profile</h1>
 
-@Html.LabelFor(n => Model.FirstName)<br/>
-@Html.DisplayTextFor(n => Model.FirstName)<br/><br/>
+@using (Html.BeginForm("Detail", "Profile", FormMethod.Post))
+ {
+     @Html.LabelFor(n => Model.FirstName)<br/>
+     @Html.EditorFor(n => Model.FirstName)<br/>
+     <br/>
 
-@Html.LabelFor(n => Model.LastName)<br/>
-@Html.DisplayTextFor(n => Model.LastName)<br/><br/>
+     @Html.LabelFor(n => Model.LastName)<br/>
+     @Html.EditorFor(n => Model.LastName)<br/>
+     <br/>
+    
+     @Html.LabelFor(n => Model.Image)<br/>
+     @Html.EditorFor(n => Model.Image)<br/>
+     <br/>
+ }
+
+@Html.ActionLink("Change Password", "ChangePassword", "Account")<br />
+
+@Html.LabelFor(n => Model.Number)<br/>
+@Html.DisplayTextFor(n => Model.Number)<br/><br/>
 
 @Html.LabelFor(n => Model.Email)<br/>
 @Html.DisplayTextFor(n => Model.Email)<br/><br/>

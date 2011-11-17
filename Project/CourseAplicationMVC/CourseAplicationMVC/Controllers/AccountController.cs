@@ -64,5 +64,38 @@ namespace CourseAplicationMVC.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [Authorize]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult ChangePassword(ChangePasswordModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                bool changePasswordSucceeded;
+                try
+                {
+                    MembershipUser currentUser = Membership.GetUser(User.Identity.Name, true);
+                    changePasswordSucceeded = currentUser.ChangePassword(model.OldPassword, model.Password);
+                }
+                catch (Exception)
+                {
+                    changePasswordSucceeded = false;
+                }
+
+                if (changePasswordSucceeded)
+                {
+                    //return RedirectToAction("ChangePasswordSuccess");
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+            return View(model);
+        }
     }
 }
