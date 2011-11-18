@@ -26,7 +26,6 @@
     @Html.LabelFor(n => Model.Email)<br/>
     @Html.EditorFor(n => Model.Email)<br/><br/>
    
-    @Html.EditorFor(n => Model.UserName)<br/><br/>
     <input type="submit" value="submit" /><br/><br/>
  }
 
@@ -35,7 +34,9 @@
 @Html.LabelFor(n => Model.Number)<br/>
 @Html.DisplayTextFor(n => Model.Number)<br/><br/>
 
+@Html.Label("Roles")<br/>
+@foreach (var s in @Roles.GetRolesForUser(Model.UserName))
+{
+        @Html.Label(s)<br/>
 
-
-@Html.LabelFor(n => Model.Roles)<br/>
-@Html.DisplayTextFor(n=> Model.Roles) <br/><br/>
+}
