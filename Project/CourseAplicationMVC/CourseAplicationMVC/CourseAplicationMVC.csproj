@@ -78,6 +78,7 @@
     <Compile Include="Models\LogInModel.cs" />
     <Compile Include="Models\RegisterUserModel.cs" />
     <Compile Include="Models\UserProfile.cs" />
+    <Compile Include="Models\UserProfileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

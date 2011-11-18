@@ -26,5 +26,16 @@ namespace CourseAplicationMVC.Controllers
            if (user == null) return HttpNotFound("User not Found");
            return View((UserProfile)ProfileBase.Create(user.UserName));
         }
+
+        [HttpPost]
+        public ActionResult Detail(string id, UserProfileModel u)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

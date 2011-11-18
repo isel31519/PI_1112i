@@ -9,7 +9,7 @@
 
 <h1>@Model.UserName Profile</h1>
 
-@using (Html.BeginForm("Detail", "Profile", FormMethod.Post))
+@using (Html.BeginForm("Detail", "Profile", new { @id = Model.UserName }, FormMethod.Post))
  {
      @Html.LabelFor(n => Model.FirstName)<br/>
      @Html.EditorFor(n => Model.FirstName)<br/>
@@ -22,6 +22,12 @@
      @Html.LabelFor(n => Model.Image)<br/>
      @Html.EditorFor(n => Model.Image)<br/>
      <br/>
+    
+    @Html.LabelFor(n => Model.Email)<br/>
+    @Html.EditorFor(n => Model.Email)<br/><br/>
+   
+    @Html.EditorFor(n => Model.UserName)<br/><br/>
+    <input type="submit" value="submit" /><br/><br/>
  }
 
 @Html.ActionLink("Change Password", "ChangePassword", "Account")<br />
@@ -29,8 +35,7 @@
 @Html.LabelFor(n => Model.Number)<br/>
 @Html.DisplayTextFor(n => Model.Number)<br/><br/>
 
-@Html.LabelFor(n => Model.Email)<br/>
-@Html.DisplayTextFor(n => Model.Email)<br/><br/>
+
 
 @Html.LabelFor(n => Model.Roles)<br/>
 @Html.DisplayTextFor(n=> Model.Roles) <br/><br/>
