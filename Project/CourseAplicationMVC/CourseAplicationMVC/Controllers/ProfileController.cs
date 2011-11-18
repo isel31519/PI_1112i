@@ -57,15 +57,19 @@ namespace CourseAplicationMVC.Controllers
             return View();
         }
 
-        public ActionResult Upload(UserProfileModel model)
+        public ActionResult Upload(string id)
         {
             foreach (string fileName in Request.Files)
             {
                 HttpPostedFileBase postedFile = Request.Files[fileName];
                 postedFile.SaveAs(Server.MapPath("~/Uploads/") + Path.GetFileName(postedFile.FileName));
+
+                UserProfile profile = (UserProfile)ProfileBase.Create(id);
+                profile.Image = Server.MapPath("~/Uploads/") + Path.GetFileName(postedFile.FileName);
+                profile.Save();//era suposto funcionar mas aparentemente não está a fazer save
             }
-            return null;
-            //return View();
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

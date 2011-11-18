@@ -9,6 +9,8 @@
 
 <h1>@Model.UserName's Profile</h1>
 
+<img src = "@Model.Image"/>
+
 @using (Html.BeginForm("Detail", "Profile", new { @id = Model.UserName }, FormMethod.Post))
  {
      @Html.LabelFor(n => Model.FirstName)<br/>
@@ -17,10 +19,6 @@
 
      @Html.LabelFor(n => Model.LastName)<br/>
      @Html.EditorFor(n => Model.LastName)<br/>
-     <br/>
-    
-     @Html.LabelFor(n => Model.Image)<br/>
-     @Html.EditorFor(n => Model.Image)<br/>
      <br/>
     
     @Html.LabelFor(n => Model.Email)<br/>
