@@ -8,9 +8,13 @@
 @if(Request.IsAuthenticated)
 {
     <text>Welcome <strong> @Html.ActionLink(@User.Identity.Name, "Detail", "Profile")<br /> </strong>
-    @(User.IsInRole("Administrator") ? "(Administrator)" : String.Empty)
+    
     [ @Html.ActionLink("Log Off", "LogOff", "Account") ]</text><br />
     
+    if(User.IsInRole("admin"))
+    {
+        @Html.ActionLink("Manage Roles", "Admin", "Account")<br />
+    }
     @Html.ActionLink("Create New Fuc", "Create", "NewFucProposal")<br />
     @Html.ActionLink("Fuc Proposal List", "Index", "Proposal")<br />
     @Html.ActionLink("New Fuc Proposal List", "Index", "NewFucProposal")<br />

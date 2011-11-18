@@ -1,0 +1,29 @@
+﻿@using CourseAplicationMVC.Models
+@model UserProfile
+
+@{
+    ViewBag.Title = "Test";
+}
+ 
+<h1>Edit @Model.UserName</h1> 
+
+@using (Html.BeginForm("Detail", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.EditorForModel() 
+ 
+    <div class="editor-label">Image</div> 
+    <div class="editor-field"> 
+        @if (Model.ImageData == null)
+        { 
+            @:None 
+        } else 
+        { 
+            <img width="150" height="150"  
+                src="@Url.Action("GetImage", "Profile", new { Model.UserName })" />
+        } 
+        <div>Upload new image: <input type="file" name="Image" /></div> 
+    </div> 
+ 
+    <input type="submit" value="Save" /> 
+    @Html.ActionLink("Cancel and return to List", "Index") 
+}
