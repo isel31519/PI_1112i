@@ -5,25 +5,14 @@
     ViewBag.Title = "Test";
 }
  
-<h1>Edit @Model.UserName</h1> 
+<h1>Test</h1>
 
-@using (Html.BeginForm("Detail", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.EditorForModel() 
- 
-    <div class="editor-label">Image</div> 
-    <div class="editor-field"> 
-        @if (Model.ImageData == null)
-        { 
-            @:None 
-        } else 
-        { 
-            <img width="150" height="150"  
-                src="@Url.Action("GetImage", "Profile", new { Model.UserName })" />
-        } 
-        <div>Upload new image: <input type="file" name="Image" /></div> 
-    </div> 
- 
-    <input type="submit" value="Save" /> 
-    @Html.ActionLink("Cancel and return to List", "Index") 
+<img src="@(String.IsNullOrEmpty(Model) ? "" : Model)" id="profileImage" />
+
+@using (Html.BeginForm("Upload", "Profile", FormMethod.Post, new { @encType = "multipart/form-data" }))
+   {
+     @Html.DisplayFor(x => x.ImageUrl)<br/>
+     
+     <input type="submit" name="submit" text="upload" />
+   }
 }

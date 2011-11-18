@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Profile;
@@ -38,6 +39,11 @@ namespace CourseAplicationMVC.Models
             get { return base["Number"].ToString(); }
             set { base["Number"] = value; }
         }
+
+
+
+        [UIHint("ProfileImage")]
+        public string ImageUrl { get; set; }
     }
 
 }
