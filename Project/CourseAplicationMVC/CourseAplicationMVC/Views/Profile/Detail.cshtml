@@ -5,6 +5,8 @@
     ViewBag.Title = "User Profile";
 }
 
+@Html.ActionLink("Home", "Index", "Home")<br />
+
 <h1>@Model.UserName Profile</h1>
 
 @using (Html.BeginForm("Detail", "Profile", FormMethod.Post))

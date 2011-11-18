@@ -5,23 +5,20 @@
 }
 
 <h1>Homepage</h1>
-@if(Request.IsAuthenticated) {
-    <text>Welcome <strong>@User.Identity.Name</strong> 
-    @(User.IsInRole("Administrator") ? "(Administrator)" : String.Empty) 
+@if(Request.IsAuthenticated)
+{
+    <text>Welcome <strong> @Html.ActionLink(@User.Identity.Name, "Detail", "Profile")<br /> </strong>
+    @(User.IsInRole("Administrator") ? "(Administrator)" : String.Empty)
     [ @Html.ActionLink("Log Off", "LogOff", "Account") ]</text><br />
-
-  
-    @Html.ActionLink("Create New Fuc", "Create", "NewFucProposal")<br />   
+    
+    @Html.ActionLink("Create New Fuc", "Create", "NewFucProposal")<br />
     @Html.ActionLink("Fuc Proposal List", "Index", "Proposal")<br />
     @Html.ActionLink("New Fuc Proposal List", "Index", "NewFucProposal")<br />
-   
 }
 else
 {
+    @Html.ActionLink("Register", "Index", "Register")
     @:[ @Html.ActionLink("Log In", "LogOn", "Account") ]<br />
 }
 
-
-
 @Html.ActionLink("Fuc List", "Index", "Fuc")<br />
-@Html.ActionLink("Register","Index","Register")

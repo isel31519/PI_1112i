@@ -22,7 +22,7 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult Detail(string id)
         {
-           MembershipUser user = Membership.GetUser(id);
+            MembershipUser user = Membership.GetUser(User.Identity.Name, true);
            if (user == null) return HttpNotFound("User not Found");
            return View((UserProfile)ProfileBase.Create(user.UserName));
         }
