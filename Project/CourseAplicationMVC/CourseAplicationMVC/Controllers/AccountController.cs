@@ -93,6 +93,10 @@ namespace CourseAplicationMVC.Controllers
                     //return RedirectToAction("ChangePasswordSuccess");
                     return RedirectToAction("Index", "Home");
                 }
+                else
+                {
+                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                }
             }
 
             return View(model);
