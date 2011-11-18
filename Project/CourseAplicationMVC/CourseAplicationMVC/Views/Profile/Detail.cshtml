@@ -9,7 +9,8 @@
 
 <h1>@Model.UserName's Profile</h1>
 
-<img src = "@Model.Image"/>
+<img src = "@Model.Image" width="150" height="150"/>
+
 
 @using (Html.BeginForm("Detail", "Profile", new { @id = Model.UserName }, FormMethod.Post))
  {
@@ -23,10 +24,29 @@
     
     @Html.LabelFor(n => Model.Email)<br/>
     @Html.EditorFor(n => Model.Email)<br/><br/>
+    
+    @Html.LabelFor(n => Model.Image)<br/>
+    @Html.EditorFor(n => Model.Image)<br/><br/>
    
     <input type="submit" value="save" /><br/><br/>
  }
-
+ <!--
+    @using (Html.BeginForm("Upload", "Profile", FormMethod.Post, new { @encType = "multipart/form-data" }))
+    {
+               
+            <div class="editor-label"> Image </div>
+            <div class="editor-field">
+                <input type="file" name="Avatar" />
+            </div>
+            <p>
+                <input type="submit" name="submit"
+                    value="Upload Image" text="Upload Images"
+                    style="font-size: .9em;" />
+            </p>
+       
+        
+    }
+    -->
 @Html.ActionLink("Change Password", "ChangePassword", "Account")<br/><br/>
 
 @Html.LabelFor(n => Model.Number)<br/>
@@ -37,4 +57,11 @@
 {
         @Html.Label(s)<br/>
 
+}
+@if(User.Identity.Name.Equals(Model.UserName) || User.IsInRole("admin"))
+{
+    using (Html.BeginForm("Delete", "Account", new { id = Model.UserName }, FormMethod.Post))
+    { 
+        <input type="submit" value="Delete" /><br/><br/>
+    }
 }

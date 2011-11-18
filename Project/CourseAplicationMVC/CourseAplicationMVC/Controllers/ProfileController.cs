@@ -39,6 +39,7 @@ namespace CourseAplicationMVC.Controllers
             profile.FirstName = u.FirstName;
             profile.LastName = u.LastName;
             profile.Email = u.Email;
+            profile.Image = u.Image;
             profile.Save();
 
             MembershipUser user;
@@ -51,22 +52,22 @@ namespace CourseAplicationMVC.Controllers
             
             return View(profile);
         }
-
+/*
         public ActionResult Index()
         {
             return View();
-        }
+        }*/
 
-        public ActionResult Upload(string id)
+        public ActionResult Upload()
         {
             foreach (string fileName in Request.Files)
             {
                 HttpPostedFileBase postedFile = Request.Files[fileName];
                 postedFile.SaveAs(Server.MapPath("~/Uploads/") + Path.GetFileName(postedFile.FileName));
 
-                UserProfile profile = (UserProfile)ProfileBase.Create(id);
+                UserProfile profile = (UserProfile)ProfileBase.Create(User.Identity.Name);
                 profile.Image = Server.MapPath("~/Uploads/") + Path.GetFileName(postedFile.FileName);
-                profile.Save();//era suposto funcionar mas aparentemente não está a fazer save
+                profile.Save();
             }
 
             return RedirectToAction("Index", "Home");
