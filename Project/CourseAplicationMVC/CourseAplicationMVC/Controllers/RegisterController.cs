@@ -31,11 +31,11 @@ namespace CourseAplicationMVC.Controllers
                MembershipUser u = Membership.CreateUser(user.Username, user.Password, user.Email, null, null, false, null, out createStatus);
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    var profile = (UserProfile) ProfileBase.Create(user.Username);
-                    profile.Number = user.Number;
+                    UserProfile profile = (UserProfile)ProfileBase.Create(user.Username);
+                    profile.Number = user.Number.ToString();
                     profile.Email = user.Email;
                     profile.Save();
-                    
+
                    // string randomId = "asdfgtre";//criar random(ou n)id k identifica
                     var mail = new MailMessage("pi.admin.li51n.g02@sapo.pt", user.Email,
                                                        "Account verification",
