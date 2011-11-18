@@ -59,8 +59,10 @@ namespace CourseAplicationMVC.Controllers
          [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Admin(string user, ICollection<string> roles)
-        {
-            Roles.RemoveUserFromRoles(user,Roles.GetRolesForUser(user));
+         {
+             string[] rolesArr=Roles.GetRolesForUser(user);
+             if (rolesArr.Count()!=0)
+                 Roles.RemoveUserFromRoles(user, rolesArr);
             Roles.AddUserToRoles(user,roles.ToArray());
             return RedirectToAction("Admin", "Account");
         }

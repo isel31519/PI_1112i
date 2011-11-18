@@ -52,6 +52,7 @@ namespace CourseAplicationMVC.Controllers
             if (!ModelState.IsValid)
                 return View(_proprepo.GetById(id));
             f.OriginalAcr = oracr;
+            f.User = User.Identity.Name;
             _proprepo.Edit(id, f);
             //bruta!!
             return Redirect(string.Format("/{0}/{1}/{2}", "Proposal","Detail", f.Idx));

@@ -40,7 +40,7 @@ namespace CourseAplicationMVC.Controllers
 
             if (!ModelState.IsValid)
                 return View(_newPropRepo.GetById(fp.Idx));
-
+            fp.User = User.Identity.Name;
             _newPropRepo.Add(fp);
             //bruta!!
             return Redirect(string.Format("/{0}/{1}/{2}", "NewFucProposal", "Detail", fp.Idx));
@@ -61,6 +61,7 @@ namespace CourseAplicationMVC.Controllers
         {
             /*if (!ModelState.IsValid)
               return View(_repo.GetById(f.Id));*/
+            fp.User = User.Identity.Name;
             _newPropRepo.Edit(id, fp);
             
             //bruta
