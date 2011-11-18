@@ -40,26 +40,20 @@ namespace CourseAplicationMVC.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Upload(UserProfile model)
+        public ActionResult Index()
         {
-            var image = WebImage.GetImageFromRequest();
+            return View();
+        }
 
-            if (image != null)
+        public ActionResult Upload(UserProfileModel model)
+        {
+            foreach (string fileName in Request.Files)
             {
-                if (image.Width > 500)
-                {
-                    image.Resize(500, ((500 * image.Height) / image.Width));
-                }
-
-                var filename = Path.GetFileName(image.FileName);
-                image.Save(Path.Combine("../TempImages", filename));
-                filename = Path.Combine("~/TempImages", filename);
-
-                model.ImageUrl = Url.Content(filename);
-
+                HttpPostedFileBase postedFile = Request.Files[fileName];
+                postedFile.SaveAs(Server.MapPath("~/Uploads/") + Path.GetFileName(postedFile.FileName));
             }
-
-            return View("Test", model);
+            return null;
+            //return View();
         }
     }
 }

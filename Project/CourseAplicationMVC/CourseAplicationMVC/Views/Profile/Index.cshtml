@@ -1,0 +1,23 @@
+﻿@model UserProfile
+    @using CourseAplicationMVC.Models
+
+    @{
+        ViewBag.Title = "Index";
+     }
+
+    <h2>Image Uploader</h2>
+    @using (Html.BeginForm("Upload", "Profile", FormMethod.Post, new { @encType = "multipart/form-data" }))
+    {
+        <fieldset>            
+            <div class="editor-label"> Image </div>
+            <div class="editor-field">
+                <input type="file" name="Avatar" />
+            </div>
+            <p>
+                <input type="submit" name="submit"
+                    value="Upload Image" text="Upload Images"
+                    style="font-size: .9em;" />
+            </p>
+        </fieldset>
+        
+    }

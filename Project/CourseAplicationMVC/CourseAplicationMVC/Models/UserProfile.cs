@@ -40,10 +40,4 @@ namespace CourseAplicationMVC.Models
             set { base["Number"] = value; }
         }
 
-
-
-        [UIHint("ProfileImage")]
-        public string ImageUrl { get; set; }
-    }
-
 }
