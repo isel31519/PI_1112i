@@ -60,7 +60,6 @@ namespace CourseAplicationMVC.Controllers
         [HttpPost]
         public ActionResult Admin(string user, ICollection<string> roles)
         {
-            Membership.GetUser(user);
             Roles.RemoveUserFromRoles(user,Roles.GetRolesForUser(user));
             Roles.AddUserToRoles(user,roles.ToArray());
             return RedirectToAction("Admin", "Account");
