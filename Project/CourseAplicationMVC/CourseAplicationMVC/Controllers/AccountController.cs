@@ -41,7 +41,7 @@ namespace CourseAplicationMVC.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Incorrect name or password.");
+                    ModelState.AddModelError("", "Incorrect name / password Or User not activated");
                 }
             }
 
@@ -66,6 +66,21 @@ namespace CourseAplicationMVC.Controllers
             Roles.AddUserToRoles(user,roles.ToArray());
             return RedirectToAction("Admin", "Account");
         }
+
+         [Authorize]
+         [HttpPost]
+         public ActionResult Delete(string id)
+         {
+             MembershipUser user = Membership.GetUser(id);
+             if (user == null) return HttpNotFound("User not Found");
+             if (!User.IsInRole("admin") && !User.Identity.Name.Equals(user.UserName))
+                 return RedirectToAction("LogOn", "Account");
+
+             user.IsApproved = false;
+             Membership.UpdateUser(user);
+
+             return RedirectToAction("Index", "Home");
+         }
 
         public ActionResult LogOff()
         {
