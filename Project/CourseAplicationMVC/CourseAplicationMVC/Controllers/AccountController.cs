@@ -50,13 +50,21 @@ namespace CourseAplicationMVC.Controllers
 
         }
 
-        //[Authorize(Roles="admin")]
+        [Authorize(Roles="admin")]
         public ActionResult Admin()
         {
             SelectList s=new SelectList(Membership.GetAllUsers());
             return View(s);
         }
-
+         [Authorize(Roles = "admin")]
+        [HttpPost]
+        public ActionResult Admin(string user, ICollection<string> roles)
+        {
+            Membership.GetUser(user);
+            Roles.RemoveUserFromRoles(user,Roles.GetRolesForUser(user));
+            Roles.AddUserToRoles(user,roles.ToArray());
+            return RedirectToAction("Admin", "Account");
+        }
 
         public ActionResult LogOff()
         {

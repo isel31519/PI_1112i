@@ -1,4 +1,5 @@
 ﻿@using CourseAplicationLib
+@using CourseAplicationMVC.Models
 @model SelectList
 
 @{
@@ -7,5 +8,17 @@
 
 <h1>Manage User Roles</h1>
 
+@using (Html.BeginForm("Admin", "Account", FormMethod.Post))
+{
 
-@Html.DropDownList("users",Model)
+    @Html.DropDownList("user", Model)<br/>
+
+foreach (var s in @Roles.GetAllRoles())
+{
+        @Html.Label(s)
+        <input type="checkbox" value="@s" name="roles"/> <br/>
+}
+           <input type="submit" value="submit" />
+}
+
+
