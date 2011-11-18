@@ -7,7 +7,7 @@
 
 @Html.ActionLink("Home", "Index", "Home")<br />
 
-<h1>@Model.UserName Profile</h1>
+<h1>@Model.UserName's Profile</h1>
 
 @using (Html.BeginForm("Detail", "Profile", new { @id = Model.UserName }, FormMethod.Post))
  {
