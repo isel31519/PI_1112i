@@ -33,12 +33,25 @@ namespace CourseAplicationMVC.Controllers
         public ActionResult Detail(string id, UserProfileModel u)
         {
             if(!ModelState.IsValid)
-            {
                 return View();
-            }
 
-            return RedirectToAction("Index", "Home");
+            UserProfile profile = (UserProfile)ProfileBase.Create(id);
+            profile.FirstName = u.FirstName;
+            profile.LastName = u.LastName;
+            profile.Email = u.Email;
+            profile.Save();
+
+            MembershipUser user;
+
+            if( (user = Membership.GetUser(id))!=null)
+            {
+                user.Email = u.Email;
+                Membership.UpdateUser(user);
+            }
+            
+            return View(profile);
         }
+
 
         public ActionResult Upload(UserProfile model)
         {
