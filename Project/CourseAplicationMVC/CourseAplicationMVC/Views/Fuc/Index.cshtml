@@ -4,11 +4,49 @@
 @{
     ViewBag.Title = "Fuc List";
 }      
-<a href=@Url.Action("Index", "Home")>Home</a>
+
 <h1>Fuc List</h1>
 
-<ul>
-@foreach (var f in Model){
-        <li> <a href=@Url.Action("Detail", "Fuc",new { @id = f.Acr }) >@f.Name</a></li>
-}
-</ul>
+<div id="list">
+
+    <div id="pages">
+    <form onsubmit="return false;" action="#">
+        <div class="headPages">
+        Page 
+            <input id="pageinput" type="text" class="totalpages" style="width:15px;"> of <span id="totalp">10</span>
+         </div>
+         <div class="headResult">
+         Showing results <strong>1</strong> of <strong>@Model.Count()</strong></div>
+         <div id="selector">
+             <a href="#self" id="first">first</a>
+             <a href="#self" id="prev">prev</a>
+             <a href="#self" id="next">next</a>
+             <a href="#self" id="last">last</a>
+         </div>
+         <div class="headSelect">Results Per Page:&nbsp;
+         <select id="DisplayNum" class="displaylist">
+             <option value="All">All</option>
+             <option  value="20">20</option>
+             <option value="30">30</option>
+             <option value="10">10</option>
+             <option selected="selected" value="1">1</option>
+         </select>
+         </div>
+     </form>
+    
+    </div>
+    <table id="elems">
+    <thead>
+    <tr><th>Fuc Name</th></tr>
+    </thead>
+    <tbody>
+
+        @foreach (var f in Model){
+            <tr>
+                <td> <a href=@Url.Action("Detail", "Fuc",new { @id = f.Acr }) >@f.Name</a></td>
+            </tr>
+        }
+        
+     </tbody>
+    </table>
+</div>
