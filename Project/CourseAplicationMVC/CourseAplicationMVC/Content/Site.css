@@ -150,3 +150,5 @@ textarea
 {
     display: none;
 }
+button.accordion{ cursor: pointer; }
+div.accordion{ display: none; }

@@ -34,6 +34,16 @@ namespace CourseAplicationMVC.Controllers
             return View(p);
         }
 
+
+        public ActionResult PDetail(int id)
+        {
+            FucProposal p = _newPropRepo.GetById(id);
+            if (p == null) return HttpNotFound("Proposal not found");
+            if (!User.IsInRole("coord") && !User.Identity.Name.Equals(p.User)) return RedirectToAction("LogOn", "Account");
+            return PartialView(p);
+        }
+
+
         [HttpPost]
         public ActionResult Create(FucProposal fp)
         {
