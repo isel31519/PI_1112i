@@ -5,8 +5,6 @@
     ViewBag.Title = @Model.Name+" Proposal";
 }
 
-<a href=@Url.Action("Index", "Home")>Home</a>
-
 <h1>@Model.Idx</h1>
 
 @using (Html.BeginForm("Edit", "NewFucProposal", new { @id=Model.Idx }, FormMethod.Get))

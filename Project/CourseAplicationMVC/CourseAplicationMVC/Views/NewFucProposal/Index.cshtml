@@ -14,39 +14,37 @@
     }
 </ul>-->
 
+
+
+
+<script src="http://code.jquery.com/jquery-1.5.2.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('button.accordion').click(function () {
-            $(this).parent().find('div.accordion').slideToggle();
+        $('a.accordion').click(function (e) {
+            e.preventDefault();
+            $(this).parent().find('div.accordion').slideDown();
+            var http = new XMLHttpRequest();
+            console.log($(this).attr("href"));
+            http.open("GET", $(this).attr("href")+"?partial=true", false);
+            http.onreadystatechange = window.useHttpResponse;
+            http.send(null);
+
+            if (http.readyState == 4 && http.status == 200) {
+                var textout = http.responseText;
+                console.log(textout);
+                $('#newFucDetail').html(textout);
+            }
         });
     });
 </script>
 
-<script src="http://code.jquery.com/jquery-1.5.2.js" type="text/javascript"></script>
-<script type="text/javascript">
-    function showDetail() {
-        var myurl = "/NewFucProposal/PDetail/0";
-        //console.log(myurl + "0");
-        var page = parseInt($('#pageinput').val())+1;
-        //var items_per_page=$('#DisplayNum').val();
-        var http = new XMLHttpRequest();
-        http.open("GET", myurl, false);
-        http.onreadystatechange = window.useHttpResponse;
-        var send = http.send(null);
-        
-        if (http.readyState == 4 && http.status == 200) {
-            var textout = http.responseText;
-            console.log(textout);
-            $('#newFucDetail').html(textout);
-           
-        }
-    }</script>
+
 
 
 <div>
     @foreach (var f in Model)
     {
-        <button class="accordion" onclick="showDetail()"> @f.Idx</button>  
+        <a href=@Url.Action("Detail", "NewFucProposal",new { @id = f.Idx }) id="linkDetail" class="accordion"> Proposta @f.Idx</a>  
     }
     
     <div id="newFucDetail" class="accordion"/>

@@ -26,21 +26,13 @@ namespace CourseAplicationMVC.Controllers
             return View();
         }
 
-        public ActionResult Detail(int id)
+        public ActionResult Detail(int id, bool? partial)
         {
             FucProposal p = _newPropRepo.GetById(id);
             if (p == null) return HttpNotFound("Proposal not found");
             if (!User.IsInRole("coord") && !User.Identity.Name.Equals(p.User)) return RedirectToAction("LogOn", "Account");
+            if (partial.HasValue) return PartialView(p);
             return View(p);
-        }
-
-
-        public ActionResult PDetail(int id)
-        {
-            FucProposal p = _newPropRepo.GetById(id);
-            if (p == null) return HttpNotFound("Proposal not found");
-            if (!User.IsInRole("coord") && !User.Identity.Name.Equals(p.User)) return RedirectToAction("LogOn", "Account");
-            return PartialView(p);
         }
 
 
