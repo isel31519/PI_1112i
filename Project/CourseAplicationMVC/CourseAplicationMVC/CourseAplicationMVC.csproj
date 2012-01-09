@@ -72,6 +72,7 @@
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ProposalController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Modules\Authentication.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
