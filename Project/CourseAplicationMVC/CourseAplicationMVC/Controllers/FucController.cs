@@ -15,7 +15,12 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult Index()
         {
-            return View(_repo.GetAll());
+            /*
+                        ViewData.Add("pageprev",0);
+                        ViewData.Add("pagenext", 2);
+                        ViewData.Add("itemsnumber", 1);*/
+            return RedirectToAction("PIndex", new { @page = 1, @itemsnumber = 1, @partial = false });
+            //return View(_repo.GetAll());
         }
 
         public ActionResult Detail(string id)
@@ -26,12 +31,35 @@ namespace CourseAplicationMVC.Controllers
             return View(f);
         }
 
+        public ActionResult PIndex(int page, int itemsnumber, bool? partial)
+        {
+            ViewData.Add("pageprev", page - 1);
+            ViewData.Add("pagenext", page + 1);
+            ViewData.Add("itemsnumber", itemsnumber);
+            Fuc[] array = _repo.GetAll().ToArray();
+            ViewData.Add("totalitems", array.Length);
+            int max_elem = Math.Min(page * itemsnumber, array.Length);
+            LinkedList<Fuc> list = new LinkedList<Fuc>();
+            if (page == 0 || (page - 1) * itemsnumber >= max_elem)
+            {
+                return HttpNotFound();
+            }
+            for (int i = (page - 1) * itemsnumber, j = 0; i < max_elem; j++, i++)
+            {
+                list.AddLast(array[i]);
+                // array2[j] = array[i];
+            }
+            if (partial.HasValue && partial.Value)
+                return PartialView("PDetail", list);
+            return View("Index", list);
+        }
+
         [Authorize]
         public ActionResult Edit(string id)
         {
             //id=acronimo da fuc a ser alterada
-            Fuc f=_repo.GetByAcr(id);
-            if (f == null) 
+            Fuc f = _repo.GetByAcr(id);
+            if (f == null)
                 return HttpNotFound();
 
             return View(f);
@@ -39,7 +67,7 @@ namespace CourseAplicationMVC.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult Edit(string id,FucProposal f)
+        public ActionResult Edit(string id, FucProposal f)
         {
             if (!ModelState.IsValid)
             {

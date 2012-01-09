@@ -1,0 +1,17 @@
+﻿@model System.Collections.Generic.IEnumerable<CourseAplicationLib.Fuc>
+
+@{
+    ViewBag.Title = "title";
+}
+    <thead>
+    <tr><th>Fuc Name</th></tr>
+    </thead>
+    <tbody>
+
+        @foreach (var f in Model){
+            <tr>
+                <td> <a href=@Url.Action("Detail", "Fuc",new { @id = f.Acr }) >@f.Name</a></td>
+            </tr>
+        }
+        
+     </tbody>
