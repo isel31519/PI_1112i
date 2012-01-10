@@ -15,32 +15,26 @@
    
           <div id="title">ISEL Course Aplication</div>
 
-          <div id="page_links">
-            @Html.ActionLink("Home", "Index", "Home")
-            @Html.ActionLink("Fuc List", "Index", "Fuc")<br />
+          <span>
+              <div class="page_links">
+                @Html.ActionLink("Home", "Index", "Home")
+                @Html.ActionLink("Fuc List", "Index", "Fuc")
             
-            @if(Request.IsAuthenticated)
-            {
-                @Html.ActionLink("Create New Fuc", "Create", "NewFucProposal")<br />
-                @Html.ActionLink("Fuc Proposal List", "Index", "Proposal")<br />
-                @Html.ActionLink("New Fuc Proposal List", "Index", "NewFucProposal")<br />
-            }            
-         
-            @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                @if(Request.IsAuthenticated)
                 {
-                   <input type="text" value="Search"/>
-                   <input type="submit" value="Go"/>
+                    @Html.ActionLink("Create New Fuc", "Create", "NewFucProposal")
+                    @Html.ActionLink("Fuc Proposal List", "Index", "Proposal")
+                    @Html.ActionLink("New Fuc Proposal List", "Index", "NewFucProposal")
                 }
-          </div>
-
-            <div id="login">
+            
+                <div style="text-align: right;">
                     @if (Request.IsAuthenticated)
                     {
                         <text>Welcome <strong> @Html.ActionLink(@User.Identity.Name, "Detail", "Profile") </strong>
     
                             [ @Html.ActionLink("Log Off", "LogOff", "Account") ]</text>
-                        <br />
-
+                    
+                    
                         if (User.IsInRole("admin"))
                         {
                             @Html.ActionLink("Manage Roles", "Admin", "Account")
@@ -48,10 +42,20 @@
                     }
                     else
                     {
-                        /*@Html.ActionLink("Register", "Index", "Register")
-                        @:[ @Html.ActionLink("Log In", "LogOn", "Account") ]*/
-                    } 
-            </div>
+                        @Html.ActionLink("Register", "Index", "Register")
+                        @:[ @Html.ActionLink("Log In", "LogOn", "Account") ]
+                    }
+
+                    <div>
+                        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                            {
+                               <input type="text" value="Search"/>
+                               <input type="submit" value="Go"/>
+                            }
+                    </div>
+                </div>
+              </div>
+          </span>
         </div>
 
         <div id="page_content">
