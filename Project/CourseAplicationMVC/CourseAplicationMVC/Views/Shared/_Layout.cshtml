@@ -39,13 +39,13 @@
                             @Html.ActionLink("Manage Roles", "Admin", "Account")
                         }
                     }
-                    else
+                    else /*alterar padding-left*/
                     {
                         @Html.ActionLink("Register", "Index", "Register")
                         @:[ @Html.ActionLink("Log In", "LogOn", "Account") ]
                     }
                 </span>
-                <span style="padding-left: 750px; text-align: right">
+                <span style="padding-left: 750px; text-align: right"> <!-- <span style="padding-left: 750px; text-align: right"> -->
                     @using (Html.BeginForm("Index", "Home", FormMethod.Post))
                         {
                             <input type="text" value="Search"/>
