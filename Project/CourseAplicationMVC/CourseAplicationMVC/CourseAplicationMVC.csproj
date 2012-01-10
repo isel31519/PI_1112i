@@ -207,9 +207,9 @@
     <Content Include="Views\Fuc\PDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\ModelLibrary\CourseAplicationLib\CourseAplicationLib\CourseAplicationLib.csproj">
-      <Project>{130B4C29-8376-4406-9EBC-9EAACA317B7B}</Project>
-      <Name>CourseAplicationLib</Name>
+    <ProjectReference Include="..\..\..\ModelLibrary\ModelLib\ModelLib.csproj">
+      <Project>{317A7D3E-2A0C-4C67-BB5B-B91FF66F2825}</Project>
+      <Name>ModelLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
