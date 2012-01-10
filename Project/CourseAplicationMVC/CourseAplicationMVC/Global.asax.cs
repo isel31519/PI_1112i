@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using CourseAplicationLib;
+using CourseAplicationMVC.Filters;
 using CourseAplicationMVC.Modules;
 
 namespace CourseAplicationMVC
@@ -17,7 +18,7 @@ namespace CourseAplicationMVC
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            
+           //filters.Add(new AuthenticationFilter());
             filters.Add(new HandleErrorAttribute());
         }
 

@@ -6,6 +6,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using CourseAplicationMVC.Filters;
 using CourseAplicationMVC.Models;
 
 namespace CourseAplicationMVC.Controllers
@@ -48,14 +49,17 @@ namespace CourseAplicationMVC.Controllers
             return View(user);
 
         }
-
+         
         [Authorize(Roles="admin")]
+        [AuthenticationFilter]
         public ActionResult Admin()
         {
             SelectList s=new SelectList(Membership.GetAllUsers());
             return View(s);
         }
-         [Authorize(Roles = "admin")]
+
+       
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Admin(string user, ICollection<string> roles)
          {
