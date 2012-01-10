@@ -30,9 +30,9 @@ section {
 
 .page_links
 {
-    /*width: 150px;*/
-    width: 50%;
-    display: block;
+    /*width: 900px;*/
+    width: 100%;
+    display: inline;
     position: relative;
     text-align: left;
     margin: 5px;

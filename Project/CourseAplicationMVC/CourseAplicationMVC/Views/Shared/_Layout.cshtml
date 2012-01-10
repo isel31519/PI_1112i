@@ -15,7 +15,6 @@
    
           <div id="title">ISEL Course Aplication</div>
 
-          <span>
               <div class="page_links">
                 @Html.ActionLink("Home", "Index", "Home")
                 @Html.ActionLink("Fuc List", "Index", "Fuc")
@@ -27,7 +26,7 @@
                     @Html.ActionLink("New Fuc Proposal List", "Index", "NewFucProposal")
                 }
             
-                <div style="text-align: right;">
+                <span style="padding-left: 774px">
                     @if (Request.IsAuthenticated)
                     {
                         <text>Welcome <strong> @Html.ActionLink(@User.Identity.Name, "Detail", "Profile") </strong>
@@ -45,17 +44,16 @@
                         @Html.ActionLink("Register", "Index", "Register")
                         @:[ @Html.ActionLink("Log In", "LogOn", "Account") ]
                     }
-
-                    <div>
-                        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
-                            {
-                               <input type="text" value="Search"/>
-                               <input type="submit" value="Go"/>
-                            }
-                    </div>
-                </div>
+                </span>
+                <span style="padding-left: 750px; text-align: right">
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                        {
+                            <input type="text" value="Search"/>
+                            <input type="submit" value="Go"/>
+                        }
+                </span>
+                
               </div>
-          </span>
         </div>
 
         <div id="page_content">
