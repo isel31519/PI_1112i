@@ -37,11 +37,23 @@
 
 
 <div>
-    @foreach (var f in Model)
-    {
-        <a href=@Url.Action("Detail", "NewFucProposal",new { @id = f.Idx }) class="detailer"> Proposta @f.Idx</a>  
-    }
-    <div id="showDetail"/> 
+   <table border="1">
+        <tr>
+            <th>Proposal number</th>
+            <th>User</th>
+        </tr>
+        @foreach (var f in Model)
+        {
+        
+            <tr>
+                <td><a href=@Url.Action("Detail", "NewFucProposal", new { @id = f.Idx }) class="detailer"> Proposta @f.Idx</a></td>
+                <td><a href=@Url.Action("Detail", "Profile", new { @id = f.User }) class="detailer"> @f.User</a></td>
+            </tr>  
+        }
+    </table>
+   <div id="showDetail"/> 
+ 
+    
 </div>
 
 

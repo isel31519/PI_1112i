@@ -22,10 +22,11 @@ namespace CourseAplicationMVC.Controllers
             return View();
         }*/
 
-        public ActionResult Detail(string id)
+        public ActionResult Detail(string id, bool? partial)
         {
             MembershipUser user = Membership.GetUser(User.Identity.Name, true);
            if (user == null) return HttpNotFound("User not Found");
+           if (partial.HasValue) return PartialView((UserProfile)ProfileBase.Create(user.UserName));
            return View((UserProfile)ProfileBase.Create(user.UserName));
         }
 
