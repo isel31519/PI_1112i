@@ -8,21 +8,13 @@
 <h1>New Fuc Proposal List</h1>
 
 
-<!--<ul>
-    @foreach (var f in Model){
-        <h2 class="ui-accordion"> <a href=@Url.Action("Detail", "NewFucProposal",new { @id = f.Idx }) >@f.Idx</a></h2>
-    }
-</ul>-->
-
-
-
 
 <script src="http://code.jquery.com/jquery-1.5.2.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('a.accordion').click(function (e) {
+        $('a.detailer').click(function (e) {
             e.preventDefault();
-            $(this).parent().find('div.accordion').slideDown();
+            $('#showDetail').slideDown();
             var http = new XMLHttpRequest();
             console.log($(this).attr("href"));
             http.open("GET", $(this).attr("href")+"?partial=true", false);
@@ -32,22 +24,24 @@
             if (http.readyState == 4 && http.status == 200) {
                 var textout = http.responseText;
                 console.log(textout);
-                $('#newFucDetail').html(textout);
+                $('#showDetail').html(textout);
             }
         });
     });
 </script>
 
-
+<!--<script type="text/javascript" src="~/Scripts/AccordionScript.js"></script>
+    <script type="text/javascript">
+        var accord = ready;
+    </script>-->  
 
 
 <div>
     @foreach (var f in Model)
     {
-        <a href=@Url.Action("Detail", "NewFucProposal",new { @id = f.Idx }) id="linkDetail" class="accordion"> Proposta @f.Idx</a>  
+        <a href=@Url.Action("Detail", "NewFucProposal",new { @id = f.Idx }) class="detailer"> Proposta @f.Idx</a>  
     }
-    
-    <div id="newFucDetail" class="accordion"/>
+    <div id="showDetail"/> 
 </div>
 
 
