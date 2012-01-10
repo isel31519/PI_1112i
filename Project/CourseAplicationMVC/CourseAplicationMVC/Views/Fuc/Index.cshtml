@@ -54,9 +54,9 @@
 
         if (page < 1 || page > parseInt($('#totalp').text())) return false;
         myurl = myurl.substring(0, myurl.indexOf("?", myurl));
-        var items_per_page = $('#DisplayNum').val();
+        var itemsPerPage = $('#DisplayNum').val();
         var http = new XMLHttpRequest();
-        http.open("GET", myurl + "?page=" + page + "&itemsnumber=" + items_per_page + "&partial=true", false);
+        http.open("GET", myurl + "?page=" + page + "&itemsnumber=" + itemsPerPage + "&partial=true", false);
         http.onreadystatechange = window.useHttpResponse;
         http.send(null);
 
@@ -66,8 +66,8 @@
             $('#elems').html(textout);
             ($('#pageinput').val(page));
 
-            $('#next').attr("href", replacehref(myurl, page + 1, items_per_page));
-            $('#prev').attr("href", replacehref(myurl, page - 1, items_per_page));
+            $('#next').attr("href", replacehref(myurl, page + 1, itemsPerPage));
+            $('#prev').attr("href", replacehref(myurl, page - 1, itemsPerPage));
 
         }
         return false;
