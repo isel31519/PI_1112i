@@ -34,9 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CourseAplicationLib">
-      <HintPath>..\..\..\ModelLibrary\CourseAplicationLib\CourseAplicationLib\bin\Debug\CourseAplicationLib.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
@@ -208,6 +205,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Fuc\PDetail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\ModelLibrary\CourseAplicationLib\CourseAplicationLib\CourseAplicationLib.csproj">
+      <Project>{130B4C29-8376-4406-9EBC-9EAACA317B7B}</Project>
+      <Name>CourseAplicationLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
