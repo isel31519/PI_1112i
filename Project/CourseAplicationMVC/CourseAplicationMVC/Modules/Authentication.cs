@@ -43,7 +43,7 @@ namespace CourseAplicationMVC.Modules
            if (context.Response.StatusCode.Equals(401))
             {
                 context.Response.StatusCode = 301;
-                context.Response.Redirect("~/");
+                context.Response.Redirect("Account/LogOn");
             }
         }
         public void Dispose()

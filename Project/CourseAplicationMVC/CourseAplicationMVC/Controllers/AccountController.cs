@@ -50,7 +50,7 @@ namespace CourseAplicationMVC.Controllers
 
         }
          
-        [Authorize(Roles="admin")]
+       // [Authorize(Roles="admin")]
         [AuthenticationFilter]
         public ActionResult Admin()
         {
