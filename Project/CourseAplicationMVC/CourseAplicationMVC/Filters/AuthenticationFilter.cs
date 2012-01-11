@@ -33,7 +33,7 @@ namespace CourseAplicationMVC.Filters
         }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
-        {
+        {/*falta*/
             
              if (filterContext.Exception != null)
              filterContext.HttpContext.Trace.Write("(Logging Filter)Exception thrown");

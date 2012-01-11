@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CourseAplicationLib;
+using CourseAplicationMVC.Filters;
 
 namespace CourseAplicationMVC.Controllers
 {
-    [Authorize]
+   // [Authorize]
+    [AuthenticationFilter]
     public class NewFucProposalController : Controller
     {
         //

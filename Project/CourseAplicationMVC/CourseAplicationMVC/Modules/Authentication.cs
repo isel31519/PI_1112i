@@ -40,11 +40,9 @@ namespace CourseAplicationMVC.Modules
         {
             HttpApplication httpApplication = (HttpApplication)source;
             HttpContext context = httpApplication.Context;
-           if (context.Response.StatusCode.Equals(401))
-            {
-                context.Response.StatusCode = 301;
-                context.Response.Redirect("Account/LogOn");
-            }
+            if (!context.Response.StatusCode.Equals(401)) return;
+            context.Response.StatusCode = 301;
+            context.Response.RedirectLocation = "/Account/LogOn";
         }
         public void Dispose()
         {

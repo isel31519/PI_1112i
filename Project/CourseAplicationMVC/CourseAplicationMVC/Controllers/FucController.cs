@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CourseAplicationLib;
+using CourseAplicationMVC.Filters;
 
 namespace CourseAplicationMVC.Controllers
 {
@@ -53,8 +54,8 @@ namespace CourseAplicationMVC.Controllers
                 return PartialView("PDetail", list);
             return View("Index", list);
         }
-
-        [Authorize]
+        [AuthenticationFilter]
+       // [Authorize]
         public ActionResult Edit(string id)
         {
             //id=acronimo da fuc a ser alterada
@@ -66,7 +67,8 @@ namespace CourseAplicationMVC.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [AuthenticationFilter]
+       // [Authorize]
         public ActionResult Edit(string id, FucProposal f)
         {
             if (!ModelState.IsValid)

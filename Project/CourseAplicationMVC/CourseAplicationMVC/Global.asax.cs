@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
+using System.Xml;
 using CourseAplicationLib;
 using CourseAplicationMVC.Filters;
 using CourseAplicationMVC.Modules;
@@ -51,7 +53,40 @@ namespace CourseAplicationMVC
         public static void FucRepoFill()
         {
             var repo = RepositoryLocator.GetFucRep();
-            var userrepo = RepositoryLocator.GetUserRep();
+            var path = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "FUC.xml");
+            XmlTextReader reader = new XmlTextReader(path);
+            string[] fuc = new string[10];// name, acr, mand, sem, ects, objectives, results, evaluation, programa;
+            Fuc f;
+            int i = 0;
+            while (reader.Read())
+            {
+                
+                
+                switch (reader.NodeType)
+                {
+                    case XmlNodeType.EndElement: // O nó é um elemento.
+                        if (reader.Name.CompareTo("fuc")==0)
+                        {
+                            f = new Fuc(fuc[0], fuc[1], fuc[2].CompareTo("true") == 0, fuc[3], fuc[4].CompareTo("null")==0?null:fuc[4],
+                                            Double.Parse(fuc[5]))
+                                        {
+                                            Objectives =fuc[6],
+                                            Results =fuc[7],
+                                            Evaluation =fuc[8],
+                                            Program =fuc[9]
+                                        };
+                            repo.Add(f);
+                            i= 0;
+                        }
+                        break;
+                    case XmlNodeType.Text: //Apresente o texto em cada elemento.
+                        fuc[i++] = reader.Value;
+                        break;
+                }
+            }
+
+         
+            /*
             var f = new Fuc("Object Oriented Programming", "POO", true,"2", "PG",6.0)
             {
               Objectives= "Esta unidade curricular introduz os conceitos e vocabulário fundamental da programação orientada por objectos, e da" +
@@ -76,7 +111,7 @@ namespace CourseAplicationMVC
             "Ficheiros de texto e binários. Introdução à interface gráfica: programação event-driven; listeners; layout managers;" +
             "Model-View-Controller."
             };
-            
+           
 
             repo.Add(f);
             f = new Fuc("Programming", "PG", true,"1", null,6.0)
@@ -97,7 +132,7 @@ namespace CourseAplicationMVC
                  Program = "Conceitos básicos: valores, tipos e variáveis; expressões; instruções de controlo de fluxo. Entrada/Saída de dados. Introdução à programação baseada em objectos. Tipos referência. Construção de novos tipos. Classes: métodos; passagem de parâmetros; membros de instância e de tipo; construtores; encapsulamento. Arrays. Algoritmos de pesquisa e ordenação."
             };
            
-            repo.Add(f);
+            repo.Add(f); */
 /* 
             userrepo.Add(new User("Aimar", "maior", "aimar@benfica.pt", null));
             userrepo.Add(new User("Saviola", "maior", "saviola@benfica.pt", null));

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fuclist>
+<fuc>
+<name>Programação Orientada a Objectos</name>
+<acr>POO</acr>
+<mand>true</mand>
+<sem>2</sem>
+<pre>PG</pre>
+<ects>6,5</ects>
+<Objectives>Esta unidade curricular introduz os conceitos e vocabulário fundamental da programação orientada por objectos, e da programação event-driven, 
+concretizados na linguagem Java.Desenvolve boas práticas de desenho e codificação de forma a produzir programas usando classes e objectos.</Objectives>
+
+<Results>Os estudantes que terminam com sucesso esta unidade curricular serão capazes de: Definir e usar: classes derivadas, classes que representem 
+Estruturas de Dados dinâmicas, e genéricos. Exprimir objectivos na forma de algoritmos recursivos. 
+Construir aplicações simples usando o paradigma da Programação Orientada por Objectos e interface gráfica. 
+Testar e corrigir as aplicações construídas, usando as ferramentas de desenvolvimento adequadas. 
+Escrever relatórios onde se justifica a hierarquia de classes e a estrutura de dados usada nas aplicações construídas.</Results>
+
+<Evaluation>Os resultados de aprendizagem (1) , (2) são avaliados individualmente através do teste escrito e das fichas realizadas durante o semestre.
+Durante o acompanhamento dos trabalhos de grupo realizados nas aulas práticas são avaliados os resultados de aprendizagem (3) e (4).
+Os resultados de aprendizagem (3), (5) são avaliados na discussão final dos trabalhos de grupo, onde é discutida a qualidade das soluções. </Evaluation>
+
+<Program>Herança: classes derivadas; classes abstractas; interfaces; ligação dinâmica; polimorfismo. Tratamento de excepções. 
+Estruturas de dados dinâmicas e genéricos: vectores; listas; iteradores. Algoritmos recursivos. Ficheiros de texto e binários. 
+Introdução à interface gráfica: programação event-driven; listeners; layout managers;Model-View-Controller.</Program>
+
+</fuc>
+<fuc>  
+<name>Programação</name>
+<acr>PG</acr>
+<mand>true</mand>
+<sem>1</sem>
+<pre>null</pre>
+<ects>6,0</ects>
+<Objectives>Esta unidade curricular representa para a maioria dos alunos um primeiro contacto com a programação, que se pretende motivador 
+sem descurar o formalismo e o rigor. São introduzidos conceitos e vocabulário fundamental da programação e, em particular, 
+da programação baseada em objectos, concretizados na linguagem Java..</Objectives>
+
+<Results>Os estudantes que terminam com sucesso esta unidade curricular serão capazes de: Demonstrar o conhecimento sobre os mecanismos básicos da 
+linguagem de programação Java. Construir pequenos programas em Java que resolvam problemas simples descritos em linguagem natural. 
+Testar e corrigir pequenos programas. Escrever relatórios onde se justifica as decisões tomadas nos programas construídos. 
+Utilizar ferramentas para desenvolver programas e para elaborar relatórios.</Results>
+
+<Evaluation>Os resultados da aprendizagem (1) e (2) são avaliados individualmente através do teste escrito e das fichas realizadas durante o semestre. 
+Durante o acompanhamento dos trabalhos de grupo realizados nas aulas práticas são avaliados os resultados da aprendizagem (3) e (5).
+Os resultados da aprendizagem (4) e (5) são avaliados na discussão final dos trabalhos de grupo. </Evaluation>
+
+<Program>Conceitos básicos: valores, tipos e variáveis; expressões; instruções de controlo de fluxo. Entrada/Saída de dados.
+ Introdução à programação baseada em objectos. Tipos referência. Construção de novos tipos. Classes: métodos; passagem de parâmetros; 
+ membros de instância e de tipo; construtores; encapsulamento. Arrays. Algoritmos de pesquisa e ordenação.</Program>
+
+</fuc>
+  <fuc>
+    <name>Comunicações</name>
+    <acr>COM</acr>
+    <mand>true</mand>
+    <sem>3</sem>
+    <pre>null</pre>
+    <ects>6,0</ects>
+    <Objectives>
+      Dotar os alunos de conhecimentos das técnicas usadas na comunicação digital. 
+      Tratamento das modulações utilizadas - codificação de canal estrita.
+      Análise do comportamento do canal através de modelos probabilísticos. 
+      Tratamento dos mecanismos de detecção e correcção de erros e adaptação destes em função da qualidade de serviço.
+    </Objectives>
+
+    <Results>
+      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+      Dominar os conceitos de espectro, largura de banda, filtragem e de probabilidade de erro de transmissão
+      Interpretar e avaliar o funcionamento de sistemas de comunicação digital em banda base e banda canal
+      Formular as características de um sistema de comunicação digital, em função da qualidade e do tipo de serviço
+      Escolher e adaptar códigos detectores e correctores de erros para determinada aplicação
+    </Results>
+
+    <Evaluation>
+      Os resultados da aprendizagem (1)(2)(3)(4) são avaliados individualmente através de avaliação escrita e de discussão individual 
+      dos trabalhos práticos. A avaliação escrita é realizada, em alternativa, através de dois testes parciais ou de um teste global. 
+      A avaliação prática consiste na realização de trabalhos práticos de laboratório e respectiva discussão individual.
+    </Evaluation>
+
+    <Program>
+      Conceitos básicos de sinal e sistema. Espectro, largura de banda e resposta em frequência. Digitalização de sinal: 
+      amostragem e quantização. Ritmo de transmissão e capacidade de canal. Teorema da codificação de canal. 
+      Modulações digitais em banda base e banda canal. Modulações binárias e M-árias. Análise do seu funcionamento na presença de ruído. 
+      Uso de modelos probabilísticos para caracterização de canal. Probabilidade de erro e qualidade de serviço. Codificação de canal. 
+      Códigos detectores e correctores de erros. Códigos lineares de bloco. Códigos de Hamming. 
+      Códigos cíclicos e CRC (Cyclic Redundancy Check).
+    </Program>
+
+  </fuc>
+
+  <fuc>
+    <name>Matemática I</name>
+    <acr>M1</acr>
+    <mand>true</mand>
+    <sem>1</sem>
+    <pre>null</pre>
+    <ects>6,0</ects>
+    <Objectives>
+      Esta unidade curricular desenvolve os conhecimentos de cálculo diferencial adquiridos no ensino secundário e introduz o cálculo 
+      integral em R e o cálculo diferencial em Rn. Pretende fornecer uma preparação básica em Análise Matemática e desenvolver capacidades
+      de reflexão e cálculo necessários a um engenheiro informático.
+    </Objectives>
+
+    <Results>
+      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+      Dominar as técnicas de derivação em R e Rn e de integração em R
+      Descrever, pelos conceitos de derivada e integral, problemas de engenharia
+      Modelar e resolver problemas de optimização para funções diferenciáveis
+      Aplicar o cálculo integral em R à resolução de problemas
+    </Results>
+
+    <Evaluation>
+      Os resultados da aprendizagem são avaliados por questionários realizados durante o semestre e por dois testes ou, em alternativa,
+      por exame final.As classificações obtidas nos questionários propostos, quando realizados, constituem 20% da avaliação final. 
+      Caso não sejam realizados os questionários propostos, a classificação final é a média aritmética das notas dos testes ou a nota do 
+      exame final.
+    </Evaluation>
+
+    <Program>
+      Complementos de funções reais de variável real; complementos de cálculo diferencial em R; cálculo integral em R; 
+      cálculo diferencial em Rn: campos escalares e vectoriais, derivadas parciais, derivada direccional, gradiante, fórmula de Taylor, 
+      extremos livres e condicionados, matriz jacobiana
+    </Program>
+
+  </fuc>
+
+  <fuc>
+    <name>Lógica e Sistemas Digitais</name>
+    <acr>LSD</acr>
+    <mand>true</mand>
+    <sem>1</sem>
+    <pre>null</pre>
+    <ects>6,0</ects>
+    <Objectives>
+      Esta unidade curricular representa para a maioria dos alunos um primeiro contacto com a lógica e os sistemas digitais. 
+      É objectivo desta unidade curricular dotar os alunos com a capacidade para projectar sistemas digitais de média complexidade em 
+      lógica random.
+    </Objectives>
+
+    <Results>
+      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+      Implementar funções booleanas utilizando os operadores e as propriedades da álgebra de Boole
+      Realizar os operadores básicos da aritmética utilizando lógica digital
+      Implementar circuitos sequenciais
+      Utilizar hardware programável para implementação de circuitos combinatórios e sequenciais
+      Utilizar ferramentas de CAD para desenho, descrição e teste de circuitos digitais.
+      Escrever relatórios onde se descreva o problema e as opções tomadas para concretizar uma solução.
+    </Results>
+
+    <Evaluation>
+      Os resultados de aprendizagem (1) a (4) são avaliados individualmente através do teste escrito e das fichas realizadas durante o 
+      semestre.Durante o acompanhamento dos trabalhos de grupo realizados nas aulas práticas são avaliados os resultados de 
+      aprendizagem (1) a (5).Os resultados de aprendizagem (6) são avaliados na discussão final dos trabalhos de grupo.
+    </Evaluation>
+
+    <Program>
+      Dispositivos binários. Álgebra de comutação. Transístor como dispositivo binário. Circuitos combinatórios. 
+      Teoremas da álgebra de Boole. simplificação de expressões. Mapas de Karnaugh. Implementação de funções com portas SSI.
+      Portas lógicas com saída Tristate. Multiplexer, demultiplexer/decoder. Lógica programável PAL e linguagem de descrição
+      hardware CUPL. Códigos numéricos. Operações aritméticas. Análise e síntese de somadores / subtractores e comparadores. 
+      Circuitos sequenciais. Flip-flops latch e edge triggered. Circuitos MSI contadores e shift registers. 
+      Implementação de sistemas sequenciais com circuitos MSI e lógica programável.
+    </Program>
+
+  </fuc>
+
+  <fuc>
+    <name>Electrónica</name>
+    <acr>E</acr>
+    <mand>true</mand>
+    <sem>1</sem>
+    <pre>null</pre>
+    <ects>6,0</ects>
+    <Objectives>
+      Sistematizar e consolidar conhecimentos adquiridos direccionando-os para a compreensão dos fenómenos eléctricos subjacentes à 
+      implementação de circuitos e sistemas electrónicos. Familiarizar a componente de instrumentação e medida mais relevante para 
+      informática e desenvolver aplicações concretas.
+    </Objectives>
+
+    <Results>
+      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+      Aplicar a física clássica à engenharia de informática e computadores, e em particular utilizar conceitos e métodos da
+      electrónica elementar (como por exemplo as leis de Kirchhoff, equivalente de Norton e de Thevenin, principio da sobreposição)
+      Utilizar técnicas de instrumentação e medida
+      Montar circuitos electrónicos elementares com componentes discretos e analisa-los experimentalmente e teoricamente
+      Elaborar relatórios em que se descreve o comportamento físico e eléctrico de componentes, dispositivos e circuitos electrónicos 
+      e opto-electrónicos
+      O aluno compreende o funcionamento de circuitos simples relevantes para informática e sabe efectuar medidas com os instrumentos 
+      usuais.
+
+    </Results>
+
+    <Evaluation>
+      Os resultados de aprendizagem (1) são avaliados individualmente através de 4 mini testes escritos realizados durante as aulas com 
+      valores numéricos personalizados e 2 testes normais. Os resultados da aprendizagem são avaliados individualmente durante as aulas 
+      práticas e na discussão final individual dos trabalhos de grupo.
+    </Evaluation>
+
+    <Program>
+      Conceitos básicos de física para engenharia: forças, campos, potenciais e energia; materiais electrónicos; balística electrónica. 
+      Instrumentação e medida: introdução à prática e às técnicas laboratoriais; aparelhos de medida; componentes discretos. 
+      Circuitos e sistemas lineares: circuitos resistivos, capacitivos e indutivos; lei de Ohm; métodos de análise de circuitos; 
+      elementos armazenadores de energia; resposta natural e forçada em circuitos RL e RC. Circuitos e sistemas não lineares: análise
+    </Program>
+
+  </fuc>
+
+  <fuc>
+    <name>Álgebra Linear e Geometria Analítica</name>
+    <acr>ALGA</acr>
+    <mand>true</mand>
+    <sem>1</sem>
+    <pre>null</pre>
+    <ects>6,0</ects>
+    <Objectives>
+      Nesta unidade curricular são abordados temas de Álgebra Linear e Geometria Analítica, em particular, matrizes, 
+      sistemas de equações lineares, determinantes, espaços vectoriais, aplicações lineares, valores e vectores próprios, 
+      espaços euclidianos e geometria analítica do 1º e 2º graus. Pretende-se com este conteúdo programático - que corresponde
+      ao currículo normal das Cadeiras com esta temática - cobrir importantes áreas da Matemática necessárias não só para as 
+      Cadeiras de Matemática a juzante desta mas também para várias Cadeiras de Engenharia
+    </Objectives>
+
+    <Results>
+      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+      Efectuar cálculos com matrizes e determinantes
+      Discutir e resolver sistemas de equações lineares, pelo algoritmo de Gauss-Jordan
+      Reconhecer os conceitos de espaço vectorial e aplicação linear e utilizá-los na resolução de problemas destes domínios
+      Determinar valores e vectores próprios dos endomorfismos e a existência de uma representação diagonal, reconhecendo a sua 
+      importância em problemas de Engenharia e de Física
+      Apreender os conceitos fundamentais dos espaços euclidianos e unitários, nomeadamente os produtos interno, externo, misto e
+      duplo produto externo e respectivas aplicações em Geometria
+      Compreender a noção de espaço afim e de referencial e aplicar os conceitos abordados nesta unidade curricular na resolução de
+      problemas de geometria analítica do 1º (plano e recta) e 2º grau (quádricas)
+      Identificar e utilizar os conceitos abordados na resolução de problemas de Engenharia no âmbito de cada Curso.
+
+    </Results>
+
+    <Evaluation>
+      Os resultados da aprendizagem são avaliados por questionários realizados durante o Semestre e por dois testes ou, em alternativa, 
+      por exame final. As classificações obtidas nos questionários propostos, quando realizados, constituem 10% da avaliação final. 
+      Caso não sejam realizados os questionários propostos, a classificação final é a média aritmética das notas dos testes ou a nota do 
+      exame final (numa escala 0-20).
+    </Evaluation>
+
+    <Program>
+      0.	Noções introdutórias de Álgebra 1.	Matrizes 2.	Determinantes 3.	Espaços vectoriais 4.	Aplicações Lineares 
+      5. Valores e vectores próprios 6.	Espaços euclidianos 7.	Geometria analítica do 1º e 2º grau
+    </Program>
+
+  </fuc>
+</fuclist>

@@ -50,15 +50,15 @@ namespace CourseAplicationMVC.Controllers
 
         }
          
-       // [Authorize(Roles="admin")]
-        [AuthenticationFilter]
+       [Authorize(Roles="admin")]
+       [AuthenticationFilter]
         public ActionResult Admin()
         {
             SelectList s=new SelectList(Membership.GetAllUsers());
             return View(s);
         }
 
-       
+        [AuthenticationFilter]
         [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Admin(string user, ICollection<string> roles)
@@ -69,8 +69,8 @@ namespace CourseAplicationMVC.Controllers
             Roles.AddUserToRoles(user,roles.ToArray());
             return RedirectToAction("Admin", "Account");
         }
-
-         [Authorize]
+        [AuthenticationFilter]
+        // [Authorize]
          [HttpPost]
          public ActionResult Delete(string id)
          {
@@ -92,13 +92,14 @@ namespace CourseAplicationMVC.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [Authorize]
+        [AuthenticationFilter]
+        //[Authorize]
         public ActionResult ChangePassword()
         {
             return View();
         }
-
-        [Authorize]
+        [AuthenticationFilter]
+        //[Authorize]
         [HttpPost]
         public ActionResult ChangePassword(ChangePasswordModel model)
         {
