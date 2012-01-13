@@ -5,110 +5,10 @@
     ViewBag.Title = "Fuc List";
 }      
 
-<script src="http://code.jquery.com/jquery-1.5.2.js" type="text/javascript"></script>
-<script type="text/javascript">
-
-    $(document).ready(function () {
-
-        var totalp = Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val());
-        $('#DisplayNum').val(1);
-        $('#pageinput').val(1);
-        $('#totalp').text(totalp);
-        //events:
-        $('#pageinput').keyup(function () {
-
-            refreshelems(window.location.href, parseInt($('#pageinput').val()));
-            return false;
-        });
-
-        $('#DisplayNum').change(function () {
-            var totalpages = 1;
-            if (!($('#DisplayNum').val() == "All")) {
-
-                totalpages = Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val());
-            }
-            //else desativar paginaçao: fazer mostrar todos em x de fazer itemsnumber=All(erro)
-            $('#totalp').text(totalpages);
-            refreshelems(window.location.href, parseInt($('#pageinput').val()));
-            return false;
-        });
-
-        $('#prev').click(function (e) {
-
-            e.preventDefault();
-            var page = parseInt($('#pageinput').val());
-            refreshelems($(this).attr("href"), page - 1);
-            return false;
-        });
-        $('#next').click(function (e) {
-            e.preventDefault();
-            var page = parseInt($('#pageinput').val());
-            refreshelems($(this).attr("href"), page + 1);
-            return false;
-        });
-
-        refreshelems(window.location.href, 1);
-    });
-
-    function refreshelems(myurl, page) {
-
-        if (page < 1 || page > parseInt($('#totalp').text())) return false;
-        myurl = myurl.substring(0, myurl.indexOf("?", myurl));
-        var itemsPerPage = $('#DisplayNum').val();
-        var http = new XMLHttpRequest();
-        http.open("GET", myurl + "?page=" + page + "&itemsnumber=" + itemsPerPage + "&partial=true", false);
-        http.onreadystatechange = window.useHttpResponse;
-        http.send(null);
-
-        if (http.readyState == 4 && http.status == 200) {
-            var textout = http.responseText;
-            console.log(textout);
-            $('#elems').html(textout);
-            ($('#pageinput').val(page));
-
-            $('#next').attr("href", replacehref(myurl, page + 1, itemsPerPage));
-            $('#prev').attr("href", replacehref(myurl, page - 1, itemsPerPage));
-
-        }
-        return false;
-
-    }
-    function replacehref(myurl, page, number) {
-        var f = myurl + "?page=id&itemsnumber=id2";
-        f = f.replace("id", page);
-        f = f.replace("id2", number);
-        return f;
-    }
-</script>
-
-
 <h1>Fuc List</h1>
 
-<div id="list">
+ @Html.Partial("Pagination")
 
-<input type="hidden" id="totalelems" value="@ViewData["totalitems"]"/>
-    <div id="pages">
-
-        <div>Page <input id="pageinput" type="text" style="width:15px;"> of <span id="totalp"></span></div>
-         <div id="selector">
-             <!--<a href="#self" id="first">first</a>-->
-             <a href="PIndex?page=@ViewData["pageprev"]&itemsnumber=@ViewData["itemsnumber"]" id="prev" >prev</a>
-             <a href="PIndex?page=@ViewData["pagenext"]&itemsnumber=@ViewData["itemsnumber"]" id="next" >next</a>
-           <!-- <a href="#self" id="last">last</a>-->
-         </div>
-         <div>Results Per Page:&nbsp;
-         <select id="DisplayNum">
-            <option selected="selected" value="1">1</option>
-            <option  value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-            <option value="All">All</option>
-             
-         </select>
-         </div>
-    
-    
-    </div>
     <table id="elems">
     <thead>
     <tr><th>Fuc Name</th></tr>
@@ -123,4 +23,3 @@
         
      </tbody>
     </table>
-</div>

@@ -20,7 +20,32 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult Index()
         {
-            return View(_newPropRepo.GetAll());
+            return RedirectToAction("PIndex", new { @page = 1, @itemsnumber = 1, @partial = false });
+            //return View(_newPropRepo.GetAll());
+        }
+
+        public ActionResult PIndex(int page, int itemsnumber, bool? partial)
+        {
+            ViewData.Add("pageprev", page - 1);
+            ViewData.Add("pagenext", page + 1);
+            ViewData.Add("itemsnumber", itemsnumber);
+            FucProposal[] array = _newPropRepo.GetAll().ToArray();
+            ViewData.Add("totalitems", array.Length == 0 ? 1 : array.Length);
+            int max_elem = Math.Min(page * itemsnumber, array.Length);
+            LinkedList<FucProposal> list = new LinkedList<FucProposal>();
+            if (array.Length == 0) return View("Index", list);
+            if (page == 0 || (page - 1) * itemsnumber >= max_elem)
+            {
+                return HttpNotFound();
+            }
+            for (int i = (page - 1) * itemsnumber, j = 0; i < max_elem; j++, i++)
+            {
+                list.AddLast(array[i]);
+                // array2[j] = array[i];
+            }
+            if (partial.HasValue && partial.Value)
+                return PartialView("PIndex", list);
+            return View("Index", list);
         }
 
         public ActionResult Create()

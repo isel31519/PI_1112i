@@ -1,0 +1,33 @@
+﻿@model System.Collections.Generic.LinkedList<CourseAplicationLib.FucProposal>
+
+@{
+    ViewBag.Title = "title";
+}
+
+<tr>
+            <th>Proposal</th>
+            <th>Acronym</th>
+            <th>Creator</th>
+            <th>Aproval</th>
+        </tr>
+        @foreach (var f in Model)
+        {
+        
+            <tr>
+                <td><a href=@Url.Action("Detail", "NewFucProposal", new { @id = f.Idx }) class="detailer"> Proposal @f.Idx</a></td>
+                <td><a href=@Url.Action("Detail", "NewFucProposal", new { @id = f.Idx }) class="detailer">@f.Acr</a></td>
+                <td><a href=@Url.Action("Detail", "Profile", new { @id = f.User }) class="detailer"> @f.User</a></td>
+                <td>
+                    @using (Html.BeginForm("Accept", "NewFucProposal", new {@id=f.Idx}, FormMethod.Post))
+                    {
+                        <input type="submit" value="Accept"/>
+                    }
+                    
+                    @using (Html.BeginForm("Refuse", "NewFucProposal", new {@id=f.Idx}, FormMethod.Post))
+                    {
+                        <input type="submit" value="Refuse"/>
+                    }
+                </td>
+            </tr>  
+        }
+   <div id="showDetail"/> 

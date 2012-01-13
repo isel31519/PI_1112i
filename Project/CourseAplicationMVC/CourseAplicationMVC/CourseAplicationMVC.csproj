@@ -127,6 +127,7 @@
     <Content Include="Scripts\AccordionScript.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\Pagination.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -206,13 +207,19 @@
     <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Fuc\PDetail.cshtml" />
+    <Content Include="Views\Fuc\PIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\ModelLibrary\ModelLib\ModelLib.csproj">
       <Project>{317A7D3E-2A0C-4C67-BB5B-B91FF66F2825}</Project>
       <Name>ModelLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\NewFucProposal\PIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Pagination.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

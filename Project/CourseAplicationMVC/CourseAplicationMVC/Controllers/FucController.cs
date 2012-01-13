@@ -38,10 +38,11 @@ namespace CourseAplicationMVC.Controllers
             ViewData.Add("pagenext", page + 1);
             ViewData.Add("itemsnumber", itemsnumber);
             Fuc[] array = _repo.GetAll().ToArray();
-            ViewData.Add("totalitems", array.Length);
+            ViewData.Add("totalitems", array.Length == 0 ? 1 : array.Length);
             int max_elem = Math.Min(page * itemsnumber, array.Length);
             LinkedList<Fuc> list = new LinkedList<Fuc>();
-            if (page == 0 || (page - 1) * itemsnumber >= max_elem)
+            if (array.Length == 0) return View("Index", list);
+            if (page <= 0 || (page - 1) * itemsnumber >= max_elem)
             {
                 return HttpNotFound();
             }
@@ -51,7 +52,7 @@ namespace CourseAplicationMVC.Controllers
                 // array2[j] = array[i];
             }
             if (partial.HasValue && partial.Value)
-                return PartialView("PDetail", list);
+                return PartialView("PIndex", list);
             return View("Index", list);
         }
         [AuthenticationFilter]
