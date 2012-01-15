@@ -9,23 +9,30 @@
         e.preventDefault();
         var value = $(this).text();
         if (value == "Pagination Off") {
+            $('#paging').html("Pagination On");
             //esconder será melhor
             $('#prev').unbind("click");
             $('#next').unbind("click");
             $('#pageinput').unbind("keyup");
             $('#DisplayNum').unbind("change");
 
-            $('#prev').click( function (e1) {e1.preventDefault();});
+            $('#prev').click(function (e1) { e1.preventDefault(); });
             $('#next').click(function (e1) { e1.preventDefault(); });
-            $('#pageinput').keyup(function (e1) {e1.preventDefault();});
+            $('#pageinput').keyup(function (e1) { e1.preventDefault(); });
             $('#DisplayNum').change(function (e1) { e1.preventDefault(); });
-        } else 
-            events();
+            
+            paging($(this).attr("href"));
 
-            refreshelems($(this).attr("href"), $('#totalelems').val());
+        } else{
+            $('#paging').html("Pagination Off");
+            events();
+            paging($(this).attr("href"));
+        }
+
+        
         return false;
     });
-    
+
     events();
 
     function events() {
@@ -61,8 +68,21 @@
 
     // refreshelems(window.location.href, 1);
 });
+function paging(myurl) {
+    var http = new XMLHttpRequest();
+    http.open("GET", myurl + "&partial=true", false);
+    http.onreadystatechange = window.useHttpResponse;
+    http.send(null);
 
-    function refreshelems(myurl, page) {
+    if (http.readyState == 4 && http.status == 200) {
+        var textout = http.responseText;
+        console.log(textout);
+        $('#elems').html(textout);
+    }
+    return false;
+    
+}
+function refreshelems(myurl, page) {
 
         if (page < 1 || page > parseInt($('#totalp').text())) return false;
         myurl = myurl.substring(0, myurl.indexOf("?", myurl));

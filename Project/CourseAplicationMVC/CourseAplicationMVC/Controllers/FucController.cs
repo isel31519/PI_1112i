@@ -14,10 +14,13 @@ namespace CourseAplicationMVC.Controllers
         private readonly ProposalRepository _proprepo = RepositoryLocator.GetPropRep();
         // GET: /Fuc/
 
-        public ActionResult Index(bool? pagination)
+        public ActionResult Index(bool? pagination, bool? partial)
         {
-            if (pagination.HasValue && !pagination.Value)
-              return View("IndexAll",_repo.GetAll());
+            if (pagination.HasValue && !pagination.Value){
+                if (partial.HasValue && !partial.Value)
+                     return View("IndexAll",_repo.GetAll());
+                return PartialView("IndexAll", _repo.GetAll());
+            }
             return RedirectToAction("PIndex", new { @page = 1, @itemsnumber = 5, @partial = false });
         }
 
