@@ -1,24 +1,43 @@
-﻿ $(document).ready(function () {
- //criar os elementos de paginaçao em vez de ja estarem por omisao
-     
-        var totalp = Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val());
-        $('#DisplayNum').val(1);
-        $('#pageinput').val(1);
-        $('#totalp').text(totalp);
-        //events:
+﻿$(document).ready(function () {
+
+    var totalp = Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val());
+    $('#DisplayNum').val(1);
+    $('#pageinput').val(1);
+    $('#totalp').text(totalp);
+    //events:
+    $('#paging').click(function (e) {
+        e.preventDefault();
+        var value = $(this).text();
+        if (value == "Pagination Off") {
+            //esconder será melhor
+            $('#prev').unbind("click");
+            $('#next').unbind("click");
+            $('#pageinput').unbind("keyup");
+            $('#DisplayNum').unbind("change");
+
+            $('#prev').click( function (e1) {e1.preventDefault();});
+            $('#next').click(function (e1) { e1.preventDefault(); });
+            $('#pageinput').keyup(function (e1) {e1.preventDefault();});
+            $('#DisplayNum').change(function (e1) { e1.preventDefault(); });
+        } else 
+            events();
+
+            refreshelems($(this).attr("href"), $('#totalelems').val());
+        return false;
+    });
+    
+    events();
+
+    function events() {
         $('#pageinput').keyup(function () {
 
             refreshelems(window.location.href, parseInt($('#pageinput').val()));
             return false;
         });
 
-        $('#DisplayNum').change(function () {
-            var totalpages = 1;
-            if (!($('#DisplayNum').val() == "All")) {
 
-                totalpages = Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val());
-            }
-            //else desativar paginaçao: fazer mostrar todos em x de fazer itemsnumber=All(erro)
+        $('#DisplayNum').change(function () {
+            var totalpages = Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val());
             $('#totalp').text(totalpages);
             refreshelems(window.location.href, parseInt($('#pageinput').val()));
             return false;
@@ -37,9 +56,11 @@
             refreshelems($(this).attr("href"), page + 1);
             return false;
         });
+    }
 
-       // refreshelems(window.location.href, 1);
-    });
+
+    // refreshelems(window.location.href, 1);
+});
 
     function refreshelems(myurl, page) {
 

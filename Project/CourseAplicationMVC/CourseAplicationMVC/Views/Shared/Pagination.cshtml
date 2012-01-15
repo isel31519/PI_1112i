@@ -6,14 +6,12 @@
 
         <div>Page <input id="pageinput" type="text" style="width:15px;"> of <span id="totalp"></span></div>
          <div id="selector">
-             <!--<a href="#self" id="first">first</a>-->
              <a href="PIndex?page=@ViewData["pageprev"]&itemsnumber=@ViewData["itemsnumber"]" id="prev" >prev</a>
              <a href="PIndex?page=@ViewData["pagenext"]&itemsnumber=@ViewData["itemsnumber"]" id="next" >next</a>
-           <!-- <a href="#self" id="last">last</a>-->
          </div>
          <div>Results Per Page:
          <select id="DisplayNum">
-            <option selected="selected" value="1">1</option>
+            <option selected="selected" value="5">5</option>
             <option  value="10">10</option>
             <option value="20">20</option>
             <option value="30">30</option>  

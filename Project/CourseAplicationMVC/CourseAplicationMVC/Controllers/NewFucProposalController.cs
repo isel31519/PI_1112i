@@ -20,7 +20,7 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult Index()
         {
-            return RedirectToAction("PIndex", new { @page = 1, @itemsnumber = 1, @partial = false });
+            return RedirectToAction("PIndex", new { @page = 1, @itemsnumber = 5, @partial = false });
             //return View(_newPropRepo.GetAll());
         }
 
