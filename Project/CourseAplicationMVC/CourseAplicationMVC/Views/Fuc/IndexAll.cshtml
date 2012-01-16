@@ -1,14 +1,11 @@
-﻿@using CourseAplicationLib
-@model IEnumerable<Fuc>
+﻿@model System.Collections.Generic.IEnumerable<CourseAplicationLib.Fuc>
 
 @{
-    ViewBag.Title = "Fuc List";
-}      
+    ViewBag.Title = "title";
+}
 
 <h1>Fuc List</h1>
-@Html.ActionLink("Pagination Off", "Index", new { @pagination = false }, new { @id ="paging" })
-
- @Html.Partial("Pagination")
+@Html.ActionLink("Pagination On", "Index", new { @pagination = true }, new { @id ="paging" })
 
     <table id="elems">
     <thead>

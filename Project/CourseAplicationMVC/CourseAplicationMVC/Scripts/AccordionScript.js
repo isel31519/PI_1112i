@@ -1,4 +1,6 @@
-﻿function accord () {
+﻿$(document).ready(function () { accord(); });
+
+function accord (){
     $('a.detailer').click(function(e) {
         e.preventDefault();
         $('#showDetail').slideDown();
