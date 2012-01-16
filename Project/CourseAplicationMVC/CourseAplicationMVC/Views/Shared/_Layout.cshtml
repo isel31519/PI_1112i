@@ -53,9 +53,9 @@
                     <!-- alterar padding-left no else antes.-->
                 </span>
                 <span style="padding-left: 750px; text-align: right"> <!-- <span style="padding-left: 750px; text-align: right"> -->
-                    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                    @using (Html.BeginForm("Index", "Search", FormMethod.Post))
                         {
-                            <input type="text" value="Search"/>
+                            <input type="text" value="Search" name="searchQuery"/>
                             <input type="submit" value="Go"/>
                         }
                 </span>
