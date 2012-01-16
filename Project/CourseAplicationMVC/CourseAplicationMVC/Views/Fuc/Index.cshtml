@@ -8,20 +8,12 @@
 <h1>Fuc List</h1>
 @Html.ActionLink("Pagination Off", "Index", new { @pagination = false }, new { @id ="paging" })
 
+ <input type="hidden" id="totalelems" value="@ViewData["totalitems"]"/>
+<div id="pager">
+
  @Html.Partial("Pagination")
+ </div>
 
     <table id="elems">
-    <thead>
-    <tr><th>Fuc Name</th></tr>
-    </thead>
-    <tbody>
-
-        @foreach (var f in Model)
-        {
-            <tr>
-                <td> <a href=@Url.Action("Detail", "Fuc", new { @id = f.Acr }) >@f.Name</a></td>
-            </tr>
-        }
-        
-     </tbody>
+    @Html.Partial("PIndex")
     </table>

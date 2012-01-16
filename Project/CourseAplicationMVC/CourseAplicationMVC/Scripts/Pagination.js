@@ -1,44 +1,48 @@
 ﻿$(document).ready(function () {
 
     var totalp = Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val());
-    $('#DisplayNum').val(1);
+    //$('#DisplayNum').val(5);
     $('#pageinput').val(1);
     $('#totalp').text(totalp);
     //events:
     $('#paging').click(function (e) {
         e.preventDefault();
+
         var value = $(this).text();
         if (value == "Pagination Off") {
             $('#paging').html("Pagination On");
-            //esconder será melhor
-            $('#prev').unbind("click");
-            $('#next').unbind("click");
-            $('#pageinput').unbind("keyup");
-            $('#DisplayNum').unbind("change");
-
-            $('#prev').click(function (e1) { e1.preventDefault(); });
-            $('#next').click(function (e1) { e1.preventDefault(); });
-            $('#pageinput').keyup(function (e1) { e1.preventDefault(); });
-            $('#DisplayNum').change(function (e1) { e1.preventDefault(); });
-
+            var href = $('#paging').attr("href");
+            href = href.replace("pagination=False", "pagination=true");
+            $('#pages').remove(); 
             paging($(this).attr("href"));
+            $('#paging').attr("href", href);
 
         } else {
+            var http = new XMLHttpRequest();
+            http.open("GET", "/fuc/pagination", false);
+            http.onreadystatechange = window.useHttpResponse;
+            http.send(null);
+            if (http.readyState == 4 && http.status == 200) {
+                var textout = http.responseText;
+                $('#pager').html(textout);
+            }
+            
             $('#paging').html("Pagination Off");
+            href = $('#paging').attr("href");
+            href = href.replace("pagination=False", "pagination=true");
+            $('#paging').attr("href", href);
+            
+            totalp = Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val());
+            $('#totalp').text(totalp);
+            
             events();
-            refreshelems(window.location.href, 1);
-            //paging($(this).attr("href"));
+            refreshelems(window.location.href, 1);  
         }
-
-
+        accord();
         return false;
     });
 
     events();
-
-
-
-
     // refreshelems(window.location.href, 1);
 });
 
@@ -46,6 +50,7 @@ function events() {
     $('#pageinput').keyup(function () {
 
         refreshelems(window.location.href, parseInt($('#pageinput').val()));
+        
         return false;
     });
 
@@ -57,6 +62,7 @@ function events() {
         if (parseInt($('#pageinput').val()) <= totalpages)
             page = parseInt($('#pageinput').val());
         refreshelems(window.location.href, page);
+       
         return false;
     });
 
@@ -65,14 +71,14 @@ function events() {
         e.preventDefault();
         var page = parseInt($('#pageinput').val());
         refreshelems($(this).attr("href"), page - 1);
-        accord();
+        
         return false;
     });
     $('#next').click(function (e) {
         e.preventDefault();
         var page = parseInt($('#pageinput').val());
         refreshelems($(this).attr("href"), page + 1);
-        accord();
+        
         return false;
     });
 }
@@ -111,6 +117,7 @@ function refreshelems(myurl, page) {
             $('#prev').attr("href", replacehref(myurl, page - 1, itemsPerPage));
 
         }
+        accord();
         return false;
 
     }

@@ -14,14 +14,24 @@ namespace CourseAplicationMVC.Controllers
         private readonly ProposalRepository _proprepo = RepositoryLocator.GetPropRep();
         // GET: /Fuc/
 
+        public ActionResult Pagination()
+        {
+           
+               /* if (partial.HasValue && !partial.Value)
+                    return View();*/
+                return PartialView();
+           
+        }
+
+
         public ActionResult Index(bool? pagination, bool? partial)
         {
             if (pagination.HasValue && !pagination.Value){
-                if (partial.HasValue && !partial.Value)
-                     return View("IndexAll",_repo.GetAll());
-                return PartialView("IndexAll", _repo.GetAll());
+                if (partial.HasValue && partial.Value)
+                  return PartialView("PIndex", _repo.GetAll());
+                return View("IndexAll", _repo.GetAll());
             }
-            return RedirectToAction("PIndex", new { @page = 1, @itemsnumber = 5, @partial = false });
+            return RedirectToAction("PIndex", new { @page = 1, @itemsnumber = 5, @partial = partial });
         }
 
         public ActionResult Detail(string id)

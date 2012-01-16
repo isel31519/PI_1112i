@@ -33,10 +33,14 @@
 <!--<script type="text/javascript" src="~/Scripts/AccordionScript.js"></script>
     <script type="text/javascript">
         var accord = ready;
-    </script> 
-@Html.ActionLink("Pagination Off", "Index", new { @pagination = false })--> 
+    </script> --> 
+@Html.ActionLink("Pagination Off", "Index", new { @pagination = false })
 
-@Html.Partial("Pagination")
+ <input type="hidden" id="totalelems" value="@ViewData["totalitems"]"/>
+<div id="pager">
+
+ @Html.Partial("Pagination")
+ </div>
 
 <div>
    <table border="1" id="elems">

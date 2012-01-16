@@ -1,9 +1,8 @@
 ﻿@{
     ViewBag.Title = "Pagination";
 }
-<input type="hidden" id="totalelems" value="@ViewData["totalitems"]"/>
-    <div id="pages">
 
+   <div id="pages">
         <div>Page <input id="pageinput" type="text" style="width:15px;"> of <span id="totalp"></span></div>
          <div id="selector">
              <a href="PIndex?page=@ViewData["pageprev"]&itemsnumber=@ViewData["itemsnumber"]" id="prev" >prev</a>
