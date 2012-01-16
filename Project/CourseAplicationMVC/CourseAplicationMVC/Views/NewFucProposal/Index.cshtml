@@ -9,7 +9,7 @@
 
 
 
-<script src="http://code.jquery.com/jquery-1.5.2.js" type="text/javascript"></script>
+<!--<script src="http://code.jquery.com/jquery-1.5.2.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('a.detailer').click(function (e) {
@@ -28,12 +28,12 @@
             }
         });
     });
-</script>
+</script>-->
 
-<!--<script type="text/javascript" src="~/Scripts/AccordionScript.js"></script>
-    <script type="text/javascript">
-        var accord = ready;
-    </script>-->  
+<script src="http://code.jquery.com/jquery-1.5.2.js" type="text/javascript"></script>
+<script src="~/Scripts/AccordionScript.js">
+    $(document).ready(accord())
+ </script>
 
 @Html.Partial("Pagination")
 

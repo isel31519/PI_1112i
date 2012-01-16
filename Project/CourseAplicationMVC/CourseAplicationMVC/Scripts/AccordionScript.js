@@ -1,5 +1,5 @@
-﻿$(document).ready(function () {
-    $('a.detailer').click(function (e) {
+﻿function accord () {
+    $('a.detailer').click(function(e) {
         e.preventDefault();
         $('#showDetail').slideDown();
         var http = new XMLHttpRequest();
@@ -14,4 +14,4 @@
             $('#showDetail').html(textout);
         }
     });
-});
+}
