@@ -29,7 +29,7 @@
             
             $('#paging').html("Pagination Off");
             href = $('#paging').attr("href");
-            href = href.replace("pagination=False", "pagination=true");
+            href = href.replace("pagination=true", "pagination=False");
             $('#paging').attr("href", href);
             
             totalp = Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val());

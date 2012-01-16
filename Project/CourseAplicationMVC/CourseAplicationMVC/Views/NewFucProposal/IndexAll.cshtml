@@ -1,18 +1,13 @@
-﻿@using CourseAplicationLib
-@model IEnumerable<FucProposal>
+﻿@model System.Collections.Generic.IEnumerable<CourseAplicationLib.FucProposal>
 
 @{
-    ViewBag.Title = "New Fuc Proposal List";
-}      
+    ViewBag.Title = "title";
+}
+
 <h1>New Fuc Proposal List</h1>
 
-@Html.ActionLink("Pagination Off", "Index", new { @pagination = false }, new { @id ="paging" })
+@Html.ActionLink("Pagination On", "Index", new { @pagination = true }, new { @id ="paging" })
 
- <input type="hidden" id="totalelems" value="@ViewData["totalitems"]"/>
-<div id="pager">
-
- @Html.Partial("Pagination")
- </div>
 
 <div>
    <table border="1" id="elems">
@@ -47,5 +42,4 @@
  
     
 </div>
-
 

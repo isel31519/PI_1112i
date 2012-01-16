@@ -34,11 +34,12 @@ namespace CourseAplicationMVC.Controllers
             return RedirectToAction("PIndex", new { @page = 1, @itemsnumber = 5, @partial = partial });
         }
 
-        public ActionResult Detail(string id)
+        public ActionResult Detail(string id, bool? partial)
         {
             Fuc f = _repo.GetByAcr(id);
             if (f == null)
                 return HttpNotFound();
+            if (partial.HasValue) return PartialView(f);
             return View(f);
         }
 

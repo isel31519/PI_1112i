@@ -18,8 +18,13 @@ namespace CourseAplicationMVC.Controllers
         private readonly FucRepository _repo = RepositoryLocator.GetFucRep();
         private readonly ProposalRepository _newPropRepo = RepositoryLocator.GetNewPropRep();
 
-        public ActionResult Index()
+        public ActionResult Index(bool? pagination, bool? partial)
         {
+            if (pagination.HasValue && !pagination.Value){
+                if (partial.HasValue && partial.Value)
+                  return PartialView("PIndex", _repo.GetAll());
+                return View("IndexAll", _repo.GetAll());
+            }
             return RedirectToAction("PIndex", new { @page = 1, @itemsnumber = 5, @partial = false });
             //return View(_newPropRepo.GetAll());
         }
