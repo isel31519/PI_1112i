@@ -20,54 +20,63 @@
             $('#next').click(function (e1) { e1.preventDefault(); });
             $('#pageinput').keyup(function (e1) { e1.preventDefault(); });
             $('#DisplayNum').change(function (e1) { e1.preventDefault(); });
-            
+
             paging($(this).attr("href"));
 
-        } else{
+        } else {
             $('#paging').html("Pagination Off");
             events();
-            paging($(this).attr("href"));
+            refreshelems(window.location.href, 1);
+            //paging($(this).attr("href"));
         }
 
-        
+
         return false;
     });
 
     events();
 
-    function events() {
-        $('#pageinput').keyup(function () {
 
-            refreshelems(window.location.href, parseInt($('#pageinput').val()));
-            return false;
-        });
-
-
-        $('#DisplayNum').change(function () {
-            var totalpages = Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val());
-            $('#totalp').text(totalpages);
-            refreshelems(window.location.href, parseInt($('#pageinput').val()));
-            return false;
-        });
-
-        $('#prev').click(function (e) {
-
-            e.preventDefault();
-            var page = parseInt($('#pageinput').val());
-            refreshelems($(this).attr("href"), page - 1);
-            return false;
-        });
-        $('#next').click(function (e) {
-            e.preventDefault();
-            var page = parseInt($('#pageinput').val());
-            refreshelems($(this).attr("href"), page + 1);
-            return false;
-        });
-    }
 
 
     // refreshelems(window.location.href, 1);
 });
+
+function events() {
+    $('#pageinput').keyup(function () {
+
+        refreshelems(window.location.href, parseInt($('#pageinput').val()));
+        return false;
+    });
+
+
+    $('#DisplayNum').change(function () {
+        var totalpages = Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val());
+        $('#totalp').text(totalpages);
+        var page=1;
+        if (parseInt($('#pageinput').val()) <= totalpages)
+            page = parseInt($('#pageinput').val());
+        refreshelems(window.location.href, page);
+        return false;
+    });
+
+    $('#prev').click(function (e) {
+
+        e.preventDefault();
+        var page = parseInt($('#pageinput').val());
+        refreshelems($(this).attr("href"), page - 1);
+        accord();
+        return false;
+    });
+    $('#next').click(function (e) {
+        e.preventDefault();
+        var page = parseInt($('#pageinput').val());
+        refreshelems($(this).attr("href"), page + 1);
+        accord();
+        return false;
+    });
+}
+
 function paging(myurl) {
     var http = new XMLHttpRequest();
     http.open("GET", myurl + "&partial=true", false);
