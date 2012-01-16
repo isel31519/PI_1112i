@@ -2,17 +2,18 @@
 
 @{
     ViewBag.Title = "title";
+
 }
 
-<h1>New Fuc Proposal List</h1>
+<h1>Proposal List</h1>
 
 @Html.ActionLink("Pagination On", "Index", new { @pagination = true }, new { @id ="paging" })
 
 
 <div>
    <table border="1" id="elems">
-  @Html.Partial("PIndex")
-    </table> 
+        @Html.Partial("PIndex")
+    </table>
 </div>
- <div id="showDetail"/> 
+<div id="showDetail"/> 
 

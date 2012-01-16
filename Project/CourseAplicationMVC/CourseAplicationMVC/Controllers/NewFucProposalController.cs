@@ -22,11 +22,11 @@ namespace CourseAplicationMVC.Controllers
         {
             if (pagination.HasValue && !pagination.Value){
                 if (partial.HasValue && partial.Value)
-                  return PartialView("PIndex", _repo.GetAll());
-                return View("IndexAll", _repo.GetAll());
+                    return PartialView("PIndex", _newPropRepo.GetAll());
+                return View("IndexAll", _newPropRepo.GetAll());
             }
             return RedirectToAction("PIndex", new { @page = 1, @itemsnumber = 5, @partial = false });
-            //return View(_newPropRepo.GetAll());
+
         }
 
         public ActionResult PIndex(int page, int itemsnumber, bool? partial)

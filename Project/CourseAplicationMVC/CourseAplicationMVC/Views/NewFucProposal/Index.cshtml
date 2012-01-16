@@ -16,36 +16,10 @@
 
 <div>
    <table border="1" id="elems">
-        <tr>
-            <th>Proposal</th>
-            <th>Acronym</th>
-            <th>Creator</th>
-            <th>Aproval</th>
-        </tr>
-        @foreach (var f in Model)
-        {
-        
-            <tr>
-                <td><a href=@Url.Action("Detail", "NewFucProposal", new { @id = f.Idx }) class="detailer"> Proposal @f.Idx</a></td>
-                <td><a href=@Url.Action("Detail", "NewFucProposal", new { @id = f.Idx }) class="detailer">@f.Acr</a></td>
-                <td><a href=@Url.Action("Detail", "Profile", new { @id = f.User }) class="detailer"> @f.User</a></td>
-                <td>
-                    @using (Html.BeginForm("Accept", "NewFucProposal", new {@id=f.Idx}, FormMethod.Post))
-                    {
-                        <input type="submit" value="Accept"/>
-                    }
-                    
-                    @using (Html.BeginForm("Refuse", "NewFucProposal", new {@id=f.Idx}, FormMethod.Post))
-                    {
-                        <input type="submit" value="Refuse"/>
-                    }
-                </td>
-            </tr>  
-        }
-    </table>
-   <div id="showDetail"/> 
- 
-    
+  @Html.Partial("PIndex")
+    </table> 
 </div>
+ <div id="showDetail"/> 
+
 
 

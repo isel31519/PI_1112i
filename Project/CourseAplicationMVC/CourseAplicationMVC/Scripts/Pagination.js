@@ -91,7 +91,7 @@ function paging(myurl) {
 
     if (http.readyState == 4 && http.status == 200) {
         var textout = http.responseText;
-        console.log(textout);
+        //console.log(textout);
         $('#elems').html(textout);
     }
     return false;

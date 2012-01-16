@@ -19,14 +19,40 @@ namespace CourseAplicationMVC.Controllers
         //
         // GET: /Proposal/
 
-        public ActionResult Index()
+        public ActionResult Index(bool? pagination, bool? partial)
         {
-             IEnumerable<FucProposal> props= _proprepo.GetAll();
-            // if (props == null) return HttpNotFound("Proposal not found");
-             return View(props);
-        }
+            if (pagination.HasValue && !pagination.Value){
+                if (partial.HasValue && partial.Value)
+                    return PartialView("PIndex", _proprepo.GetAll());
+                return View("IndexAll", _proprepo.GetAll());
+            }
+            return RedirectToAction("PIndex", new { @page = 1, @itemsnumber = 5, @partial = false });
 
-        public ActionResult Detail(int id)
+        }
+        public ActionResult PIndex(int page, int itemsnumber, bool? partial)
+        {
+            ViewData.Add("pageprev", page - 1);
+            ViewData.Add("pagenext", page + 1);
+            ViewData.Add("itemsnumber", itemsnumber);
+            FucProposal[] array = _proprepo.GetAll().ToArray();
+            ViewData.Add("totalitems", array.Length == 0 ? 1 : array.Length);
+            int max_elem = Math.Min(page * itemsnumber, array.Length);
+            LinkedList<FucProposal> list = new LinkedList<FucProposal>();
+            if (array.Length == 0) return View("Index", list);
+            if (page == 0 || (page - 1) * itemsnumber >= max_elem)
+            {
+                return HttpNotFound();
+            }
+            for (int i = (page - 1) * itemsnumber, j = 0; i < max_elem; j++, i++)
+            {
+                list.AddLast(array[i]);
+                // array2[j] = array[i];
+            }
+            if (partial.HasValue && partial.Value)
+                return PartialView("PIndex", list);
+            return View("Index", list);
+        }
+        public ActionResult Detail(int id, bool? partial)
         {
            
             FucProposal p = _proprepo.GetById(id);
@@ -34,6 +60,7 @@ namespace CourseAplicationMVC.Controllers
             if (!User.IsInRole("coord") && !User.Identity.Name.Equals(p.User))
                 return RedirectToAction("LogOn", "Account");
 
+            if (partial.HasValue) return PartialView(p);
             return View(_proprepo.GetById(id));
         }
 

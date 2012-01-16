@@ -1,10 +1,11 @@
-﻿@model System.Collections.Generic.LinkedList<CourseAplicationLib.FucProposal>
+﻿@model System.Collections.Generic.IEnumerable<CourseAplicationLib.FucProposal>
 
 @{
     ViewBag.Title = "title";
+
 }
 
-<tr>
+        <tr>
             <th>Proposal</th>
             <th>Acronym</th>
             <th>Creator</th>
@@ -14,16 +15,16 @@
         {
         
             <tr>
-                <td><a href=@Url.Action("Detail", "NewFucProposal", new { @id = f.Idx }) class="detailer"> Proposal @f.Idx</a></td>
-                <td><a href=@Url.Action("Detail", "NewFucProposal", new { @id = f.Idx }) class="detailer">@f.Acr</a></td>
+                <td><a href=@Url.Action("Detail", "Proposal", new { @id = f.Idx }) class="detailer"> Proposal @f.Idx</a></td>
+                <td><a href=@Url.Action("Detail", "Proposal", new { @id = f.Idx }) class="detailer">@f.Acr</a></td>
                 <td><a href=@Url.Action("Detail", "Profile", new { @id = f.User }) class="detailer"> @f.User</a></td>
                 <td>
-                    @using (Html.BeginForm("Accept", "NewFucProposal", new {@id=f.Idx}, FormMethod.Post))
+                    @using (Html.BeginForm("Accept", "Proposal", new {@id=f.Idx}, FormMethod.Post))
                     {
                         <input type="submit" value="Accept"/>
                     }
                     
-                    @using (Html.BeginForm("Refuse", "NewFucProposal", new {@id=f.Idx}, FormMethod.Post))
+                    @using (Html.BeginForm("Refuse", "Proposal", new {@id=f.Idx}, FormMethod.Post))
                     {
                         <input type="submit" value="Refuse"/>
                     }
