@@ -5,8 +5,8 @@
    <div id="pages">
         <div>Page <input id="pageinput" type="text" style="width:15px;"> of <span id="totalp"></span></div>
          <div id="selector">
-             <a href="PIndex?page=@ViewData["pageprev"]&itemsnumber=@ViewData["itemsnumber"]" id="prev" >prev</a>
-             <a href="PIndex?page=@ViewData["pagenext"]&itemsnumber=@ViewData["itemsnumber"]" id="next" >next</a>
+             <a href="?page=@ViewData["pageprev"]&itemsnumber=@ViewData["itemsnumber"]" id="prev" >prev</a>
+             <a href="?page=@ViewData["pagenext"]&itemsnumber=@ViewData["itemsnumber"]" id="next" >next</a>
          </div>
          <div>Results Per Page:
          <select id="DisplayNum">

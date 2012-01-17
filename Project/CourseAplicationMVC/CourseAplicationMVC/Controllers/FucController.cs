@@ -24,16 +24,59 @@ namespace CourseAplicationMVC.Controllers
         }
 
 
-        public ActionResult Index(bool? pagination, bool? partial)
+        public ActionResult Index(bool? pagination, int? page, int? itemsnumber, string orderby, string type, bool? partial)
         {
+            Fuc[] array = _repo.GetAll().ToArray();
+            ViewData.Add("totalitems", array.Length == 0 ? 1 : array.Length);
+
+            if(orderby!=null &&type!=null )
+            {
+                List<Fuc> list;
+                list = type.CompareTo("asc") == 0 ? array.OrderBy(n => n.Name).ToList() :
+                    array.OrderByDescending(n => n.Name).ToList();
+
+                if (partial.HasValue && partial.Value)
+                    return PartialView("PIndex", list);
+                return View("IndexAll", list);
+
+            }
+
             if (pagination.HasValue && !pagination.Value){
                 if (partial.HasValue && partial.Value)
                   return PartialView("PIndex", _repo.GetAll());
                 return View("IndexAll", _repo.GetAll());
             }
-            return RedirectToAction("PIndex", new { @page = 1, @itemsnumber = 5, @partial = partial });
-        }
 
+            if(!page.HasValue)
+                 page = 1;
+            if (!itemsnumber.HasValue)
+                itemsnumber = 5;
+
+            ViewData.Add("pageprev", page - 1);
+            ViewData.Add("pagenext", page + 1);
+            ViewData.Add("itemsnumber", itemsnumber);
+           
+            int max_elem = Math.Min((int) (page * itemsnumber), array.Length);
+            LinkedList<Fuc> list2 = new LinkedList<Fuc>();
+            if (array.Length == 0) {
+                if (partial.HasValue && partial.Value)
+                    return PartialView("PIndex", list2);
+                return View("Index", list2);
+             }
+
+            if (page <= 0 || (page - 1) * itemsnumber >= max_elem)
+            {
+                return HttpNotFound();
+            }
+            for (int i = (int) ((page - 1) * itemsnumber), j = 0; i < max_elem; j++, i++)
+            {
+                list2.AddLast(array[i]);
+            }
+            if (partial.HasValue && partial.Value)
+                return PartialView("PIndex", list2);
+            return View("Index", list2);
+            
+        }
         public ActionResult Detail(string id, bool? partial)
         {
             Fuc f = _repo.GetByAcr(id);
@@ -43,29 +86,7 @@ namespace CourseAplicationMVC.Controllers
             return View(f);
         }
 
-        public ActionResult PIndex(int page, int itemsnumber, bool? partial)
-        {
-            ViewData.Add("pageprev", page - 1);
-            ViewData.Add("pagenext", page + 1);
-            ViewData.Add("itemsnumber", itemsnumber);
-            Fuc[] array = _repo.GetAll().ToArray();
-            ViewData.Add("totalitems", array.Length == 0 ? 1 : array.Length);
-            int max_elem = Math.Min(page * itemsnumber, array.Length);
-            LinkedList<Fuc> list = new LinkedList<Fuc>();
-            if (array.Length == 0) return View("Index", list);
-            if (page <= 0 || (page - 1) * itemsnumber >= max_elem)
-            {
-                return HttpNotFound();
-            }
-            for (int i = (page - 1) * itemsnumber, j = 0; i < max_elem; j++, i++)
-            {
-                list.AddLast(array[i]);
-                // array2[j] = array[i];
-            }
-            if (partial.HasValue && partial.Value)
-                return PartialView("PIndex", list);
-            return View("Index", list);
-        }
+
         [AuthenticationFilter]
        // [Authorize]
         public ActionResult Edit(string id)

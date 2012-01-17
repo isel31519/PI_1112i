@@ -13,11 +13,14 @@
             $('#paging').html("Pagination On");
             var href = $('#paging').attr("href");
             href = href.replace("pagination=False", "pagination=true");
-            $('#pages').remove(); 
+            $('#pages').remove();
             paging($(this).attr("href"));
             $('#paging').attr("href", href);
 
+            $('.order').click(orderby());
+
         } else {
+            $('.order').unbind('click');
             var http = new XMLHttpRequest();
             http.open("GET", "/fuc/pagination", false);
             http.onreadystatechange = window.useHttpResponse;
@@ -26,17 +29,17 @@
                 var textout = http.responseText;
                 $('#pager').html(textout);
             }
-            
+
             $('#paging').html("Pagination Off");
             href = $('#paging').attr("href");
             href = href.replace("pagination=true", "pagination=False");
             $('#paging').attr("href", href);
-            
+
             totalp = Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val());
             $('#totalp').text(totalp);
-            
+
             events();
-            refreshelems(window.location.href, 1);  
+            refreshelems(window.location.href, 1);
         }
         accord();
         return false;
@@ -93,15 +96,18 @@ function paging(myurl) {
         var textout = http.responseText;
         //console.log(textout);
         $('#elems').html(textout);
+
+        history.pushState(null, document.title, myurl);
     }
     return false;
     
 }
 function refreshelems(myurl, page) {
-
+            
         if (page < 1 || page > parseInt($('#totalp').text())) return false;
         myurl = myurl.substring(0, myurl.indexOf("?", myurl));
         var itemsPerPage = $('#DisplayNum').val();
+       
         var http = new XMLHttpRequest();
         http.open("GET", myurl + "?page=" + page + "&itemsnumber=" + itemsPerPage + "&partial=true", false);
         http.onreadystatechange = window.useHttpResponse;
@@ -109,12 +115,14 @@ function refreshelems(myurl, page) {
 
         if (http.readyState == 4 && http.status == 200) {
             var textout = http.responseText;
-            console.log(textout);
+            //console.log(textout);
             $('#elems').html(textout);
             ($('#pageinput').val(page));
-
+            
             $('#next').attr("href", replacehref(myurl, page + 1, itemsPerPage));
             $('#prev').attr("href", replacehref(myurl, page - 1, itemsPerPage));
+
+            history.pushState(null, document.title, '?page='+ page+ '&itemsnumber='+ itemsPerPage);
 
         }
         accord();
