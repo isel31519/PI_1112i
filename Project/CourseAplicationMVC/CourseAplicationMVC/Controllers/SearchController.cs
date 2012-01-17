@@ -19,18 +19,24 @@ namespace CourseAplicationMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(String searchQuery)
+        public ActionResult Index(String query)
         {
             var fucListToReturn = new List<Fuc>();
 
             foreach (var fuc in _repo.GetAll())
             {
-                if(fuc.Name.ToLower().Contains(searchQuery.ToLower()))
+                if (fuc.Name.ToLower().Contains(query.ToLower()))
                     fucListToReturn.Add(fuc);
             }
 
             return View(fucListToReturn);
         }
 
+        [HttpPost]
+        public ActionResult Find(string term)
+        {
+            string[] sites = _repo.FindFucName(term);
+            return Json(sites, JsonRequestBehavior.AllowGet);
+        }
     }
 }
