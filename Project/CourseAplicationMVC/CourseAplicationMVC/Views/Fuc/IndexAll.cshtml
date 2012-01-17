@@ -7,6 +7,11 @@
 <h1>Fuc List</h1>
 @Html.ActionLink("Pagination On", "Index", new { @pagination = true }, new { @id ="paging" })
 
+ <input type="hidden" id="totalelems" value="@ViewData["totalitems"]"/>
+<div id="pager">
+ </div>
+
+
     <table id="elems">
    @Html.Partial("PIndex")
     </table>

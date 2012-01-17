@@ -8,6 +8,9 @@
 <h1>Proposal List</h1>
 
 @Html.ActionLink("Pagination On", "Index", new { @pagination = true }, new { @id ="paging" })
+<input type="hidden" id="totalelems" value="@ViewData["totalitems"]"/>
+<div id="pager">
+ </div>
 
 
 <div>

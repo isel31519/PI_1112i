@@ -1,14 +1,14 @@
-﻿@model System.Collections.Generic.LinkedList<CourseAplicationLib.FucProposal>
+﻿@model System.Collections.Generic.IEnumerable<CourseAplicationLib.FucProposal>
 
 @{
     ViewBag.Title = "title";
 }
 
 <tr>
-            <th>Proposal</th>
-            <th>Acronym</th>
-            <th>Creator</th>
-            <th>Aproval</th>
+            <th class="order">Proposal</th>
+            <th class="order">Acronym</th>
+            <th class="order">Creator</th>
+            <th class="order">Aproval</th>
         </tr>
         @foreach (var f in Model)
         {
