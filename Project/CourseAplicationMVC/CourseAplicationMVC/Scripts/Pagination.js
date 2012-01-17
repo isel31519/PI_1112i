@@ -2,7 +2,7 @@
 
     var totalp = Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val());
     //$('#DisplayNum').val(5);
-    $('#pageinput').val(1);
+    //$('#pageinput').val(1);
     $('#totalp').text(totalp);
     //events:
     $('#paging').click(function (e) {
@@ -17,7 +17,7 @@
             paging($(this).attr("href"));
             $('#paging').attr("href", href);
 
-            $('.order').click(orderby());
+            $('.order').click(function () { orderby($(this)); });
 
         } else {
             $('.order').unbind('click');
@@ -33,6 +33,7 @@
             $('#paging').html("Pagination Off");
             href = $('#paging').attr("href");
             href = href.replace("pagination=true", "pagination=False");
+            href = href.replace("pagination=True", "pagination=False");
             $('#paging').attr("href", href);
 
             totalp = Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val());

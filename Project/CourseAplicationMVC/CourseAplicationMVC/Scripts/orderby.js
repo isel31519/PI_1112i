@@ -1,8 +1,8 @@
-﻿function orderby() {
+﻿function orderby(elem) {
 
     var http = new XMLHttpRequest();
-    console.log($(this));
-    var href = window.location.href + "&orderby=" + $(this).text() + "&type=asc";
+    console.log(elem);
+    var href = window.location.href + "&orderby=" + elem.text() + "&type=asc";
     http.open("GET", href + "&partial=true", false);
     http.onreadystatechange = window.useHttpResponse;
     http.send(null);

@@ -51,7 +51,7 @@ namespace CourseAplicationMVC.Controllers
                  page = 1;
             if (!itemsnumber.HasValue)
                 itemsnumber = 5;
-
+            ViewData.Add("page", page);
             ViewData.Add("pageprev", page - 1);
             ViewData.Add("pagenext", page + 1);
             ViewData.Add("itemsnumber", itemsnumber);
