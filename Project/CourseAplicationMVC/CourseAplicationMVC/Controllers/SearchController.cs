@@ -21,12 +21,11 @@ namespace CourseAplicationMVC.Controllers
         [HttpPost]
         public ActionResult Index(String searchQuery)
         {
-            var fucList = _repo.GetAll();
             var fucListToReturn = new List<Fuc>();
 
-            foreach (var fuc in fucList)
+            foreach (var fuc in _repo.GetAll())
             {
-                if(fuc.Name.ToLower().Contains(searchQuery))
+                if(fuc.Name.ToLower().Contains(searchQuery.ToLower()))
                     fucListToReturn.Add(fuc);
             }
 
