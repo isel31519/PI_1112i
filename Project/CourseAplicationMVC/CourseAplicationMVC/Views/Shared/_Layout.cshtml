@@ -89,10 +89,14 @@
                     @using (Html.BeginForm("Index", "Search", FormMethod.Post))
                         {
                         
-                         <input type="text" id="searchQuery" name="query"/>
-                        //@Html.TextBox("searchQuery");
+                         
+                            <!--<input type="text" id="txt" style="border:#000000 1px solid;width:150px;" autocomplete=off/>
+ 
+                               <div id="suggest" style="visibility:hidden;border:#000000 1px solid;width:150px;"></div>-->
+                            <input type="text" id="searchQuery" name="query"/>
+                            //@Html.TextBox("searchQuery");
                             <input type="submit" value="Go"/>
-                            <div id="autosuggest"><ul></ul></div>
+                            <!--<div id="autosuggest"><ul></ul></div>-->
                         }
                 </span>
                 

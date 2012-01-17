@@ -35,8 +35,8 @@ namespace CourseAplicationMVC.Controllers
         [HttpPost]
         public ActionResult Find(string term)
         {
-            string[] sites = _repo.FindFucName(term);
-            return Json(sites, JsonRequestBehavior.AllowGet);
+            string[] fucsWithSearchTerm = _repo.FindFucName(term);
+            return Json(fucsWithSearchTerm, JsonRequestBehavior.AllowGet);
         }
     }
 }
