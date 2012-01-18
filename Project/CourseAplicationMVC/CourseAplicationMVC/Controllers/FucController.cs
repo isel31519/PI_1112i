@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CourseAplicationLib;
 using CourseAplicationMVC.Filters;
+using CourseAplicationMVC.Ordenation;
 
 namespace CourseAplicationMVC.Controllers
 {
@@ -12,6 +14,7 @@ namespace CourseAplicationMVC.Controllers
     {
         private readonly FucRepository _repo = RepositoryLocator.GetFucRep();
         private readonly ProposalRepository _proprepo = RepositoryLocator.GetPropRep();
+        private readonly IDictionary<string, IOrdenation<Fuc>> _sort = new Dictionary<string, IOrdenation<Fuc>>();
         // GET: /Fuc/
 
         public ActionResult Pagination()
@@ -29,11 +32,20 @@ namespace CourseAplicationMVC.Controllers
             Fuc[] array = _repo.GetAll().ToArray();
             ViewData.Add("totalitems", array.Length == 0 ? 1 : array.Length);
 
+            
             if(orderby!=null &&type!=null )
             {
-                List<Fuc> list;
-                list = type.CompareTo("asc") == 0 ? array.OrderBy(n => n.Name).ToList() :
-                    array.OrderByDescending(n => n.Name).ToList();
+
+                _sort.Add("Fuc Name", new NameOrdenation(array));
+                IOrdenation<Fuc> sort;
+                _sort.TryGetValue(orderby, out sort);
+                IEnumerable<Fuc> list;
+
+                list = sort.Order(ResolveOrdenationType.ResolveType(type));
+
+                
+                /*list = type.CompareTo("asc") == 0 ? array.OrderBy(n => n.Name).ToList() :
+                    array.OrderByDescending(n => n.Name).ToList();*/
 
                 if (partial.HasValue && partial.Value)
                     return PartialView("PIndex", list);

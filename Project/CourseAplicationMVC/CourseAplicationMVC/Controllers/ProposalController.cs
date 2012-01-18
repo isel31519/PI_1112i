@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using CourseAplicationLib;
 using CourseAplicationMVC.Filters;
+using CourseAplicationMVC.Ordenation;
 
 namespace CourseAplicationMVC.Controllers
 {
@@ -16,22 +17,38 @@ namespace CourseAplicationMVC.Controllers
 
         private readonly ProposalRepository _proprepo = RepositoryLocator.GetPropRep();
         private readonly FucRepository _repo = RepositoryLocator.GetFucRep();
+        private readonly IDictionary<string, IOrdenation<FucProposal>> _sort = new Dictionary<string, IOrdenation<FucProposal>>();
         //
         // GET: /Proposal/
 
         public ActionResult Index(bool? pagination, int? page, int? itemsnumber, string orderby, string type, bool? partial)
         {
-
+              FucProposal[] array = _proprepo.GetAll().ToArray();
+                ViewData.Add("totalitems", array.Length == 0 ? 1 : array.Length);
             if (orderby != null && type != null)
             {
-                List<FucProposal> list;
+              
+
+                _sort.Add("Proposal", new ProposalNameOrdenation(array));
+                _sort.Add("Acronym", new ProposalAcronymOrdenation(array));
+                _sort.Add("Creator", new ProposalCreatorOrdenation(array));
+
+                IOrdenation<FucProposal> sort;
+                _sort.TryGetValue(orderby, out sort);
+
+                IEnumerable<FucProposal> list;
+                list = sort.Order(ResolveOrdenationType.ResolveType(type));
+
+
+
+               /* List<FucProposal> list;
                 list = type.CompareTo("asc") == 0
                            ? _proprepo.GetAll().ToArray().OrderBy(n => n.Name).ToList()
-                           : _proprepo.GetAll().ToArray().OrderByDescending(n => n.Name).ToList();
+                           : _proprepo.GetAll().ToArray().OrderByDescending(n => n.Name).ToList();*/
 
                 if (partial.HasValue && partial.Value)
-                    return PartialView("PIndex", _proprepo.GetAll());
-                return View("IndexAll", _proprepo.GetAll());
+                    return PartialView("PIndex", list);
+                return View("IndexAll", list);
 
             }
 
@@ -52,8 +69,6 @@ namespace CourseAplicationMVC.Controllers
             ViewData.Add("pageprev", page - 1);
             ViewData.Add("pagenext", page + 1);
             ViewData.Add("itemsnumber", itemsnumber);
-            FucProposal[] array = _proprepo.GetAll().ToArray();
-            ViewData.Add("totalitems", array.Length == 0 ? 1 : array.Length);
             int max_elem = Math.Min((int)(page * itemsnumber), array.Length);
             LinkedList<FucProposal> list2 = new LinkedList<FucProposal>();
             if (array.Length == 0)

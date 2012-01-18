@@ -5,9 +5,12 @@ using System.Web;
 using System.Web.Mvc;
 using CourseAplicationLib;
 using CourseAplicationMVC.Filters;
+using CourseAplicationMVC.Ordenation;
 
 namespace CourseAplicationMVC.Controllers
 {
+
+     
    // [Authorize]
     [AuthenticationFilter]
     public class NewFucProposalController : Controller
@@ -17,6 +20,7 @@ namespace CourseAplicationMVC.Controllers
 
         private readonly FucRepository _repo = RepositoryLocator.GetFucRep();
         private readonly ProposalRepository _newPropRepo = RepositoryLocator.GetNewPropRep();
+        private readonly IDictionary<string, IOrdenation<FucProposal>> _sort = new Dictionary<string, IOrdenation<FucProposal>>();
 
         public ActionResult Index(bool? pagination, int? page, int? itemsnumber, string orderby, string type, bool? partial)
         {
@@ -26,10 +30,21 @@ namespace CourseAplicationMVC.Controllers
 
             if (orderby != null && type != null)
             {
-                List<FucProposal> list;
+
+                _sort.Add("Proposal", new ProposalNameOrdenation(array));
+                _sort.Add("Acronym", new ProposalAcronymOrdenation(array));
+                _sort.Add("Creator", new ProposalCreatorOrdenation(array));
+               
+                IOrdenation<FucProposal> sort;
+                _sort.TryGetValue(orderby, out sort);
+
+                IEnumerable<FucProposal> list;
+                list = sort.Order(ResolveOrdenationType.ResolveType(type));
+
+               /* List<FucProposal> list;
                 list = type.CompareTo("asc") == 0
                            ? array.OrderBy(n => n.Name).ToList()
-                           : array.OrderByDescending(n => n.Name).ToList();
+                           : array.OrderByDescending(n => n.Name).ToList();*/
 
                 if (partial.HasValue && partial.Value)
                     return PartialView("PIndex", list);
