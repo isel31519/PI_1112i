@@ -1,230 +1,461 @@
-function autoCompleteDB() {
-    this.aNames = new Array();
-}
 
-autoCompleteDB.prototype.assignArray = function (aList) {
-    this.aNames = aList;
-};
-
-autoCompleteDB.prototype.getMatches = function (str, aList, maxSize) {
-    /* debug */ //alert(maxSize+"ok getmatches");
-    var ctr = 0;
-    for (var i in this.aNames) {
-        if (this.aNames[i].toLowerCase().indexOf(str.toLowerCase()) == 0) /*looking for case insensitive matches */
-        {
-            aList.push(this.aNames[i]);
-            ctr++;
+$(document).ready(function () { /*Autosuggest.Initialize(); });*/
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/Search/FindAllFucNames");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var data = JSON.parse(xhr.responseText);
+            Autosuggest.Initialize(data);
         }
-        if (ctr == (maxSize - 1)) /* counter to limit no of matches to maxSize */
-            break;
-    }
-};
+    };
+    xhr.send(null);
+   
+});
 
-function autoComplete(aNames, oText, oDiv, maxSize) {
-
-    this.oText = oText;
-    this.oDiv = oDiv;
-    this.maxSize = maxSize;
-    this.cur = -1;
-
-
-    /*debug here */
-    //alert(oText+","+this.oDiv);
-
-    this.db = new autoCompleteDB();
-    this.db.assignArray(aNames);
-
-    oText.onkeyup = this.keyUp;
-    oText.onkeydown = this.keyDown;
-    oText.autoComplete = this;
-    oText.onblur = this.hideSuggest;
-}
-
-autoComplete.prototype.hideSuggest = function () {
-    this.autoComplete.oDiv.style.visibility = "hidden";
-};
-
-autoComplete.prototype.selectText = function (iStart, iEnd) {
-    if (this.oText.createTextRange) /* For IE */
-    {
-        var oRange = this.oText.createTextRange();
-        oRange.moveStart("character", iStart);
-        oRange.moveEnd("character", iEnd - this.oText.value.length);
-        oRange.select();
-    }
-    else if (this.oText.setSelectionRange) /* For Mozilla */
-    {
-        this.oText.setSelectionRange(iStart, iEnd);
-    }
-    this.oText.focus();
-};
-
-autoComplete.prototype.textComplete = function (sFirstMatch) {
-    if (this.oText.createTextRange || this.oText.setSelectionRange) {
-        var iStart = this.oText.value.length;
-        this.oText.value = sFirstMatch;
-        this.selectText(iStart, sFirstMatch.length);
-    }
-};
-
-autoComplete.prototype.keyDown = function (oEvent) {
-    oEvent = window.event || oEvent;
-    iKeyCode = oEvent.keyCode;
-
-    switch (iKeyCode) {
-        case 38: //up arrow
-            this.autoComplete.moveUp();
-            break;
-        case 40: //down arrow
-            this.autoComplete.moveDown();
-            break;
-        case 13: //return key
-            window.focus();
-            break;
-    }
-};
-
-autoComplete.prototype.moveDown = function () {
-    if (this.oDiv.childNodes.length > 0 && this.cur < (this.oDiv.childNodes.length - 1)) {
-        ++this.cur;
-        for (var i = 0; i < this.oDiv.childNodes.length; i++) {
-            if (i == this.cur) {
-                this.oDiv.childNodes[i].className = "over";
-                this.oText.value = this.oDiv.childNodes[i].innerHTML;
-            }
-            else {
-                this.oDiv.childNodes[i].className = "";
-            }
-        }
-    }
-};
-
-autoComplete.prototype.moveUp = function () {
-    if (this.oDiv.childNodes.length > 0 && this.cur > 0) {
-        --this.cur;
-        for (var i = 0; i < this.oDiv.childNodes.length; i++) {
-            if (i == this.cur) {
-                this.oDiv.childNodes[i].className = "over";
-                this.oText.value = this.oDiv.childNodes[i].innerHTML;
-            }
-            else {
-                this.oDiv.childNodes[i].className = "";
-            }
-        }
-    }
-};
-
-autoComplete.prototype.keyUp = function (oEvent) {
-    oEvent = oEvent || window.event;
-    var iKeyCode = oEvent.keyCode;
-    if (iKeyCode == 8 || iKeyCode == 46) {
-        this.autoComplete.onTextChange(false); /* without autocomplete */
-    }
-    else if (iKeyCode < 32 || (iKeyCode >= 33 && iKeyCode <= 46) || (iKeyCode >= 112 && iKeyCode <= 123)) {
-        //ignore
-    }
-    else {
-        this.autoComplete.onTextChange(true); /* with autocomplete */
-    }
-};
-
-autoComplete.prototype.positionSuggest = function () /* to calculate the appropriate poistion of the dropdown */
+Autosuggest =
 {
-    var oNode = this.oText;
-    var x = 0, y = oNode.offsetHeight;
+    Initialize: function (fuclist) {
+        var suggestionListObj = {
+            'data': fuclist,
+            'isVisible': false,
+            'element': document.getElementById('searchQuery'),
+            'dropdown': null,
+            'highlighted': null
+        };
 
-    while (oNode.offsetParent && oNode.offsetParent.tagName.toUpperCase() != 'BODY') {
-        x += oNode.offsetLeft;
-        y += oNode.offsetTop;
-        oNode = oNode.offsetParent;
-    }
+        suggestionListObj['element'].setAttribute('autocomplete', 'off');
+        suggestionListObj['element'].onkeydown = function (e) { return Autosuggest.KeyDown(suggestionListObj, e); };
+        suggestionListObj['element'].onkeyup = function (e) { return Autosuggest.KeyUp(suggestionListObj, e); };
+        suggestionListObj['element'].onkeypress = function (e) {
+            if (!e) e = window.event;
+            if (e.keyCode == 13) return false;
+        };
+        suggestionListObj['element'].ondblclick = function () { Autosuggest.ShowDropdown(suggestionListObj); };
+        suggestionListObj['element'].onclick = function (e) {
+            if (!e) e = window.event;
+            e.cancelBubble = true;
+            e.returnValue = false;
+        };
 
-    x += oNode.offsetLeft;
-    y += oNode.offsetTop;
+        // Hides the dropdowns when document clicked
+        var docClick = function () {
+            Autosuggest.HideDropdown(suggestionListObj);
+        };
 
-    this.oDiv.style.top = y + "px";
-    this.oDiv.style.left = x + "px";
-}
-
-autoComplete.prototype.onTextChange = function (bTextComplete) {
-    var txt = this.oText.value;
-    var oThis = this;
-    this.cur = -1;
-
-    if (txt.length > 0) {
-        while (this.oDiv.hasChildNodes())
-            this.oDiv.removeChild(this.oDiv.firstChild);
-
-        var aStr = new Array();
-        this.db.getMatches(txt, aStr, this.maxSize);
-        if (!aStr.length) { this.hideSuggest; return }
-        if (bTextComplete) this.textComplete(aStr[0]);
-        this.positionSuggest();
-
-        for (i in aStr) {
-            var oNew = document.createElement('div');
-            this.oDiv.appendChild(oNew);
-            oNew.onmouseover =
-          oNew.onmouseout =
-          oNew.onmousedown = function (oEvent) {
-              oEvent = window.event || oEvent;
-              oSrcDiv = oEvent.target || oEvent.srcElement;
-
-              //debug :window.status=oEvent.type;
-              if (oEvent.type == "mousedown") {
-                  oThis.oText.value = this.innerHTML;
-              }
-              else if (oEvent.type == "mouseover") {
-                  this.className = "over";
-              }
-              else if (oEvent.type == "mouseout") {
-                  this.className = "";
-              }
-              else {
-                  this.oText.focus();
-              }
-          };
-            oNew.innerHTML = aStr[i];
+        if (document.addEventListener) {
+            document.addEventListener('click', docClick, false);
+        } else if (document.attachEvent) {
+            document.attachEvent('onclick', docClick, false);
         }
 
-        this.oDiv.style.visibility = "visible";
-    }
-    else {
-        this.oDiv.innerHTML = "";
-        this.oDiv.style.visibility = "hidden";
-    }
-};
 
-function createAutoComplete() {
-    var aNames =
-    [
-    "Aaron", "Abbott", "Abdallah", "Abdul", "Abdullah", "Abe", "Abel", "Abiba", "Abie", "Abner", "Abraham", "Abram", "Absalom", "Abu", "Ace", "Ackeem", "Adair", "Adalberto", "Adam", "Adan", "Addison", "Ade", "Adem", "Aderes", "Adie", "Adiel", "Adita", "Adlai", "Adolf", "Adolfo", "Adolph", "Adonia", "Adonis", "Adrian", "Adrien", "Agustin", "Ahmad", "Ahmed", "Aidan", "Aiden", "Airen", "Aislinn", "Aj", "Ajani", "Ajay", "Akeem", "Akil", "Akuji", "Al", "Alain", "Alake", "Alan", "Alaric", "Alastair", "Alban", "Albany", "Albert", "Alberto", "Albeto", "Albin", "Albrecht", "Aldan", "Alden", "Aldo", "Aldon", "Aldora", "Aldous", "Alec", "Alejandro", "Alek", "Aleksander", "Alem", "Alen", "Alev", "Alex", "Alexander", "Alexei", "Alf", "Alfonso", "Alfonzo", "Alfred", "Alfredo", "Alijah", "Alisdair", "Allan", "Allen", "Alonso", "Alonzo", "Aloysius", "Alphonse", "Alphonso", "Alton", "Alva", "Alvaro", "Alvin", "Amadeo", "Amadeus", "Amado", "Amador", "Amalia", "Amalie", "Aman", "Amana", "Amandla", "Amari", "Ambrose", "America", "Americo", "Amerigo", "Amir", "Amiri", "Ammon", "Amon", "Amos", "Anana", "Ananda", "Anando", "Anaru", "Anastasios", "Anatole", "Anatoliy", "Ande", "Anderson", "Andre", "Andreas", "Andrej", "Andres", "Andrew", "Andy", "Anemone", "Anfernee", "Angelo", "Angus", "Anil", "Anin", "Anlon", "Anselm", "Anselmo", "Anson", "Antal", "Anthony", "Anton", "Antonio", "Anwar", "Aoko", "Apollo", "Aquil", "Aquila", "Aquilla", "Ara", "Aram", "Aramis", "Archer", "Archibald", "Archie", "Archy", "Arden", "Aric", "Aries", "Aristotelis", "Aristotle", "Ariza", "Arlan", "Arlen", "Arlo", "Arman", "Armand", "Armande", "Armando", "Armen", "Armin", "Armon", "Armondo", "Arnaud", "Arne", "Arnie", "Arnold", "Aron", "Arran", "Arron", "Art", "Artemis", "Arthur", "Artie", "Arty", "Arva", "Arvid", "Asa", "Asabi", "Asalie", "Asher", "Ashton", "Asis", "Asli", "Athalia", "Athanasius", "Athelstan", "Athelston", "Athol", "Atwell", "August", "Augustin", "Augustine", "Augustus", "Austin", "Avary", "Averil", "Averill", "Avery", "Avi", "Avongara", "Avram", "Ayame", "Ayoka", "Azelin", "Azize", "Azuka", "Azuriah",
-     "Bahari", "Baird", "Bairn", "Baldwin", "Ballard", "Balthazar", "Banji", "Baptist", "Barak", "Barke", "Barnabas", "Barnabus", "Barnaby", "Barnard", "Barnett", "Barney", "Barny", "Baron", "Barrett", "Barry", "Bart", "Barth", "Bartholomew", "Barton", "Baruch", "Bary", "Bash", "Basil", "Bast", "Bastian", "Baxter", "Bayard", "Beat", "Beaty", "Beau", "Beauregard", "Beck", "Belay", "Belio", "Bell", "Bellamy", "Ben", "Benedict", "Benen", "Benito", "Benjamin", "Benjy", "Bennet", "Bennett", "Bennie", "Benny", "Benson", "Bentley", "Benton", "Berger", "Berke", "Berman", "Bern", "Bernard", "Berne", "Bernie", "Berny", "Bert", "Bertram", "Bertrand", "Bevan", "Beven", "Bevin", "Beyla", "Bidelia", "Bijean", "Bikita", "Bilen", "Bill", "Billy", "Bin", "Bina", "Bing", "Birch", "Bishop", "Biton", "Bjorn", "Blaine", "Blair", "Blaise", "Blake", "Blane", "Bliss", "Blythe", "Bo", "Bob", "Bobby", "Boden", "Bonaventure", "Bond", "Boniface", "Bonifacio", "Bono", "Boone", "Boris", "Bowen", "Bowie", "Brad", "Braden", "Bradford", "Bradley", "Bradshaw", "Brady", "Braeden", "Braedon", "Braima", "Braithe", "Bran", "Brand", "Branden", "Brandon", "Brant", "Braxton", "Brayden", "Brazil", "Brend", "Brendan", "Brendon", "Brendyn", "Brennan", "Brennon", "Brent", "Brenton", "Bret", "Brett", "Brewster", "Brian", "Briar", "Brice", "Brick", "Brighton", "Brilane", "Britt", "Britton", "Brock", "Broderick", "Brodie", "Brody", "Brogan", "Brone", "Bronson", "Brook", "Brooks", "Bruce", "Bruno", "Bryan", "Bryant", "Bryce", "Bryceton", "Bryn", "Brynn", "Bryon", "Bryson", "Bubba", "Buck", "Bud", "Buddie", "Buddy", "Buford", "Burgess", "Burke", "Burt", "Burton", "Buster", "Butch", "Butcher", "Butchie", "Byrne", "Byron",
-    "Caddall", "Cade", "Cadell", "Caden", "Cael", "Caelan", "Caesar", "Cahal", "Cain", "Caine", "Cal", "Caleb", "Callum", "Calum", "Calvin", "Cam", "Camden", "Cameron", "Camlin", "Campbell", "Camron", "Carl", "Carleton", "Carlisle", "Carlo", "Carlos", "Carlton", "Carlyle", "Carmac", "Carmelo", "Carmine", "Carr", "Carrick", "Carson", "Carsten", "Carsyn", "Carter", "Carver", "Cary", "Cash", "Cashley", "Casimir", "Caspar", "Casper", "Caspian", "Cassius", "Cathal", "Cavan", "Cecil", "Cedric", "Cesar", "Chad", "Chance", "Chancellor", "Chandler", "Channing", "Chante", "Chantry", "Charl", "Charles", "Charli", "Charlie", "Charls", "Charlton", "Chars", "Chas", "Chase", "Chauncey", "Chaz", "Cheche", "Chen", "Chesley", "Chester", "Chet", "Cheyne", "Chick", "Chico", "Chill", "Chilton", "Chimelu", "Chip", "Chipo", "Chris", "Chrissy", "Christel", "Christof", "Christoph", "Christopher", "Chuck", "Cian", "Cicero", "Clancey", "Clancy", "Clarence", "Clark", "Clarke", "Claude", "Claudio", "Claus", "Clay", "Clayland", "Clayton", "Cleavant", "Cleave", "Cleavon", "Clem", "Clemens", "Clement", "Clemente", "Cliff", "Clifford", "Clifton", "Clint", "Clinton", "Clive", "Clove", "Clover", "Clovis", "Clyde", "Cobi", "Cocheta", "Cody", "Colbert", "Cole", "Coleman", "Coley", "Colin", "Collin", "Colm", "Colman", "Colt", "Colte", "Coltin", "Colton", "Columbia", "Columbine", "Columbus", "Comfort", "Conal", "Conall", "Conan", "Conell", "Conlan", "Conner", "Connor", "Conor", "Conrad", "Constantine", "Content", "Conway", "Cooper", "Corbin", "Cord", "Cordeiro", "Cordel", "Cordell", "Cordero", "Corey", "Corliss", "Cornelia", "Cornelis", "Cornelius", "Cornell", "Cort", "Corwin", "Cory", "Cosima", "Cosmo", "Coty", "Coy", "Coye", "Coyle", "Craig", "Creighton", "Crevan", "Criostoir", "Cristian", "Cristophe", "Crockett", "Cullen", "Curry", "Curt", "Curtis", "Cy", "Cyd", "Cyril", "Cyrus",
-       "Dafydd", "Dagan", "Dahlia", "Dain", "Dakarai", "Dakoda", "Dakota", "Dallin", "Dalton", "Dalziel", "Damario", "Damarius", "Damian", "Damien", "Damion", "Damon", "Dan", "Dane", "Daniel", "Danil", "Danilo", "Danny", "Dante", "Danton", "Daray", "Darby", "Darcey", "Darcie", "Darcy", "Dard", "Daren", "Dareo", "Darian", "Darien", "Darin", "Dario", "Darious", "Darius", "Darnell", "Darrell", "Darren", "Darrin", "Darrius", "Darron", "Darryl", "Darshan", "Daryl", "Daryn", "Dasan", "Dashiell", "Dathan", "Davaid", "Davan", "Dave", "David", "Davin", "Davis", "Davu", "Dawson", "Dax", "Dayton", "Deacon", "Dean", "Dearl", "Declan", "Dedric", "Dedrick", "Del", "Delaney", "Delano", "Delbert", "Delvan", "Delvin", "Dembe", "Demetri", "Demetrius", "Demian", "Demitrius", "Dempsey", "Denis", "Dennis", "Denny", "Denver", "Denzel", "Deo", "Derek", "Derex", "Dermot", "Derora", "Derreck", "Derrell", "Derrick", "Des", "Desdemona", "Desmond", "Devaki", "Devan", "Deven", "Devin", "Devlan", "Devlin", "Devon", "Dewey", "Dewitt", "Dexter", "Diallo", "Diarmuid", "Diata", "Dick", "Dickson", "Diederick", "Diego", "Dieter", "Dillan", "Dillian", "Dillon", "Dimitri", "Dino", "Dion", "Dionysius", "Dionysus", "Dirc", "Dirk", "Dixon", "Dmitri", "Dmyphnah", "Doane", "Doctor", "Dolan", "Dolin", "Dolph", "Dom", "Domenic", "Domenica", "Dominic", "Dominick", "Dominy", "Don", "Donal", "Donald", "Donard", "Donato", "Donnell", "Donny", "Donovan", "Dontae", "Dorcey", "Dorset", "Dorsey", "Doug", "Dougal", "Douglas", "Douglass", "Doyle", "Doyt", "Drake", "Drew", "Dru", "Duane", "Dudley", "Duena", "Duff", "Duffie", "Dugan", "Duka", "Duke", "Dumi", "Duncan", "Dunixi", "Dunn", "Dunne", "Dustan", "Dustin", "Duston", "Dusty", "Dwayne", "Dwight", "Dylan", "Dylon", "Dyre",
-       "Eadoin", "Eamon", "Ean", "Earl", "Earle", "Earnest", "Eastin", "Easton", "Eavan", "Eban", "Eben", "Ebenezer", "Eberhard", "Ed", "Eddie", "Eddy", "Edel", "Edgar", "Edison", "Edmond", "Edmund", "Edric", "Eduardo", "Edward", "Edwardo", "Edwin", "Efraim", "Efrat", "Efrem", "Efren", "Egan", "Egbert", "Egon", "Egor", "Eitan", "Elbert", "Elden", "Eldon", "Eldred", "Eleazar", "Elecio", "Elgin", "Eli", "Elia", "Eliab", "Elias", "Elijah", "Eliot", "Elisha", "Eljah", "Elke", "Ellas", "Elliot", "Elliott", "Ellis", "Ellsworth", "Elmer", "Elmo", "Elton", "Elu", "Elva", "Elvan", "Elvin", "Elvis", "Elwin", "Elwood", "Ely", "Emanuel", "Emanuele", "Emeline", "Emene", "Emerson", "Emilio", "Emmanuel", "Emmet", "Emmett", "Emry", "Enid", "Enos", "Enrico", "Enrique", "Enzo", "Eoin", "Eolande", "Ephraim", "Er", "Erasmus", "Eri", "Eric", "Erick", "Erik", "Erland", "Erme", "Ermin", "Ernest", "Ernie", "Erno", "Eros", "Errol", "Erv", "Ervin", "Ervine", "Erving", "Erwin", "Eryk", "Esben", "Eshe", "Esmond", "Espiridion", "Etan", "Ethan", "Ethelwulf", "Etienne", "Eugen", "Eugene", "Eulalie", "Evan", "Evander", "Everett", "Evert", "Ewan", "Ezekiel", "Ezra",
-    "Fabian", "Fabio", "Fabiola", "Fabunni", "Fairfax", "Fala", "Farica", "Faris", "Farrell", "Faustine", "Fedor", "Felipe", "Felix", "Fell", "Ferdinand", "Fergal", "Fergie", "Fergus", "Ferguson", "Fernando", "Ferris", "Ferrol", "Fico", "Fidel", "Filippo", "Fineen", "Finley", "Finn", "Finna", "Fionan", "Fisk", "Fisseha", "Flan", "Flannery", "Flavian", "Fletcher", "Floyd", "Flynn", "Folkert", "Foluke", "Forbes", "Ford", "Fordon", "Forest", "Forrest", "Forrester", "Forster", "Foster", "Fox", "Foy", "Fraley", "Francisco", "Franck", "Franco", "Frank", "Franklin", "Franz", "Frasier", "Fred", "Freddie", "Freddy", "Frederica", "Frederick", "Frederik", "Fredrick", "Freed", "Freeman", "Fremont", "Fritz", "Fronde", "Fruma", "Frye", "Fulbright", "Fuller", "Fynn",
-       "Gabriel", "Gad", "Gaddy", "Gadi", "Gael", "Gafna", "Gage", "Gainell", "Gaius", "Galbraith", "Gale", "Galen", "Galin", "Gallagher", "Galvin", "Gamada", "Gamal", "Gamaliel", "Ganit", "Garcia", "Gardner", "Gareth", "Garett", "Garfield", "Garland", "Garn", "Garrin", "Garrison", "Garron", "Garry", "Garson", "Garth", "Gary", "Gates", "Gautier", "Gavin", "Gavivi", "Gaylan", "Gaylord", "Gaynell", "Gazali", "Gazit", "Gearoid", "Geary", "Gelsey", "Gene", "Genet", "Gent", "Gentry", "Geoff", "Geoffrey", "George", "Gerald", "Geraldo", "Gerard", "Germaine", "Gerry", "Gian", "Gibson", "Gideon", "Gifford", "Gil", "Gilbe", "Gilbert", "Giles", "Gilles", "Gillespie", "Gino", "Giolla", "Giovanni", "Giuseppe", "Glen", "Glenn", "Glennon", "Godana", "Godfrey", "Gomer", "Gordon", "Gordy", "Grady", "Graeme", "Graham", "Gram", "Grant", "Granville", "Grayson", "Greer", "Greg", "Gregg", "Gregory", "Greyson", "Grif", "Griffin", "Grig", "Grover", "Gualtier", "Guban", "Guillermo", "Gunnar", "Gunther", "Gure", "Gustav", "Gustave", "Gustavo", "Gustov", "Guy", "Guyon",
-       "Haben", "Habib", "Hada", "Hadar", "Hagan", "Haggan", "Haile", "Haines", "Hajari", "Hakan", "Hakeem", "Hale", "Hali", "Halil", "Halona", "Ham", "Hamal", "Hamilton", "Hamish", "Hamlet", "Hank", "Hans", "Hansen", "Hanson", "Hanzila", "Haracha", "Hardy", "Harlan", "Harlen", "Harmon", "Harold", "Harper", "Harris", "Harrison", "Harry", "Hart", "Haruni", "Harvey", "Hassan", "Hastin", "Haven", "Hawa", "Hayden", "Hayes", "Hazen", "Hazinac", "Heath", "Hector", "Hedwig", "Heiko", "Heinz", "Helge", "Heller", "Hendrick", "Hendrik", "Henri", "Henrik", "Henry", "Herb", "Herbert", "Heremon", "Hermann", "Herschel", "Hezekiah", "Hiba", "Hibah", "Hidalgo", "Hidi", "Hiero", "Hilton", "Hiram", "Holden", "Hollace", "Hollis", "Holt", "Homer", "Horace", "Horatio", "Horus", "Hosea", "Houston", "Howard", "Howe", "Howell", "Howie", "Hoyt", "Hubert", "Huey", "Hugh", "Hugo", "Humphrey", "Hunter", "Huso", "Hussein", "Huston", "Hy", "Hyacinth", "Hyman",
-    "Iain", "Ian", "Ife", "Ige", "Iggi", "Iggy", "Ignatius", "Igor", "Ihab", "Ike", "Ilit", "Ilori", "Iman", "Imogene", "Imran", "Inari", "Inek", "Ineke", "Ingram", "Ion", "Ira", "Irma", "Irvin", "Irving", "Isaac", "Isaiah", "Isak", "Israel", "Issak", "Issay", "Ivan", "Ivo", "Ivrit", "Izzy",
-    "Jabari", "Jabilo", "Jack", "Jackson", "Jaco", "Jacob", "Jacques", "Jadon", "Jadyn", "Jaegar", "Jaeger", "Jael", "Jaelin", "Jafaru", "Jagger", "Jahve", "Jair", "Jairo", "Jake", "Jakson", "Jalen", "Jamal", "James", "Jamese", "Jameson", "Jamie", "Jamil", "Jamison", "Janin", "Jansen", "Janson", "Janus", "Jarah", "Jared", "Jariath", "Jarko", "Jaron", "Jarred", "Jarret", "Jarrett", "Jarrod", "Jarvis", "Jasen", "Jason", "Jasper", "Javier", "Jay", "Jaydon", "Jayson", "Jazz", "Jeb", "Jeff", "Jefferson", "Jeffery", "Jeffrey", "Jengo", "Jensen", "Jerah", "Jered", "Jeremiah", "Jeremie", "Jeremy", "Jericho", "Jerico", "Jerimiah", "Jeris", "Jermaine", "Jerod", "Jerold", "Jerome", "Jerrell", "Jerrick", "Jerris", "Jerry", "Jeshua", "Jesiah", "Jesse", "Jesus", "Jethro", "Jim", "Jimbo", "Jimmie", "Jimmy", "Jira", "Jiri", "Jirka", "Joachim", "Joachin", "Joaquim", "Job", "Jobe", "Jobey", "Joby", "Jock", "Joe", "Joel", "Joey", "Johahn", "Johan", "Johanne", "Johannes", "Johaunn", "John", "Johnathan", "Johnny", "Jon", "Jonah", "Jonathan", "Jonny", "Joost", "Jordan", "Jordyn", "Jorge", "Jorie", "Jose", "Josef", "Joseph", "Josh", "Joshua", "Josiah", "Joss", "Jovan", "Juan", "Jud", "Judah", "Judas", "Judd", "Jude", "Judson", "Jule", "Jules", "Julian", "Julio", "Julius", "Jumoke", "Junior", "Jur", "Jure", "Juri", "Jurian", "Jurrian", "Justin", "Justina", "Justise", "Justus", "Jörg",
-    "Kabibe", "Kabili", "Kacela", "Kachina", "Kaden", "Kadin", "Kaellen", "Kahdijah", "Kaikura", "Kaiser", "Kale", "Kaleb", "Kamal", "Kamali", "Kambill", "Kame", "Kande", "Kareem", "Karel", "Karik", "Karim", "Karimah", "Karl", "Karna", "Karson", "Kaseko", "Kasi", "Kasim", "Kaspar", "Kassidi", "Kato", "Kaula", "Kayson", "Kaz", "Kazi", "Keagan", "Keaghan", "Keaira", "Keanu", "Keary", "Keaton", "Keb", "Kedem", "Kedrick", "Keefe", "Keegan", "Keeghan", "Keenan", "Keene", "Kees", "Keir", "Keith", "Kelby", "Kelda", "Keleigh", "Kelila", "Kellan", "Kellea", "Kellee", "Kellen", "Kellsie", "Kelton", "Keltyn", "Kelvin", "Ken", "Kendal", "Kendall", "Kendi", "Kendyl", "Kendyll", "Kennan", "Kenneth", "Kenny", "Kent", "Kenton", "Kenyi", "Kenyon", "Kenzie", "Kerel", "Kermit", "Kerr", "Kerry", "Kester", "Ketara", "Keven", "Kevin", "Kevis", "Khadija", "Khadijah", "Khaled", "Khalil", "Khalíl", "Kibbe", "Kibbey", "Kiel", "Kieran", "Kiernan", "Kiki", "Kiley", "Killian", "Kimball", "Kimo", "Kin", "Kincaid", "Kinfe", "King", "Kingsley", "Kinsey", "Kione", "Kip", "Kipling", "Kipp", "Kirabo", "Kirby", "Kiril", "Kirk", "Kiros", "Kitoko", "Kitra", "Kiyoshi", "Klaus", "Kobe", "Kobi", "Kobie", "Koby", "Koda", "Kody", "Koen", "Kolby", "Kolin", "Kolton", "Konrad", "Korbin", "Korey", "Kota", "Krishna", "Kristofer", "Kristoffer", "Kristopher", "Kuron", "Kurt", "Kwanita", "Kylan", "Kyle", "Kyler", "Kyna", "Kyrene",
-    "Lachlan", "Lael", "Laird", "Lajuan", "Lale", "Lamar", "Lamont", "Lance", "Lancelot", "Landers", "Landis", "Landry", "Lane", "Lang", "Langdon", "Langer", "Langston", "Lankston", "Laron", "Larry", "Lars", "Larvall", "Lasca", "Laszlo", "Latham", "Latika", "Latimer", "Laurence", "Laurens", "Laval", "Lavan", "Lave", "Lavey", "Lavi", "Lavon", "Lavonn", "Lawrence", "Lazar", "Lazarus", "Leander", "Leavitt", "Lech", "Leda", "Ledell", "Leeto", "Lehana", "Leif", "Leimomi", "Leith", "Leland", "Leo", "Leon", "Leonard", "Leonzal", "Leopold", "Lerato", "Leroy", "Les", "Lester", "Levant", "Leverett", "Levi", "Levia", "Levon", "Lewis", "Lewon", "Lex", "Liam", "Liliha", "Lilo", "Linc", "Lincoln", "Lindon", "Lindy", "Link", "Linton", "Linus", "Lionel", "Lirit", "Lisimba", "Lisle", "Llewellyn", "Lloyd", "Locke", "Logan", "Lohn", "Lolonyo", "Lolovivi", "Lon", "Lona", "Lonato", "London", "Lonnie", "Lorcan", "Loren", "Lorenzo", "Lorimer", "Loring", "Lorne", "Lou", "Loughlin", "Louie", "Louis", "Lowell", "Luc", "Lucas", "Luce", "Lucian", "Lucius", "Lucus", "Ludlow", "Ludwig", "Luigi", "Luis", "Lukas", "Luke", "Lundy", "Luong", "Luther", "Lyde", "Lyle", "Lync", "Lynch", "Lynde", "Lyndon", "Lynne", "Lynton", "Lyre", "Lyris", "Lysander",
-     "Maarten", "Maat", "Mac", "Macha", "Mack", "Mackenzie", "Macklin", "Macon", "Maddox", "Magee", "Magnus", "Maha", "Mahari", "Mahdi", "Mahyar", "Maitland", "Major", "Makalo", "Makenna", "Malachi", "Malachy", "Malaika", "Malcolm", "Malik", "Malomo", "Malone", "Mandel", "Manica", "Manning", "Manny", "Manolatos", "Mansa", "Manuel", "Marc", "Marcel", "Marcello", "Marcellus", "Marco", "Marcos", "Marcus", "Mariatu", "Marin", "Marino", "Mario", "Mark", "Marka", "Marko", "Markus", "Marley", "Marlow", "Maro", "Marques", "Marquis", "Marshall", "Martel", "Martell", "Martin", "Marty", "Marv", "Marvene", "Marvin", "Masada", "Maselyn", "Maslin", "Mason", "Mateo", "Mathieu", "Matt", "Matteo", "Matthew", "Matthias", "Mattox", "Mauli", "Maulo", "Maurice", "Maurilio", "Maverick", "Max", "Maxim", "Maxime", "Maximilian", "Maximillian", "Maximillion", "Maxwell", "Mayes", "Maynard", "Mckale", "Mckenzie", "Mea", "Medard", "Meelao", "Meged", "Meier", "Meir", "Melchior", "Melora", "Melva", "Melvin", "Melvyn", "Mendel", "Menora", "Mercer", "Mercury", "Meria", "Merle", "Merlin", "Merrill", "Merv", "Mervin", "Mervyn", "Meryl", "Meryle", "Messina", "Meyer", "Micah", "Michael", "Micheal", "Michel", "Michiel", "Mick", "Mickey", "Miguel", "Mika", "Mikaili", "Mike", "Mikel", "Mikhail", "Milandu", "Miles", "Miller", "Mills", "Milo", "Milson", "Milt", "Milton", "Mircea", "Miroslav", "Mirza", "Misae", "Misha", "Mitch", "Mitchel", "Mitchell", "Miyanda", "Mizell", "Mohamad", "Mohammed", "Moke", "Monahan", "Monroe", "Montague", "Montana", "Monte", "Montego", "Montgomery", "Monty", "Morathi", "Mordecai", "More", "Morey", "Morgen", "Morley", "Morrie", "Morris", "Morrison", "Morse", "Mort", "Mortimer", "Morton", "Morty", "Moses", "Moshe", "Moss", "Moya", "Muhammad", "Muhammed", "Muna", "Murphy", "Murray", "Musoke", "Mutia", "Mycroft", "Mykal", "Myles", "Myron",
-       "Naal", "Nabil", "Nadav", "Nadiv", "Nahme", "Naiser", "Nakima", "Nalo", "Namir", "Napoleon", "Narcissus", "Nardo", "Nash", "Nasha", "Nasser", "Nat", "Nate", "Nathan", "Nathaniel", "Natine", "Natividad", "Natori", "Navarro", "Naveen", "Nayer", "Neal", "Ned", "Nedim", "Nedra", "Neetee", "Nehemiah", "Neil", "Nelson", "Nen", "Neriah", "Nerita", "Neriya", "Nero", "Nesbit", "Netanya", "Nevan", "Neville", "Nevin", "Newman", "Niall", "Niambi", "Nic", "Nicandro", "Niccolo", "Nicholai", "Nicholas", "Nick", "Nickel", "Nicklas", "Nickolas", "Nico", "Nicola", "Nicolas", "Niel", "Niels", "Nigel", "Nikkolas", "Nino", "Nira", "Nitara", "Noah", "Nodin", "Noelani", "Nolan", "Noland", "Noma", "Norbert", "Noriel", "Norm", "Norman", "Norris", "Norton", "Nowles", "Noya", "Nuri", "Nyako", "Nyeki", "Nyle", "Nyx",
-    "Oakes", "Oakley", "Obadiah", "Obbie", "Obed", "Obediah", "Obedience", "Oberon", "Obert", "Octavio", "Odell", "Odin", "Odysseus", "Ofer", "Ogden", "Ohad", "Ohio", "Okal", "Okapi", "Oke", "Olaf", "Oleg", "Oleh", "Olen", "Olive", "Oliver", "Olivier", "Ollie", "Omar", "Onan", "Oneal", "Oneil", "Oral", "Oran", "Orane", "Orde", "Oren", "Oria", "Orien", "Oringo", "Orion", "Orlando", "Orma", "Ormand", "Orrick", "Orrin", "Orris", "Orsen", "Orsin", "Orson", "Orval", "Orville", "Osaze", "Osborn", "Osborne", "Oscar", "Osgood", "Osias", "Oskar", "Osma", "Osmaan", "Osman", "Osmond", "Osvaldo", "Oswald", "Othello", "Othneil", "Otis", "Otomo", "Otoneil", "Otto", "Ouray", "Overton", "Ovid", "Owen", "Oz", "Ozzie",
-    "Packard", "Paco", "Padraic", "Paley", "Palti", "Pancho", "Panfila", "Paolo", "Paris", "Parker", "Parkin", "Parlan", "Parley", "Parrish", "Parry", "Parson", "Pascal", "Pascale", "Pascha", "Pasi", "Patrick", "Patton", "Paul", "Pauline", "Paulo", "Paulos", "Pax", "Paxton", "Payton", "Peale", "Pedro", "Pelham", "Pembroke", "Penn", "Pepe", "Percival", "Percy", "Peregrine", "Perrin", "Perry", "Peta", "Pete", "Peter", "Petrus", "Peyton", "Phelan", "Phemia", "Phiala", "Phil", "Phila", "Philip", "Phillip", "Phoenix", "Pierce", "Pierre", "Pieter", "Pirro", "Placido", "Platt", "Ponce", "Porter", "Potter", "Prakash", "Prentice", "Prescott", "Preston", "Price", "Primo", "Primoz", "Prince", "Princeton",
-    "Quentin", "Quenton", "Quillan", "Quimby", "Quincey", "Quincy", "Quinlan", "Quinn", "Quinta", "Quintin",
-    "Rach", "Rafe", "Raffaello", "Rafi", "Raimi", "Raleigh", "Ralph", "Ramesh", "Ramiro", "Ramon", "Ramsay", "Ramses", "Ramsey", "Ramzi", "Randal", "Randall", "Randin", "Randle", "Randolph", "Randy", "Ranit", "Ransford", "Ransom", "Raphael", "Rashad", "Rasheed", "Rashid", "Rashida", "Raul", "Ravi", "Rawlin", "Rawlins", "Ray", "Rayce", "Raymond", "Raymonde", "Raynon", "Read", "Reagan", "Red", "Redford", "Reece", "Reed", "Reese", "Reeves", "Reginald", "Reid", "Reilly", "Reily", "Reinhard", "Reinhart", "Remedy", "Remington", "Remond", "Remy", "Renato", "Rennie", "Renny", "Reno", "Reth", "Reuben", "Revelin", "Rex", "Rey", "Reynard", "Reynold", "Reynoldo", "Rhett", "Rhodes", "Rhys", "Ric", "Ricardo", "Rice", "Rich", "Richard", "Ricjunette", "Rick", "Rickey", "Ricky", "Rico", "Rider", "Riely", "Rigoberto", "Riko", "Rileigh", "Ringo", "Riordan", "Rob", "Robert", "Rocco", "Rock", "Rockford", "Rockne", "Rocky", "Rod", "Rodd", "Roddy", "Roderick", "Rodger", "Rodney", "Rodrigo", "Rodrigue", "Rodrigues", "Rodriguez", "Rogan", "Roger", "Rohan", "Roland", "Rolando", "Rolf", "Rolin", "Rollin", "Rollins", "Rollo", "Roma", "Roman", "Romeo", "Romulo", "Romulus", "Ron", "Ronald", "Ronan", "Ronat", "Rondel", "Rondell", "Roni", "Ronli", "Ronnie", "Ronny", "Roosevelt", "Rorey", "Rori", "Rory", "Ross", "Rowan", "Rowdy", "Roy", "Royce", "Ruairidh", "Ruarai", "Ruben", "Rudolf", "Rudolph", "Rudra", "Rudy", "Rueben", "Rupert", "Russ", "Russom", "Rusti", "Rusty", "Ryan", "Ryker", "Rylan", "Ryley", "Rylie", "Ryne",
-     "Sabino", "Sacha", "Saddam", "Salal", "Salome", "Salvador", "Salvator", "Sam", "Sameer", "Samir", "Sampson", "Samson", "Samuel", "Sandro", "Sanford", "Santana", "Santiago", "Saul", "Sawyer", "Schafer", "Schuylar", "Schuyler", "Scott", "Seamus", "Sean", "Sebastian", "Selwyn", "Sepp", "Serge", "Sergei", "Sergio", "Seth", "Sethe", "Severa", "Severas", "Shadi", "Shadoe", "Shadow", "Shady", "Shaeffer", "Shakil", "Shaman", "Shane", "Shaquille", "Shaw", "Shawn", "Shelby", "Sheldon", "Shelton", "Sheridan", "Sherill", "Sherman", "Sherril", "Sherwin", "Shilo", "Shiloh", "Siddharta", "Sidney", "Siegfried", "Sigfred", "Sigmund", "Silvano", "Silvester", "Silvio", "Simeon", "Simon", "Skeet", "Skeeter", "Skipper", "Skylar", "Skyler", "Slade", "Sloan", "Sloane", "Sly", "Socrates", "Sol", "Solomon", "Solon", "Sonny", "Speedy", "Spencer", "Spiridion", "Stan", "Stanford", "Stanislaw", "Stanley", "Stanton", "Stavros", "Steel", "Steele", "Stefan", "Stefano", "Stephen", "Sterling", "Sterlington", "Steve", "Steven", "Stewart", "Stiles", "Stone", "Stonewall", "Storm", "Stuart", "Styles", "Sullivan", "Sumner", "Suraj", "Sutton", "Sven", "Syrus",
-    "Tad", "Tai", "Takeya", "Talbot", "Tallulah", "Talon", "Tamid", "Tamzen", "Tanner", "Tarance", "Tarek", "Tarrance", "Tavis", "Tavish", "Taylor", "Taz", "Ted", "Teman", "Temani", "Tempest", "Temple", "Terence", "Terrell", "Terrence", "Tevye", "Thaddeus", "Than", "Thaniel", "Thayne", "Theo", "Theobald", "Theodore", "Theodoric", "Theophilus", "Theron", "Thom", "Thomas", "Thomson", "Thor", "Thorburn", "Thorin", "Thorstan", "Thorsten", "Thorston", "Thurston", "Tiago", "Tibor", "Tierry", "Tiger", "Tim", "Timeus", "Timon", "Timothy", "Tito", "Titus", "Tivoli", "Toal", "Tobias", "Toby", "Todd", "Tom", "Tommy", "Tony", "Tor", "Torin", "Torleif", "Torsten", "Trace", "Tranter", "Travis", "Trayc", "Tre", "Trefor", "Tremaine", "Tremayne", "Trent", "Trenton", "Trever", "Trevis", "Trevor", "Trey", "Trinidad", "Tristan", "Tristen", "Tristram", "Troy", "Truman", "Tuan", "Tucker", "Tulio", "Tully", "Turner", "Twain", "Ty", "Tye", "Tyler", "Tylor", "Tym", "Tyree", "Tyrel", "Tyrell", "Tyrese", "Tyrone", "Tysen", "Tyson",
-    "Ugo", "Uilliam", "Uland", "Ulandus", "Ulf", "Ulises", "Ulliem", "Ulric", "Ulrich", "Ultan", "Ulysses", "Umberto", "Uri", "Uriah", "Uriel", "Urien", "Ushma", "Uthman",
-    "Valdemar", "Valente", "Valentine", "Vallis", "Van", "Vance", "Vander", "Vandyke", "Vani", "Vasilios", "Vasilis", "Vaughan", "Vaughn", "Vern", "Vernon", "Victor", "Victori", "Vilmar", "Vinal", "Vincent", "Vinson", "Virgil", "Virgilio", "Vivek", "Vladilen", "Vladimir", "Vladislav", "Volker", "Volodymyr", "Vulcan",
-    "Wade", "Waldo", "Walker", "Wallace", "Wally", "Walter", "Walton", "Waltraud", "Wang", "Warren", "Washington", "Wayman", "Waymon", "Waymond", "Wayne", "Wendell", "Werner", "Wes", "Wesley", "Westin", "Westney", "Weston", "Whitfield", "Wil", "Wilbur", "Wiley", "Wilfred", "Wilfrid", "Wilfried", "Wilhelm", "Wilhelmien", "Will", "Willard", "Willem", "William", "Willie", "Willis", "Wilmer", "Wilmot", "Wilson", "Winifred", "Winston", "Winthrop", "Wolf", "Wolfe", "Wolff", "Wolffe", "Wolfgang", "Wolfram", "Woodrow", "Woody", "Wright", "Wyatt", "Wyeth",
-       "Xander", "Xavier", "Xylon",
-    "Yakov", "Yan", "Yann", "Yannic", "Yannis", "Yari", "Yasir", "Yasser", "Yevgeniy", "Yevgenyi", "Yitzhak", "Yong", "York", "Yoshi", "Yuri", "Yuriy", "Yves",
-    "Zach", "Zachariah", "Zachary", "Zachery", "Zack", "Zackary", "Zaid", "Zandy", "Zane", "Zavier", "Zayd", "Zeb", "Zebadiah", "Zebulon", "Zedekiah", "Zeke", "Zen", "Zeno", "Zenon", "Zephyr", "Ziggy", "Zimraan", "Zuriel"
-    ];
+        // Max number of items shown at once
+        if (arguments[2] != null) {
+            suggestionListObj['maxitems'] = arguments[2];
+            suggestionListObj['firstItemShowing'] = 0;
+            suggestionListObj['lastItemShowing'] = arguments[2] - 1;
+        }
 
-    new autoComplete(aNames, document.getElementById('txt'), document.getElementById('suggest'), 10);
+        Autosuggest.CreateDropdown(suggestionListObj);
+
+        // Prevent select dropdowns showing thru
+
+    },
+
+
+    /**
+    * Creates the dropdown layer
+    * 
+    * @param string id The form elements id. Used to identify the correct dropdown.
+    */
+
+    CreateDropdown: function (suggestionListObj) {
+        var left = this.GetLeft(suggestionListObj['element']);
+        var top = this.GetTop(suggestionListObj['element']) + suggestionListObj['element'].offsetHeight;
+        var width = suggestionListObj['element'].offsetWidth;
+
+        suggestionListObj['dropdown'] = document.createElement('div');
+        suggestionListObj['dropdown'].className = 'autocomplete'; // Don't use setAttribute()
+
+        suggestionListObj['element'].parentNode.insertBefore(suggestionListObj['dropdown'], suggestionListObj['element']);
+
+        // Position it
+        suggestionListObj['dropdown'].style.left = left + 'px';
+        suggestionListObj['dropdown'].style.top = top + 'px';
+        suggestionListObj['dropdown'].style.width = width + 'px';
+        suggestionListObj['dropdown'].style.zIndex = '99';
+        suggestionListObj['dropdown'].style.visibility = 'hidden';
+    },
+
+
+    /**
+    * Gets left coord of given element
+    * 
+    * @param object element The element to get the left coord for
+    */
+    
+    GetLeft: function(element) {
+    var curNode = element;
+    var left = 0;
+
+    do {
+    left += curNode.offsetLeft;
+    curNode = curNode.offsetParent;
+
+    } while (curNode.tagName.toLowerCase() != 'body');
+
+    return left;
+    },
+
+
+    /**
+    * Gets top coord of given element
+    * 
+    * @param object element The element to get the top coord for
+    */
+
+    GetTop: function (element) {
+        var curNode = element;
+        var top = 0;
+
+        do {
+            top += curNode.offsetTop;
+            curNode = curNode.offsetParent;
+
+        } while (curNode.tagName.toLowerCase() != 'body');
+
+        return top;
+    },
+
+
+    /**
+    * Shows the dropdown layer
+    * 
+    * @param string id The form elements id. Used to identify the correct dropdown.
+    */
+
+    ShowDropdown: function (suggestionListObj) {
+        this.HideDropdown(suggestionListObj);
+
+        var value = suggestionListObj['element'].value;
+        var toDisplay = new Array();
+        var newDiv = null;
+        var text = null;
+        var numItems = suggestionListObj['dropdown'].childNodes.length;
+
+        // Remove all child nodes from dropdown
+        while (suggestionListObj['dropdown'].childNodes.length > 0) {
+            suggestionListObj['dropdown'].removeChild(suggestionListObj['dropdown'].childNodes[0]);
+        }
+
+        // Go thru data searching for matches
+        for (i = 0; i < suggestionListObj['data'].length; ++i) {
+            if (suggestionListObj['data'][i].toLowerCase().indexOf(value) >= 0) {
+                toDisplay[toDisplay.length] = suggestionListObj['data'][i];
+            }
+        }
+
+        // No matches?
+        if (toDisplay.length == 0) {
+            this.HideDropdown(suggestionListObj);
+            return;
+        }
+
+
+        // Add data to the dropdown layer
+        for (i = 0; i < toDisplay.length; ++i) {
+            newDiv = document.createElement('div');
+            newDiv.className = 'autocomplete_item'; // Don't use setAttribute()
+            newDiv.setAttribute('id', 'autocomplete_item_' + i);
+            newDiv.setAttribute('index', i);
+            newDiv.style.zIndex = '99';
+
+            // Scrollbars are on display ?
+            if (toDisplay.length > suggestionListObj['maxitems'] && navigator.userAgent.indexOf('MSIE') == -1) {
+                newDiv.style.width = suggestionListObj['element'].offsetWidth - 22 + 'px';
+            }
+
+            newDiv.onmouseover = function () {
+                 Autosuggest.HighlightItem(suggestionListObj, this.getAttribute('index'));
+            };
+            newDiv.onclick = function () {
+                Autosuggest.SetValue(suggestionListObj);
+                Autosuggest.HideDropdown(suggestionListObj);
+            };
+
+            text = document.createTextNode(toDisplay[i]);
+            newDiv.appendChild(text);
+
+            suggestionListObj['dropdown'].appendChild(newDiv);
+        }
+
+
+        // Too many items?
+        if (toDisplay.length > suggestionListObj['maxitems']) {
+            suggestionListObj['dropdown'].style.height = (suggestionListObj['maxitems'] * 15) + 2 + 'px';
+
+        } else {
+            suggestionListObj['dropdown'].style.height = '';
+        }
+
+
+        /**
+        * Set left/top in case of document movement/scroll/window resize etc
+        */
+        suggestionListObj['dropdown'].style.left = this.GetLeft(suggestionListObj['element']);
+        suggestionListObj['dropdown'].style.top = this.GetTop(suggestionListObj['element']) + suggestionListObj['element'].offsetHeight;
+
+        /*
+        // Show the iframe for IE
+        if (isIE) {
+        suggestionListObj['iframe'].style.top = __AutoComplete[id]['dropdown'].style.top;
+        suggestionListObj['iframe'].style.left = __AutoComplete[id]['dropdown'].style.left;
+        suggestionListObj['iframe'].style.width = __AutoComplete[id]['dropdown'].offsetWidth;
+        suggestionListObj['iframe'].style.height = __AutoComplete[id]['dropdown'].offsetHeight;
+
+        suggestionListObj['iframe'].style.visibility = 'visible';
+        }*/
+
+
+        // Show dropdown
+        if (!suggestionListObj['isVisible']) {
+            suggestionListObj['dropdown'].style.visibility = 'visible';
+            suggestionListObj['isVisible'] = true;
+        }
+
+
+        // If now showing less items than before, reset the highlighted value
+        if (suggestionListObj['dropdown'].childNodes.length != numItems) {
+            suggestionListObj['highlighted'] = null;
+        }
+    },
+
+
+    /**
+    * Hides the dropdown layer
+    * 
+    * @param string id The form elements id. Used to identify the correct dropdown.
+    */
+
+    HideDropdown: function (suggestionListObj) {
+        /*if (__AutoComplete[id]['iframe']) {
+        __AutoComplete[id]['iframe'].style.visibility = 'hidden';
+        }*/
+
+
+        suggestionListObj['dropdown'].style.visibility = 'hidden';
+        suggestionListObj['highlighted'] = null;
+        suggestionListObj['isVisible'] = false;
+    },
+
+
+    /**
+    * Hides all dropdowns
+    */
+    /*
+    HideAll: function() {
+    for (id in suggestionListObj) {
+    this.HideDropdown(id);
+    }
+    },*/
+
+
+    /**
+    * Highlights a specific item
+    * 
+    * @param string id    The form elements id. Used to identify the correct dropdown.
+    * @param int    index The index of the element in the dropdown to highlight
+    */
+
+    HighlightItem: function (suggestionListObj, index) {
+        if (suggestionListObj['dropdown'].childNodes[index]) {
+            for (var i = 0; i < suggestionListObj['dropdown'].childNodes.length; ++i) {
+                if (suggestionListObj['dropdown'].childNodes[i].className == 'autocomplete_item_highlighted') {
+                    suggestionListObj['dropdown'].childNodes[i].className = 'autocomplete_item';
+                }
+            }
+
+            suggestionListObj['dropdown'].childNodes[index].className = 'autocomplete_item_highlighted';
+            suggestionListObj['highlighted'] = index;
+        }
+    },
+
+
+    /**
+    * Highlights the menu item with the given index
+    * 
+    * @param string id    The form elements id. Used to identify the correct dropdown.
+    * @param int    index The index of the element in the dropdown to highlight
+    */
+
+    Highlight: function (suggestionListObj, index) {
+        // Out of bounds checking
+        if (index == 1 && suggestionListObj['highlighted'] == suggestionListObj['dropdown'].childNodes.length - 1) {
+            suggestionListObj['dropdown'].childNodes[suggestionListObj['highlighted']].className = 'autocomplete_item';
+            suggestionListObj['highlighted'] = null;
+
+        } else if (index == -1 && suggestionListObj['highlighted'] == 0) {
+            suggestionListObj['dropdown'].childNodes[0].className = 'autocomplete_item';
+            suggestionListObj['highlighted'] = suggestionListObj['dropdown'].childNodes.length;
+        }
+
+        // Nothing highlighted at the moment
+        if (suggestionListObj['highlighted'] == null) {
+            suggestionListObj['dropdown'].childNodes[0].className = 'autocomplete_item_highlighted';
+            suggestionListObj['highlighted'] = 0;
+
+        } else {
+            if (suggestionListObj['dropdown'].childNodes[suggestionListObj['highlighted']]) {
+                suggestionListObj['dropdown'].childNodes[suggestionListObj['highlighted']].className = 'autocomplete_item';
+            }
+
+            var newIndex = suggestionListObj['highlighted'] + index;
+
+            if (suggestionListObj['dropdown'].childNodes[newIndex]) {
+                suggestionListObj['dropdown'].childNodes[newIndex].className = 'autocomplete_item_highlighted';
+
+                suggestionListObj['highlighted'] = newIndex;
+            }
+        }
+    },
+
+
+    /**
+    * Sets the input to a given value
+    * 
+    * @param string id    The form elements id. Used to identify the correct dropdown.
+    */
+
+    SetValue: function (suggestionListObj) {
+        suggestionListObj['element'].value = suggestionListObj['dropdown'].childNodes[suggestionListObj['highlighted']].innerHTML;
+    },
+
+
+    /**
+    * Checks if the dropdown needs scrolling
+    * 
+    * @param string id    The form elements id. Used to identify the correct dropdown.
+    */
+
+    ScrollCheck: function (suggestionListObj) {
+        // Scroll down, or wrapping around from scroll up
+        if (suggestionListObj['highlighted'] > suggestionListObj['lastItemShowing']) {
+            suggestionListObj['firstItemShowing'] = suggestionListObj['highlighted'] - (suggestionListObj['maxitems'] - 1);
+            suggestionListObj['lastItemShowing'] = suggestionListObj['highlighted'];
+        }
+
+        // Scroll up, or wrapping around from scroll down
+        if (suggestionListObj['highlighted'] < suggestionListObj['firstItemShowing']) {
+            suggestionListObj['firstItemShowing'] = suggestionListObj['highlighted'];
+            suggestionListObj['lastItemShowing'] = suggestionListObj['highlighted'] + (suggestionListObj['maxitems'] - 1);
+        }
+
+        suggestionListObj['dropdown'].scrollTop = suggestionListObj['firstItemShowing'] * 15;
+    },
+
+
+    /**
+    * Function which handles the keypress event
+    * 
+    * @param string id    The form elements id. Used to identify the correct dropdown.
+    */
+
+    KeyDown: function (suggestionListObj) {
+        /*// Mozilla
+        if (arguments[1] != null) {
+        event = arguments[1];
+        }*/
+
+        var keyCode = event.keyCode;
+
+        switch (keyCode) {
+            // Return/Enter   
+            case 13:
+                if (suggestionListObj['highlighted'] != null) {
+                    this.SetValue(suggestionListObj);
+                    this.HideDropdown(suggestionListObj);
+                }
+
+                event.returnValue = false;
+                event.cancelBubble = true;
+                break;
+            // Escape   
+            case 27:
+                this.HideDropdown(suggestionListObj);
+                event.returnValue = false;
+                event.cancelBubble = true;
+                break;
+            // Up arrow   
+            case 38:
+                if (!suggestionListObj['isVisible']) {
+                    this.ShowDropdown(suggestionListObj);
+                }
+
+                this.Highlight(suggestionListObj, -1);
+                this.ScrollCheck(suggestionListObj, -1);
+                return false;
+                break;
+            // Tab   
+            case 9:
+                if (suggestionListObj['isVisible']) {
+                    this.HideDropdown(suggestionListObj);
+                }
+                return;
+                // Down arrow
+            case 40:
+                if (!suggestionListObj['isVisible']) {
+                    this.ShowDropdown(suggestionListObj);
+                }
+
+                this.Highlight(suggestionListObj, 1);
+                this.ScrollCheck(suggestionListObj, 1);
+                return false;
+                break;
+        }
+    },
+
+
+    /**
+    * Function which handles the keyup event
+    * 
+    * @param string id    The form elements id. Used to identify the correct dropdown.
+    */
+
+    KeyUp: function (suggestionListObj) {
+        /*// Mozilla
+        if (arguments[1] != null) {
+        event = arguments[1];
+        }*/
+
+        var keyCode = event.keyCode;
+
+        switch (keyCode) {
+            case 13:
+                event.returnValue = false;
+                event.cancelBubble = true;
+                break;
+            case 27:
+                this.HideDropdown(suggestionListObj);
+                event.returnValue = false;
+                event.cancelBubble = true;
+                break;
+            case 38:
+            case 40:
+                return false;
+                break;
+            default:
+                this.ShowDropdown(suggestionListObj);
+                break;
+        }
+    },
+
+    /**
+    * Returns whether the dropdown is visible
+    * 
+    * @param string id    The form elements id. Used to identify the correct dropdown.
+    */
+
+    isVisible: function (suggestionListObj) {
+        return suggestionListObj['dropdown'].style.visibility == 'visible';
+    }
 }

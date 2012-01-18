@@ -32,10 +32,19 @@ namespace CourseAplicationMVC.Controllers
             return View(fucListToReturn);
         }
 
+
+        //find utilizado com o autocomplete da biblioteca JQuery
         [HttpPost]
         public ActionResult Find(string term)
         {
             string[] fucsWithSearchTerm = _repo.FindFucName(term);
+            return Json(fucsWithSearchTerm, JsonRequestBehavior.AllowGet);
+        }
+
+        //find utilizado para autosuggest implementado de raíz
+        public ActionResult FindAllFucNames()
+        {
+            string[] fucsWithSearchTerm = _repo.GetAllFucNames();
             return Json(fucsWithSearchTerm, JsonRequestBehavior.AllowGet);
         }
     }

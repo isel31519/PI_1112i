@@ -83,6 +83,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AutoComplete.css" />
     <Content Include="Content\jquery-ui-1.8.16.custom.css" />
     <Content Include="Content\themes\base\images\ui-anim_basic_16x16.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
