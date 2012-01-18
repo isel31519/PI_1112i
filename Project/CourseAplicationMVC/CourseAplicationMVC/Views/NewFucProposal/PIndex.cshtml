@@ -4,12 +4,9 @@
     ViewBag.Title = "title";
 }
 
-<tr>
-            <th class="order">Proposal</th>
-            <th class="order">Acronym</th>
-            <th class="order">Creator</th>
-            <th class="order">Aproval</th>
-        </tr>
+
+
+        <tbody id="elems">
         @foreach (var f in Model)
         {
         
@@ -30,3 +27,4 @@
                 </td>
             </tr>  
         }
+</tbody>

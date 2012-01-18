@@ -80,6 +80,10 @@
     <Compile Include="Models\RegisterUserModel.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\UserProfileModel.cs" />
+    <Compile Include="Ordenation\FucOrdenation.cs" />
+    <Compile Include="Ordenation\IOrdenation.cs" />
+    <Compile Include="Ordenation\ProposalOrdenation.cs" />
+    <Compile Include="Ordenation\ResolveOrdenationType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

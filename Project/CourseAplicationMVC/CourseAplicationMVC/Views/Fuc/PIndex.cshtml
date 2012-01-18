@@ -3,16 +3,11 @@
 @{
     ViewBag.Title = "title";
 }
-    <thead>
-    <tr><th class="order">Fuc Name </th></tr>
-    </thead>
-    <tbody>
-
+<tbody id="elems">
         @foreach (var f in Model){
             <tr>
                 <td> <a href=@Url.Action("Detail", "Fuc",new { @id = f.Acr }) class="detailer">@f.Name</a></td>
             </tr>
         }
-        
-     </tbody>
+         </tbody>  
         
