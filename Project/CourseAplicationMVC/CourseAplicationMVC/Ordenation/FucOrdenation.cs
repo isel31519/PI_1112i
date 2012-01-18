@@ -32,4 +32,17 @@ namespace CourseAplicationMVC.Ordenation
                   array.OrderByDescending(n => n.Name).ToList();
          }
     }
+
+    public class AcronymOrdenation : FucOrdenation
+    {
+        public AcronymOrdenation(Fuc[] ar)
+            : base(ar)
+        {
+        }
+        public override IEnumerable<Fuc> Order(ResolveOrdenationType.OrderType type)
+        {
+            return type == ResolveOrdenationType.OrderType.Ascending ? array.OrderBy(n => n.Acr).ToList() :
+                 array.OrderByDescending(n => n.Acr).ToList();
+        }
+    }
 }
