@@ -37,6 +37,7 @@ namespace CourseAplicationMVC.Controllers
             {
 
                 _sort.Add("Fuc Name", new NameOrdenation(array));
+                _sort.Add("Fuc Acr", new AcronymOrdenation(array));
                 IOrdenation<Fuc> sort;
                 _sort.TryGetValue(orderby, out sort);
                 IEnumerable<Fuc> list;

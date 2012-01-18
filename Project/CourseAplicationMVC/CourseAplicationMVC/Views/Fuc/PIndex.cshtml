@@ -7,6 +7,7 @@
         @foreach (var f in Model){
             <tr>
                 <td> <a href=@Url.Action("Detail", "Fuc",new { @id = f.Acr }) class="detailer">@f.Name</a></td>
+                <td> <a href=@Url.Action("Detail", "Fuc",new { @id = f.Acr }) class="detailer">@f.Acr</a></td>
             </tr>
         }
          </tbody>  
