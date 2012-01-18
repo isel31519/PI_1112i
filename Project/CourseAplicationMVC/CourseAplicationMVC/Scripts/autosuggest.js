@@ -48,25 +48,10 @@ Autosuggest =
         }
 
 
-        /*// Max number of items shown at once
-        if (arguments[2] != null) {
-            suggestionListObj['maxitems'] = arguments[2];
-            suggestionListObj['firstItemShowing'] = 0;
-            suggestionListObj['lastItemShowing'] = arguments[2] - 1;
-        }*/
-
         Autosuggest.CreateDropdown(suggestionListObj);
-
-        // Prevent select dropdowns showing thru
 
     },
 
-
-    /**
-    * Creates the dropdown layer
-    * 
-    * @param string id The form elements id. Used to identify the correct dropdown.
-    */
 
     CreateDropdown: function (suggestionListObj) {
         var left = this.GetLeft(suggestionListObj['element']);
@@ -78,7 +63,7 @@ Autosuggest =
 
         suggestionListObj['element'].parentNode.insertBefore(suggestionListObj['dropdown'], suggestionListObj['element']);
 
-        // Position it
+        //alterar posição de menu dropdown com valores obtidos
         suggestionListObj['dropdown'].style.left = left + 'px';
         suggestionListObj['dropdown'].style.top = top + 'px';
         suggestionListObj['dropdown'].style.width = width + 'px';
@@ -87,14 +72,9 @@ Autosuggest =
     },
 
 
-    /**
-    * Gets left coord of given element
-    * 
-    * @param object element The element to get the left coord for
-    */
     
-    GetLeft: function(element) {
-    var curNode = element;
+    GetLeft: function(elemRef) {
+    var curNode = elemRef;
     var left = 0;
 
     do {
@@ -107,16 +87,9 @@ Autosuggest =
     },
 
 
-    /**
-    * Gets top coord of given element
-    * 
-    * @param object element The element to get the top coord for
-    */
-
-    GetTop: function (element) {
-        var curNode = element;
+    GetTop: function (elemRef) {
+        var curNode = elemRef;
         var top = 0;
-
         do {
             top += curNode.offsetTop;
             curNode = curNode.offsetParent;
@@ -126,12 +99,6 @@ Autosuggest =
         return top;
     },
 
-
-    /**
-    * Shows the dropdown layer
-    * 
-    * @param string id The form elements id. Used to identify the correct dropdown.
-    */
 
     ShowDropdown: function (suggestionListObj) {
         this.HideDropdown(suggestionListObj);
