@@ -1,11 +1,10 @@
 
-$(document).ready(function () { /*Autosuggest.Initialize(); });*/
+$(document).ready(function () {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "/Search/FindAllFucNames");
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            var data = JSON.parse(xhr.responseText);
-            Autosuggest.Initialize(data);
+            Autosuggest.Initialize(JSON.parse(xhr.responseText));
         }
     };
     xhr.send(null);
@@ -23,7 +22,7 @@ Autosuggest =
             'highlighted': null
         };
 
-        suggestionListObj['element'].setAttribute('autocomplete', 'off');
+        suggestionListObj['element'].setAttribute('autocomplete', 'off'); //inibir atributo autocomplete de tag input
         suggestionListObj['element'].onkeydown = function (e) { return Autosuggest.KeyDown(suggestionListObj, e); };
         suggestionListObj['element'].onkeyup = function (e) { return Autosuggest.KeyUp(suggestionListObj, e); };
         suggestionListObj['element'].onkeypress = function (e) {
@@ -37,7 +36,7 @@ Autosuggest =
             e.returnValue = false;
         };
 
-        // Hides the dropdowns when document clicked
+        //esconder o menu de dropdown quando página clicada
         var docClick = function () {
             Autosuggest.HideDropdown(suggestionListObj);
         };
@@ -49,12 +48,12 @@ Autosuggest =
         }
 
 
-        // Max number of items shown at once
+        /*// Max number of items shown at once
         if (arguments[2] != null) {
             suggestionListObj['maxitems'] = arguments[2];
             suggestionListObj['firstItemShowing'] = 0;
             suggestionListObj['lastItemShowing'] = arguments[2] - 1;
-        }
+        }*/
 
         Autosuggest.CreateDropdown(suggestionListObj);
 
