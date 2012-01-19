@@ -89,6 +89,7 @@
   <ItemGroup>
     <Content Include="Content\Body.css" />
     <Content Include="Content\jquery-ui-1.8.16.custom.css" />
+    <Content Include="Content\themes\base\images\ISEL_03_mod_355x60.png" />
     <Content Include="Content\themes\base\images\ui-anim_basic_16x16.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
