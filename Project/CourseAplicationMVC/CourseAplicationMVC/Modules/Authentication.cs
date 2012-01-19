@@ -28,11 +28,12 @@ namespace CourseAplicationMVC.Modules
                         if (ticket != null && !ticket.Expired)
                         {
                             context.User = new GenericPrincipal(new GenericIdentity(ticket.Name), null);
-                        }
+                        } else 
+                            context.User = null;
                     }
                 }
                 else
-                 context.User = new GenericPrincipal(new GenericIdentity(""), null);
+                 context.User = null;
             }
         }
 

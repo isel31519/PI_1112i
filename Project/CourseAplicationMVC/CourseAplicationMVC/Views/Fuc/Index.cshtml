@@ -14,12 +14,28 @@
 
  @Html.Partial("Pagination")
  </div>
+ <div>
+ <table class="elems_table">
+ <tbody>
+ <tr><td>
+ <ul>
+     <li class="elems_table_first">
+        <table>
+            <thead>
+                 <tr><th class="order">Fuc Name</th>
+                <th class="order">Fuc Acr</th></tr>
+            </thead>  
+            <tbody id="elems">
+             @Html.Partial("PIndex")
+            </tbody>  
+        </table>
+      </li>
 
-    <table>
-        <thead>
-    <tr><th class="order">Fuc Name</th>
-    <th class="order">Fuc Acr</th></tr>
-    </thead>  
-   @Html.Partial("PIndex")
+ 
+    <li class="elems_table_second"> <div id="showDetail"></div></li>
+ </ul>
+    </td>
+    </tr>
+     </tbody> 
     </table>
-    <div id="showDetail"></div>
+ </div>
