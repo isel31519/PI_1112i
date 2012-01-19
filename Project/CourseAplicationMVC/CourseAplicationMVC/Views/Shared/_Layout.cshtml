@@ -16,7 +16,7 @@
     <script src="../../Scripts/orderby.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../Scripts/AccordionScript.js"></script>
  
- <script type"text/javascript">
+ <script type="text/javascript">
      $.ajaxSetup({ type: "post" });
      $(document).ready(function () {
          $("input#searchQuery").autocomplete({
@@ -108,8 +108,7 @@
                      @using (Html.BeginForm("Index", "Search", FormMethod.Post))
                         {
                         
-                         <input type="text" id="searchQuery" name="query"/>
-                        //@Html.TextBox("searchQuery");
+                            <input value="Search" type="text" id="searchQuery" name="query" onclick="value=''"/>
                             <input type="submit" value="Go"/>
                             <div id="autosuggest"><ul></ul></div>
                         }

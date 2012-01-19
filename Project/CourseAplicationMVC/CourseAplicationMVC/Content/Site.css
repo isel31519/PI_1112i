@@ -23,7 +23,7 @@
     font-family: Tahoma;
     font-size: 8pt;
     background-color: rgb(245, 244, 244);
-    border: 1px solid black;
+    border: 3px solid rgb(192, 189, 189);
     position: absolute;
     cursor: default;
     overflow: auto;
@@ -33,7 +33,7 @@
 .autocomplete_item {
     padding: 1px;
     padding-left: 5px;
-    color: black;
+    color: rgb(167, 41, 41);
     width: 100%;
 }
 
