@@ -12,7 +12,10 @@
     padding: 20px;*/
     background-color: white;
 }
-/*.page_content_sub{border: 1px solid #444; padding: 5px; background:#333;margin: 0 auto; margin-top: -230px;}*/
+.page_content a
+{
+    color: brown;
+}
 
 .page_content_body {
    border: 3px solid darkgray; 
@@ -21,7 +24,57 @@
     margin: 0 auto;
     
 }
+ 
+#pager {
+    float: left;
+     width:100%;
+    
+}
+#pages 
+{
+     width:100%;
+    float: left;
+    
+}
 
+.pages_table{
+    width: 100%;
+    border:0;
+}
+
+.pages_table ul
+{
+    padding:0;
+    margin:0; 
+    width:100%;
+    }
+
+
+.pages_table ul li {
+
+     list-style-type:none;
+     float:left; 
+     margin:4px 4px 4px 0px;
+     line-height:25px; 
+     text-align:center;
+     font-size:80%;
+     color:#fff;
+     background-color:#5c6262; 
+     border-radius: 5px;
+     min-width: 40px;
+}
+ .pages_table input,.pages_table select{
+     font-size:90%;
+ }
+.pages_table ul li a {
+    
+    background-color: #CCC;
+    display: block;
+}
+#selector {
+    float: left;
+    
+}
 
 /* Styles for basic forms
 -----------------------------------------------------------*/

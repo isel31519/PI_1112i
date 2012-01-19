@@ -45,18 +45,10 @@
 }
 
 
-
-
-
-
-
-/*------------------------------------------------------------------------
+/*
  Layout Stylesheet
- ------------------------------------------------------------------------*/
+*/
 
-
-/* Global Properties
- ------------------------------------------------------------------------*/
 html, body { height:100%;}
 body {
 	font-family:Arial, Helvetica, sans-serif;
@@ -64,10 +56,14 @@ body {
 	line-height:20px;
 	font-weight:normal;
 	text-align:left;
-	color:#999;
 	background:#333
 }
 
+a {
+    text-decoration: none;
+    color: darkgray;
+    cursor:pointer;
+}
 
 /* Header
  ------------------------------------------------------------------------*/
@@ -80,6 +76,7 @@ body {
 	width:100%;
 	min-width: 1000px;
 	position: absolute;
+	color:#999;
 
 }
 .fixed { position:absolute; }
@@ -149,17 +146,10 @@ body {
 .dropmenu a
 
 {
-
 	display: block;
-
-	color: #000;
-
-	text-decoration: none;
 	color: #999;
-    cursor:pointer;
-	
 }
-.dropmenu a:hover, .register a:hover {
+.dropmenu a:hover, .register a:hover,a:hover {
 
     background:#3c556c;
     
@@ -220,13 +210,14 @@ body {
         text-align:center; 
         text-transform:uppercase; 
         font-size:10px;
+        color:#999;
 }
 
 .register_users_stats{ color: #990;}
 
 #search 
 {
-    
+    color:#999;
     background: #111;
     margin-top: 25px;
     height: 29px;
@@ -234,4 +225,14 @@ body {
     border: 1px solid #252525;
     outline: 5px solid #181818;
     border-radius: 3px; -moz-border-radius: 3px;
+}
+
+.footer {
+    background: #ddd; 
+    height: 35px;
+     padding: 5px; 
+     text-align:center;  
+     font-size:9px; 
+     color: #666; 
+     text-transform:uppercase
 }

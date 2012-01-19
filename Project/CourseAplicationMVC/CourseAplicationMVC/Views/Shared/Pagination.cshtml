@@ -3,17 +3,24 @@
 }
 
    <div id="pages">
-        <div>Page <input id="pageinput" type="text" style="width:15px;" value="@ViewData["page"]"> of <span id="totalp"></span></div>
+   <table class="pages_table">
+   <tbody>
+   <tr>
+   <td><ul>
+       <li> Page <input id="pageinput" type="text" style="width:15px;" value="@ViewData["page"]"> of <span id="totalp"></span></li>
          <div id="selector">
-             <a href="?page=@ViewData["pageprev"]&itemsnumber=@ViewData["itemsnumber"]" id="prev" >prev</a>
-             <a href="?page=@ViewData["pagenext"]&itemsnumber=@ViewData["itemsnumber"]" id="next" >next</a>
+             <li><a href="?page=@ViewData["pageprev"]&itemsnumber=@ViewData["itemsnumber"]" id="prev" >prev</a></li>
+             <li><a href="?page=@ViewData["pagenext"]&itemsnumber=@ViewData["itemsnumber"]" id="next" >next</a></li>
          </div>
-         <div>Results Per Page:
+        <li> Results Per Page:
          <select id="DisplayNum">
             <option selected="selected" value="5">5</option>
             <option  value="10">10</option>
             <option value="20">20</option>
             <option value="30">30</option>  
-         </select>
-         </div>
+         </select></li>
+         </ul></td>
+         </tr>
+         </tbody>
+      </table>
     </div>
