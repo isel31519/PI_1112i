@@ -16,8 +16,13 @@
  </div>
 
  
-<div>
-   <table border="1">
+ <div>
+ <table class="elems_table">
+ <tbody>
+ <tr><td>
+ <ul>
+     <li class="elems_table_first">
+        <table>
    
         <tr>
             <th class="order">Proposal</th>
@@ -27,6 +32,13 @@
         </tr>
     @Html.Partial("PIndex")
     </table>
-</div>
- <div id="showDetail"></div>
+      </li>
 
+ 
+    <li class="elems_table_second"> <div id="showDetail"></div></li>
+ </ul>
+    </td>
+    </tr>
+     </tbody> 
+    </table>
+ </div>
