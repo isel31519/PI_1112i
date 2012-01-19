@@ -5,50 +5,37 @@
     //$('#pageinput').val(1);
     $('#totalp').text(totalp);
     //events:
+
     $('#paging').click(function (e) {
-        e.preventDefault();
-
-        var value = $(this).text();
-        if (value == "Pagination Off") {
-            $('#paging').html("Pagination On");
-            var href = $('#paging').attr("href");
-            href = href.replace("pagination=False", "pagination=true");
-            $('#pages').remove();
-            paging($(this).attr("href"));
-            $('#paging').attr("href", href);
-
-            $('.order').click(function () { orderby($(this)); });
-
-        } else {
-            $('.order').unbind('click');
-            var http = new XMLHttpRequest();
-            http.open("GET", "/fuc/pagination", false);
-            http.onreadystatechange = window.useHttpResponse;
-            http.send(null);
-            if (http.readyState == 4 && http.status == 200) {
-                var textout = http.responseText;
-                $('#pager').html(textout);
-            }
-
-            $('#paging').html("Pagination Off");
-            href = $('#paging').attr("href");
-            href = href.replace("pagination=true", "pagination=False");
-            href = href.replace("pagination=True", "pagination=False");
-            $('#paging').attr("href", href);
-
-            totalp = Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val());
-            $('#totalp').text(totalp);
-
-            events();
-            refreshelems(window.location.href, 1);
-        }
-        accord();
-        return false;
+        checkPaging(this, e);
     });
 
+    if ($('#paging').text() == "Pagination On") {
+        $('.order').click(function () { orderby($(this)); return false; });
+    }
+
     events();
-    // refreshelems(window.location.href, 1);
 });
+
+function checkPaging(elem,e) {
+    e.preventDefault();
+    var value = $(elem).text();
+    if (value == "Pagination Off") {
+        paging($(elem).attr("href"), false);
+        $('.order').click(function () { orderby($(this)); });
+        accord();
+
+    } else {
+        paging($(elem).attr("href"), true);
+       var totalp = Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val());
+        $('#totalp').text(totalp);
+        events();
+        refreshelems(window.location.href, 1);
+    }
+    
+    return false;
+    
+}
 
 function events() {
     $('#pageinput').keyup(function () {
@@ -87,19 +74,42 @@ function events() {
     });
 }
 
-function paging(myurl) {
+function paging(myurl, flag) {
     var http = new XMLHttpRequest();
-    http.open("GET", myurl + "&partial=true", false);
-    http.onreadystatechange = window.useHttpResponse;
-    http.send(null);
+    if (flag == false) {
+        
+        $('#paging').html("Pagination On");
+        var href = $('#paging').attr("href");
+        href = href.replace("pagination=False", "pagination=true");
+        $('#pages').remove();
+        
+        
+        http.open("GET", myurl + "&partial=true", false);
+        http.onreadystatechange = window.useHttpResponse;
+        http.send(null);
 
-    if (http.readyState == 4 && http.status == 200) {
-        var textout = http.responseText;
-        //console.log(textout);
-        $('#elems').html(textout);
+        if (http.readyState == 4 && http.status == 200) {
+            var textout = http.responseText;
+            $('#elems').html(textout);
+            history.pushState(null, document.title, myurl);
+        }
+    } else {
+        $('.order').unbind('click');
+        http.open("GET", "/fuc/pagination", false);
+        http.onreadystatechange = window.useHttpResponse;
+        http.send(null);
+        if (http.readyState == 4 && http.status == 200) {
+            var textout = http.responseText;
+            $('#pager').html(textout);
+        }
 
-        history.pushState(null, document.title, myurl);
+        $('#paging').html("Pagination Off");
+        href = $('#paging').attr("href");
+        href = href.replace("pagination=true", "pagination=False");
+        href = href.replace("pagination=True", "pagination=False");
     }
+    
+    $('#paging').attr("href", href);
     return false;
     
 }
