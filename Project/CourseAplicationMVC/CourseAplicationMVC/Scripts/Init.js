@@ -1,24 +1,24 @@
 ﻿
 $(document).ready(function () {
     $('#totalp').text(Math.ceil(parseInt($('#totalelems').val()) / $('#DisplayNum').val()));
-
- 
-    //events:
-
+    
+  
     $('#paging').click(function (e) {
         checkPaging(this, e);
     });
-
-    if ($('#paging').text() == "Pagination On") {
-        $('.order').click(function () { orderby($(this)); return false; });
-    }
-
     events();
 });
 
 
 
 function events() {
+
+
+    if ($('#paging').text() == "Pagination On") {
+        $('.order').click(function () { orderby($(this)); return false; });
+    }
+   
+    
     $('#pageinput').keyup(function () {
 
         refreshelems(window.location.href, parseInt($('#pageinput').val()));

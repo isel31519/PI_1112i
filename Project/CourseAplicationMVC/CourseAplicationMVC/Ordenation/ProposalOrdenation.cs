@@ -25,8 +25,8 @@ namespace CourseAplicationMVC.Ordenation
         }
         public override IEnumerable<FucProposal> Order(ResolveOrdenationType.OrderType type)
         {
-            return type == ResolveOrdenationType.OrderType.Ascending ? array.OrderBy(n => n.Idx).ToList() :
-                 array.OrderByDescending(n => n.Idx).ToList();  
+            return type == ResolveOrdenationType.OrderType.Ascending ? array.OrderBy(n => n.User).ToList() :
+                 array.OrderByDescending(n => n.User).ToList();  
         }
     }
 
@@ -51,8 +51,8 @@ namespace CourseAplicationMVC.Ordenation
         }
         public override IEnumerable<FucProposal> Order(ResolveOrdenationType.OrderType type)
         {
-            return type == ResolveOrdenationType.OrderType.Ascending ? array.OrderBy(n => n.User).ToList() :
-                 array.OrderByDescending(n => n.User).ToList();  
+            return type == ResolveOrdenationType.OrderType.Ascending ? array.OrderBy(n => n.Name).ToList() :
+                 array.OrderByDescending(n => n.Name).ToList();  
         }
     }
 }

@@ -12,47 +12,81 @@
          <input type="submit" value="Edit"/>
 }
 
-<p>
-@Html.Label("Name: ")
-@Html.DisplayTextFor(n => Model.Name)
-</p>
-<p>
-@Html.Label("Acronym: ")
-@Html.DisplayTextFor(n => Model.Acr)
-</p>
-<p>
-@Html.Label("Required: ")
-@Html.DisplayTextFor(n => Model.IsRequired)
-</p>
-<p>
-@Html.Label("Semester: ")
-@Html.DisplayTextFor(n => Model.Semesters)
-</p>
-<p>
-@Html.Label("Prerequisites: ")
-@Html.DisplayTextFor(n => Model.Prerequisites)
-</p>
-<p>
-@Html.Label("ECTS: ")
-@Html.DisplayTextFor(n => Model.Ects)
-</p>
-<p>
-@Html.Label("Objectives: ")
-@Html.DisplayTextFor(n => Model.Objectives)
-</p>
-<p>
-@Html.Label("Results: ")
-@Html.DisplayTextFor(n => Model.Results)
-</p>
-<p>
-@Html.Label("Evaluation: ")
-@Html.DisplayTextFor(n => Model.Evaluation)
-</p>
-<p>
-@Html.Label("Program: ")
-@Html.DisplayTextFor(n => Model.Program)
-</p>
+<div class="elems_table">
+<table >
 
+<tr><th><b>
+@Html.LabelFor(n => Model.Name):
+</b></th>
+<td>
+@Html.DisplayTextFor(n => Model.Name)
+</td></tr>
+
+<tr><th><b>
+@Html.LabelFor(n => Model.Acr):
+</b></th>
+<td>
+@Html.DisplayTextFor(n => Model.Acr)
+</td></tr>
+
+<tr><th><b>
+@Html.LabelFor(n => Model.IsRequired):
+</b></th>
+<td>
+@Html.DisplayTextFor(n => Model.IsRequired)
+</td></tr>
+
+<tr><th><b>
+@Html.LabelFor(n => Model.Semesters):
+</b></th>
+<td>
+@Html.DisplayTextFor(n => Model.Semesters)
+</td></tr>
+
+<tr><th><b>
+@Html.LabelFor(n => Model.Prerequisites):
+</b></th>
+<td>
+@Html.DisplayTextFor(n => Model.Prerequisites)
+</td></tr>
+
+<tr><th><b>
+@Html.LabelFor(n => Model.Ects):
+</b></th>
+<td>
+@Html.DisplayTextFor(n => Model.Ects)
+</td></tr>
+
+<tr><th><b>
+@Html.LabelFor(n => Model.Objectives):
+</b></th>
+<td>
+@Html.DisplayTextFor(n => Model.Objectives)
+</td></tr>
+
+<tr><th><b>
+@Html.LabelFor(n => Model.Results):
+</b></th>
+<td>
+@Html.DisplayTextFor(n => Model.Results)
+</td></tr>
+
+<tr><th><b>
+@Html.LabelFor(n => Model.Evaluation):
+</b></th>
+<td>
+@Html.DisplayTextFor(n => Model.Evaluation)
+</td></tr>
+
+<tr><th><b>
+@Html.LabelFor(n => Model.Program):
+</b></th>
+<td>
+@Html.DisplayTextFor(n => Model.Program)
+</td></tr>
+
+</table>
+</div>
 @using (Html.BeginForm("Accept", "NewFucProposal", new {@id=Model.Idx}, FormMethod.Post))
 {
     <input type="submit" value="Accept"/>
