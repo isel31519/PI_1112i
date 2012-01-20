@@ -138,10 +138,11 @@
     <Content Include="Scripts\AccordionScript.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\orderby.js" />
+    <Content Include="Scripts\Pagination.js" />
     <Content Include="Scripts\SearchScript.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
-    <Content Include="Scripts\Pagination.js" />
+    <Content Include="Scripts\Init.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
