@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using System.Xml;
 using CourseAplicationLib;
 using CourseAplicationMVC.Ordenation;
 
@@ -95,9 +97,18 @@ namespace CourseAplicationMVC.Controllers
                 return HttpNotFound();
             if (partial.HasValue) return PartialView(f);
             return View(f);
-        }
-
-
+        }/*
+          public ActionResult Xml(string id)
+        {
+            Fuc f = _repo.GetByAcr(id);
+            if (f == null)
+                return HttpNotFound();
+              StringWriter sw = new StringWriter();
+              sw.Write("<?xml version=\"1.0\" encoding=\"utf-8\"?><foo>Hello, world!</foo>");
+              string xml=sw.ToString();
+            return new ContentResult { Content = xml, ContentType = "text/xml" };
+        }*/
+          
         [Authorize]
         public ActionResult Edit(string id)
         {
