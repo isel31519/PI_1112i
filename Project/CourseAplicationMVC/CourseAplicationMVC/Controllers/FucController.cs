@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using CourseAplicationLib;
-using CourseAplicationMVC.Filters;
 using CourseAplicationMVC.Ordenation;
+
 
 namespace CourseAplicationMVC.Controllers
 {
@@ -100,8 +98,7 @@ namespace CourseAplicationMVC.Controllers
         }
 
 
-        [AuthenticationFilter]
-       // [Authorize]
+        [Authorize]
         public ActionResult Edit(string id)
         {
             //id=acronimo da fuc a ser alterada
@@ -113,8 +110,7 @@ namespace CourseAplicationMVC.Controllers
         }
 
         [HttpPost]
-        [AuthenticationFilter]
-       // [Authorize]
+        [Authorize]
         public ActionResult Edit(string id, FucProposal f)
         {
             if (!ModelState.IsValid)

@@ -7,8 +7,9 @@
 
 <a href=@Url.Action("Index", "Home")>Home</a>
 
-<h1>Proposal @Model.Idx by @Model.User</h1>
+<h2>Proposal @Model.Idx</h2>
 
+<h2>Author: @Model.User</h2>
 @using (Html.BeginForm("Edit", "Proposal", new { @id = Model.Idx, @oracr=Model.OriginalAcr}, FormMethod.Get))
 {
          <input type="submit" value="edit"/>

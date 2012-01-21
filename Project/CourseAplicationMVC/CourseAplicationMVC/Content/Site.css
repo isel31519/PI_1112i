@@ -115,7 +115,7 @@ a {
 
 }
 
-.dropmenu, .dropmenu ul
+.menu_items, .menu_items ul
 
 {
 
@@ -135,7 +135,7 @@ a {
 
 }
 
-.dropmenu
+.menu_items
 
 {
 
@@ -143,13 +143,13 @@ a {
 
 }
 
-.dropmenu a
+.menu_items a
 
 {
 	display: block;
 	color: #999;
 }
-.dropmenu a:hover, .register a:hover,a:hover {
+.menu_items a:hover, .register a:hover,a:hover {
 
     background:#3c556c;
     
@@ -163,7 +163,7 @@ a {
 	text-decoration: none;
 
 }
-.dropmenu a span
+.menu_items a span
 
 {
 
@@ -175,7 +175,7 @@ a {
 
 }
 
-.dropmenu li a
+.menu_items li a
 
 {
 
@@ -185,7 +185,7 @@ a {
 
 
 
-.dropmenu li
+.menu_items li
 
 {
 

@@ -6,7 +6,6 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using CourseAplicationMVC.Filters;
 using CourseAplicationMVC.Models;
 
 namespace CourseAplicationMVC.Controllers
@@ -51,14 +50,16 @@ namespace CourseAplicationMVC.Controllers
         }
          
        [Authorize(Roles="admin")]
-       [AuthenticationFilter]
+
         public ActionResult Admin()
         {
             SelectList s=new SelectList(Membership.GetAllUsers());
             return View(s);
+
+
         }
 
-        [AuthenticationFilter]
+
         [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult Admin(string user, ICollection<string> roles)
@@ -66,11 +67,12 @@ namespace CourseAplicationMVC.Controllers
              string[] rolesArr=Roles.GetRolesForUser(user);
              if (rolesArr.Count()!=0)
                  Roles.RemoveUserFromRoles(user, rolesArr);
-            Roles.AddUserToRoles(user,roles.ToArray());
+            if(roles!=null && roles.Count!=0)
+                Roles.AddUserToRoles(user,roles.ToArray());
             return RedirectToAction("Admin", "Account");
         }
-        [AuthenticationFilter]
-        // [Authorize]
+
+        [Authorize]
          [HttpPost]
          public ActionResult Delete(string id)
          {
@@ -92,14 +94,13 @@ namespace CourseAplicationMVC.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [AuthenticationFilter]
-        //[Authorize]
+        [Authorize]
         public ActionResult ChangePassword()
         {
             return View();
         }
-        [AuthenticationFilter]
-        //[Authorize]
+
+        [Authorize]
         [HttpPost]
         public ActionResult ChangePassword(ChangePasswordModel model)
         {

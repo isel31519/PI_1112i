@@ -5,7 +5,7 @@
     ViewBag.Title = @Model.Name+" Proposal";
 }
 
-<h1>@Model.Idx</h1>
+<h2>Proposal @Model.Idx</h2>
 
 @using (Html.BeginForm("Edit", "NewFucProposal", new { @id=Model.Idx }, FormMethod.Get))
 {
