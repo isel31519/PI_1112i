@@ -48,14 +48,14 @@
     width: 100%;
 }
 .elems_table table th {
-	background:#b5cfd2 url('cell-blue.jpg');
+	background:#bdbdbd url('cell-blue.jpg');
 	border-width: 1px;
 	padding: 8px;
 	border-style: solid;
 	border-color: #999999;
 }
 .elems_table table td {
-	background:#dcddc0 url('cell-grey.jpg');
+	background:#f6f6f6 url('cell-grey.jpg');
 	border-width: 1px;
 	padding: 8px;
 	border-style: solid;
