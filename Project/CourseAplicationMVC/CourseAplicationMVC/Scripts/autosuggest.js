@@ -88,7 +88,7 @@ Autosuggest =
         //percorrer lista de FUCs para encontrar ocorrências contendo characteres inseridos
         for (var i = 0; i < suggestionListObj['data'].length; ++i)
         {
-            if (suggestionListObj['data'][i].toLowerCase().indexOf(value) >= 0)
+            if (suggestionListObj['data'][i].toLowerCase().indexOf(value.toLowerCase()) >= 0)
                 toDisplay[toDisplay.length] = suggestionListObj['data'][i];
         }
 
