@@ -16,23 +16,25 @@
 
     <script src="../../Scripts/jquery-ui-1.8.11.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../Scripts/AccordionScript.js"></script>
-    <!--<script src="../../Scripts/autosuggest.js" type="text/javascript"></script>-->
+    <script src="../../Scripts/autosuggest.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="../../Scripts/UnlimitedScroll.js"></script>
  
-     <script type="text/javascript">
+     <!--<script type="text/javascript">
          $.ajaxSetup({ type: "post" });
          $(document).ready(function () {
              $("input#searchQuery").autocomplete({
                  source: '@Url.Action("Find", "Search")', minChars: 1, delay: 500
              });
          });
-     </script>
+     </script>-->
   
        
 </head>
 
 
 
-<body>
+<body onload="setInterval('scroll();', 1000);">
 <header id="header1">
 
 <!-- header-content -->

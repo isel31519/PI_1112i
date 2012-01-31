@@ -249,4 +249,147 @@ Os resultados da aprendizagem (4) e (5) são avaliados na discussão final dos t
     </Program>
 
   </fuc>
+
+  <fuc>
+    <name>Matemática II</name>
+    <acr>M2</acr>
+    <mand>true</mand>
+    <sem>2</sem>
+    <pre>null</pre>
+    <ects>6,5</ects>
+    <Objectives>
+      O objectivo desta disciplina é o de fornecer aos alunos os conhecimentos de matemática discreta essenciais para o estudo e compreensão de elementos teóricos de ciências dos computadores.
+    </Objectives>
+
+    <Results>
+      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+      Dominar a parte da matemática discreta que trata dos números inteiros e sua propriedades, isto é, a teoria dos números
+      Entender os dois pilares mais básicos da formação matemática: a lógica e a teoria dos conjuntos
+      Conhecer a teoria dos grafos.
+      Desenvolver a capacidade de tratar e representar dados discretos e suas relações através de estruturas abstractas
+      Alargar o raciocínio matemático de modo a que consigam ler, compreender e construir argumentos matemáticos, que ocorrem nomeadamente na demonstração de proposições.
+
+    </Results>
+
+    <Evaluation>
+      Os resultados da aprendizagem (1), (2) e (3) são avaliados individualmente através do dois testes e com a resolução de problemas propostos ou com Avaliação por exame de índole teórica e prática.
+    </Evaluation>
+
+    <Program>
+      Lógica; Teoria de Conjuntos; Teoria dos Números; Indução e recorrencia, Teoria dos Grafos.
+    </Program>
+
+  </fuc>
+
+  <fuc>
+    <name>Probabilidades e Estatística</name>
+    <acr>PE</acr>
+    <mand>true</mand>
+    <sem>2</sem>
+    <pre>null</pre>
+    <ects>5,5</ects>
+    <Objectives>
+      Após aprovação na unidade curricular, o aluno deverá possuir a capacidade de:
+      1.Aplicar as técnicas de Estatística Descritiva na análise de um conjunto de dados e interpretar os resultados.
+      2. Aplicar os conceitos de Probabilidades na avaliação de situações de incerteza.
+      3. Identificar os Modelos Teóricos estudados em situações reais.
+      4. Aplicar as Técnicas de Inferência Estatística como ferramenta de suporte à tomada de decisão e interpretar com sentido crítico os resultados obtidos.
+    </Objectives>
+
+    <Results>
+      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+      Dominar os conceitos fundamentais de probabilidades e estatística.
+      Formalizar correctamente problemas que envolvam o resultado de experiências aleatórias.
+      Conhecer as funções de distribuição de probabilidades mais importantes.
+      Construir e interpretar intervalos de confiança, efectuar e avaliar testes de hipóteses paramétricos.
+      Estimar e interpretar os parâmetros de um modelo de regressão linear simples.
+    </Results>
+
+    <Evaluation>
+      Os resultados de aprendizagem (1) a (5) são avaliados individualmente através de dois testes escritos ou exames finais.
+      Avaliação por testes escritos:
+      A nota mínima admitida em cada teste é oito valores.
+      A nota final é obtida pela média aritmética simples das notas obtidas nos dois testes.
+      Na data do exame de 1ª Época o aluno pode repetir um dos testes, desde que no outro teste tenha obtido no mínimo oito valores.
+      A nota final será a média aritmética das notas obtidas num dos testes e na repetição do outro. O aluno aprova na unidade curricular caso a nota final seja superior ou igual a 10 valores.
+      Avaliação por exames escritos: Nos exames de 1ª Época, 2ª Época, ou Época especial o aluno terá de ter nota igual ou superior a 10 valores para que aprove na unidade curricular.
+    </Evaluation>
+
+    <Program>
+      Teoria elementar das probabilidades. Variáveis aleatórias. Distribuições teóricas.
+      Métodos elementares de estatística descritiva.
+      Análise de regressão e correlação linear simples. Distribuições amostrais.
+      Estimação por intervalos e testes de hipóteses paramétricos.
+    </Program>
+
+  </fuc>
+
+  <fuc>
+    <name>Arquitectura de Computadores I</name>
+    <acr>AC1</acr>
+    <mand>true</mand>
+    <sem>2</sem>
+    <pre>null</pre>
+    <ects>6,0</ects>
+    <Objectives>
+      Habilitar os alunos a utilizar e compreender as arquitecturas baseadas em microprocessadores.
+    </Objectives>
+
+    <Results>
+      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+      Compreender a arquitectura de um computador.
+      Compreender a estrutura interna de um processador.
+      Utilizar ferramentas para produção e teste de programas assembly.
+      Realizar e testar programas de pequena complexidade, escritos em assembly.
+      Compreender e utilizar dispositivos de entrada/saída, temporizadores/contadores e mecanismos de interrupção.
+      Interligar o processador com dispositivos externos utilizando os sinais de diálogo.
+    </Results>
+
+    <Evaluation>
+      Os resultados de aprendizagem (1), (4) e (5) são avaliados individualmente através do teste escrito e das fichas realizadas durante o semestre.
+      Durante o acompanhamento dos trabalhos de grupo realizados nas aulas práticas são avaliados os resultados de aprendizagem (3) a (6).
+      Os resultados de aprendizagem (7) são avaliados na discussão final dos trabalhos de grupo.
+    </Evaluation>
+
+    <Program>
+      Memória de acesso aleatório, barramentos; transferência de informação de e para a memória; Estrutura interna de um processador, salientando a sua natureza enquanto máquina de estados programável; Estudo de uma arquitectura didáctica, conjunto de instruções, linguagem máquina, assembly, ferramenta para produção e teste de software.
+      Sinais envolvidos no acesso a memória; descodificação de endereços, sinais de sincronização e acesso DMA. Periféricos de entrada/saída (paralelos e série) e temporizadores.
+      Mecanismo de interrupção.
+      Desenvolvimento de programas envolvendo interacção com dispositivos externos.
+    </Program>
+
+  </fuc>
+
+  <fuc>
+    <name>Laboratório de Informática e Computadores</name>
+    <acr>LIC</acr>
+    <mand>true</mand>
+    <sem>2</sem>
+    <pre>null</pre>
+    <ects>6,0</ects>
+    <Objectives>
+      Esta unidade curricular proporciona o espaço físico e temporal da componente prática necessária para a maturação dos conceitos de sistemas digitais e programação transmitidos nas disciplinas IC103 e IC104.
+      Os trabalhos práticos de hardware e de software são realizados em grupo e definidos semestralmente com prazos bem definidos.
+      Os docentes acompanham a realização dos trabalhos durante as sessões laboratoriais.
+    </Objectives>
+
+    <Results>
+      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+      Analisar, resolver e implementar circuitos digitais e programas para resolver problemas simples
+      Escrever relatórios que descrevam os problemas e as opções tomadas para concretizar soluções
+      Trabalhar efectivamente em grupo
+      Gerir o tempo para realizar várias tarefas em simultâneo, cumprindo os prazos
+    </Results>
+
+    <Evaluation>
+      Os resultados da aprendizagem (3) e (4) são avaliados durante o acompanhamento dos trabalhos de grupo.
+      Os resultados da aprendizagem (1) e (2) são avaliados individualmente na discussão final dos trabalhos de grupo.
+    </Evaluation>
+
+    <Program>
+      Não existe um programa específico para esta unidade curricular
+    </Program>
+
+  </fuc>
+  
 </fuclist>

@@ -5,9 +5,9 @@ namespace CourseAplicationLib
 {
     public class FucRepository
     {
+        private int _n;
 
         private readonly IDictionary<string, Fuc> _repo = new Dictionary<string, Fuc>();
-       
 
         public IEnumerable<Fuc> GetAll()
         {
@@ -50,6 +50,18 @@ namespace CourseAplicationLib
         public void Add(Fuc td)
         {
              _repo.Add(td.Acr, td);
+        }
+
+        public IEnumerable<Fuc> GetPartialFucs(int n)
+        {
+            IEnumerable<Fuc> fucList = GetAll();
+
+            foreach (Fuc f in fucList)
+            {
+                yield return f;
+                _n++;
+                if (_n >= n) yield break;
+            }
         }
     }
 }

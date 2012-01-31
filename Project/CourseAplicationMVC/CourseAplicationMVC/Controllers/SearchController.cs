@@ -47,5 +47,12 @@ namespace CourseAplicationMVC.Controllers
             string[] fucsWithSearchTerm = _repo.GetAllFucNames();
             return Json(fucsWithSearchTerm, JsonRequestBehavior.AllowGet);
         }
+
+        /*está igual ao de cima pq sim*/
+        public ActionResult FindFucsAndAcrs()
+        {
+            string[] fucs = _repo.GetAllFucNames();
+            return Json(fucs, JsonRequestBehavior.AllowGet);
+        }
     }
 }

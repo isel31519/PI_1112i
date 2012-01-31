@@ -1,0 +1,27 @@
+/* BASIC RESET */
+ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input{margin:0; padding:0;}
+
+/* HTML ELEMENTS */
+body { font-size: 80%; font-family: Georgia, serif; background: url("../images/page-bg.jpg") top left no-repeat #2f2e2c; }
+
+/* TWEETS */
+#elems_table_first { position: absolute; left: 186px; top: 105px; width: 376px; height:350px; overflow:auto; }
+#elems_table_first p { font-size: 14px; margin-bottom: 10px; padding: 10px; color: #7a8a99; /*background: url("../images/transpBlue.png");*/ }
+#elems_table_first p a { padding-left:2px; }
+#elems_table_first p a img { border:none; }
+
+/* INFORMATION */
+#info { position: absolute; left: 620px; top: 105px; width: 376px; height:300px; color: #96997a; font-size:14px; }
+#info h1 { font: bold 18px Helvetica, Arial, Sans-serif; text-align: center; color: #eee; text-shadow: 0px 2px 6px #333; }
+#info h1 small { font-size: 13px; text-transform:uppercase; display: block; color: #ccc; margin-top:10px; }
+#info h2 a { display: block; text-decoration: none; margin: 10px 0; font: italic 13px Georgia, Times, Serif;  text-align: center; color: #bfe1f1; text-shadow: 0px 2px 6px #333; }
+#info h2 a:hover { color: #90bcd0; }
+#info p { margin:15px 0; }
+#info p a { color: #96997a; }
+
+.big { font-size:20px; }
+.big span { color: #bfe1f1; font-size:24px; }
+
+/* OVERLAY */
+#overlay { position: absolute; left: 168px; top: 87px; width: 408px; height:386px; background: url("../images/transpBlue_overlay.png"); }
+#overlay img { position:relative; left:200px; top:189px; }

@@ -7,31 +7,43 @@
 <h1>Fuc List</h1>
 @Html.ActionLink("Pagination On", "Index", new { @pagination = true }, new { @id ="paging" })
 
- <input type="hidden" id="totalelems" value="@ViewData["totalitems"]"/>
-<div id="pager">
- </div>
-  <div style="margin-top: 40px">
- <table class="elems_table">
- <tbody>
- <tr><td>
- <ul>
-     <li class="elems_table_first">
-        <table>
-            <thead>
-                 <tr><th class="order">Fuc Name</th>
-                <th class="order">Fuc Acr</th></tr>
-            </thead>  
-            <tbody id="elems">
-             @Html.Partial("PIndex")
-            </tbody>  
-        </table>
-      </li>
+<input type="hidden" id="totalelems" value="@ViewData["totalitems"]"/>
 
- 
-    <li class="elems_table_second"> <div id="showDetail"></div></li>
- </ul>
-    </td>
-    </tr>
-     </tbody> 
-    </table>
- </div>
+<div id="pager"></div>
+
+<!--NEW-->
+<!--<div id="elems_table_first"></div>
+		
+<div id="overlay">
+	<img src="../../Content/themes/base/images/UnlimitedScroll-loader.gif"/>
+</div>
+
+<div id="info"></div>-->
+<!--NEW-->
+
+<div style="margin-top: 40px">
+ <table class="elems_table">
+  <tbody>
+   <tr>
+    <td>
+     <ul>
+      <li class="elems_table_first">
+       <table>
+        <thead>
+         <tr>
+          <th class="order">Fuc Name</th>
+          <th class="order">Fuc Acr</th>
+         </tr>
+        </thead>  
+        <tbody id="elems">
+         @Html.Partial("PIndex")
+        </tbody>  
+       </table>
+     </li> 
+     <li class="elems_table_second"> <button onclick="scroll()">Load more</button> <div id="showDetail"></div></li>
+    </ul>
+   </td>
+  </tr>
+ </tbody>
+</table>
+</div>
