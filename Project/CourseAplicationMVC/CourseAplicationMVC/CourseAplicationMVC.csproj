@@ -70,6 +70,7 @@
     <Compile Include="Controllers\ProposalController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\UnlimitedScrollController.cs" />
     <Compile Include="Modules\Authentication.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -252,6 +253,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Proposal\IndexAll.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\UnlimitedScroll\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
