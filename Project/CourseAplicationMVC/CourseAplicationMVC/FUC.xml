@@ -600,6 +600,44 @@
 </fuc>
 
 <fuc>
+  <name>Redes de Internet</name>
+  <acr>RI</acr>
+  <mand>false</mand>
+  <sem>5</sem>
+  <pre>Rcp</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Complementar os conhecimentos leccionados em Redes de Computadores no que se refere às redes locais e respectiva estruturação e interligação.
+    Fornecer os conhecimentos necessários sobre encaminhamento em redes de computadores com o estudo de protocolos como o RIP, o OSPF e o BGP.
+    Abordagem de tópicos avançados sobre encaminhamento em redes de computadores.
+  </Objectives>
+
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Construir redes locais de débito elevado de média dimensão com estrutura redundante
+    Resolver o problema da compartimentação de tráfego em redes locais utilizando redes virtuais.
+    Planear estruturas de encaminhamento de tráfego IP em redes locais e na Internet.
+    Definir e usar a configuração adequada para que os equipamentos de encaminhamento IP usem critérios alternativos complexos na decisão de encaminhamento de tráfego.
+    Analisar e corrigir erros de configuração em equipamentos de rede.
+  </Results>
+
+  <Evaluation>
+    Os resultados de aprendizagem são avaliados individualmente através de testes escritos e de fichas realizadas durante o semestre.
+    Os resultados da aprendizagem serão avaliados na sua vertente prática durante a discussão final dos trabalhos de grupo.
+  </Evaluation>
+
+  <Program>
+    Redes locais de alto débito.
+    Interligação de redes locais.
+    Redes locais virtuais.
+    Multicast em redes locais.
+    Protocolos de encaminhamento de pacotes: Vector distance e link-state.
+    Estudo dos protocolos de encaminhamento RIP, OSPF e BGP.
+    Encaminhamento avançado ? político, redundante e com múltiplas instâncias.
+  </Program>
+</fuc>
+
+<fuc>
   <name>Sistemas de Informação I</name>
   <acr>SI1</acr>
   <mand>true</mand>

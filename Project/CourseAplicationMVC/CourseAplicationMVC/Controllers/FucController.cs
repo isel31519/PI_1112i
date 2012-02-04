@@ -59,7 +59,7 @@ namespace CourseAplicationMVC.Controllers
                 if (partial.HasValue && partial.Value)
                   return PartialView("PIndex", _repo.GetAll());
                 /*return View("IndexAll", _repo.GetAll());*/
-                return View("IndexAll", _repo.GetPartialFucs(5));
+                return View("IndexAll", _repo.GetPartialFucs(10));//5
             }
 
             if(!page.HasValue)

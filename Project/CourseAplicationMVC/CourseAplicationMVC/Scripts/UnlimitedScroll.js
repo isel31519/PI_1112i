@@ -1,7 +1,7 @@
-var contentHeight = 210;
+var contentHeight = 800;//210
 var pageHeight = document.documentElement.clientHeight;
 var scrollPosition;
-var n = 5;
+var n = 10;//5
 var xmlhttp;
 
 function loadMoreFucs() {
@@ -13,8 +13,8 @@ function loadMoreFucs() {
                 var fuc;
                 var fucName;
                 var fucAcr;
-
-                for (var i = n - 4, idx = 0; i <= n; i++, idx += 10) {
+                           /*n - 4*/
+                for (var i = n - 9, idx = 0; i <= n; i++, idx += 10) {
                     fuc = fucs[idx].split(":");
                     fucName = fuc[1];
                     fuc = fucs[idx+1].split(":");
@@ -27,46 +27,17 @@ function loadMoreFucs() {
             }
         }
     }
+}
 
-    function removeQuoteAnnotation(str, str1) {
-        var ret = "";
-        for (var i = 0, j = 0; i < str.length; i++) {
-            if (str[i] != str1) {
-                ret += str[i];
-                j++;
-            }
+function removeQuoteAnnotation(str, str1) {
+    var ret = "";
+    for (var i = 0, j = 0; i < str.length; i++) {
+        if (str[i] != str1) {
+            ret += str[i];
+            j++;
         }
-        return ret;
     }
-
-    /*if (xmlhttp.readyState == 4) {
-        if (xmlhttp.responseText) {
-        var resp = xmlhttp.responseText.replace("\r\n", "");
-        resp.replace("\"", "");
-        var files = resp.split(",");
-        var j = 0;
-        for (i = 0; i < files.length; i++) {
-        if (files[i] != "") {
-        //document.getElementById("container").innerHTML += '<a href="img/' + files[i] + '"><img src="thumb/' + files[i] + '" /></a>';
-        console.log(i);
-        console.log(files[i]);
-        console.log("j = " + j);
-        var aux = files[i];
-        aux=aux.trim();
-        console.log(aux);
-        document.getElementById("elems_table_first").innerHTML += '<a href="/fuc/detail/'+files[i]+'">'+files[i]+'</a>';
-        j++;
-
-        if (j == 3 || j == 6)
-        document.getElementById("elems_table_first").innerHTML += files[i];
-        else if (j == 9) {
-        //document.getElementById("elems_table_first").innerHTML += '<p>' + (n - 1) + " Images Displayed | <a href='#header'>top</a></p><hr />";
-        j = 0;
-        }
-        }
-        }
-        }
-        }*/
+    return ret;
 }
 
 function addFucsToTable(i, fucName, fucAcr) {
@@ -88,14 +59,13 @@ function scroll()
     else
         scrollPosition = window.pageYOffset;
 
-    console.log("contentHeight = " + contentHeight);
+    /*console.log("contentHeight = " + contentHeight);
     console.log("pageHeight = " + pageHeight);
     console.log("scrollPosition = " + scrollPosition);
     var sum = contentHeight - pageHeight - scrollPosition;
-    console.log("sum = " + sum);
+    console.log("sum = " + sum);*/
 
-    if ((contentHeight - pageHeight - scrollPosition) < -600) {
-        console.log("ENTROU");
+    if ((contentHeight - pageHeight - scrollPosition) < 0) {
         if (window.XMLHttpRequest)
             xmlhttp = new XMLHttpRequest();
         else
@@ -107,8 +77,8 @@ function scroll()
         xmlhttp.open("GET", "/UnlimitedScroll/GetMoreFucs", true);
         xmlhttp.send();
 
-        n += 5;
+        n += 10;//5
         xmlhttp.onreadystatechange = loadMoreFucs;
-        contentHeight += 210;
+        contentHeight += 420;//210
     }
 }

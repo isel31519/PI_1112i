@@ -20,7 +20,7 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult GetMoreFucs()
         {
-            IEnumerable<Fuc> fucs = _repo.GetPartialFucs(5);
+            IEnumerable<Fuc> fucs = _repo.GetPartialFucs(10);
             return Json(fucs, JsonRequestBehavior.AllowGet);
         }
     }
