@@ -1,395 +1,700 @@
 <?xml version="1.0" encoding="utf-8"?>
 <fuclist>
+
 <fuc>
-<name>Programação Orientada a Objectos</name>
-<acr>POO</acr>
-<mand>true</mand>
-<sem>2</sem>
-<pre>PG</pre>
-<ects>6,0</ects>
-<Objectives>Esta unidade curricular introduz os conceitos e vocabulário fundamental da programação orientada por objectos, e da programação event-driven, 
-concretizados na linguagem Java.Desenvolve boas práticas de desenho e codificação de forma a produzir programas usando classes e objectos.</Objectives>
+  <name>Álgebra Linear e Geometria Analítica</name>
+  <acr>ALGA</acr>
+  <mand>true</mand>
+  <sem>1</sem>
+  <pre>null</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Nesta unidade curricular são abordados temas de Álgebra Linear e Geometria Analítica, em particular, matrizes,
+    sistemas de equações lineares, determinantes, espaços vectoriais, aplicações lineares, valores e vectores próprios,
+    espaços euclidianos e geometria analítica do 1º e 2º graus. Pretende-se com este conteúdo programático - que corresponde
+    ao currículo normal das Cadeiras com esta temática - cobrir importantes áreas da Matemática necessárias não só para as
+    Cadeiras de Matemática a juzante desta mas também para várias Cadeiras de Engenharia.
+  </Objectives>
 
-<Results>Os estudantes que terminam com sucesso esta unidade curricular serão capazes de: Definir e usar: classes derivadas, classes que representem 
-Estruturas de Dados dinâmicas, e genéricos. Exprimir objectivos na forma de algoritmos recursivos. 
-Construir aplicações simples usando o paradigma da Programação Orientada por Objectos e interface gráfica. 
-Testar e corrigir as aplicações construídas, usando as ferramentas de desenvolvimento adequadas. 
-Escrever relatórios onde se justifica a hierarquia de classes e a estrutura de dados usada nas aplicações construídas.</Results>
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Efectuar cálculos com matrizes e determinantes
+    Discutir e resolver sistemas de equações lineares, pelo algoritmo de Gauss-Jordan
+    Reconhecer os conceitos de espaço vectorial e aplicação linear e utilizá-los na resolução de problemas destes domínios
+    Determinar valores e vectores próprios dos endomorfismos e a existência de uma representação diagonal, reconhecendo a sua
+    importância em problemas de Engenharia e de Física
+    Apreender os conceitos fundamentais dos espaços euclidianos e unitários, nomeadamente os produtos interno, externo, misto e
+    duplo produto externo e respectivas aplicações em Geometria
+    Compreender a noção de espaço afim e de referencial e aplicar os conceitos abordados nesta unidade curricular na resolução de
+    problemas de geometria analítica do 1º (plano e recta) e 2º grau (quádricas)
+    Identificar e utilizar os conceitos abordados na resolução de problemas de Engenharia no âmbito de cada Curso.
+  </Results>
 
-<Evaluation>Os resultados de aprendizagem (1) , (2) são avaliados individualmente através do teste escrito e das fichas realizadas durante o semestre.
-Durante o acompanhamento dos trabalhos de grupo realizados nas aulas práticas são avaliados os resultados de aprendizagem (3) e (4).
-Os resultados de aprendizagem (3), (5) são avaliados na discussão final dos trabalhos de grupo, onde é discutida a qualidade das soluções. </Evaluation>
+  <Evaluation>
+    Os resultados da aprendizagem são avaliados por questionários realizados durante o Semestre e por dois testes ou, em alternativa,
+    por exame final. As classificações obtidas nos questionários propostos, quando realizados, constituem 10% da avaliação final.
+    Caso não sejam realizados os questionários propostos, a classificação final é a média aritmética das notas dos testes ou a nota do
+    exame final (numa escala 0-20).
+  </Evaluation>
 
-<Program>Herança: classes derivadas; classes abstractas; interfaces; ligação dinâmica; polimorfismo. Tratamento de excepções. 
-Estruturas de dados dinâmicas e genéricos: vectores; listas; iteradores. Algoritmos recursivos. Ficheiros de texto e binários. 
-Introdução à interface gráfica: programação event-driven; listeners; layout managers;Model-View-Controller.</Program>
-
+  <Program>
+    0.	Noções introdutórias de Álgebra 1.	Matrizes 2.	Determinantes 3.	Espaços vectoriais 4.	Aplicações Lineares
+    5. Valores e vectores próprios 6.	Espaços euclidianos 7.	Geometria analítica do 1º e 2º grau
+  </Program>
 </fuc>
-<fuc>  
-<name>Programação</name>
-<acr>PG</acr>
-<mand>true</mand>
-<sem>1</sem>
-<pre>null</pre>
-<ects>6,0</ects>
-<Objectives>Esta unidade curricular representa para a maioria dos alunos um primeiro contacto com a programação, que se pretende motivador 
-sem descurar o formalismo e o rigor. São introduzidos conceitos e vocabulário fundamental da programação e, em particular, 
-da programação baseada em objectos, concretizados na linguagem Java..</Objectives>
 
-<Results>Os estudantes que terminam com sucesso esta unidade curricular serão capazes de: Demonstrar o conhecimento sobre os mecanismos básicos da 
-linguagem de programação Java. Construir pequenos programas em Java que resolvam problemas simples descritos em linguagem natural. 
-Testar e corrigir pequenos programas. Escrever relatórios onde se justifica as decisões tomadas nos programas construídos. 
-Utilizar ferramentas para desenvolver programas e para elaborar relatórios.</Results>
+<fuc>
+  <name>Algoritmos e Estruturas de Dados</name>
+  <acr>AED</acr>
+  <mand>true</mand>
+  <sem>3</sem>
+  <pre>null</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Realizar uma introdução à análise e desenho de algoritmos e estruturas de dados.
+    Apresentar os algoritmos e as estruturas de dados fundamentais, os métodos informais para a prova da sua correcção e as técnicas para avaliação do seu desempenho.
+  </Objectives>
 
-<Evaluation>Os resultados da aprendizagem (1) e (2) são avaliados individualmente através do teste escrito e das fichas realizadas durante o semestre. 
-Durante o acompanhamento dos trabalhos de grupo realizados nas aulas práticas são avaliados os resultados da aprendizagem (3) e (5).
-Os resultados da aprendizagem (4) e (5) são avaliados na discussão final dos trabalhos de grupo. </Evaluation>
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Conhecer, compreender e utilizar os algoritmos e as estruturas de dados fundamentais
+    Analisar a correcção e o desempenho de algoritmos simples
+    Escolher de forma fundamentada as estruturas de dados mais adequadas a cada problema
+    Desenhar estruturas de dados ligadas e algoritmos para a sua manipulação.
+  </Results>
 
-<Program>Conceitos básicos: valores, tipos e variáveis; expressões; instruções de controlo de fluxo. Entrada/Saída de dados.
- Introdução à programação baseada em objectos. Tipos referência. Construção de novos tipos. Classes: métodos; passagem de parâmetros; 
- membros de instância e de tipo; construtores; encapsulamento. Arrays. Algoritmos de pesquisa e ordenação.</Program>
+  <Evaluation>
+    Os resultados da aprendizagem de (1) a (4) são avaliados individualmente através de teste global escrito e de trabalhos práticos realizados em grupo.
+  </Evaluation>
 
+  <Program>
+    Estruturas de dados fundamentais: arrays, listas ligadas e árvores.
+    Algoritmos de ordenação.
+    Algoritmos de pesquisa e estruturas de dados associadas. Tipos de dados abstractos.
+    Técnicas para a análise de desempenho de algoritmos. Métodos para a prova informal de correcção
+  </Program>
 </fuc>
-  <fuc>
-    <name>Comunicações</name>
-    <acr>COM</acr>
-    <mand>true</mand>
-    <sem>3</sem>
-    <pre>null</pre>
-    <ects>6,0</ects>
-    <Objectives>
-      Dotar os alunos de conhecimentos das técnicas usadas na comunicação digital. 
-      Tratamento das modulações utilizadas - codificação de canal estrita.
-      Análise do comportamento do canal através de modelos probabilísticos. 
-      Tratamento dos mecanismos de detecção e correcção de erros e adaptação destes em função da qualidade de serviço.
-    </Objectives>
 
-    <Results>
-      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
-      Dominar os conceitos de espectro, largura de banda, filtragem e de probabilidade de erro de transmissão
-      Interpretar e avaliar o funcionamento de sistemas de comunicação digital em banda base e banda canal
-      Formular as características de um sistema de comunicação digital, em função da qualidade e do tipo de serviço
-      Escolher e adaptar códigos detectores e correctores de erros para determinada aplicação
-    </Results>
+<fuc>
+  <name>Ambientes Virtuais de Execução</name>
+  <acr>AVE</acr>
+  <mand>true</mand>
+  <sem>4</sem>
+  <pre>PSC</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Conhecer os requisitos e o funcionamento dos ambientes virtuais de execução. Saber desenvolver aplicações para ambientes virtuais de execução.
+  </Objectives>
 
-    <Evaluation>
-      Os resultados da aprendizagem (1)(2)(3)(4) são avaliados individualmente através de avaliação escrita e de discussão individual 
-      dos trabalhos práticos. A avaliação escrita é realizada, em alternativa, através de dois testes parciais ou de um teste global. 
-      A avaliação prática consiste na realização de trabalhos práticos de laboratório e respectiva discussão individual.
-    </Evaluation>
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Compreender os requisitos dos ambientes virtuais de execução no suporte à programação de aplicações e componentes.
+    Realizar componentes e aplicações para ambientes virtuais de execução.
+    Compreender o funcionamento dos serviços disponibilizados pelos ambientes virtuais de execução.
+  </Results>
 
-    <Program>
-      Conceitos básicos de sinal e sistema. Espectro, largura de banda e resposta em frequência. Digitalização de sinal: 
-      amostragem e quantização. Ritmo de transmissão e capacidade de canal. Teorema da codificação de canal. 
-      Modulações digitais em banda base e banda canal. Modulações binárias e M-árias. Análise do seu funcionamento na presença de ruído. 
-      Uso de modelos probabilísticos para caracterização de canal. Probabilidade de erro e qualidade de serviço. Codificação de canal. 
-      Códigos detectores e correctores de erros. Códigos lineares de bloco. Códigos de Hamming. 
-      Códigos cíclicos e CRC (Cyclic Redundancy Check).
-    </Program>
+  <Evaluation>
+    Os resultados da aprendizagem (1) e (3) são avaliados através do teste escrito.
+    Trabalhos individuais realizados durante o semestre e discussão individual dos trabalhos a realizar no final do semestre avaliam os resultados de aprendizagem de (1) a (3).
+  </Evaluation>
 
-  </fuc>
+  <Program>
+    Problemas do código não controlado no que respeita a: robustez, interoperabilidade, portabilidade e segurança.
+    Caracterização e requisitos dos ambientes virtuais de execução. Construção de componentes: representação intermédia; metadata; código seguro.
+    Carregamento dinâmico de componentes: verificação; compilação JIT.
+    Sistema comum de tipos: tipos, objectos e valores.
+    Serviços de suporte à execução: gestão automática de memória; excepções; introspecção.
+    Identificação e distribuição de componentes. Domínios de aplicação.
+  </Program>
+</fuc>
 
-  <fuc>
-    <name>Matemática I</name>
-    <acr>M1</acr>
-    <mand>true</mand>
-    <sem>1</sem>
-    <pre>null</pre>
-    <ects>6,0</ects>
-    <Objectives>
-      Esta unidade curricular desenvolve os conhecimentos de cálculo diferencial adquiridos no ensino secundário e introduz o cálculo 
-      integral em R e o cálculo diferencial em Rn. Pretende fornecer uma preparação básica em Análise Matemática e desenvolver capacidades
-      de reflexão e cálculo necessários a um engenheiro informático.
-    </Objectives>
+<fuc>
+  <name>Arquitectura de Computadores I</name>
+  <acr>AC1</acr>
+  <mand>true</mand>
+  <sem>2</sem>
+  <pre>null</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Habilitar os alunos a utilizar e compreender as arquitecturas baseadas em microprocessadores.
+  </Objectives>
 
-    <Results>
-      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
-      Dominar as técnicas de derivação em R e Rn e de integração em R
-      Descrever, pelos conceitos de derivada e integral, problemas de engenharia
-      Modelar e resolver problemas de optimização para funções diferenciáveis
-      Aplicar o cálculo integral em R à resolução de problemas
-    </Results>
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Compreender a arquitectura de um computador.
+    Compreender a estrutura interna de um processador.
+    Utilizar ferramentas para produção e teste de programas assembly.
+    Realizar e testar programas de pequena complexidade, escritos em assembly.
+    Compreender e utilizar dispositivos de entrada/saída, temporizadores/contadores e mecanismos de interrupção.
+    Interligar o processador com dispositivos externos utilizando os sinais de diálogo.
+  </Results>
 
-    <Evaluation>
-      Os resultados da aprendizagem são avaliados por questionários realizados durante o semestre e por dois testes ou, em alternativa,
-      por exame final.As classificações obtidas nos questionários propostos, quando realizados, constituem 20% da avaliação final. 
-      Caso não sejam realizados os questionários propostos, a classificação final é a média aritmética das notas dos testes ou a nota do 
-      exame final.
-    </Evaluation>
+  <Evaluation>
+    Os resultados de aprendizagem (1), (4) e (5) são avaliados individualmente através do teste escrito e das fichas realizadas durante o semestre.
+    Durante o acompanhamento dos trabalhos de grupo realizados nas aulas práticas são avaliados os resultados de aprendizagem (3) a (6).
+    Os resultados de aprendizagem (7) são avaliados na discussão final dos trabalhos de grupo.
+  </Evaluation>
 
-    <Program>
-      Complementos de funções reais de variável real; complementos de cálculo diferencial em R; cálculo integral em R; 
-      cálculo diferencial em Rn: campos escalares e vectoriais, derivadas parciais, derivada direccional, gradiante, fórmula de Taylor, 
-      extremos livres e condicionados, matriz jacobiana
-    </Program>
+  <Program>
+    Memória de acesso aleatório, barramentos; transferência de informação de e para a memória; Estrutura interna de um processador, salientando a sua natureza enquanto máquina de estados programável; Estudo de uma arquitectura didáctica, conjunto de instruções, linguagem máquina, assembly, ferramenta para produção e teste de software.
+    Sinais envolvidos no acesso a memória; descodificação de endereços, sinais de sincronização e acesso DMA. Periféricos de entrada/saída (paralelos e série) e temporizadores.
+    Mecanismo de interrupção.
+    Desenvolvimento de programas envolvendo interacção com dispositivos externos.
+  </Program>
+</fuc>
 
-  </fuc>
+<fuc>
+  <name>Computação Gráfica</name>
+  <acr>CG</acr>
+  <mand>false</mand>
+  <sem>3</sem>
+  <pre>POO</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Compreender e aplicar os conceitos fundamentais sobre computação gráfica. Saber desenvolver aplicações gráficas simples em VRML e OpenGL.
+  </Objectives>
 
-  <fuc>
-    <name>Lógica e Sistemas Digitais</name>
-    <acr>LSD</acr>
-    <mand>true</mand>
-    <sem>1</sem>
-    <pre>null</pre>
-    <ects>6,0</ects>
-    <Objectives>
-      Esta unidade curricular representa para a maioria dos alunos um primeiro contacto com a lógica e os sistemas digitais. 
-      É objectivo desta unidade curricular dotar os alunos com a capacidade para projectar sistemas digitais de média complexidade em 
-      lógica random.
-    </Objectives>
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Demonstrar o conhecimento sobre os mecanismos e técnicas básicos da computação gráfica.
+    Construir programas simples em VRML e OpenGL, com recurso a modelação hierárquica.
+    Construir pequenos programas com interface gráfica com interactividade e animação.
+    Escrever relatórios onde se justifica as decisões tomadas nos programas construídos.
+    Utilizar ferramentas para desenvolver programas e para elaborar relatórios.
+  </Results>
 
-    <Results>
-      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
-      Implementar funções booleanas utilizando os operadores e as propriedades da álgebra de Boole
-      Realizar os operadores básicos da aritmética utilizando lógica digital
-      Implementar circuitos sequenciais
-      Utilizar hardware programável para implementação de circuitos combinatórios e sequenciais
-      Utilizar ferramentas de CAD para desenho, descrição e teste de circuitos digitais.
-      Escrever relatórios onde se descreva o problema e as opções tomadas para concretizar uma solução.
-    </Results>
+  <Evaluation>
+    Os resultados de aprendizagem (1) são avaliados individualmente através do teste escrito.
+    Durante o acompanhamento dos trabalhos de grupo realizados nas aulas práticas são avaliados os resultados de aprendizagem (2), (3) e (5).
+    Os resultados de aprendizagem (4) e (5) são avaliados na discussão final dos trabalhos de grupo.
+  </Evaluation>
 
-    <Evaluation>
-      Os resultados de aprendizagem (1) a (4) são avaliados individualmente através do teste escrito e das fichas realizadas durante o 
-      semestre.Durante o acompanhamento dos trabalhos de grupo realizados nas aulas práticas são avaliados os resultados de 
-      aprendizagem (1) a (5).Os resultados de aprendizagem (6) são avaliados na discussão final dos trabalhos de grupo.
-    </Evaluation>
-
-    <Program>
-      Dispositivos binários. Álgebra de comutação. Transístor como dispositivo binário. Circuitos combinatórios. 
-      Teoremas da álgebra de Boole. simplificação de expressões. Mapas de Karnaugh. Implementação de funções com portas SSI.
-      Portas lógicas com saída Tristate. Multiplexer, demultiplexer/decoder. Lógica programável PAL e linguagem de descrição
-      hardware CUPL. Códigos numéricos. Operações aritméticas. Análise e síntese de somadores / subtractores e comparadores. 
-      Circuitos sequenciais. Flip-flops latch e edge triggered. Circuitos MSI contadores e shift registers. 
-      Implementação de sistemas sequenciais com circuitos MSI e lógica programável.
-    </Program>
-
-  </fuc>
-
-  <fuc>
-    <name>Electrónica</name>
-    <acr>E</acr>
-    <mand>true</mand>
-    <sem>1</sem>
-    <pre>null</pre>
-    <ects>6,0</ects>
-    <Objectives>
-      Sistematizar e consolidar conhecimentos adquiridos direccionando-os para a compreensão dos fenómenos eléctricos subjacentes à 
-      implementação de circuitos e sistemas electrónicos. Familiarizar a componente de instrumentação e medida mais relevante para 
-      informática e desenvolver aplicações concretas.
-    </Objectives>
-
-    <Results>
-      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
-      Aplicar a física clássica à engenharia de informática e computadores, e em particular utilizar conceitos e métodos da
-      electrónica elementar (como por exemplo as leis de Kirchhoff, equivalente de Norton e de Thevenin, principio da sobreposição)
-      Utilizar técnicas de instrumentação e medida
-      Montar circuitos electrónicos elementares com componentes discretos e analisa-los experimentalmente e teoricamente
-      Elaborar relatórios em que se descreve o comportamento físico e eléctrico de componentes, dispositivos e circuitos electrónicos 
-      e opto-electrónicos
-      O aluno compreende o funcionamento de circuitos simples relevantes para informática e sabe efectuar medidas com os instrumentos 
-      usuais.
-
-    </Results>
-
-    <Evaluation>
-      Os resultados de aprendizagem (1) são avaliados individualmente através de 4 mini testes escritos realizados durante as aulas com 
-      valores numéricos personalizados e 2 testes normais. Os resultados da aprendizagem são avaliados individualmente durante as aulas 
-      práticas e na discussão final individual dos trabalhos de grupo.
-    </Evaluation>
-
-    <Program>
-      Conceitos básicos de física para engenharia: forças, campos, potenciais e energia; materiais electrónicos; balística electrónica. 
-      Instrumentação e medida: introdução à prática e às técnicas laboratoriais; aparelhos de medida; componentes discretos. 
-      Circuitos e sistemas lineares: circuitos resistivos, capacitivos e indutivos; lei de Ohm; métodos de análise de circuitos; 
-      elementos armazenadores de energia; resposta natural e forçada em circuitos RL e RC. Circuitos e sistemas não lineares: análise
-    </Program>
-
-  </fuc>
-
-  <fuc>
-    <name>Álgebra Linear e Geometria Analítica</name>
-    <acr>ALGA</acr>
-    <mand>true</mand>
-    <sem>1</sem>
-    <pre>null</pre>
-    <ects>6,0</ects>
-    <Objectives>
-      Nesta unidade curricular são abordados temas de Álgebra Linear e Geometria Analítica, em particular, matrizes, 
-      sistemas de equações lineares, determinantes, espaços vectoriais, aplicações lineares, valores e vectores próprios, 
-      espaços euclidianos e geometria analítica do 1º e 2º graus. Pretende-se com este conteúdo programático - que corresponde
-      ao currículo normal das Cadeiras com esta temática - cobrir importantes áreas da Matemática necessárias não só para as 
-      Cadeiras de Matemática a juzante desta mas também para várias Cadeiras de Engenharia
-    </Objectives>
-
-    <Results>
-      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
-      Efectuar cálculos com matrizes e determinantes
-      Discutir e resolver sistemas de equações lineares, pelo algoritmo de Gauss-Jordan
-      Reconhecer os conceitos de espaço vectorial e aplicação linear e utilizá-los na resolução de problemas destes domínios
-      Determinar valores e vectores próprios dos endomorfismos e a existência de uma representação diagonal, reconhecendo a sua 
-      importância em problemas de Engenharia e de Física
-      Apreender os conceitos fundamentais dos espaços euclidianos e unitários, nomeadamente os produtos interno, externo, misto e
-      duplo produto externo e respectivas aplicações em Geometria
-      Compreender a noção de espaço afim e de referencial e aplicar os conceitos abordados nesta unidade curricular na resolução de
-      problemas de geometria analítica do 1º (plano e recta) e 2º grau (quádricas)
-      Identificar e utilizar os conceitos abordados na resolução de problemas de Engenharia no âmbito de cada Curso.
-
-    </Results>
-
-    <Evaluation>
-      Os resultados da aprendizagem são avaliados por questionários realizados durante o Semestre e por dois testes ou, em alternativa, 
-      por exame final. As classificações obtidas nos questionários propostos, quando realizados, constituem 10% da avaliação final. 
-      Caso não sejam realizados os questionários propostos, a classificação final é a média aritmética das notas dos testes ou a nota do 
-      exame final (numa escala 0-20).
-    </Evaluation>
-
-    <Program>
-      0.	Noções introdutórias de Álgebra 1.	Matrizes 2.	Determinantes 3.	Espaços vectoriais 4.	Aplicações Lineares 
-      5. Valores e vectores próprios 6.	Espaços euclidianos 7.	Geometria analítica do 1º e 2º grau
-    </Program>
-
-  </fuc>
-
-  <fuc>
-    <name>Matemática II</name>
-    <acr>M2</acr>
-    <mand>true</mand>
-    <sem>2</sem>
-    <pre>null</pre>
-    <ects>6,5</ects>
-    <Objectives>
-      O objectivo desta disciplina é o de fornecer aos alunos os conhecimentos de matemática discreta essenciais para o estudo e compreensão de elementos teóricos de ciências dos computadores.
-    </Objectives>
-
-    <Results>
-      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
-      Dominar a parte da matemática discreta que trata dos números inteiros e sua propriedades, isto é, a teoria dos números
-      Entender os dois pilares mais básicos da formação matemática: a lógica e a teoria dos conjuntos
-      Conhecer a teoria dos grafos.
-      Desenvolver a capacidade de tratar e representar dados discretos e suas relações através de estruturas abstractas
-      Alargar o raciocínio matemático de modo a que consigam ler, compreender e construir argumentos matemáticos, que ocorrem nomeadamente na demonstração de proposições.
-
-    </Results>
-
-    <Evaluation>
-      Os resultados da aprendizagem (1), (2) e (3) são avaliados individualmente através do dois testes e com a resolução de problemas propostos ou com Avaliação por exame de índole teórica e prática.
-    </Evaluation>
-
-    <Program>
-      Lógica; Teoria de Conjuntos; Teoria dos Números; Indução e recorrencia, Teoria dos Grafos.
-    </Program>
-
-  </fuc>
-
-  <fuc>
-    <name>Probabilidades e Estatística</name>
-    <acr>PE</acr>
-    <mand>true</mand>
-    <sem>2</sem>
-    <pre>null</pre>
-    <ects>5,5</ects>
-    <Objectives>
-      Após aprovação na unidade curricular, o aluno deverá possuir a capacidade de:
-      1.Aplicar as técnicas de Estatística Descritiva na análise de um conjunto de dados e interpretar os resultados.
-      2. Aplicar os conceitos de Probabilidades na avaliação de situações de incerteza.
-      3. Identificar os Modelos Teóricos estudados em situações reais.
-      4. Aplicar as Técnicas de Inferência Estatística como ferramenta de suporte à tomada de decisão e interpretar com sentido crítico os resultados obtidos.
-    </Objectives>
-
-    <Results>
-      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
-      Dominar os conceitos fundamentais de probabilidades e estatística.
-      Formalizar correctamente problemas que envolvam o resultado de experiências aleatórias.
-      Conhecer as funções de distribuição de probabilidades mais importantes.
-      Construir e interpretar intervalos de confiança, efectuar e avaliar testes de hipóteses paramétricos.
-      Estimar e interpretar os parâmetros de um modelo de regressão linear simples.
-    </Results>
-
-    <Evaluation>
-      Os resultados de aprendizagem (1) a (5) são avaliados individualmente através de dois testes escritos ou exames finais.
-      Avaliação por testes escritos:
-      A nota mínima admitida em cada teste é oito valores.
-      A nota final é obtida pela média aritmética simples das notas obtidas nos dois testes.
-      Na data do exame de 1ª Época o aluno pode repetir um dos testes, desde que no outro teste tenha obtido no mínimo oito valores.
-      A nota final será a média aritmética das notas obtidas num dos testes e na repetição do outro. O aluno aprova na unidade curricular caso a nota final seja superior ou igual a 10 valores.
-      Avaliação por exames escritos: Nos exames de 1ª Época, 2ª Época, ou Época especial o aluno terá de ter nota igual ou superior a 10 valores para que aprove na unidade curricular.
-    </Evaluation>
-
-    <Program>
-      Teoria elementar das probabilidades. Variáveis aleatórias. Distribuições teóricas.
-      Métodos elementares de estatística descritiva.
-      Análise de regressão e correlação linear simples. Distribuições amostrais.
-      Estimação por intervalos e testes de hipóteses paramétricos.
-    </Program>
-
-  </fuc>
-
-  <fuc>
-    <name>Arquitectura de Computadores I</name>
-    <acr>AC1</acr>
-    <mand>true</mand>
-    <sem>2</sem>
-    <pre>null</pre>
-    <ects>6,0</ects>
-    <Objectives>
-      Habilitar os alunos a utilizar e compreender as arquitecturas baseadas em microprocessadores.
-    </Objectives>
-
-    <Results>
-      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
-      Compreender a arquitectura de um computador.
-      Compreender a estrutura interna de um processador.
-      Utilizar ferramentas para produção e teste de programas assembly.
-      Realizar e testar programas de pequena complexidade, escritos em assembly.
-      Compreender e utilizar dispositivos de entrada/saída, temporizadores/contadores e mecanismos de interrupção.
-      Interligar o processador com dispositivos externos utilizando os sinais de diálogo.
-    </Results>
-
-    <Evaluation>
-      Os resultados de aprendizagem (1), (4) e (5) são avaliados individualmente através do teste escrito e das fichas realizadas durante o semestre.
-      Durante o acompanhamento dos trabalhos de grupo realizados nas aulas práticas são avaliados os resultados de aprendizagem (3) a (6).
-      Os resultados de aprendizagem (7) são avaliados na discussão final dos trabalhos de grupo.
-    </Evaluation>
-
-    <Program>
-      Memória de acesso aleatório, barramentos; transferência de informação de e para a memória; Estrutura interna de um processador, salientando a sua natureza enquanto máquina de estados programável; Estudo de uma arquitectura didáctica, conjunto de instruções, linguagem máquina, assembly, ferramenta para produção e teste de software.
-      Sinais envolvidos no acesso a memória; descodificação de endereços, sinais de sincronização e acesso DMA. Periféricos de entrada/saída (paralelos e série) e temporizadores.
-      Mecanismo de interrupção.
-      Desenvolvimento de programas envolvendo interacção com dispositivos externos.
-    </Program>
-
-  </fuc>
-
-  <fuc>
-    <name>Laboratório de Informática e Computadores</name>
-    <acr>LIC</acr>
-    <mand>true</mand>
-    <sem>2</sem>
-    <pre>null</pre>
-    <ects>6,0</ects>
-    <Objectives>
-      Esta unidade curricular proporciona o espaço físico e temporal da componente prática necessária para a maturação dos conceitos de sistemas digitais e programação transmitidos nas disciplinas IC103 e IC104.
-      Os trabalhos práticos de hardware e de software são realizados em grupo e definidos semestralmente com prazos bem definidos.
-      Os docentes acompanham a realização dos trabalhos durante as sessões laboratoriais.
-    </Objectives>
-
-    <Results>
-      Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
-      Analisar, resolver e implementar circuitos digitais e programas para resolver problemas simples
-      Escrever relatórios que descrevam os problemas e as opções tomadas para concretizar soluções
-      Trabalhar efectivamente em grupo
-      Gerir o tempo para realizar várias tarefas em simultâneo, cumprindo os prazos
-    </Results>
-
-    <Evaluation>
-      Os resultados da aprendizagem (3) e (4) são avaliados durante o acompanhamento dos trabalhos de grupo.
-      Os resultados da aprendizagem (1) e (2) são avaliados individualmente na discussão final dos trabalhos de grupo.
-    </Evaluation>
-
-    <Program>
-      Não existe um programa específico para esta unidade curricular
-    </Program>
-
-  </fuc>
+  <Program>
+    Sistemas gráficos na generalidade; características e arquitectura de um sistema raster; rasterização de primitivas gráficas; preenchimento de áreas; coordenadas do utilizador e coordenadas do dispositivo; transformações de coordenadas; matrizes e coordenadas homogéneas; projecções; volume de visão; transformações geométricas; modelos hierárquicos e grafos de cena; introdução à programação em VRML; Definição e atributos de Cor; esquemas de representação de cor; algoritmos para determinação de superfícies visíveis; Ray-tracing e Radiosidade; introdução à programação em OpenGL.
+  </Program>
+</fuc>
   
+<fuc>
+  <name>Comunicações</name>
+  <acr>COM</acr>
+  <mand>true</mand>
+  <sem>3</sem>
+  <pre>null</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Dotar os alunos de conhecimentos das técnicas usadas na comunicação digital.
+    Tratamento das modulações utilizadas - codificação de canal estrita.
+    Análise do comportamento do canal através de modelos probabilísticos.
+    Tratamento dos mecanismos de detecção e correcção de erros e adaptação destes em função da qualidade de serviço.
+  </Objectives>
+
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Dominar os conceitos de espectro, largura de banda, filtragem e de probabilidade de erro de transmissão
+    Interpretar e avaliar o funcionamento de sistemas de comunicação digital em banda base e banda canal
+    Formular as características de um sistema de comunicação digital, em função da qualidade e do tipo de serviço
+    Escolher e adaptar códigos detectores e correctores de erros para determinada aplicação
+  </Results>
+
+  <Evaluation>
+    Os resultados da aprendizagem (1)(2)(3)(4) são avaliados individualmente através de avaliação escrita e de discussão individual
+    dos trabalhos práticos. A avaliação escrita é realizada, em alternativa, através de dois testes parciais ou de um teste global.
+    A avaliação prática consiste na realização de trabalhos práticos de laboratório e respectiva discussão individual.
+  </Evaluation>
+
+  <Program>
+    Conceitos básicos de sinal e sistema. Espectro, largura de banda e resposta em frequência. Digitalização de sinal:
+    amostragem e quantização. Ritmo de transmissão e capacidade de canal. Teorema da codificação de canal.
+    Modulações digitais em banda base e banda canal. Modulações binárias e M-árias. Análise do seu funcionamento na presença de ruído.
+    Uso de modelos probabilísticos para caracterização de canal. Probabilidade de erro e qualidade de serviço. Codificação de canal.
+    Códigos detectores e correctores de erros. Códigos lineares de bloco. Códigos de Hamming.
+    Códigos cíclicos e CRC (Cyclic Redundancy Check).
+  </Program>
+</fuc>
+
+<fuc>
+  <name>Electrónica</name>
+  <acr>E</acr>
+  <mand>true</mand>
+  <sem>1</sem>
+  <pre>null</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Sistematizar e consolidar conhecimentos adquiridos direccionando-os para a compreensão dos fenómenos eléctricos subjacentes à
+    implementação de circuitos e sistemas electrónicos. Familiarizar a componente de instrumentação e medida mais relevante para
+    informática e desenvolver aplicações concretas.
+  </Objectives>
+
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Aplicar a física clássica à engenharia de informática e computadores, e em particular utilizar conceitos e métodos da
+    electrónica elementar (como por exemplo as leis de Kirchhoff, equivalente de Norton e de Thevenin, principio da sobreposição)
+    Utilizar técnicas de instrumentação e medida
+    Montar circuitos electrónicos elementares com componentes discretos e analisa-los experimentalmente e teoricamente
+    Elaborar relatórios em que se descreve o comportamento físico e eléctrico de componentes, dispositivos e circuitos electrónicos
+    e opto-electrónicos
+    O aluno compreende o funcionamento de circuitos simples relevantes para informática e sabe efectuar medidas com os instrumentos
+    usuais.
+  </Results>
+
+  <Evaluation>
+    Os resultados de aprendizagem (1) são avaliados individualmente através de 4 mini testes escritos realizados durante as aulas com
+    valores numéricos personalizados e 2 testes normais. Os resultados da aprendizagem são avaliados individualmente durante as aulas
+    práticas e na discussão final individual dos trabalhos de grupo.
+  </Evaluation>
+
+  <Program>
+    Conceitos básicos de física para engenharia: forças, campos, potenciais e energia; materiais electrónicos; balística electrónica.
+    Instrumentação e medida: introdução à prática e às técnicas laboratoriais; aparelhos de medida; componentes discretos.
+    Circuitos e sistemas lineares: circuitos resistivos, capacitivos e indutivos; lei de Ohm; métodos de análise de circuitos;
+    elementos armazenadores de energia; resposta natural e forçada em circuitos RL e RC. Circuitos e sistemas não lineares: análise
+  </Program>
+</fuc>
+
+<fuc>
+  <name>Laboratório de Informática e Computadores</name>
+  <acr>LIC</acr>
+  <mand>true</mand>
+  <sem>2</sem>
+  <pre>null</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Esta unidade curricular proporciona o espaço físico e temporal da componente prática necessária para a maturação dos conceitos de sistemas digitais e programação transmitidos nas disciplinas IC103 e IC104.
+    Os trabalhos práticos de hardware e de software são realizados em grupo e definidos semestralmente com prazos bem definidos.
+    Os docentes acompanham a realização dos trabalhos durante as sessões laboratoriais.
+  </Objectives>
+
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Analisar, resolver e implementar circuitos digitais e programas para resolver problemas simples
+    Escrever relatórios que descrevam os problemas e as opções tomadas para concretizar soluções
+    Trabalhar efectivamente em grupo
+    Gerir o tempo para realizar várias tarefas em simultâneo, cumprindo os prazos
+  </Results>
+
+  <Evaluation>
+    Os resultados da aprendizagem (3) e (4) são avaliados durante o acompanhamento dos trabalhos de grupo.
+    Os resultados da aprendizagem (1) e (2) são avaliados individualmente na discussão final dos trabalhos de grupo.
+  </Evaluation>
+
+  <Program>
+    Não existe um programa específico para esta unidade curricular
+  </Program>
+</fuc>
+
+<fuc>
+  <name>Laboratório de Software</name>
+  <acr>LS</acr>
+  <mand>true</mand>
+  <sem>1</sem>
+  <pre>POO, AED, SI1</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Proporcionar o espaço físico e temporal da componente prática necessária para a consolidação e exercitação dos conceitos transmitidos nas unidades curriculares relacionadas com o desenvolvimento de software, nomeadamente Programação Orientada por Objectos, Algoritmos e Estruturas de Dados e Sistemas de Informação I.
+    Aquisição de experiência no planeamento, organização e desenvolvimento de projectos de software de média dimensão.
+    Realização incremental dum projecto de software dividido por etapas.
+  </Objectives>
+
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Desenvolver software aplicacional utilizando sistemas de gestão de bases de dados relacionais e técnicas de programação orientada por objectos.
+    Integrar equipas de desenvolvimento de software em projectos de média dimensão.
+    Organizar e elaborar documentação de projectos.
+    Usar ferramentas de suporte ao desenvolvimento de projectos de software, nomeadamente controlo de versões, automatização de tarefas e testes unitários de software.
+  </Results>
+
+  <Evaluation>
+    A avaliação da unidade curricular é composta pelas fichas individuais realizadas no final de cada etapa do projecto e pela avaliação qualitativa do projecto realizado, com base no acompanhamento ao longo do semestre, na documentação e código fonte produzido pelos alunos e na discussão final.
+    A avaliação do projecto visa verificar a globalidade dos pontos de (1) a (4) dos resultados de aprendizagem, sendo constituída pela apreciação dos seguintes aspectos: requisitos correctamente implementados, testes definidos, legibilidade, organização e extensibilidade.
+    As fichas individuais visam verificar os pontos (1) e (3) dos resultados de aprendizagem.
+  </Evaluation>
+
+  <Program>
+    Modo de funcionamento: Sessões laboratoriais acompanhadas pelos docentes para a realização incremental dum projecto de software dividido por etapas, definido semestralmente e realizado em grupo. Os docentes acompanham o desenvolvimento do projecto, esclarecem dúvidas e apresentam temas complementares (testes unitários, controlo de versões, gestão de documentação, automatização de tarefas, etc.)
+  </Program>
+</fuc>
+  
+<fuc>
+  <name>Lógica e Sistemas Digitais</name>
+  <acr>LSD</acr>
+  <mand>true</mand>
+  <sem>1</sem>
+  <pre>null</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Esta unidade curricular representa para a maioria dos alunos um primeiro contacto com a lógica e os sistemas digitais.
+    É objectivo desta unidade curricular dotar os alunos com a capacidade para projectar sistemas digitais de média complexidade em
+    lógica random.
+  </Objectives>
+
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Implementar funções booleanas utilizando os operadores e as propriedades da álgebra de Boole
+    Realizar os operadores básicos da aritmética utilizando lógica digital
+    Implementar circuitos sequenciais
+    Utilizar hardware programável para implementação de circuitos combinatórios e sequenciais
+    Utilizar ferramentas de CAD para desenho, descrição e teste de circuitos digitais.
+    Escrever relatórios onde se descreva o problema e as opções tomadas para concretizar uma solução.
+  </Results>
+
+  <Evaluation>
+    Os resultados de aprendizagem (1) a (4) são avaliados individualmente através do teste escrito e das fichas realizadas durante o
+    semestre.Durante o acompanhamento dos trabalhos de grupo realizados nas aulas práticas são avaliados os resultados de
+    aprendizagem (1) a (5).Os resultados de aprendizagem (6) são avaliados na discussão final dos trabalhos de grupo.
+  </Evaluation>
+
+  <Program>
+    Dispositivos binários. Álgebra de comutação. Transístor como dispositivo binário. Circuitos combinatórios.
+    Teoremas da álgebra de Boole. simplificação de expressões. Mapas de Karnaugh. Implementação de funções com portas SSI.
+    Portas lógicas com saída Tristate. Multiplexer, demultiplexer/decoder. Lógica programável PAL e linguagem de descrição
+    hardware CUPL. Códigos numéricos. Operações aritméticas. Análise e síntese de somadores / subtractores e comparadores.
+    Circuitos sequenciais. Flip-flops latch e edge triggered. Circuitos MSI contadores e shift registers.
+    Implementação de sistemas sequenciais com circuitos MSI e lógica programável.
+  </Program>
+</fuc>
+
+<fuc>
+  <name>Matemática I</name>
+  <acr>M1</acr>
+  <mand>true</mand>
+  <sem>1</sem>
+  <pre>null</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Esta unidade curricular desenvolve os conhecimentos de cálculo diferencial adquiridos no ensino secundário e introduz o cálculo
+    integral em R e o cálculo diferencial em Rn. Pretende fornecer uma preparação básica em Análise Matemática e desenvolver capacidades
+    de reflexão e cálculo necessários a um engenheiro informático.
+  </Objectives>
+
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Dominar as técnicas de derivação em R e Rn e de integração em R
+    Descrever, pelos conceitos de derivada e integral, problemas de engenharia
+    Modelar e resolver problemas de optimização para funções diferenciáveis
+    Aplicar o cálculo integral em R à resolução de problemas
+  </Results>
+
+  <Evaluation>
+    Os resultados da aprendizagem são avaliados por questionários realizados durante o semestre e por dois testes ou, em alternativa,
+    por exame final.As classificações obtidas nos questionários propostos, quando realizados, constituem 20% da avaliação final.
+    Caso não sejam realizados os questionários propostos, a classificação final é a média aritmética das notas dos testes ou a nota do
+    exame final.
+  </Evaluation>
+
+  <Program>
+    Complementos de funções reais de variável real; complementos de cálculo diferencial em R; cálculo integral em R;
+    cálculo diferencial em Rn: campos escalares e vectoriais, derivadas parciais, derivada direccional, gradiante, fórmula de Taylor,
+    extremos livres e condicionados, matriz jacobiana
+  </Program>
+</fuc>
+
+<fuc>
+  <name>Matemática II</name>
+  <acr>M2</acr>
+  <mand>true</mand>
+  <sem>2</sem>
+  <pre>null</pre>
+  <ects>6,5</ects>
+  <Objectives>
+    O objectivo desta disciplina é o de fornecer aos alunos os conhecimentos de matemática discreta essenciais para o estudo e compreensão de elementos teóricos de ciências dos computadores.
+  </Objectives>
+
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Dominar a parte da matemática discreta que trata dos números inteiros e sua propriedades, isto é, a teoria dos números
+    Entender os dois pilares mais básicos da formação matemática: a lógica e a teoria dos conjuntos
+    Conhecer a teoria dos grafos.
+    Desenvolver a capacidade de tratar e representar dados discretos e suas relações através de estruturas abstractas
+    Alargar o raciocínio matemático de modo a que consigam ler, compreender e construir argumentos matemáticos, que ocorrem nomeadamente na demonstração de proposições.
+  </Results>
+
+  <Evaluation>
+    Os resultados da aprendizagem (1), (2) e (3) são avaliados individualmente através do dois testes e com a resolução de problemas propostos ou com Avaliação por exame de índole teórica e prática.
+  </Evaluation>
+
+  <Program>
+    Lógica; Teoria de Conjuntos; Teoria dos Números; Indução e recorrencia, Teoria dos Grafos.
+  </Program>
+</fuc>
+
+<fuc>
+  <name>Probabilidades e Estatística</name>
+  <acr>PE</acr>
+  <mand>true</mand>
+  <sem>2</sem>
+  <pre>null</pre>
+  <ects>5,5</ects>
+  <Objectives>
+    Após aprovação na unidade curricular, o aluno deverá possuir a capacidade de:
+    1.Aplicar as técnicas de Estatística Descritiva na análise de um conjunto de dados e interpretar os resultados.
+    2. Aplicar os conceitos de Probabilidades na avaliação de situações de incerteza.
+    3. Identificar os Modelos Teóricos estudados em situações reais.
+    4. Aplicar as Técnicas de Inferência Estatística como ferramenta de suporte à tomada de decisão e interpretar com sentido crítico os resultados obtidos.
+  </Objectives>
+
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Dominar os conceitos fundamentais de probabilidades e estatística.
+    Formalizar correctamente problemas que envolvam o resultado de experiências aleatórias.
+    Conhecer as funções de distribuição de probabilidades mais importantes.
+    Construir e interpretar intervalos de confiança, efectuar e avaliar testes de hipóteses paramétricos.
+    Estimar e interpretar os parâmetros de um modelo de regressão linear simples.
+  </Results>
+
+  <Evaluation>
+    Os resultados de aprendizagem (1) a (5) são avaliados individualmente através de dois testes escritos ou exames finais.
+    Avaliação por testes escritos:
+    A nota mínima admitida em cada teste é oito valores.
+    A nota final é obtida pela média aritmética simples das notas obtidas nos dois testes.
+    Na data do exame de 1ª Época o aluno pode repetir um dos testes, desde que no outro teste tenha obtido no mínimo oito valores.
+    A nota final será a média aritmética das notas obtidas num dos testes e na repetição do outro. O aluno aprova na unidade curricular caso a nota final seja superior ou igual a 10 valores.
+    Avaliação por exames escritos: Nos exames de 1ª Época, 2ª Época, ou Época especial o aluno terá de ter nota igual ou superior a 10 valores para que aprove na unidade curricular.
+  </Evaluation>
+
+  <Program>
+    Teoria elementar das probabilidades. Variáveis aleatórias. Distribuições teóricas.
+    Métodos elementares de estatística descritiva.
+    Análise de regressão e correlação linear simples. Distribuições amostrais.
+    Estimação por intervalos e testes de hipóteses paramétricos.
+  </Program>
+</fuc>
+  
+<fuc>  
+  <name>Programação</name>
+  <acr>PG</acr>
+  <mand>true</mand>
+  <sem>1</sem>
+  <pre>null</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Esta unidade curricular representa para a maioria dos alunos um primeiro contacto com a programação, que se pretende motivador 
+    sem descurar o formalismo e o rigor. São introduzidos conceitos e vocabulário fundamental da programação e, em particular, 
+    da programação baseada em objectos, concretizados na linguagem Java.
+  </Objectives>
+
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de: Demonstrar o conhecimento sobre os mecanismos básicos da 
+    linguagem de programação Java. Construir pequenos programas em Java que resolvam problemas simples descritos em linguagem natural. 
+    Testar e corrigir pequenos programas. Escrever relatórios onde se justifica as decisões tomadas nos programas construídos. 
+    Utilizar ferramentas para desenvolver programas e para elaborar relatórios.
+  </Results>
+
+  <Evaluation>
+    Os resultados da aprendizagem (1) e (2) são avaliados individualmente através do teste escrito e das fichas realizadas durante o semestre. 
+    Durante o acompanhamento dos trabalhos de grupo realizados nas aulas práticas são avaliados os resultados da aprendizagem (3) e (5).
+    Os resultados da aprendizagem (4) e (5) são avaliados na discussão final dos trabalhos de grupo.
+  </Evaluation>
+
+  <Program>
+  Conceitos básicos: valores, tipos e variáveis; expressões; instruções de controlo de fluxo. Entrada/Saída de dados.
+  Introdução à programação baseada em objectos. Tipos referência. Construção de novos tipos. Classes: métodos; passagem de parâmetros; 
+  membros de instância e de tipo; construtores; encapsulamento. Arrays. Algoritmos de pesquisa e ordenação.
+ </Program>
+</fuc>
+
+<fuc>
+  <name>Programação em Sistemas Computacionais</name>
+  <acr>PSC</acr>
+  <mand>true</mand>
+  <sem>3</sem>
+  <pre>null</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Estabelecer a ligação entre as instruções das linguagens de alto nível e a sua execução num sistema computacional concreto.
+    Prática de utilização de ambientes de programação com acesso directo ao hardware, em ambiente real de execução, para desenvolver, testar e depurar software em assembly e em linguagem C, necessários para a progressão nas áreas de sistemas operativos e de sistemas embebidos.
+    O contacto com ambientes sem reciclagem automática de memória e de modularidade e portabilidade limitada para observar a concretização de construções próprias das linguagens de programação orientada por objectos, sustenta o estudo posterior das características dos ambientes virtuais de execução modernos.
+  </Objectives>
+
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Compreender a tradução de construções imperativas das linguagens de alto nível em acções sobre o sistema computacional.
+    Avaliar opções no desenvolvimento de software, ponderando o desempenho e o consumo de recursos.
+    Conceber e implementar programas de complexidade moderada em linguagem C.
+    Escrever módulos de software em assembly para integrar em programas desenvolvidos em C.
+    Produzir, depurar e testar software modular para ambientes nativos.
+  </Results>
+
+  <Evaluation>
+    A avaliação escrita individual cobre principalmente os pontos (1), (3) e (4).
+    Durante o acompanhamento dos trabalhos de grupo são avaliados também os resultados de aprendizagem (2) e (5).
+    Na discussão final dos trabalhos de grupo é feita uma avaliação individual da globalidade dos pontos (1) a (5).
+  </Evaluation>
+
+  <Program>
+    A linguagem C: tipos, variáveis e funções; ponteiros, arrays e strings.
+    Caracterização dos processadores utilizados na arquitectura PC; arquitectura do conjunto de instruções x86; escrita de módulos de programa em assembly x86; convenções de chamada a funções.
+    Produção de programas: compilação separada; ficheiros objecto; ligação estática; ficheiros header; bibliotecas estáticas.
+    Gestão dinâmica de memória sem reciclagem automática.
+    Metodologia e prática de desenvolvimento de programas, análise de código e depuração de erros. Hierarquia de memória, organização de sistemas de cache e impacto no desempenho de programas.
+    Elementos centrais da programação orientada para objectos e sua tradução para código nativo, em particular o encapsulamento, a herança simples de implementação e o despacho dinâmico.
+    Ligação dinâmica e construção de bibliotecas de carregamento dinâmico.
+  </Program>
+</fuc>
+
+<fuc>
+  <name>Programação Orientada a Objectos</name>
+  <acr>POO</acr>
+  <mand>true</mand>
+  <sem>2</sem>
+  <pre>PG</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Esta unidade curricular introduz os conceitos e vocabulário fundamental da programação orientada por objectos, e da programação event-driven,
+    concretizados na linguagem Java.Desenvolve boas práticas de desenho e codificação de forma a produzir programas usando classes e objectos.
+  </Objectives>
+
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de: Definir e usar: classes derivadas, classes que representem
+    Estruturas de Dados dinâmicas, e genéricos. Exprimir objectivos na forma de algoritmos recursivos.
+    Construir aplicações simples usando o paradigma da Programação Orientada por Objectos e interface gráfica.
+    Testar e corrigir as aplicações construídas, usando as ferramentas de desenvolvimento adequadas.
+    Escrever relatórios onde se justifica a hierarquia de classes e a estrutura de dados usada nas aplicações construídas.
+  </Results>
+
+  <Evaluation>
+    Os resultados de aprendizagem (1) , (2) são avaliados individualmente através do teste escrito e das fichas realizadas durante o semestre.
+    Durante o acompanhamento dos trabalhos de grupo realizados nas aulas práticas são avaliados os resultados de aprendizagem (3) e (4).
+    Os resultados de aprendizagem (3), (5) são avaliados na discussão final dos trabalhos de grupo, onde é discutida a qualidade das soluções.
+  </Evaluation>
+
+  <Program>
+    Herança: classes derivadas; classes abstractas; interfaces; ligação dinâmica; polimorfismo. Tratamento de excepções.
+    Estruturas de dados dinâmicas e genéricos: vectores; listas; iteradores. Algoritmos recursivos. Ficheiros de texto e binários.
+    Introdução à interface gráfica: programação event-driven; listeners; layout managers;Model-View-Controller.
+  </Program>
+</fuc>
+
+<fuc>
+  <name>Redes de Computadores</name>
+  <acr>Rcp</acr>
+  <mand>true</mand>
+  <sem>4</sem>
+  <pre>COM</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    A disciplina tem como objectivo dotar os alunos com os conhecimentos base na área de redes de computadores.
+    Pretende-se que os alunos compreendam as tecnologias, arquitecturas e aplicações de redes de computadores, com especial ênfase em redes locais e na família de protocolos TCP/IP.
+  </Objectives>
+
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Compreender os princípios base de redes de computadores, i.e. conceitos fundamentais como a organização em camadas, aspectos de comunicação de dados e protocolos teóricos.
+    Utilizar redes locais, com realce para a Ethernet, compreendendo os pormenores do seu funcionamento.
+    Explicar e utilizar a família de protocolos TCP/IP, com especial ênfase no protocolo de rede IP e nos protocolos de transporte TCP e UDP, endereçamento, sistema de nomes de domínios, atribuição dinâmica de endereços, protocolos de transferência de ficheiros, correio electrónico.
+  </Results>
+
+  <Evaluation>
+    Os resultados de aprendizagem são avaliados individualmente através de testes escritos e de fichas realizadas durante o semestre.
+    Durante o acompanhamento dos trabalhos de grupo realizados nas aulas práticas são avaliados os resultados de aprendizagem.
+  </Evaluation>
+
+  <Program>
+    Comunicações digitais. Modelo OSI.
+    Comunicação ponto a ponto e multiponto.
+    Redes de comunicação de dados: canais de transmissão, transmissão série e paralela, sincronismo, erros de transmissão e topologias de rede.
+    Protocolos teóricos de recuperação de erros e controlo de fluxo.Introdução às redes locais, ênfase na rede Ethernet, normas 802.x, controlo de acesso ao meio, encapsulamento.
+    Conceitos sobre interligação de redes, especialmente sobre repetidores e comutadores.Família de protocolos TCP/IP. Modelo TCP/IP (vs. OSI).
+    Protocolo IP, formato dos datagramas, fragmentação, encaminhamento, máscaras de rede, protocolo controlo de erros ICMP. Protocolo UDP e TCP, conceito de ligação, controlo de fluxo e de congestão.
+    Nível de aplicação: resolução de nomes, transferência e acesso a ficheiros, correio electrónico, atribuição dinâmica de endereços.
+  </Program>
+</fuc>
+
+<fuc>
+  <name>Sistemas de Informação I</name>
+  <acr>SI1</acr>
+  <mand>true</mand>
+  <sem>3</sem>
+  <pre>null</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Esta unidade curricular tem como objectivos dotar os alunos dos conhecimentos necessários à modelação de dados segundo o modelo entidade-associação, à utilização da linguagem SQL para manipulação e definição de dados relacionais e à modelação e manipulação de dados com base na linguagem XML.
+  </Objectives>
+
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Construir modelos de dados conceptuais, lógicos e físicos para sistemas de bases de dados relacionais.
+    Utilizar a linguagem SQL para criar, alterar e interrogar bases de dados, não contemplando os aspectos de segurança, transaccionais e de administração.
+    Construir modelos de dados semi-estruturados usando a linguagem XML.
+    Construir aplicações para criar, pesquisar e manipular dados representados na linguagem XML.
+    Escrever relatórios onde justificam as decisões de modelação tomadas.
+  </Results>
+
+  <Evaluation>
+    Os resultados da aprendizagem (1) a (5) são avaliados através de testes escritos, do acompanhamento das aulas práticas e da discussão de trabalhos práticos propostos.
+  </Evaluation>
+
+  <Program>
+    Caracterização de um SI. Modelos de dados: em rede, hierárquico, relacional e orientado a objectos.
+    O modelo relacional: nível conceptual, nível lógico e nível físico, álgebra relacional, introdução intuitiva à normalização; modelação entidade-associação, passagem para o modelo lógico.
+    Introdução à linguagem SQL. Representação de dados semi-estrutrurados e a linguagem XML: evolução histórica, estrutura de um documento XML, "document type definition", esquemas XML, interrogações e transformações em XML, APIs para manipulação de dados XML.
+    Comparação entre representações de dados em XML e representações de dados no modelo relacional.
+  </Program>
+</fuc>
+
+<fuc>
+  <name>Sistemas Multimédia</name>
+  <acr>SM</acr>
+  <mand>false</mand>
+  <sem>4</sem>
+  <pre>PE, COM</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Os sistemas multimédia integram diferentes tipos de dados num ambiente computacional unificado.
+    Esta unidade curricular tem por finalidade fornecer aos estudantes formação básica na área de multimédia, incluindo o papel e o desenvolvimento de sistemas incorporando áudio, imagem, texto, gráficos e vídeo digitais, os conceitos subjacentes e a representação de som, imagens e vídeo, a compressão e transmissão de dados, a integração de conteúdos e a sua produção.
+  </Objectives>
+
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Reconhecer as técnicas de compressão bem como dos fundamentos matemáticos da compressão de dados.
+    Indentificar as normas de compressão os utilitários de compressão mais comuns.
+    Explicar a necessidade de modelação dos dados e os aspectos subjacentes.
+    Indicar os algoritmos básicos de compressão e mostrar como funcionam para uma entrada particular.
+    Utilizar os algoritmos básicos e comparar a sua eficiência em termos de requisitos necessários e razão de compressão.
+    Compreender a ubiquidade e a importância das tecnologias de compressão.
+    Compreender as normas de integração multimédia.
+  </Results>
+
+  <Evaluation>
+    Os resultados da aprendizagem (1)(3) são avaliados através de teste escrito.
+    Os resultados da aprendizagem (1)(7) são avaliados através de trabalhos, projectos, relatórios e discussão dos trabalhos práticos.
+  </Evaluation>
+
+  <Program>
+    A convergência das indústrias da comunicação, da informática e do entretenimento trouxeram a compressão para o nosso quotidiano (e.g., MP3, DVD e televisão digital) proporcionando novas oportunidades e novas aplicações das tecnologias de compressão. Esta unidade curricular visa dotar os estudantes da compreensão das técnicas e dos problemas fundamentais da representação, manipulação e distribuição de conteúdos tais como imagem, áudio e vídeo. Os tópicos principais incluem a representação eficiente de dados multimédia, o estado da arte das tecnologias de compressão, com ênfase nas normas, incluindo JPEG, H.26x, MPEG e MPEG áudio, e o arquivo e distribuição de dados multimédia.
+  </Program>
+</fuc>
+  
+<fuc>
+  <name>Sistemas Operativos</name>
+  <acr>SO</acr>
+  <mand>true</mand>
+  <sem>4</sem>
+  <pre>AC1, PSC</pre>
+  <ects>6,0</ects>
+  <Objectives>
+    Esta disciplina tem por objectivo introduzir formalmente um sistema operativo, e as suas principais componentes: gestão de processos (processos, tarefas, sincronismo), gestão de memória (principal e secundária), gestão de entradas e saídas.
+  </Objectives>
+
+  <Results>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Definir os conceitos fundamentais de um sistema operativo;
+    Discutir os aspectos relevantes relativos à implementação dos principais conceitos de um sistema operativo;
+    Utilizar os conceitos apreendidos.
+  </Results>
+
+  <Evaluation>
+    Os estudantes que terminam com sucesso esta unidade curricular serão capazes de:
+    Definir os conceitos fundamentais de um sistema operativo;
+    Discutir os aspectos relevantes relativos à implementação dos principais conceitos de um sistema operativo;
+    Utilizar os conceitos apreendidos.
+  </Evaluation>
+
+  <Program>
+    Apresentação do sistema operativo como uma abstracção alargada de uma máquina física.
+    Estudo da gestão de processos, com realce para os seguintes tópicos: processos e tarefas e seu suporte; sincronismo; programação concorrente; sinais e excepções.
+    Estudo da gestão de memória principal e secundária, com realce para os seguintes tópicos: mecanismos de paginação e segmentação, analise de sistemas de suporte a ficheiros.
+    Estudo de entradas e saídas, com realce para os seguintes tópicos: acesso síncrono e assíncrono.
+  </Program>
+</fuc>
+
 </fuclist>

@@ -1,4 +1,4 @@
-var contentHeight = 800;
+var contentHeight = 210;
 var pageHeight = document.documentElement.clientHeight;
 var scrollPosition;
 var n = 5;
@@ -9,12 +9,34 @@ function loadMoreFucs() {
     if (xmlhttp.readyState == 4) {
         if (xmlhttp.responseText) {
             {
-                alert("Loading...");
-                addFucsToTable();
-                alert("Done!");
-                console.log(xmlhttp.responseText);      /*ver porque é que o responseText retorna POO*/
+                var fucs = xmlhttp.responseText.split(",");
+                var fuc;
+                var fucName;
+                var fucAcr;
+
+                for (var i = n - 4, idx = 0; i <= n; i++, idx += 10) {
+                    fuc = fucs[idx].split(":");
+                    fucName = fuc[1];
+                    fuc = fucs[idx+1].split(":");
+                    fucAcr = fuc[1];
+                    
+                    fucName = removeQuoteAnnotation(fucName, "\"");
+                    fucAcr = removeQuoteAnnotation(fucAcr, "\"");
+                    addFucsToTable(i, fucName, fucAcr);
+                }
             }
         }
+    }
+
+    function removeQuoteAnnotation(str, str1) {
+        var ret = "";
+        for (var i = 0, j = 0; i < str.length; i++) {
+            if (str[i] != str1) {
+                ret += str[i];
+                j++;
+            }
+        }
+        return ret;
     }
 
     /*if (xmlhttp.readyState == 4) {
@@ -47,24 +69,17 @@ function loadMoreFucs() {
         }*/
 }
 
-function addFucsToTable() {
-
-    var table;
-    var row;
-    var cell1;
-    var cell2;
-    
-    for (var i = n - 4; i <= n; i++) {
-        table = document.getElementById("unlimitedScrollTable");
-        row = table.insertRow(i);
-        cell1 = row.insertCell(0);
-        cell2 = row.insertCell(1);
-        cell1.innerHTML = "New";
-        cell2.innerHTML = "New";
-    }
+function addFucsToTable(i, fucName, fucAcr) {
+    var table = document.getElementById("unlimitedScrollTable");
+    var row = table.insertRow(i);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.innerHTML = '<a href="Fuc/Detail/' + fucAcr + '">' + fucName + '</a>';
+    cell2.innerHTML = '<a href="Fuc/Detail/' + fucAcr + '">' + fucAcr + '</a>';
 }
 
 //function Trim(str) { return str.replace(/^\s+|\s+$/g, ""); }
+//function Trim(str, str1, str2) { return str.replace(str1, str2); }
 
 function scroll()
 {
@@ -79,8 +94,8 @@ function scroll()
     var sum = contentHeight - pageHeight - scrollPosition;
     console.log("sum = " + sum);
 
-    if ((contentHeight - pageHeight - scrollPosition) < 0) {
-
+    if ((contentHeight - pageHeight - scrollPosition) < -600) {
+        console.log("ENTROU");
         if (window.XMLHttpRequest)
             xmlhttp = new XMLHttpRequest();
         else

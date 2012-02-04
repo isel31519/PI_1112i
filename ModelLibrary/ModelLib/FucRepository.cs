@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CourseAplicationLib
@@ -54,14 +55,17 @@ namespace CourseAplicationLib
 
         public IEnumerable<Fuc> GetPartialFucs(int n)
         {
-            IEnumerable<Fuc> fucList = GetAll();
+            Fuc[] fucList = GetAll().ToArray();
+            LinkedList<Fuc> loadFucs = new LinkedList<Fuc>();
+            int max = _n + n;
+            Fuc f;
 
-            foreach (Fuc f in fucList)
+            for(;_n<max && _n<fucList.Length ;_n++)
             {
-                yield return f;
-                _n++;
-                if (_n >= n) yield break;
+                f = new Fuc(fucList[_n].Name, fucList[_n].Acr);
+                loadFucs.AddLast(f);
             }
+            return loadFucs;
         }
     }
 }

@@ -16,6 +16,12 @@ namespace CourseAplicationLib
             Ects = ects;
         }
 
+        public Fuc(string name, string acr)
+        {
+            Name = name;
+            Acr = acr;
+        }
+
         public string Name { get; set; }
         public string Acr { get; set; }
         public bool IsRequired { get; set; }
