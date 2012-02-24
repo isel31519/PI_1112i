@@ -27,6 +27,9 @@ namespace CourseAplicationMVC.Controllers
             FucProposal[] array = _newPropRepo.GetAll().ToArray();
             ViewData.Add("totalitems", array.Length == 0 ? 1 : array.Length);
 
+         
+
+            //com ordenação
             if (orderby != null && type != null)
             {
 
@@ -40,18 +43,13 @@ namespace CourseAplicationMVC.Controllers
                 IEnumerable<FucProposal> list;
                 list = sort.Order(ResolveOrdenationType.ResolveType(type));
 
-               /* List<FucProposal> list;
-                list = type.CompareTo("asc") == 0
-                           ? array.OrderBy(n => n.Name).ToList()
-                           : array.OrderByDescending(n => n.Name).ToList();*/
-
                 if (partial.HasValue && partial.Value)
                     return PartialView("PIndex", list);
                 return View("IndexAll",  list);
 
             }
 
-
+            //Sem paginação
             if (pagination.HasValue && !pagination.Value)
             {
                 if (partial.HasValue && partial.Value)
@@ -59,7 +57,7 @@ namespace CourseAplicationMVC.Controllers
                 return View("IndexAll", _newPropRepo.GetAll());
             }
 
-
+            //por omissão
             if (!page.HasValue)
                 page = 1;
             if (!itemsnumber.HasValue)
@@ -69,6 +67,19 @@ namespace CourseAplicationMVC.Controllers
             ViewData.Add("pageprev", page - 1);
             ViewData.Add("pagenext", page + 1);
             ViewData.Add("itemsnumber", itemsnumber);
+
+            if (page <= 0 || page > Math.Ceiling(((double)array.Length / (double)itemsnumber)) /*!list2.Any()(page - 1) * itemsnumber >= max_elem*/)
+            {
+                return HttpNotFound();
+            }
+
+            IEnumerable<FucProposal> list2 = _newPropRepo.GetPaged(page, itemsnumber);
+
+            if (partial.HasValue && partial.Value)
+                return PartialView("PIndex", list2);
+            return View("Index", list2);
+            /*
+
             int max_elem = Math.Min((int) (page*itemsnumber), array.Length);
             LinkedList<FucProposal> list2 = new LinkedList<FucProposal>();
             if (array.Length == 0){
@@ -88,7 +99,7 @@ namespace CourseAplicationMVC.Controllers
             if (partial.HasValue && partial.Value)
                 return PartialView("PIndex", list2);
             return View("Index", list2);
-
+            */
            // return RedirectToAction("PIndex", new { @page = 1, @itemsnumber = 5, @partial = false });
 
         }

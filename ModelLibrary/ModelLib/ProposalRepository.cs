@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CourseAplicationLib
 {
@@ -50,6 +52,20 @@ namespace CourseAplicationLib
         {
             foreach (var f in GetAll())
                 if (f.User.Equals(username)) yield return f;
+        }
+
+        public IEnumerable<FucProposal> GetPaged(int? page, int? itemsnumber)
+        {
+            FucProposal[] array = _repo.Values.ToArray();
+            int max_elem = Math.Min((int)(page * itemsnumber), _repo.Count);
+            LinkedList<FucProposal> list = new LinkedList<FucProposal>();
+
+            for (int i = (int)((page - 1) * itemsnumber), j = 0; i < max_elem; j++, i++)
+            {
+                list.AddLast(array[i]);
+            }
+
+            return list;
         }
     }
 }

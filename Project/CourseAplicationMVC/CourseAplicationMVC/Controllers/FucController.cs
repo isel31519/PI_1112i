@@ -32,7 +32,6 @@ namespace CourseAplicationMVC.Controllers
             Fuc[] array = _repo.GetAll().ToArray();
             ViewData.Add("totalitems", array.Length == 0 ? 1 : array.Length);
 
-            
             if(orderby!=null &&type!=null )
             {
 
@@ -43,10 +42,6 @@ namespace CourseAplicationMVC.Controllers
                 IEnumerable<Fuc> list;
 
                 list = sort.Order(ResolveOrdenationType.ResolveType(type));
-
-                
-                /*list = type.CompareTo("asc") == 0 ? array.OrderBy(n => n.Name).ToList() :
-                    array.OrderByDescending(n => n.Name).ToList();*/
 
                 if (partial.HasValue && partial.Value)
                     return PartialView("PIndex", list);
@@ -70,23 +65,27 @@ namespace CourseAplicationMVC.Controllers
             ViewData.Add("pageprev", page - 1);
             ViewData.Add("pagenext", page + 1);
             ViewData.Add("itemsnumber", itemsnumber);
-           
-            int max_elem = Math.Min((int) (page * itemsnumber), array.Length);
-            LinkedList<Fuc> list2 = new LinkedList<Fuc>();
-            if (array.Length == 0) {
-                if (partial.HasValue && partial.Value)
-                    return PartialView("PIndex", list2);
-                return View("Index", list2);
-             }
 
-            if (page <= 0 || (page - 1) * itemsnumber >= max_elem)
+            if (page <= 0 || page > Math.Ceiling(((double)array.Length / (double)itemsnumber)) /*!list2.Any()(page - 1) * itemsnumber >= max_elem*/)
             {
                 return HttpNotFound();
             }
-            for (int i = (int) ((page - 1) * itemsnumber), j = 0; i < max_elem; j++, i++)
+
+            IEnumerable<Fuc> list2 = _repo.GetPaged(page, itemsnumber);
+
+           
+
+           /*int max_elem = Math.Min((int) (page * itemsnumber), array.Length);
+             LinkedList<Fuc> list2 = new LinkedList<Fuc>();*/
+           /* if (array.Length == 0) {
+                if (partial.HasValue && partial.Value)
+                    return PartialView("PIndex", list2);
+                return View("Index", list2);
+             }*/
+           /* for (int i = (int) ((page - 1) * itemsnumber), j = 0; i < max_elem; j++, i++)
             {
                 list2.AddLast(array[i]);
-            }
+            }*/
             if (partial.HasValue && partial.Value)
                 return PartialView("PIndex", list2);
             return View("Index", list2);

@@ -28,8 +28,7 @@
         @Html.PasswordFor(m => m.Password)
         @Html.ValidationMessageFor(m => m.Password)<br />
      
-    
-         <input type="submit" value="submit" />
+         <input type="submit" value="submit" onclick="formvalidation('myform');return false;"/>
 
           </fieldset>
     }

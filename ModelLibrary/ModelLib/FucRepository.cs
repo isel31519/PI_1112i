@@ -67,5 +67,20 @@ namespace CourseAplicationLib
             }
             return loadFucs;
         }
+
+        public IEnumerable<Fuc> GetPaged(int? page, int? itemsnumber)
+        {
+
+            Fuc[] array=_repo.Values.ToArray();
+            int max_elem = Math.Min((int)(page * itemsnumber), _repo.Count);
+            LinkedList<Fuc> list=new LinkedList<Fuc>();
+
+            for (int i = (int)((page - 1) * itemsnumber), j = 0; i < max_elem; j++, i++)
+            {
+                list.AddLast(array[i]);
+            }
+
+            return list;
+        }
     }
 }
