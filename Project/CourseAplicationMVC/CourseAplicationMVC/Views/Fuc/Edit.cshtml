@@ -8,6 +8,7 @@
 
     @using (Html.BeginForm("Edit", "Fuc",new {@id=Model.Acr}, FormMethod.Post))
     {
+        @Html.ValidationSummary()
         <p>
         @Html.Label("Name")
         @Html.EditorFor(n => Model.Name)

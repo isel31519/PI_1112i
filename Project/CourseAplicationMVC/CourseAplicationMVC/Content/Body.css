@@ -7,6 +7,11 @@
     text-align: center;
     background-color: white;
 }
+
+.page_content_body form {
+    text-align: left;
+}
+
 .page_content a
 {
     color: brown;

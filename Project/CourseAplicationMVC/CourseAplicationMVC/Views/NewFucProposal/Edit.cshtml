@@ -9,6 +9,7 @@
 
     @using (Html.BeginForm("Edit", "NewFucProposal",new {@id=Model.Idx}, FormMethod.Post))
     {
+        @Html.ValidationSummary()
         <p>
         @Html.Label("Name")
         @Html.EditorFor(n => Model.Name)
