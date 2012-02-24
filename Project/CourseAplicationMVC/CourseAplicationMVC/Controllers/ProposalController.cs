@@ -63,7 +63,7 @@ namespace CourseAplicationMVC.Controllers
             ViewData.Add("pagenext", page + 1);
             ViewData.Add("itemsnumber", itemsnumber);
 
-            if (page <= 0 || page > Math.Ceiling(((double)array.Length / (double)itemsnumber)) /*!list2.Any()(page - 1) * itemsnumber >= max_elem*/)
+            if (page <= 0 || (array.Length !=0 && page > Math.Ceiling(((double)array.Length / (double)itemsnumber))) /*!list2.Any()(page - 1) * itemsnumber >= max_elem*/)
             {
                 return HttpNotFound();
             }

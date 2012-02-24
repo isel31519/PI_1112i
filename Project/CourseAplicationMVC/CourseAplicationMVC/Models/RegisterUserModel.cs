@@ -27,6 +27,7 @@ namespace CourseAplicationMVC.Models
         public string PassConfirm { get; set; }
 
         [Required(ErrorMessage = "Email is a required field")]
+        [RegularExpression("^([a-zA-Z0-9_\\-\\.]+)@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$", ErrorMessage = "Invalid Email")]
         public string Email { get; set; }
 
 

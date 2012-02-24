@@ -9,46 +9,57 @@
 <h1>Create New Fuc Proposal</h1>
 
 @using (Html.BeginForm("Create", "NewFucProposal", FormMethod.Post))
-{
+{ 
+    @Html.ValidationSummary()
         <p>
         @Html.LabelFor(n => Model.Name):
         @Html.EditorFor(n => Model.Name)
+         @Html.ValidationMessageFor(m => m.Name)
         </p>
         <p>
         @Html.LabelFor(n => Model.Acr):
         @Html.EditorFor(n => Model.Acr)
+         @Html.ValidationMessageFor(m => m.Acr)
         </p>
         <p>
         @Html.LabelFor(n => Model.IsRequired):
         @Html.EditorFor(n => Model.IsRequired)
+         @Html.ValidationMessageFor(m => m.IsRequired)
         </p>
         <p>
         @Html.LabelFor(n => Model.Semesters):
         @Html.EditorFor(n => Model.Semesters)
+         @Html.ValidationMessageFor(m => m.Semesters)
         </p>
         <p>
         @Html.LabelFor(n => Model.Prerequisites):
         @Html.EditorFor(n => Model.Prerequisites)
+         @Html.ValidationMessageFor(m => m.Prerequisites)
         </p>
         <p>
         @Html.LabelFor(n => Model.Ects):
         @Html.EditorFor(n => Model.Ects)
+         @Html.ValidationMessageFor(m => m.Ects)
         </p>
         <p>
         @Html.LabelFor(n => Model.Objectives):
         @Html.EditorFor(n => Model.Objectives)
+         @Html.ValidationMessageFor(m => m.Objectives)
         </p>
         <p>
         @Html.LabelFor(n => Model.Results):
         @Html.EditorFor(n => Model.Results)
+         @Html.ValidationMessageFor(m => m.Results)
         </p>
         <p>
         @Html.LabelFor(n => Model.Evaluation):
         @Html.EditorFor(n => Model.Evaluation)
+         @Html.ValidationMessageFor(m => m.Evaluation)
         </p>
         <p>
         @Html.LabelFor(n => Model.Program):
         @Html.EditorFor(n => Model.Program)
+         @Html.ValidationMessageFor(m => m.Program)
         </p>
 
     <input type="submit" value="submit" />

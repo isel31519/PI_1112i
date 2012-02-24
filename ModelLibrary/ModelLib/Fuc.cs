@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CourseAplicationLib
 {
@@ -21,12 +22,15 @@ namespace CourseAplicationLib
             Name = name;
             Acr = acr;
         }
-
+        [Required(ErrorMessage = "Name is a required field")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Acr is a required field")]
         public string Acr { get; set; }
         public bool IsRequired { get; set; }
+        [Required]
         public string Semesters { get; set; }
         public string Prerequisites { get; set; }
+        [Required]
         public double Ects { get; set; }
         public string Objectives { get; set; }
         public string Results { get; set; }
