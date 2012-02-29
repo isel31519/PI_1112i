@@ -18,6 +18,7 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult Index()
         {
+            String s=Request.Url.Host;
             return View();
         }
 
@@ -40,7 +41,7 @@ namespace CourseAplicationMVC.Controllers
                     var mail = new MailMessage("pi.admin.li51n.g02@sapo.pt", user.Email,
                                                        "Account verification",
                                                        "Click the link below to activate your account: " +
-                                                       "http://localhost:8080/Register/Activate/" + user.Username);
+                                                       Request.Url.Authority+"/Register/Activate/" + user.Username);
 
                     var s = new SmtpClient
                                 {
