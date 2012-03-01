@@ -18,7 +18,6 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult Index()
         {
-            String s=Request.Url.Host;
             return View();
         }
 

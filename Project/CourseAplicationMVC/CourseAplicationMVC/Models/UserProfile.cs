@@ -11,19 +11,19 @@ namespace CourseAplicationMVC.Models
     {
         public string FirstName
         {
-            get { return base["FirstName"].ToString(); }
+            get { return base["FirstName"] == null ? "" : base["FirstName"].ToString(); }
             set { base["FirstName"] = value; }
         }
 
         public string LastName
         {
-            get { return base["LastName"].ToString(); }
+            get { return base["LastName"] == null ? "" : base["LastName"].ToString(); }
             set { base["LastName"] = value; }
         }
 
         public string Email
         {
-            get { return base["Email"].ToString(); }
+            get { return base["Email"] == null ? "" : base["Email"].ToString(); }
             set { base["Email"] = value; }
         }
 
@@ -35,7 +35,7 @@ namespace CourseAplicationMVC.Models
 
         public string Image
         {
-            get { return base["Image"].ToString(); }
+            get { return base["Image"] == null ? "" : base["Number"].ToString(); }
             set { base["Image"] = value; }
         }
 

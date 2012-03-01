@@ -19,11 +19,7 @@ namespace CourseAplicationMVC.Controllers
 
         public ActionResult Pagination()
         {
-           
-               /* if (partial.HasValue && !partial.Value)
-                    return View();*/
-                return PartialView();
-           
+                return PartialView();      
         }
 
 
@@ -53,7 +49,6 @@ namespace CourseAplicationMVC.Controllers
             {
                 if (partial.HasValue && partial.Value)
                   return PartialView("PIndex", _repo.GetAll());
-                /*return View("IndexAll", _repo.GetAll());*/
                 return View("IndexAll", _repo.GetPartialFucs(10));//5
             }
 
@@ -73,19 +68,6 @@ namespace CourseAplicationMVC.Controllers
 
             IEnumerable<Fuc> list2 = _repo.GetPaged(page, itemsnumber);
 
-           
-
-           /*int max_elem = Math.Min((int) (page * itemsnumber), array.Length);
-             LinkedList<Fuc> list2 = new LinkedList<Fuc>();*/
-           /* if (array.Length == 0) {
-                if (partial.HasValue && partial.Value)
-                    return PartialView("PIndex", list2);
-                return View("Index", list2);
-             }*/
-           /* for (int i = (int) ((page - 1) * itemsnumber), j = 0; i < max_elem; j++, i++)
-            {
-                list2.AddLast(array[i]);
-            }*/
             if (partial.HasValue && partial.Value)
                 return PartialView("PIndex", list2);
             return View("Index", list2);
@@ -98,17 +80,7 @@ namespace CourseAplicationMVC.Controllers
                 return HttpNotFound();
             if (partial.HasValue) return PartialView(f);
             return View(f);
-        }/*
-          public ActionResult Xml(string id)
-        {
-            Fuc f = _repo.GetByAcr(id);
-            if (f == null)
-                return HttpNotFound();
-              StringWriter sw = new StringWriter();
-              sw.Write("<?xml version=\"1.0\" encoding=\"utf-8\"?><foo>Hello, world!</foo>");
-              string xml=sw.ToString();
-            return new ContentResult { Content = xml, ContentType = "text/xml" };
-        }*/
+        }
           
         [Authorize]
         public ActionResult Edit(string id)
@@ -133,7 +105,6 @@ namespace CourseAplicationMVC.Controllers
             f.User = User.Identity.Name;
             f.OriginalAcr = id;
             _proprepo.Add(f);
-            //bruta!!
             return Redirect(string.Format("/{0}/{1}/{2}", "Proposal", "Detail", f.Idx));
         }
 

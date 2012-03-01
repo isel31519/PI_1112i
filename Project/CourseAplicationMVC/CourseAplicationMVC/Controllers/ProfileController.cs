@@ -50,11 +50,6 @@ namespace CourseAplicationMVC.Controllers
             
             return View(profile);
         }
-/*
-        public ActionResult Index()
-        {
-            return View();
-        }*/
 
         public ActionResult Upload()
         {
