@@ -35,7 +35,7 @@ namespace CourseAplicationMVC.Models
 
         public string Image
         {
-            get { return base["Image"] == null ? "" : base["Number"].ToString(); }
+            get { return base["Image"] == null ? "" : base["Image"].ToString(); }
             set { base["Image"] = value; }
         }
 
