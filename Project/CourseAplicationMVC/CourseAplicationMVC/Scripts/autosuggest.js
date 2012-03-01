@@ -258,7 +258,7 @@ Autosuggest =
         }
     },
 
-
+    
     KeyUp: function (suggestionListObj)
     {
 
