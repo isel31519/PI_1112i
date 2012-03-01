@@ -35,11 +35,9 @@ namespace CourseAplicationMVC.Controllers
                     profile.Number = user.Number.ToString();
                     profile.Email = user.Email;
                     profile.Save();
-
-                   // string randomId = "asdfgtre";//criar random(ou n)id k identifica
                     var mail = new MailMessage("pi.admin.li51n.g02@sapo.pt", user.Email,
                                                        "Account verification",
-                                                       "Click the link below to activate your account: " +
+                                                       "Click the link below to activate your account: http://" +
                                                        Request.Url.Authority+"/Register/Activate/" + user.Username);
 
                     var s = new SmtpClient
