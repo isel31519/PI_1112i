@@ -29,24 +29,30 @@ function paging(myurl, flag) {
 
 
         http.open("GET", myurl + "&partial=true", false);
-        http.onreadystatechange = window.useHttpResponse;
+        http.onreadystatechange = function() {
+            if (http.readyState == 4 && http.status == 200) {
+                var textout = http.responseText;
+                $('#elems').html(textout);
+                history.pushState(null, document.title, myurl);
+            }
+            return false;
+        };
         http.send(null);
 
-        if (http.readyState == 4 && http.status == 200) {
-            var textout = http.responseText;
-            $('#elems').html(textout);
-            history.pushState(null, document.title, myurl);
-        }
+        
     } else {
         $('.order').unbind('click');
         http.open("GET", "/fuc/pagination", false);
-        http.onreadystatechange = window.useHttpResponse;
+        http.onreadystatechange = function() {
+            if (http.readyState == 4 && http.status == 200) {
+                var textout = http.responseText;
+                $('#pager').html(textout);
+            }
+            return false;
+        };
+        
         http.send(null);
-        if (http.readyState == 4 && http.status == 200) {
-            var textout = http.responseText;
-            $('#pager').html(textout);
-        }
-
+       
         $('#paging').html("Pagination Off");
         href = $('#paging').attr("href");
         href = href.replace("pagination=true", "pagination=False");
@@ -66,22 +72,22 @@ function refreshelems(myurl, page) {
 
     var http = new XMLHttpRequest();
     http.open("GET", myurl + "?page=" + page + "&itemsnumber=" + itemsPerPage + "&partial=true", false);
-    http.onreadystatechange = window.useHttpResponse;
+    http.onreadystatechange = function() {
+        if (http.readyState == 4 && http.status == 200) {
+            var textout = http.responseText;
+            //console.log(textout);
+            $('#elems').html(textout);
+            ($('#pageinput').val(page));
+
+            $('#next').attr("href", replacehref(myurl, page + 1, itemsPerPage));
+            $('#prev').attr("href", replacehref(myurl, page - 1, itemsPerPage));
+
+            history.pushState(null, document.title, '?page=' + page + '&itemsnumber=' + itemsPerPage);
+
+        }
+        accord();
+    };
     http.send(null);
-
-    if (http.readyState == 4 && http.status == 200) {
-        var textout = http.responseText;
-        //console.log(textout);
-        $('#elems').html(textout);
-        ($('#pageinput').val(page));
-
-        $('#next').attr("href", replacehref(myurl, page + 1, itemsPerPage));
-        $('#prev').attr("href", replacehref(myurl, page - 1, itemsPerPage));
-
-        history.pushState(null, document.title, '?page=' + page + '&itemsnumber=' + itemsPerPage);
-
-    }
-    accord();
     return false;
 
 }

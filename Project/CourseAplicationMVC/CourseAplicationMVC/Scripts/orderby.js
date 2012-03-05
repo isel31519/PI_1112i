@@ -23,17 +23,19 @@
     href = href + "?orderby=" + elem.text() + "&type=" + type;
     
     http.open("GET", href + "&partial=true", false);
-    http.onreadystatechange = window.useHttpResponse;
+    http.onreadystatechange = function() {
+        if (http.readyState == 4 && http.status == 200) {
+            var textout = http.responseText;
+            //console.log(textout);
+            $('#elems').html(textout);
+            history.pushState(null, document.title, href);
+
+        }
+        accord();
+    };
     http.send(null);
 
-    if (http.readyState == 4 && http.status == 200) {
-        var textout = http.responseText;
-        //console.log(textout);
-        $('#elems').html(textout);
-        history.pushState(null, document.title, href);
 
-    }
-    accord();
 
 }
 
